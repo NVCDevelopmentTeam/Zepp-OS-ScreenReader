@@ -1,13 +1,7 @@
 import { gettext } from 'i18n'
 
-AppSideService({
-  onInit() {
+Page({
+  build() {
     console.log(gettext('example'))
-  },
-
-  onRun() {
-  },
-
-  onDestroy() {
   }
 })

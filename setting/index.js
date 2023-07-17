@@ -1,56 +1,37 @@
-import React, { useState } from 'react';
+import { gettext } from 'i18n'
 
-const AppSettingsPage = (props) => {
-  const [selectedVoice, setSelectedVoice] = useState('voice1');
-  const [speechSpeed, setSpeechSpeed] = useState(50);
-  const [isOutputEnabled, setIsOutputEnabled] = useState(false);
+AppSettingsPage({
+  build() {
+    // Render the setting screen here
+    const screenReaderSetting = document.createElement('div');
+    screenReaderSetting.classList.add('setting-item');
 
-  const handleVoiceChange = (event) => {
-    setSelectedVoice(event.target.value);
-  };
+    const label = document.createElement('label');
+    label.textContent = gettext('Screen Reader');
+    label.setAttribute('for', 'screen-reader-toggle');
 
-  const handleSpeedChange = (event) => {
-    setSpeechSpeed(event.target.value);
-  };
+    const toggleSwitch = document.createElement('input');
+    toggleSwitch.setAttribute('id', 'screen-reader-toggle');
+    toggleSwitch.setAttribute('type', 'checkbox');
+    toggleSwitch.addEventListener('change', this.handleScreenReaderToggle);
 
-  const handleOutputChange = (event) => {
-    setIsOutputEnabled(event.target.checked);
-  };
+    const toggleSwitchLabel = document.createElement('label');
+    toggleSwitchLabel.setAttribute('for', 'screen-reader-toggle');
 
-  return (
-    <div>
-      <h1>Screen Reader Settings</h1>
-      <Section>
-        <h2>Voice Settings</h2>
-        <div>
-          <label htmlFor="voiceSelect">Select Voice:</label>
-          <select id="voiceSelect" name="voice" value={selectedVoice} onChange={handleVoiceChange}>
-            <option value="voice1">Voice 1</option>
-            <option value="voice2">Voice 2</option>
-            <option value="voice3">Voice 3</option>
-          </select>
-        </div>
-      </Section>
-      <Section>
-        <h2>Speech Speed</h2>
-        <div>
-          <label htmlFor="speedSlider">Adjust Speed:</label>
-          <input id="speedSlider" type="range" min="0" max="100" value={speechSpeed} onChange={handleSpeedChange} />
-        </div>
-      </Section>
-      <Section>
-        <h2>Text-to-Speech Output</h2>
-        <div>
-          <label htmlFor="outputCheckbox">Enable Output:</label>
-          <input id="outputCheckbox" type="checkbox" checked={isOutputEnabled} onChange={handleOutputChange} />
-        </div>
-      </Section>
-    </div>
-  );
-};
+    screenReaderSetting.appendChild(label);
+    screenReaderSetting.appendChild(toggleSwitch);
+    screenReaderSetting.appendChild(toggleSwitchLabel);
 
-const Section = (props) => {
-  return <div>{props.children}</div>;
-};
+    // Add the setting screen to the page
+    const container = document.getElementById('settings-container');
+    container.appendChild(screenReaderSetting);
+  },
 
-export default AppSettingsPage;
+  handleScreenReaderToggle() {
+    // Handle the screen reader toggle change here
+    const isScreenReaderEnabled = this.checked;
+
+    // Update the screen reader setting accordingly
+    // ...
+  }
+})

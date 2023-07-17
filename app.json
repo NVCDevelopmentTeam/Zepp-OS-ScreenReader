@@ -1,8 +1,8 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 26288,
-    "appName": "Zepp OS Screen reader",
+    "appId": 20095,
+    "appName": "Zepp OS Screen Reader",
     "appType": "app",
     "version": {
       "code": 1,
@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "zepp",
-    "description": "This is a screen reader for devices running Zepp OS"
+    "description": "This is a screen reader for Zepp OS"
   },
   "permissions": [],
   "runtime": {
@@ -20,21 +20,13 @@
       "minVersion": "1.0.0"
     }
   },
-  "debug": false,
   "targets": {
-    "gtr3-pro": {
+    "480x480-gtr-3-pro": {
       "module": {
         "page": {
           "pages": [
-            "page/gtr3-pro/home/index.page"
-          ],
-          "window": {
-            "navigationBarBackgroundColor": "#ffffff",
-            "navigationBarTextStyle": "black",
-            "navigationBarTitleText": "Hello World",
-            "backgroundColor": "#eeeeee",
-            "backgroundTextStyle": "light"
-          }
+            "page/index"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -51,64 +43,20 @@
         {
           "name": "gtr3-pro-w",
           "deviceSource": 230
+        },
+        {
+          "name": "gtr3-pro-meilin",
+          "deviceSource": 6095106
         }
       ],
       "designWidth": 480
     },
-    "gtr3": {
+    "390x450-gts-3": {
       "module": {
         "page": {
           "pages": [
-            "page/gtr3/home/index.page"
-          ],
-          "window": {
-            "navigationBarBackgroundColor": "#ffffff",
-            "navigationBarTextStyle": "black",
-            "navigationBarTitleText": "Hello World",
-            "backgroundColor": "#eeeeee",
-            "backgroundTextStyle": "light"
-          }
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gtr3",
-          "deviceSource": 226
-        },
-        {
-          "name": "gtr3-w",
-          "deviceSource": 227
-        },
-        {
-          "name": "t-rex2",
-          "deviceSource": 418
-        },
-        {
-          "name": "t-rex2-w",
-          "deviceSource": 419
-        }
-      ],
-      "designWidth": 454
-    },
-    "gts3": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/gts3/home/index.page"
-          ],
-          "window": {
-            "navigationBarBackgroundColor": "#ffffff",
-            "navigationBarTextStyle": "black",
-            "navigationBarTitleText": "Hello World",
-            "backgroundColor": "#eeeeee",
-            "backgroundTextStyle": "light"
-          }
+            "page/index"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -129,19 +77,12 @@
       ],
       "designWidth": 390
     },
-    "teide": {
+    "454x454-t-rex-2": {
       "module": {
         "page": {
           "pages": [
-            "page/t-rex2/home/index.page"
-          ],
-          "window": {
-            "navigationBarBackgroundColor": "#ffffff",
-            "navigationBarTextStyle": "black",
-            "navigationBarTitleText": "Hello World",
-            "backgroundColor": "#eeeeee",
-            "backgroundTextStyle": "light"
-          }
+            "page/index"
+          ]
         },
         "app-side": {
           "path": "app-side/index"
@@ -161,11 +102,197 @@
         }
       ],
       "designWidth": 454
+    },
+    "336x384-gts-4-mini": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts4-mini",
+          "deviceSource": 246
+        },
+        {
+          "name": "gts4-mini-w",
+          "deviceSource": 247
+        }
+      ],
+      "designWidth": 336
+    },
+    "194x368-amazfit-band-7": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "amazfit-band7-nfc",
+          "deviceSource": 252
+        },
+        {
+          "name": "amazfit-band7",
+          "deviceSource": 253
+        },
+        {
+          "name": "amazfit-band7-w",
+          "deviceSource": 254
+        }
+      ],
+      "designWidth": 194
+    },
+    "466x466-gtr-4": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtr4",
+          "deviceSource": 7930112
+        },
+        {
+          "name": "gtr4-w",
+          "deviceSource": 7930113
+        }
+      ],
+      "designWidth": 466
+    },
+    "390x450-gts-4": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts4",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "gts4-w",
+          "deviceSource": 7995649
+        }
+      ],
+      "designWidth": 390
+    },
+    "416x416-falcon": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "falcon",
+          "deviceSource": 414
+        },
+        {
+          "name": "falcon",
+          "deviceSource": 415
+        }
+      ],
+      "designWidth": 416
+    },
+    "416x416-gtr-mini": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtr-mini",
+          "deviceSource": 250
+        },
+        {
+          "name": "gtr-mini-w",
+          "deviceSource": 251
+        }
+      ],
+      "designWidth": 416
+    },
+    "454x454-t-rex-ultra": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "t-rex-ultra",
+          "deviceSource": 6553856
+        },
+        {
+          "name": "t-rex-ultra-w",
+          "deviceSource": 6553857
+        }
+      ],
+      "designWidth": 454
     }
   },
   "i18n": {
     "en-US": {
-      "appName": "Hello World"
+      "appName": "Empty"
     }
   },
   "defaultLanguage": "en-US"
