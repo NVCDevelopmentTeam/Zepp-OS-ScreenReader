@@ -7,9 +7,9 @@ Welcome to the Zepp OS Screen Reader repository. This repository contains the so
 To get started, follow the steps below:
 
 1. Clone the repository to your local machine by running the following command:
-git clone []
+git clone [https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git]
 2. Navigate to the project root directory by executing the command:
-cd hello-world
+cd Zepp-OS-ScreenReader
 3. Start the compilation preview by running:
 zeus dev
 
@@ -17,7 +17,9 @@ zeus dev
 
 To build the application, run the following command:
 zeus build
+
 Once executed, a .zab file will be generated in the `dist` folder. You can install this file on your Zepp OS device.
+
 ## How to Install:
 
 To install the application on your device, follow these steps:
@@ -26,6 +28,7 @@ To install the application on your device, follow these steps:
 2. Open the Zepp app on your phone.
 3. Go to Profile > Amazfit GTS 4 Mini > App Store.
 4. Select the desired app to download and install, or update an existing app to the latest version.
+
 ## How to Enable the Screen Reader:
 
 Once the apk is installed on your device, you can enable the Zepp OS Screen Reader service by following these steps:
