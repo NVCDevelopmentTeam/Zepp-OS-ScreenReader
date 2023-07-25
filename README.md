@@ -6,17 +6,17 @@ Welcome to the Zepp OS Screen Reader repository. This repository contains the so
 
 To get started, follow the steps below:
 
-1. Clone the repository to your local machine by running the following command:
-    git clone [https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git]    
-2. Navigate to the project root directory by executing the command:
-    cd Zepp-OS-ScreenReader    
-3. Start the compilation preview by running:
-    zeus dev    
+1. Clone the repository to your local machine by running the following command:  
+git clone [https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git]
+2. Navigate to the project root directory by executing the command:  
+cd Zepp-OS-ScreenReader    
+3. Start the compilation preview by running:  
+zeus dev
 
 ## How to Build:
 
-To build the application, run the following command:
-    zeus build    
+To build the application, run the following command:  
+zeus build
 
 Once executed, a .zab file will be generated in the `dist` folder. You can install this file on your Zepp OS device.
 
