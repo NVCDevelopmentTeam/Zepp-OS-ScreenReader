@@ -16,7 +16,7 @@ To get started, follow the steps below:
 ## How to Build:
 
 To build the application, run the following command:  
-`zeus build```  
+`zeus build```
 Once executed, a .zab file will be generated in the `dist` folder. You can install this file on your Zepp OS device.
 
 ## How to Install:
