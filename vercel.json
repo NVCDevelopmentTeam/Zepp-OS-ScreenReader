@@ -1,9 +1,0 @@
-{
-  version 2,
-  builds [
-    {
-      src/Site content/ZSR/package.json,
-      use @vercelnode
-    }
-  ]
-}
