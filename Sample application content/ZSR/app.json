@@ -297,3 +297,16 @@
   },
   "defaultLanguage": "en-US"
 }
+// app.json
+{
+  "app": {
+    "name": "ZSR",
+    "version": "1.0.0",
+    "description": "Zepp OS Screen reader",
+    "icon": "assets/icon.png",
+    "screen": {
+      "type": ["square", "round", "band"],
+      "size": [436, 480]
+    }
+  }
+}

@@ -1,35 +1,41 @@
-// Create an application service to run the screen reader
-import { AppService } from '@zos/app-service';
-import { Screen } from '@zos/sensor';
-import { Notification } from '@zos/notification';
+// Import the gettext function for internationalization
+import { gettext } from 'i18n'
 
-const appService = new AppService();
-const screen = new Screen();
-const notification = new Notification();
+// Import the widgets for the settings page
+import { AppSettingsPage, Switch, Slider, Text } from '@zeppos/widgets'
 
-// Register a callback function to listen for screen display change events
-const callback = () => {
-  // Get the current screen display state
-  const status = screen.getStatus();
-  // If the screen is on, send a system notification with the screen reader text
-  if (status === 1) {
-    notification.send({
-      title: 'Screen reader',
-      content: 'The screen is displaying the following content: ...', // Replace ... with the actual content of the screen
-      buttons: [
-        {
-          text: 'Off',
-          action: () => {
-            // Turn off screen reader
-            appService.stop();
-          }
-        }
-      ]
-    });
+// Create a settings page with a title and a build function
+AppSettingsPage({
+  title: gettext('Settings'),
+  build() {
+    // Create a switch widget to toggle the screen reader on or off
+    Switch({
+      id: 'screen-reader-switch',
+      label: gettext('Screen reader'),
+      value: true, // The initial value of the switch
+      onChanged: (value) => {
+        // The callback function when the switch value changes
+        console.log('Screen reader is ' + (value ? 'on' : 'off'))
+      }
+    })
+
+    // Create a slider widget to adjust the volume of the screen reader
+    Slider({
+      id: 'volume-slider',
+      label: gettext('Volume'),
+      value: 50, // The initial value of the slider
+      min: 0, // The minimum value of the slider
+      max: 100, // The maximum value of the slider
+      onChanged: (value) => {
+        // The callback function when the slider value changes
+        console.log('Volume is ' + value)
+      }
+    })
+
+    // Create a text widget to display some information
+    Text({
+      id: 'info-text',
+      text: gettext('This is a sample application for Zepp OS Screen reader')
+    })
   }
-};
-
-screen.on(callback);
-
-// Start running the screen reader
-appService.start();
+})

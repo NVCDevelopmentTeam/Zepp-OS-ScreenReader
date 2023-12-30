@@ -1,27 +1,24 @@
-// Import gettext function from i18n library
+// app-side/index.js
 import { gettext } from 'i18n'
+import { px } from '@zos/device'
 
-// Create an AppSideService object
 AppSideService({
-  // The onInit function is called when the app is initialized
   onInit() {
-    // Print an internationalized language string to the screen
-    console.log(gettext('Hello, this is Zepp OS screen reader'))
+    console.log(gettext('example'))
   },
 
-  // The onRun function is called when the app is run
   onRun() {
-    // Send a notification to the wearable device via the sendNotification function
-    this.sendNotification({
-      title: gettext('Screen reader is running'),
-      content: gettext('Please tap the screen to activate the screen reader'),
-      vibration: 'short'
-    })
+    // Draw a rectangle on the screen
+    this.canvas = new Canvas()
+    this.canvas.width = px(200)
+    this.canvas.height = px(100)
+    this.canvas.fillStyle = '#FF0000'
+    this.canvas.fillRect(0, 0, this.canvas.width, this.canvas.height)
+    this.canvas.show()
   },
 
-  // The onDestroy function is called when the app is destroyed
   onDestroy() {
-    // Print an internationalized language string to the screen
-    console.log(gettext('Goodbye, this is Zepp OS screen reader'))
+    // Clear the canvas
+    this.canvas.clear()
   }
 })
