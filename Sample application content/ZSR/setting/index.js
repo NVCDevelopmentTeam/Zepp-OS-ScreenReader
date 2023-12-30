@@ -1,37 +1,35 @@
-import { gettext } from 'i18n'
+// Create an application service to run the screen reader
+import { AppService } from '@zos/app-service';
+import { Screen } from '@zos/sensor';
+import { Notification } from '@zos/notification';
 
-AppSettingsPage({
-  build() {
-    // Render the setting screen here
-    const screenReaderSetting = document.createElement('div');
-    screenReaderSetting.classList.add('setting-item');
+const appService = new AppService();
+const screen = new Screen();
+const notification = new Notification();
 
-    const label = document.createElement('label');
-    label.textContent = gettext('Screen Reader');
-    label.setAttribute('for', 'screen-reader-toggle');
-
-    const toggleSwitch = document.createElement('input');
-    toggleSwitch.setAttribute('id', 'screen-reader-toggle');
-    toggleSwitch.setAttribute('type', 'checkbox');
-    toggleSwitch.addEventListener('change', this.handleScreenReaderToggle);
-
-    const toggleSwitchLabel = document.createElement('label');
-    toggleSwitchLabel.setAttribute('for', 'screen-reader-toggle');
-
-    screenReaderSetting.appendChild(label);
-    screenReaderSetting.appendChild(toggleSwitch);
-    screenReaderSetting.appendChild(toggleSwitchLabel);
-
-    // Add the setting screen to the page
-    const container = document.getElementById('settings-container');
-    container.appendChild(screenReaderSetting);
-  },
-
-  handleScreenReaderToggle() {
-    // Handle the screen reader toggle change here
-    const isScreenReaderEnabled = this.checked;
-
-    // Update the screen reader setting accordingly
-    // ...
+// Register a callback function to listen for screen display change events
+const callback = () => {
+  // Get the current screen display state
+  const status = screen.getStatus();
+  // If the screen is on, send a system notification with the screen reader text
+  if (status === 1) {
+    notification.send({
+      title: 'Screen reader',
+      content: 'The screen is displaying the following content: ...', // Replace ... with the actual content of the screen
+      buttons: [
+        {
+          text: 'Off',
+          action: () => {
+            // Turn off screen reader
+            appService.stop();
+          }
+        }
+      ]
+    });
   }
-})
+};
+
+screen.on(callback);
+
+// Start running the screen reader
+appService.start();
