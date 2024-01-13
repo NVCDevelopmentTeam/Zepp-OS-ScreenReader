@@ -1,13 +1,29 @@
-import adapter from '@sveltejs/adapter-auto';
+import { mdsvex } from 'mdsvex'
+import mdsvexConfig from './mdsvex.config.js'
+import preprocess from 'svelte-preprocess'
+import adapter from '@sveltejs/adapter-auto'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
-		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
-		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
-		adapter: adapter()
-	}
-};
+  extensions: ['.svelte', ...mdsvexConfig.extensions],
 
-export default config;
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: [
+    preprocess({
+      postcss: true
+    }),
+    mdsvex(mdsvexConfig)
+  ],
+
+  kit: {
+    adapter: adapter(),
+
+    // remove this if you don't want prerendering
+    prerender: {
+      entries: ['*', '/sitemap.xml', '/rss.xml']
+    }
+  }
+}
+
+export default config
