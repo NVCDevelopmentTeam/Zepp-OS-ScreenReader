@@ -1,4 +1,4 @@
-export const siteTitle = 'ZSR - Zepp OS Screen Reader';
+export const siteTitle = 'ZSR - screen reader for the visually impaired
 export const description = 'ZSR is an application that runs on the Zepp operating system, a platform for developing applications for smart wearable devices.';
 export const features = [
   'Voice feedback for all interface elements',
