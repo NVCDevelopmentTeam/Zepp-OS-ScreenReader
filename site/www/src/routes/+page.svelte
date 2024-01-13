@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-  <title>{siteTitle}</title>
+  <title>Home - {siteTitle}</title>
   <meta name="description" content={description} />
 </svelte:head>
 

@@ -1,16 +1,29 @@
+<script>
+  import { onMount } from 'svelte';
+
+  let year;
+
+  onMount(() => {
+    year = new Date().getFullYear();
+  });
+</script>
+
 <div class="site-footer">
   <footer class="site-info" aria-label="Site" itemtype="" itemscope>
     <div class="inside-site-info grid-container" id="footer">
-      <div class="copyright-bar">
-        © 2022 NVCDevelopmentTeam all rights reserved
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
+          <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
+          <li><a class="back" href="#top">Back to top</a></li>
+        </ul>
+      </nav>
+      <div class="copy-right-bar">
+        © {year} NVC Development Team. All rights reserved.
       </div>
     </div>
   </footer>
 </div>
-<a href="/accessibilityStatement">accessibilityStatement</a>
-<a href="/PrivacyPolicy">PrivacyPolicy</a>
-<a class="back" href="#top">back to top</a>
-
 
 <style>
   .site-footer {
@@ -34,22 +47,39 @@
     max-width: 960px;
   }
 
-  .copyright-bar {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  a:hover {
+    color: #000;
+  }
+
+  .copy-right-bar {
     font-size: 14px;
     line-height: 1.5;
   }
 
   .back {
-    display: block;
-    margin-top: 16px;
-    text-align: center;
-    text-decoration: none;
     font-weight: bold;
     font-size: 14px;
-    color: #333;
-  }
-
-  .back:hover {
-    color: #000;
   }
 </style>
