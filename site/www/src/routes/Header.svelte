@@ -10,6 +10,11 @@
     import collapse from 'svelte-collapse'
     let open = true;
   let expanded2 = false;
+	let darkMode = false;
+	function toggle() {
+        darkMode = !darkMode;
+        window.document.body.classList.toggle('dark');
+    }
 </script>
 
 <header id="top">
@@ -85,6 +90,18 @@
         <path d="M0,0L0,3C0.5,30.5,31,2L2,0Z" />
       </svg>
     </div>
+<button on:click={toggle}
+	aria-pressed={darkMode}
+aria-label='darkMode'
+	class="toggle-darkMode"
+	tabindex={darkMode  || !darkMode ? '0' : '-1'}>
+	<span class="sr-only"></span>
+	{#if darkMode }
+		Go light
+	{:else}
+		Go dark
+	{/if}
+</button>
   </nav>
 </header>
 
@@ -176,4 +193,15 @@
   a:hover {
     color: var(--color-theme-1);
   }
+	button {
+		background: var(--bg-color);
+		border: 2px solid var(--text-color);
+		border-radius: 5px;
+		color: var(--text-color);
+		padding: 10px 15px;
+	}
+	
+	button:active {
+		background: inherit;
+}
 </style>
