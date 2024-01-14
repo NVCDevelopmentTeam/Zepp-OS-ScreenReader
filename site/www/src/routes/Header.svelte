@@ -90,6 +90,7 @@
         <path d="M0,0L0,3C0.5,30.5,31,2L2,0Z" />
       </svg>
     </div>
+<i>Theme</i>
 <button on:click={toggle}
 	aria-pressed={darkMode}
 aria-label='darkMode'
