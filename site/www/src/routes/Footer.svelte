@@ -12,6 +12,7 @@
   <footer class="site-info" aria-label="Site" itemtype="" itemscope>
     <div class="inside-site-info grid-container" id="footer">
       <nav aria-label="Footer">
+<h3>Useful links</h3> 
         <ul>
           <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
           <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
