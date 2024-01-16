@@ -7,8 +7,6 @@
   let expanded = false;
   export let dropDownMenu = 'DropDownMenu';
   let haspopup = true;
-    import collapse from 'svelte-collapse'
-    let open = true;
   let expanded2 = false;
 	let darkMode = false;
 	function toggle() {
@@ -48,7 +46,7 @@
       </svg>
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded} use:collapse={{open}}>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded}>
       <ul id="main-menu" class="navbar-nav ml-auto">
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
@@ -57,11 +55,11 @@
           <a href="/news">News</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/#" on:click={() => open = !open} aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}
+          <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/#"  aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}
             {dropDownMenu}>Other services 
       <span class="navbar-toggler-icon"></span>
           </a>
-<div class="collapse navbar-collapse" id="DropDownMenu" hidden={!expanded2} use:collapse={{ open: true, duration: 0.2, easing: 'ease' }} Hidden={!open}>
+<div class="collapse navbar-collapse" id="DropDownMenu" hidden={!expanded2}>
           <ul class="dropdown-menu" aria-labelledby="other-services">
             <li aria-current={$page.url.pathname === '#github' ? 'page' : undefined}>
               <a class="dropdown-item" href="#github" title="github repo">Github</a>
