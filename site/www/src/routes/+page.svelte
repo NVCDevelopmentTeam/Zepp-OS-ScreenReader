@@ -1,14 +1,14 @@
 <script>
   import ArrowRightIcon from '$lib/components/ArrowRightIcon.svelte';
   import PostsList from '$lib/components/PostsList.svelte';
-  import { siteTitle, description, features } from '$lib/info.js';
+  import { siteTitle, siteDescription, features } from '$lib/info.js';
   /** @type {import('./$types').PageData} */
   export let data;
 </script>
 
 <svelte:head>
   <title>Home - {siteTitle}</title>
-  <meta name="description" content={description} />
+  <meta name="description" content={siteDescription} />
 </svelte:head>
 
 <div class="flex flex-col flex-grow gap-8 pb-16">
