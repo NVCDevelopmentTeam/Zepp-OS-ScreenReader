@@ -1,13 +1,12 @@
+import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 
-/** @type {import('vite').UserConfig} */
-const config = {
-	plugins: [sveltekit()],
-	server: {
-		fs: {
-			allow: ['.']
-		}
-	}
-};
-
-export default config
+export default defineConfig({
+  plugins: [sveltekit()],
+  // allows vite access to ./posts
+  server: {
+    fs: {
+      allow: ['./']
+    }
+  }
+})
