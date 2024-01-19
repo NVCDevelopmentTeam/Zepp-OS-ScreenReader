@@ -1,12 +1,12 @@
-import { defineConfig } from 'vite'
-import { sveltekit } from '@sveltejs/kit/vite'
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [sveltekit()],
-  // allows vite access to ./posts
-  server: {
-    fs: {
-      allow: ['./']
+    plugins: [sveltekit()],
+    server: {
+        fs: {
+            // Here, '.' references the project root. Adjust as necessary for your case!
+            allow: ['.']
+        }
     }
-  }
-})
+});
