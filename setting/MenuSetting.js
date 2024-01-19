@@ -4,10 +4,10 @@ const accessibility = require('@system.accessibility');
 // Define the settings page
 Page({
   data: {
-    // The current values of the shortcut settings
-    shortcutItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
-    shortcutOrder: 'asc',
-    shortcutActions: {
+    // The current values of the menu settings
+    menuItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
+    menuOrder: 'asc',
+    menuActions: {
       'Read': accessibility.read,
       'Pause': accessibility.pause,
       'Next': accessibility.next,
@@ -15,42 +15,42 @@ Page({
       'Settings': accessibility.settings
     }
   },
-  // The function to change the shortcut items
-  changeShortcutItems(e) {
+  // The function to change the menu items
+  changeMenuItems(e) {
     // Get the new value from the list
     let newValue = e.newValue;
     // Update the data
     this.setData({
-      shortcutItems: newValue
+      menuItems: newValue
     });
-    // Call the accessibility API to set the shortcut items
-    accessibility.setShortcutItems({
+    // Call the accessibility API to set the menu items
+    accessibility.setMenuItems({
       items: newValue
     });
   },
-  // The function to change the shortcut order
-  changeShortcutOrder(e) {
+  // The function to change the menu order
+  changeMenuOrder(e) {
     // Get the new value from the picker
     let newValue = e.newValue[0];
     // Update the data
     this.setData({
-      shortcutOrder: newValue
+      menuOrder: newValue
     });
-    // Call the accessibility API to set the shortcut order
-    accessibility.setShortcutOrder({
+    // Call the accessibility API to set the menu order
+    accessibility.setMenuOrder({
       order: newValue
     });
   },
-  // The function to change the shortcut actions
-  changeShortcutActions(e) {
+  // The function to change the menu actions
+  changeMenuActions(e) {
     // Get the new value from the map
     let newValue = e.newValue;
     // Update the data
     this.setData({
-      shortcutActions: newValue
+      menuActions: newValue
     });
-    // Call the accessibility API to set the shortcut actions
-    accessibility.setShortcutActions({
+    // Call the accessibility API to set the menu actions
+    accessibility.setMenuActions({
       actions: newValue
     });
   }
