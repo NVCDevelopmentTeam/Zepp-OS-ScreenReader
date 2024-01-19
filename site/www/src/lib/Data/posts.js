@@ -2,7 +2,7 @@ import { browser } from '$app/environment'
 import { format } from 'date-fns'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
-import {navItems} from '$lib/info.js' 
+
 // we require some server-side APIs to parse all metadata
 if (browser) {
   throw new Error(`posts can only be imported server-side`)

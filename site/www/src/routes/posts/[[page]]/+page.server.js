@@ -1,4 +1,4 @@
-import {posts} from '$lib/data/posts'
+import { posts } from '$lib/data/posts'
 import { paginate } from '$lib/util'
 import { error } from '@sveltejs/kit'
 
