@@ -27,6 +27,7 @@
   };
 </script>
 
+<h2>Contact form</h2>
 <form on:submit="{handleSubmit}">
   <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 

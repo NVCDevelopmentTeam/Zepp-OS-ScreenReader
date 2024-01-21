@@ -51,8 +51,8 @@
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
         </li>
-        <li aria-current={$page.url.pathname === '/news' ? 'page' : undefined}>
-          <a href="/news">News</a>
+        <li aria-current={$page.url.pathname === '/posts' ? 'page' : undefined}>
+          <a href="/posts">News</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/#"  aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}

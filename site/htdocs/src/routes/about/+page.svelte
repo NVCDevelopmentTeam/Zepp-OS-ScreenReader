@@ -1,27 +1,23 @@
+<script>
+import {siteTitle} from '$lib/info.js';
+</script>
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About website" />
+	<title>About - {siteTitle}</title>
+	<meta name="description" content="About page" />
 </svelte:head>
 
-<div class="text-column">
+<div class="container">
 	<h1>About this app</h1>
 
 	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
+		ZSR (Zepp OS Screen Reader) is an app that provides accessibility features for users with visual impairments. It runs on devices that use the Zepp operating system, such as smartwatches and fitness trackers. ZSR can read out loud the text and icons on the screen, as well as the notifications and alerts from other apps. ZSR also supports voice commands and gestures to control the device and the app.
 	</p>
-
-	<pre>npm create svelte@latest</pre>
 
 	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		ZSR is developed by NVC Development Team, a group of passionate developers who want to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href="^1^">GitHub</a>, where you can also report issues, request features, and contribute to the project.
 	</p>
 
-	
-	<!-- <p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p> -->
+	<p>
+		If you want to learn more about ZSR, you can visit the <a href="^2^">Zepp OS Developer Documentation</a>, where you can find guides, tutorials, and best practices for developing apps for Zepp OS devices. You can also check out the <a href="^3^">Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
+	</p>
 </div>
