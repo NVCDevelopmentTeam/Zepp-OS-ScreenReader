@@ -7,3 +7,4 @@ export const features = [
   'Support for multiple devices and screen sizes'
 ];
 export const siteURL = 'https://example.com';
+export const author = "NVC developer Team";
