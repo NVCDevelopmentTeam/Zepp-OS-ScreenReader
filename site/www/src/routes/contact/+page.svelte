@@ -1,6 +1,9 @@
+<script>
+import Contact from '$lib/components/Contact.svelte';
+</script>
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
+	<title>Contact</title>
+	<meta name="description" content="Contact me" />
 </svelte:head>
 
 <div class="text-column">
@@ -24,4 +27,5 @@
 		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
 		using it with JavaScript disabled!
 	</p> -->
+<Contact />
 </div>
