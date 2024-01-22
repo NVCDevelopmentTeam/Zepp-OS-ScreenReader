@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
   import logo from '$lib/images/logo.png';
-import {githubLink} from '$lib/info.js';
+import {githubLink, discordChat } from '$lib/info.js';
 
   export let navMenu = 'Menu';
   let expanded = false;
@@ -65,15 +65,15 @@ import {githubLink} from '$lib/info.js';
             <li aria-current={$page.url.pathname === '{githubLink}' ? 'page' : undefined}>
               <a class="dropdown-item" href="{githubLink}" title="github repo">Github</a>
             </li>
-            <li aria-current={$page.url.pathname === '#discord' ? 'page' : undefined}>
-              <a class="dropdown-item" href="#discord" title="discord chat">Discord</a>
+            <li aria-current={$page.url.pathname === '{discordChat}' ? 'page' : undefined}>
+              <a class="dropdown-item" href="{discordChat}" title="discord chat">Discord</a>
             </li>
             <li class="dropdown-divider"></li>
             <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
               <a class="dropdown-item" href="/support">support</a>
             </li>
-            <li aria-current={$page.url.pathname === '#ZeppOSDeveloper' ? 'page' : undefined}>
-              <a class="dropdown-item" href="#zeppOsdeveloper">Zepp OS Developer</a>
+            <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+              <a class="dropdown-item" href="/">Zepp OS Developer</a>
             </li>
           </ul>
 </div>
