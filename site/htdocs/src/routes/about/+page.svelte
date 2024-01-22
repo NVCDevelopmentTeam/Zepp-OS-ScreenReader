@@ -14,7 +14,7 @@ import {siteTitle, githubLink} from '$lib/info.js';
 	</p>
 
 	<p>
-		ZSR is developed by NVC Development Team, a group of passionate developers who want to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href={githubLink}>GitHub</a>, where you can also report issues, request features, and contribute to the project.
+		ZSR is developed by NVC Development Team, a group of passionate developers who want to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href="{githubLink}">GitHub</a>, where you can also report issues, request features, and contribute to the project.
 	</p>
 
 	<p>
