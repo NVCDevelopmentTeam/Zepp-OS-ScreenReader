@@ -1,15 +1,14 @@
 <script>
   import { siteTitle, siteURL } from '$lib/info.js';
-import ToC from '$lib/components/ToC.svelte';
+  import ToC from '$lib/components/ToC.svelte';
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte';
-  import { afterNavigate } from '$app/navigation'
-import PostDate from '$lib/components/PostDate.svelte';
+  import { afterNavigate } from '$app/navigation';
+  import PostDate from '$lib/components/PostDate.svelte';
 
   /** @type {import('./$types').PageData} */
   export let data;
 
   // generated open-graph image for sharing on social media.
-
   const url = `${siteURL}/${data.post.slug}`;
 
   // if we came from /posts, we will use history to go back to preserve
@@ -51,18 +50,24 @@ import PostDate from '$lib/components/PostDate.svelte';
 <div class="root max-w-2xl mx-auto lg:max-w-none">
   <div class="hidden lg:block pt-8">
     <div class="sticky top-0 w-full flex justify-end pt-11 pr-8">
-      <svelte:element
-        this={canGoBack ? 'button' : 'a'}
-        class="items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
-        href={canGoBack ? undefined : '/posts'}
-        aria-label="Go back to posts"
-        on:click={goBack}
-        on:keydown={goBack}
-      >
-        <ArrowLeftIcon
-          class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
-        />
-      </svelte:element>
+      {#if canGoBack}
+        <button
+          class="items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
+          aria-label="Go back to news"
+          on:click={goBack}
+          on:keydown={goBack}
+        >
+          <ArrowLeftIcon class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
+        </button>
+      {:else}
+        <a
+          class="items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
+          href="/posts"
+          aria-label="Go back to posts"
+        >
+          <ArrowLeftIcon class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
+        </a>
+      {/if}
     </div>
   </div>
 
@@ -76,7 +81,7 @@ import PostDate from '$lib/components/PostDate.svelte';
       </header>
 
       <!-- render the post -->
-      <div class="prose dark:prose-invert ">
+      <div class="prose dark:prose-invert">
         <svelte:component this={data.component} />
       </div>
     </article>
@@ -96,7 +101,7 @@ import PostDate from '$lib/components/PostDate.svelte';
     grid-template-columns: 1fr;
   }
 
-  @media screen(lg) {
+  @media (min-width: 42rem) {
     .root {
       /* 42rem matches max-w-2xl */
       grid-template-columns: 1fr 42rem 1fr;
