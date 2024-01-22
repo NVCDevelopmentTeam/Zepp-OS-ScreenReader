@@ -1,5 +1,4 @@
 <script>
-  import ArrowRightIcon from '$lib/components/ArrowRightIcon.svelte';
   import PostsList from '$lib/components/PostsList.svelte';
   import { siteTitle, siteDescription, features } from '$lib/info.js';
   /** @type {import('./$types').PageData} */

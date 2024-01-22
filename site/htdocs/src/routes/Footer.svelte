@@ -13,7 +13,7 @@ import { siteAuthor, githubLink } from '$lib/info.js';
   <footer class="site-info" itemtype="" itemscope>
     <div class="inside-site-info grid-container" id="footer">
       <nav>
-<h3>Useful links</h3> 
+<h2>Useful links</h2> 
         <ul>
           <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
           <li><a href="/PrivacyPolicy">Privacy Policy</a></li>

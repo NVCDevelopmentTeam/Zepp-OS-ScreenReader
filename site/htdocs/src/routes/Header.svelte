@@ -36,15 +36,8 @@ import {githubLink, discordChat } from '$lib/info.js';
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <svg viewBox="0 0 23" aria-hidden="true">
-      <path d="M0,0L1,2C1.5,31.5,32,3L2,0Z" />
-    </svg>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded={expanded} aria-label="Toggle navigation" on:click={() => (expanded = !expanded)}>
+    <button class="navMenu" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded={expanded} aria-label="Toggle navigation" on:click={() => (expanded = !expanded)}>
       {navMenu}
-      <svg viewBox="0 0 20 20" fill="none">
-        <path class="vert" d="M10 1V19" stroke="black" stroke-width="2" />
-        <path d="M1 10L19 10" stroke="black" stroke-width="2" />
-      </svg>
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded}>
@@ -85,15 +78,14 @@ import {githubLink, discordChat } from '$lib/info.js';
           <a href="/contact">Contact</a>
         </li>
       </ul>
-      <svg viewBox="0 0 23" aria-hidden="true">
-        <path d="M0,0L0,3C0.5,30.5,31,2L2,0Z" />
-      </svg>
     </div>
 <i>Theme</i>
 <button on:click={toggle}
+	class="darkMode"
+type="button"
 	aria-pressed={darkMode}
-aria-label='darkMode'
-	class="toggle-darkMode"
+Name="button"
+aria-label='dark Mode'
 	tabindex={darkMode  || !darkMode ? '0' : '-1'}>
 	<span class="sr-only"></span>
 	{#if darkMode }
