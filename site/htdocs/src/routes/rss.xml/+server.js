@@ -25,7 +25,7 @@ export async function GET({ setHeaders }) {
         <title>${siteTitle}</title>
         <link>${siteURL}</link>
         <description>${websiteDescription}</description>
-        <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="${siteURL}/rss.xml" rel="self" type="application/rss+xml" />
         ${posts
           .map(
             (post) =>
