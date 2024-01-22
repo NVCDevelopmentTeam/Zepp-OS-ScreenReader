@@ -1,5 +1,5 @@
 <script>
-import { siteAuthor } from '$lib/info.js';
+import { siteAuthor, githubLink } from '$lib/info.js';
   import { onMount } from 'svelte';
 
   let year;
@@ -17,7 +17,7 @@ import { siteAuthor } from '$lib/info.js';
         <ul>
           <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
           <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
-          <li><a href="#github">github </a></li>
+          <li><a href="{githubLink}">github </a></li>
         </ul>
       </nav>
       <div class="copy-right-bar">
