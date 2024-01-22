@@ -14,10 +14,10 @@ import {siteTitle} from '$lib/info.js';
 	</p>
 
 	<p>
-		ZSR is developed by NVC Development Team, a group of passionate developers who want to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href="^1^">GitHub</a>, where you can also report issues, request features, and contribute to the project.
+		ZSR is developed by NVC Development Team, a group of passionate developers who want to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href="">GitHub</a>, where you can also report issues, request features, and contribute to the project.
 	</p>
 
 	<p>
-		If you want to learn more about ZSR, you can visit the <a href="^2^">Zepp OS Developer Documentation</a>, where you can find guides, tutorials, and best practices for developing apps for Zepp OS devices. You can also check out the <a href="^3^">Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
+		If you want to learn more about ZSR, you can visit the <a href="">Zepp OS Developer Documentation</a>, where you can find guides, tutorials, and best practices for developing apps for Zepp OS devices. You can also check out the <a href="">Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
 	</p>
 </div>
