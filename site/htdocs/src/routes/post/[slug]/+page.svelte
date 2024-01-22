@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, siteURL } from '$lib/info.js';
+  import { siteTitle, siteURL, siteAuthor } from '$lib/info.js';
   import ToC from '$lib/components/ToC.svelte';
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte';
   import { afterNavigate } from '$app/navigation';
@@ -31,7 +31,7 @@
 <svelte:head>
   <title>{data.post.title} - {siteTitle}</title>
   <meta name="description" content={data.post.preview.text} />
-  <meta name="author" content={name} />
+  <meta name="author" content={siteAuthor} />
 
   <!-- Facebook Meta Tags -->
   <meta property="og:url" content={url} />
