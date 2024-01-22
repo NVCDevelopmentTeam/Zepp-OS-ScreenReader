@@ -3,7 +3,7 @@ import {siteTitle} from '$lib/info.js';
 </script>
 <svelte:head>
 	<title>About - {siteTitle}</title>
-	<meta name="description" content="About page" />
+	<meta name="description" content="AboutPage" />
 </svelte:head>
 
 <div class="container">
