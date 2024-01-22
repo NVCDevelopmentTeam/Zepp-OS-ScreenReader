@@ -8,7 +8,7 @@ import { siteURL } from '$lib/info'
 export const prerender = true
 
 // make sure this matches your post route
-const getPostUrl = (slug) => `${sitleURL}/post/${slug}`
+const getPostUrl = (slug) => `${siteURL}/post/${slug}`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
