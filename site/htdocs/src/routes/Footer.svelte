@@ -1,4 +1,5 @@
 <script>
+import { siteAuthor } from '$lib/info.js';
   import { onMount } from 'svelte';
 
   let year;
@@ -9,18 +10,19 @@
 </script>
 
 <div class="site-footer">
-  <footer class="site-info" aria-label="Site" itemtype="" itemscope>
+  <footer class="site-info" itemtype="" itemscope>
     <div class="inside-site-info grid-container" id="footer">
-      <nav aria-label="Footer">
+      <nav>
 <h3>Useful links</h3> 
         <ul>
           <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
           <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
-          <li><a class="back" href="#top">Back to top</a></li>
+          <li><a href="#github">github </a></li>
         </ul>
       </nav>
       <div class="copy-right-bar">
-        © {year} NVC Development Team. All rights reserved.
+        © {year, siteAuthor} All rights reserved.
+<a class="back" href="#top">Back to top</a>
       </div>
     </div>
   </footer>
