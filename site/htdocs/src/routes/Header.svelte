@@ -56,7 +56,7 @@ import {githubLink, discordChat } from '$lib/info.js';
           <a href="/posts">News</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/#"  aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}
+          <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/"  aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}
             {dropDownMenu}>Other services 
       <span class="navbar-toggler-icon"></span>
           </a>
