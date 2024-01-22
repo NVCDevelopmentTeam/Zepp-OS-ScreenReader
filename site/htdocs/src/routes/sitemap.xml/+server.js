@@ -32,7 +32,7 @@ export async function GET({ setHeaders }) {
       xmlns:xhtml="http://www.w3.org/1999/xhtml"
     >
       <url>
-        <loc>${website}</loc>
+        <loc>${siteURL}</loc>
         <priority>1.0</priority>
       </url>
 
