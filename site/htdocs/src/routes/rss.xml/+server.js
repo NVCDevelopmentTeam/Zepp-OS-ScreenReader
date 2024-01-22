@@ -3,13 +3,13 @@
 // credit: https://scottspence.com/posts/make-an-rss-feed-with-sveltekit#add-posts-for-the-rss-feed
 
 import { posts } from '$lib/data/posts'
-import { name, website } from '$lib/info'
+import { siteTitle, siteDescription, siteURL } from '$lib/info'
 
 export const prerender = true
 
 // update this to something more appropriate for your website
-const websiteDescription = `${name}'s blog`
-const postsUrl = `${website}/posts`
+const websiteDescription = `${siteTitle, siteDescription} `
+const postsUrl = `${siteURL}/posts`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -22,8 +22,8 @@ export async function GET({ setHeaders }) {
 
   const xml = `<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
-        <title>${name}</title>
-        <link>${website}</link>
+        <title>${siteTitle}</title>
+        <link>${siteURL}</link>
         <description>${websiteDescription}</description>
         <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml" />
         ${posts
