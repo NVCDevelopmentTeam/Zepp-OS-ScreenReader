@@ -15,7 +15,10 @@ import { siteAuthor, githubLink } from '$lib/info.js';
       <nav>
 <h2>Useful links</h2> 
         <ul>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
           <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
+<li><a href="/support">Support</a></li>
           <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
           <li><a href="{githubLink}">github </a></li>
         </ul>

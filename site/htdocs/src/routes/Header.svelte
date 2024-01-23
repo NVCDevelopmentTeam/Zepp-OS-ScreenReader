@@ -2,18 +2,19 @@
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
   import logo from '$lib/images/logo.png';
-import {githubLink, discordChat } from '$lib/info.js';
+  import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  export let navMenu = 'Menu';
+  let navMenu = 'Menu';
   let expanded = false;
-  export let dropDownMenu = 'DropDownMenu';
+  let dropDownMenu = 'DropDownMenu';
   let haspopup = true;
   let expanded2 = false;
-	let darkMode = false;
-	function toggle() {
-        darkMode = !darkMode;
-        window.document.body.classList.toggle('dark');
-    }
+  let darkMode = false;
+
+  function toggle() {
+    darkMode = !darkMode;
+    window.document.body.classList.toggle('dark');
+  }
 </script>
 
 <header id="top">
@@ -36,8 +37,18 @@ import {githubLink, discordChat } from '$lib/info.js';
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <button class="navMenu" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded={expanded} aria-label="Toggle navigation" on:click={() => (expanded = !expanded)}>
+    <button
+      class="navMenu"
+      type="button"
+id="menu"
+      data-toggle="collapse"
+      data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded={expanded}
+      on:click={() => (expanded = !expanded)}
+    >
       {navMenu}
+<label for="menu">Toggle navigation</label>
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded}>
@@ -49,51 +60,65 @@ import {githubLink, discordChat } from '$lib/info.js';
           <a href="/posts">News</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" type="link" id="otherServices" href="/"  aria-haspopup={haspopup}  aria-controls="DropDownMenu" aria-expanded={expanded2} data-toggle="dropdown" data-target="#navbarNavDropdown"   on:click={() => (expanded2   = !expanded2)}
-            {dropDownMenu}>Other services 
-      <span class="navbar-toggler-icon"></span>
+          <a
+            class="nav-link dropdown-toggle"
+            type="link"
+            id="nav-item dropdown"
+            href="/"
+            aria-haspopup={haspopup}
+            aria-controls="DropDownMenu"
+aria-label="Other service"
+            aria-expanded={expanded2}
+            data-toggle="dropdown"
+            data-target="#navbarNavDropdown"
+            on:click={() => (expanded2 = !expanded2)}
+          >
+            {dropDownMenu} 
+            <span class="navbar-toggler-icon"></span>
           </a>
-<div class="collapse navbar-collapse" id="DropDownMenu" hidden={!expanded2}>
-          <ul class="dropdown-menu" aria-labelledby="other-services">
-            <li aria-current={$page.url.pathname === '{githubLink}' ? 'page' : undefined}>
-              <a class="dropdown-item" href="{githubLink}" title="github repo">Github</a>
-            </li>
-            <li aria-current={$page.url.pathname === '{discordChat}' ? 'page' : undefined}>
-              <a class="dropdown-item" href="{discordChat}" title="discord chat">Discord</a>
-            </li>
-            <li class="dropdown-divider"></li>
-            <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
-              <a class="dropdown-item" href="/support">support</a>
-            </li>
-            <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-              <a class="dropdown-item" href="/">Zepp OS Developer</a>
-            </li>
-          </ul>
-</div>
+          <div class="collapse navbar-collapse" id="DropDownMenu" hidden={!expanded2}>
+            <ul class="dropdown-menu" aria-labelledby="other-services">
+              <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
+                <a class="dropdown-item" href={githubLink} title="github repo">Github</a>
+              </li>
+              <li aria-current={$page.url.pathname === discordChat ? 'page' : undefined}>
+                <a class="dropdown-item" href={discordChat} title="discord chat">Discord</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
+                <a class="dropdown-item" href="/support">Support</a>
+              </li>
+              <li aria-current={$page.url.pathname === '{zeppOSDev}' ? 'page' : undefined}>
+                <a class="dropdown-item" href="{zeppOSDev}">Zepp OS Developer</a>
+              </li>
+            </ul>
+          </div>
         </li>
         <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-          <a href="/about">about</a>
+          <a href="/about">About</a>
         </li>
         <li aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>
           <a href="/contact">Contact</a>
         </li>
       </ul>
     </div>
-<i>Theme</i>
-<button on:click={toggle}
-	class="darkMode"
-type="button"
-	aria-pressed={darkMode}
-Name="button"
-aria-label='dark Mode'
-	tabindex={darkMode  || !darkMode ? '0' : '-1'}>
-	<span class="sr-only"></span>
-	{#if darkMode }
-		Go light
-	{:else}
-		Go dark
-	{/if}
-</button>
+    <i>Theme</i>
+    <button
+      on:click={toggle}
+      class="darkMode"
+id="darkMode"
+      type="button"
+      aria-pressed={darkMode}
+      tabindex={darkMode || !darkMode ? '0' : '-1'}
+    >
+<label for="darkMode">Dark mode</label>
+      <span class="sr-only"></span>
+      {#if darkMode}
+        Go light
+      {:else}
+        Go dark
+      {/if}
+    </button>
   </nav>
 </header>
 
@@ -126,16 +151,6 @@ aria-label='dark Mode'
     display: flex;
     justify-content: center;
     --background: rgba(255, 255, 255, 0.7);
-  }
-
-  svg {
-    width: 2em;
-    height: 3em;
-    display: block;
-  }
-
-  path {
-    fill: var(--background);
   }
 
   ul {
@@ -185,15 +200,16 @@ aria-label='dark Mode'
   a:hover {
     color: var(--color-theme-1);
   }
-	button {
-		background: var(--bg-color);
-		border: 2px solid var(--text-color);
-		border-radius: 5px;
-		color: var(--text-color);
-		padding: 10px 15px;
-	}
-	
-	button:active {
-		background: inherit;
-}
+
+  button {
+    background: var(--bg-color);
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    padding: 10px 15px;
+  }
+
+  button:active {
+    background: inherit;
+  }
 </style>
