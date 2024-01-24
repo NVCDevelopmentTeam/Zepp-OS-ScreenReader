@@ -1,5 +1,5 @@
 import { browser } from '$app/environment'
-import { format } from 'date-fns'
+import { format, isAfter } from 'date-fns'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
@@ -54,6 +54,12 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
     next: allPosts[index - 1],
     previous: allPosts[index + 1]
   }))
+  .filter((post) => {
+    const isPublished = isAfter(new Date(), new Date(post.date))
+    const isHidden = !!post.hidden
+
+    return isPublished && !isHidden
+  })
 
 function addTimezoneOffset(date) {
   const offsetInMilliseconds = new Date().getTimezoneOffset() * 60 * 1000

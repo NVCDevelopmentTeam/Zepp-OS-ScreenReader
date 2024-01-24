@@ -9,5 +9,5 @@ export const features = [
 export const siteURL = 'https://example.com';
 export const siteAuthor = 'NVC Development Team';
 export const githubLink ='https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git';
-export const discordChat ='https://discord.gg/jnbYsERw';
+export const discordChat ='https://discord.gg/DAZU3E4mSP';
 export const zeppOSDev ='https://developer.zepp.com/os/home';
