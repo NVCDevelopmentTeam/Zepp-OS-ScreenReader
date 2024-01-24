@@ -9,7 +9,7 @@ if (browser) {
 }
 
 // Get all posts and add metadata
-export const posts = Object.entries(import.meta.glob('/posts/**/*.md', { eager: true }))
+export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', { eager: true }))
   .map(([filepath, post]) => {
     const html = parse(post.default.render().html)
     const preview = post.metadata.preview ? parse(post.metadata.preview) : html.querySelector('p')

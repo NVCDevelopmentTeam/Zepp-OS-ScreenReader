@@ -1,5 +1,7 @@
 <script>
-import { siteAuthor, githubLink } from '$lib/info.js';
+  import { page } from '$app/stores';
+  import { browser } from '$app/environment';
+  import { siteAuthor, githubLink } from '$lib/info.js';
   import { onMount } from 'svelte';
 
   let year;
@@ -13,19 +15,31 @@ import { siteAuthor, githubLink } from '$lib/info.js';
   <footer class="site-info" itemtype="" itemscope>
     <div class="inside-site-info grid-container" id="footer">
       <nav>
-<h2>Useful links</h2> 
+        <h2>Useful links</h2>
         <ul>
-<li><a href="/about">About</a></li>
-<li><a href="/contact">Contact</a></li>
-          <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
-<li><a href="/support">Support</a></li>
-          <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
-          <li><a href="{githubLink}">github </a></li>
+          <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+            <a href="/about">About</a>
+          </li>
+          <li aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>
+            <a href="/contact">Contact</a>
+          </li>
+          <li aria-current={$page.url.pathname === '/accessibilityStatement' ? 'page' : undefined}>
+            <a href="/accessibilityStatement">Accessibility Statement</a>
+          </li>
+          <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
+            <a href="/support">Support</a>
+          </li>
+          <li aria-current={$page.url.pathname === '/PrivacyPolicy' ? 'page' : undefined}>
+            <a href="/PrivacyPolicy">Privacy Policy</a>
+          </li>
+          <li aria-current={$page.url.pathname === '{githubLink}' ? 'page' : undefined}>
+            <a href="{githubLink}">github</a>
+          </li>
         </ul>
       </nav>
       <div class="copy-right-bar">
-        © {year, siteAuthor} All rights reserved.
-<a class="back" href="#top">Back to top</a>
+        © {year}, {siteAuthor} All rights reserved.
+        <a class="back" href="#top">Back to top</a>
       </div>
     </div>
   </footer>

@@ -40,7 +40,7 @@
     <button
       class="navMenu"
       type="button"
-id="menu"
+      id="menu"
       data-toggle="collapse"
       data-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown"
@@ -48,7 +48,7 @@ id="menu"
       on:click={() => (expanded = !expanded)}
     >
       {navMenu}
-<label for="menu">Toggle navigation</label>
+      <label for="menu">Toggle navigation</label>
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded}>
@@ -56,28 +56,28 @@ id="menu"
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
         </li>
-        <li aria-current={$page.url.pathname === '/posts' ? 'page' : undefined}>
-          <a href="/posts">News</a>
+        <li aria-current={$page.url.pathname === '/news' ? 'page' : undefined}>
+          <a href="/news">News</a>
         </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             type="link"
-            id="nav-item dropdown"
-            href="/"
+            id="dropDownMenu"
+            href="#DropdownMenu"
             aria-haspopup={haspopup}
             aria-controls="DropDownMenu"
-aria-label="Other service"
+            aria-label="Other service"
             aria-expanded={expanded2}
             data-toggle="dropdown"
             data-target="#navbarNavDropdown"
             on:click={() => (expanded2 = !expanded2)}
           >
-            {dropDownMenu} 
+            {dropDownMenu}
             <span class="navbar-toggler-icon"></span>
           </a>
-          <div class="collapse navbar-collapse" id="DropDownMenu" hidden={!expanded2}>
-            <ul class="dropdown-menu" aria-labelledby="other-services">
+          <div class="collapse navbar-collapse" id="dropDownMenu" hidden={!expanded2}>
+            <ul class="dropdown-menu">
               <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
                 <a class="dropdown-item" href={githubLink} title="github repo">Github</a>
               </li>
@@ -106,12 +106,12 @@ aria-label="Other service"
     <button
       on:click={toggle}
       class="darkMode"
-id="darkMode"
+      id="darkMode"
       type="button"
       aria-pressed={darkMode}
       tabindex={darkMode || !darkMode ? '0' : '-1'}
     >
-<label for="darkMode">Dark mode</label>
+      <label for="darkMode">Dark mode</label>
       <span class="sr-only"></span>
       {#if darkMode}
         Go light
