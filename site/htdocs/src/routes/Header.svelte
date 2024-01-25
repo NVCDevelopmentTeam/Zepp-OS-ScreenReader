@@ -4,9 +4,9 @@
   import logo from '$lib/images/logo.png';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  let navMenu = 'Menu';
+  let navMenu;
   let expanded = false;
-  let dropDownMenu = 'DropDownMenu';
+  let dropDownMenu;
   let haspopup = true;
   let expanded2 = false;
   let darkMode = false;
@@ -37,21 +37,11 @@
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <button
-      class="navMenu"
-      type="button"
-      id="menu"
-      data-toggle="collapse"
-      data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded={expanded}
-      on:click={() => (expanded = !expanded)}
-    >
+    <button class="navMenu" type="button" id="menu" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
       {navMenu}
       <label for="menu">Toggle navigation</label>
-      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown" hidden={!expanded}>
+    <div class="collapse navbar-collapse" hidden={!expanded}>
       <ul id="main-menu" class="navbar-nav ml-auto">
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
@@ -61,22 +51,18 @@
         </li>
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="hide"
+            data-toggle="#list"
             type="link"
-            id="dropDownMenu"
-            href="#DropdownMenu"
+            href="/?"
             aria-haspopup={haspopup}
-            aria-controls="DropDownMenu"
             aria-label="Other service"
             aria-expanded={expanded2}
-            data-toggle="dropdown"
-            data-target="#navbarNavDropdown"
             on:click={() => (expanded2 = !expanded2)}
           >
             {dropDownMenu}
-            <span class="navbar-toggler-icon"></span>
           </a>
-          <div class="collapse navbar-collapse" id="dropDownMenu" hidden={!expanded2}>
+          <div class="collapse navbar-collapse" hidden={!expanded2}>
             <ul class="dropdown-menu">
               <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
                 <a class="dropdown-item" href={githubLink} title="github repo">Github</a>
@@ -103,16 +89,8 @@
       </ul>
     </div>
     <i>Theme</i>
-    <button
-      on:click={toggle}
-      class="darkMode"
-      id="darkMode"
-      type="button"
-      aria-pressed={darkMode}
-      tabindex={darkMode || !darkMode ? '0' : '-1'}
-    >
+    <button on:click={toggle} class="darkMode" id="darkMode" type="button" aria-pressed={darkMode} tabindex={darkMode || !darkMode ? '0' : '-1'}>
       <label for="darkMode">Dark mode</label>
-      <span class="sr-only"></span>
       {#if darkMode}
         Go light
       {:else}

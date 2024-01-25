@@ -33,7 +33,7 @@ Recent posts
     <PostsList posts={data.posts} />
   </div>
   </section>
-  <h3>Features:</h3>
+  <h2>Features:</h2>
   <ul>
     <!-- Uses an each block to iterate through the features array -->
     {#each features as feature}
