@@ -3,7 +3,7 @@
   </script>
 
 <svelte:head>
-  <title>Accessibility statement - {siteTitle}</title>
+  <title>Accessibility statement | {siteTitle}</title>
   <meta name="description" content="Accessibility statement for website" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>

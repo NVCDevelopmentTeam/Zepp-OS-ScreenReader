@@ -3,7 +3,7 @@ import {siteTitle} from '$lib/info.js';
 import Contact from '$lib/components/Contact.svelte';
 </script>
 <svelte:head>
-	<title>Contact {siteTitle}</title>
+	<title>Contact | {siteTitle}</title>
 	<meta name="description" content="Contact me" />
 </svelte:head>
 
