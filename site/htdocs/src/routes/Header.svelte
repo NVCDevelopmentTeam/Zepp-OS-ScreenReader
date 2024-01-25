@@ -4,9 +4,9 @@
   import logo from '$lib/images/logo.png';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  let navMenu;
+  let navMenu = '';
   let expanded = false;
-  let dropDownMenu;
+  let dropDownMenu = '';
   let haspopup = true;
   let expanded2 = false;
   let darkMode = false;
@@ -38,7 +38,7 @@
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
     <button class="navMenu" type="button" id="menu" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
-      {navMenu}
+      {#if navMenu}{navMenu}{/if}
       <label for="menu">Toggle navigation</label>
     </button>
     <div class="collapse navbar-collapse" hidden={!expanded}>
@@ -60,7 +60,7 @@
             aria-expanded={expanded2}
             on:click={() => (expanded2 = !expanded2)}
           >
-            {dropDownMenu}
+            {#if dropDownMenu}{dropDownMenu}{/if}
           </a>
           <div class="collapse navbar-collapse" hidden={!expanded2}>
             <ul class="dropdown-menu">
@@ -74,8 +74,8 @@
               <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
                 <a class="dropdown-item" href="/support">Support</a>
               </li>
-              <li aria-current={$page.url.pathname === '{zeppOSDev}' ? 'page' : undefined}>
-                <a class="dropdown-item" href="{zeppOSDev}">Zepp OS Developer</a>
+              <li aria-current={$page.url.pathname === zeppOSDev ? 'page' : undefined}>
+                <a class="dropdown-item" href={zeppOSDev}>Zepp OS Developer</a>
               </li>
             </ul>
           </div>
