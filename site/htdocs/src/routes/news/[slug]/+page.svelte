@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.post.title} - {siteTitle}</title>
+  <title>{data.post.title} | {siteTitle}</title>
   <meta name="description" content={data.post.preview.text} />
   <meta name="author" content={siteAuthor} />
 </svelte:head>
