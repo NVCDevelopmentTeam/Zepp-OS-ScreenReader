@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, githubLink } from '$lib/info.js';
+  import { siteTitle, githubLink, zeppOSDocs, zeppOSScreen } from '$lib/info.js';
 </script>
 
 <svelte:head>
@@ -19,6 +19,6 @@
   </p>
 
   <p>
-    If you want to learn more about ZSR, you can visit the <a href="/">Zepp OS Developer Documentation</a>. It provides guides, tutorials, and best practices for developing apps for Zepp OS devices. Additionally, you can check out the <a href="/">Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
+    If you want to learn more about ZSR, you can visit the <a href="{zeppOSDocs{">Zepp OS Developer Documentation</a>. It provides guides, tutorials, and best practices for developing apps for Zepp OS devices. Additionally, you can check out the <a href="{zeppOSScreen}">Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
   </p>
 </div>

@@ -11,3 +11,5 @@ export const siteAuthor = 'NVC Development Team';
 export const githubLink ='https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git';
 export const discordChat ='https://discord.gg/DAZU3E4mSP';
 export const zeppOSDev ='https://developer.zepp.com/os/home';
+export const zeppOSDocs ='https://docs.zepp.com/docs/intro/';
+export const zeppOSScreen ='https://developer.zepp.com/os-post/screen-adaptation';
