@@ -15,10 +15,10 @@
   </p>
 
   <p>
-    ZSR is developed by the NVC Development Team, a group of passionate developers who aim to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href={githubLink}>GitHub</a>, where you can also report issues, request features, and contribute to the project.
+    ZSR is developed by the NVC Development Team, a group of passionate developers who aim to make technology more inclusive and user-friendly. You can find the source code of ZSR on <a href={githubLink}>GitHub,</a> where you can also report issues, request features, and contribute to the project.
   </p>
 
   <p>
-    If you want to learn more about ZSR, you can visit the <a href={zeppOSDocs}>Zepp OS Developer Documentation</a>. It provides guides, tutorials, and best practices for developing apps for Zepp OS devices. Additionally, you can check out the <a href={zeppOSScreen}>Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
+    If you want to learn more about ZSR, you can visit the <a href={zeppOSDocs}>Zepp OS Developer Documentation.</a> It provides guides, tutorials, and best practices for developing apps for Zepp OS devices. Additionally, you can check out the <a href={zeppOSScreen}>Zepp OS Screen Adaptation</a> article, which explains how to design and adapt your app for different screen shapes and sizes.
   </p>
 </div>

@@ -49,7 +49,7 @@
     <li>Respond to your inquiries, requests, or feedback.</li>
     <li>Ensure the security and integrity of our systems.</li>
     <li>Comply with legal obligations.</li>
-    <li>Participate in the Google AdSense program and provide targeted advertising based on your interests. For more information about how Google uses your information, please see the <a href="https://policies.google.com/technologies/partner-sites">Google Privacy Policy</a>.</li>
+    <li>Participate in the Google AdSense program and provide targeted advertising based on your interests. For more information about how Google uses your information, please see the <a href="https://policies.google.com/technologies/partner-sites">Google Privacy Policy.</a></li>
   </ul>
 
   <h2>Disclosure of Your Information</h2>
