@@ -83,12 +83,12 @@
   </p>
 
   <ul>
-    <li><a href="/termsOfService">Terms of Service</a></li>
-    <li><a href="/cookiePolicy">Cookie Policy</a></li>
-    <li><a href="/dataProcessingAgreement">Data Processing Agreement</a></li>
-    <li><a href="/endUserLicenseAgreement">End User License Agreement</a></li>
-    <li><a href="/developerAgreement">Developer Agreement</a></li>
-    <li><a href="/accessibilityStatement">Accessibility Statement</a></li>
+    <li><a href="/terms-of-service">Terms of Service</a></li>
+    <li><a href="/cookie-policy">Cookie Policy</a></li>
+    <li><a href="/data-processing-agreement">Data Processing Agreement</a></li>
+    <li><a href="/end-user-license-agreement">End User License Agreement</a></li>
+    <li><a href="/developer-agreement">Developer Agreement</a></li>
+    <li><a href="/accessibility-statement">Accessibility Statement</a></li>
   </ul>
 
   <p>

@@ -23,14 +23,14 @@
           <li aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>
             <a href="/contact">Contact</a>
           </li>
-          <li aria-current={$page.url.pathname === '/accessibilityStatement' ? 'page' : undefined}>
-            <a href="/accessibilityStatement">Accessibility Statement</a>
+          <li aria-current={$page.url.pathname === '/accessibility-statement' ? 'page' : undefined}>
+            <a href="/accessibility-statement">Accessibility Statement</a>
           </li>
           <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
             <a href="/support">Support</a>
           </li>
-          <li aria-current={$page.url.pathname === '/privacyPolicy' ? 'page' : undefined}>
-            <a href="/privacyPolicy">Privacy policy</a>
+          <li aria-current={$page.url.pathname === '/privacy-policy' ? 'page' : undefined}>
+            <a href="/privacy-policy">Privacy policy</a>
           </li>
           <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
             <a href={githubLink}>GitHub</a>
