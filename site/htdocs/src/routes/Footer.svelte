@@ -30,7 +30,7 @@
             <a href="/support">Support</a>
           </li>
           <li aria-current={$page.url.pathname === '/privacyPolicy' ? 'page' : undefined}>
-            <a href="/privacyPolicy">Privacy Policy</a>
+            <a href="/privacyPolicy">Privacy policy</a>
           </li>
           <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
             <a href={githubLink}>GitHub</a>
