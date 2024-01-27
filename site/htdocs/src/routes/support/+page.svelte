@@ -8,4 +8,5 @@ let pageTitle ='support';
 </svelte:head>
 <div>
 <h1>{pageTitle}</h1>
+<p>Currently, the content is being updated. Please try again later</p>
 </div>
