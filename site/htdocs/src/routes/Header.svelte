@@ -55,7 +55,7 @@
             data-toggle="#list"
 id="Other-services" 
             type="link"
-            href="/?"
+            href="/#"
             aria-haspopup={haspopup}
             aria-label="Other service"
             aria-expanded={expanded2}
