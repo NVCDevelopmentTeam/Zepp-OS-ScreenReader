@@ -37,12 +37,12 @@
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <button class="navMenu" type="button" id="menu"       data-toggle="collapse"      data-target="#navbarResponsive"      aria-controls="navbarResponsive" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
+    <button class="navbar-toggler" type="button" id="menu"       data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
       {#if navMenu}{navMenu}{/if}
       <label for="menu">Toggle navigation</label>
-    </button>
-    <div class="collapse-navbar-collapse" id="navbarResponsive" hidden={!expanded}>
-      <ul id="main-menu" class="navbar-nav ml-auto">
+<span					class="navbar-toggler-icon"></span>    </button>
+    			<div class="collapse navbar-collapse" id="navbarResponsive" hidden={!expanded}>
+				<ul id="main-menu" class="navbar-nav ml-auto">
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
         </li>
@@ -53,6 +53,7 @@
           <a
             class="hide"
             data-toggle="#list"
+id="Other-services" 
             type="link"
             href="/?"
             aria-haspopup={haspopup}
@@ -63,7 +64,7 @@
             {#if dropDownMenu}{dropDownMenu}{/if}
           </a>
           <div class="collapse navbar-collapse" hidden={!expanded2}>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" aria-labelledby="Other-services">
               <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
                 <a class="dropdown-item" href={githubLink} title="github repo">Github</a>
               </li>
