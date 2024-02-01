@@ -37,11 +37,11 @@
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <button class="navMenu" type="button" id="menu" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
+    <button class="navMenu" type="button" id="menu"       data-toggle="collapse"      data-target="#navbarResponsive"      aria-controls="navbarResponsive"aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
       {#if navMenu}{navMenu}{/if}
       <label for="menu">Toggle navigation</label>
     </button>
-    <div class="collapse navbar-collapse" hidden={!expanded}>
+    <div class="collapse id="navbarResponsive" navbar-collapse" hidden={!expanded}>
       <ul id="main-menu" class="navbar-nav ml-auto">
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
