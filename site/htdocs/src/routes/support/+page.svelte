@@ -1,42 +1,47 @@
 <script>
-import { siteTitle } from '$lib/info.js';
-
-let pageTitle = 'Support';
+  import { siteTitle } from '$lib/info.js';
+  let pageTitle = 'Support';
 </script>
 
 <svelte:head>
   <title>{pageTitle} | {siteTitle}</title>
-  <meta name="description" content="Get assistance with Zepp OS Screen Reader (ZSR) for your smart wearable device." />
+  <meta name="description" content="Find support for Zepp OS Screen Reader (ZSR), a screen reader developed for the visually impaired for smart wearable devices running Zepp OS." />
 </svelte:head>
 
-<div>
-  <h1>{pageTitle}</h1>
-
-  <section class="support-options">
-    <h2>How can we help you?</h2>
-    <ul>
-      <li><a href="#faq">Frequently Asked Questions</a></li>
-      <li><a href="#troubleshooting">Troubleshooting</a></li>
-      <li><a href="#contact">Contact Support</a></li>
-      <li><a href="#feedback">Provide Feedback</a></li>
-    </ul>
-  </section>
-
-  <section id="faq">
-    <h2>Frequently Asked Questions</h2>
+  <div class="container">
+    <h1>{pageTitle}</h1>
+    <h2>About ZSR Project</h2>
+    <p> The ZSR project, including the discussions and source code of this website as well as the Zepp OS screen reader, are hosted on GitHub. If you encounter an issue with the Zepp OS Screen Reader, you can report it on our GitHub page.</p>
+    
+    <section class="support-options">
+      <h2>How Can We Assist You?</h2>
+      <ul>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#troubleshooting">Troubleshooting Guide</a></li>
+        <li><a href="#contact">Reach Out to Support</a></li>
+        <li><a href="#feedback">Give Us Your Feedback</a></li>
+      </ul>
     </section>
 
-  <section id="troubleshooting">
-    <h2>Troubleshooting</h2>
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <!-- Add your FAQs here -->
     </section>
 
-  <section id="contact">
-    <h2>Contact Support</h2>
-    <p>If you need further assistance, please contact us through one of the following channels:</p>
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <!-- Add your troubleshooting guide here -->
     </section>
 
-  <section id="feedback">
-    <h2>Provide Feedback</h2>
-    <p>Your feedback is valuable to us! Please share your thoughts on ZSR and help us improve the experience.</p>
+    <section id="contact">
+      <h2>Contact Support</h2>
+      <p>If you require further assistance, please reach out to us through the following channels:</p>
+      <!-- Add your contact information here -->
     </section>
-</div>
+
+    <section id="feedback">
+      <h2>We Value Your Feedback</h2>
+      <p>Your feedback helps us improve ZSR. Please share your thoughts and experiences with us.</p>
+      <!-- Add your feedback form or information here -->
+    </section>
+  </div>
