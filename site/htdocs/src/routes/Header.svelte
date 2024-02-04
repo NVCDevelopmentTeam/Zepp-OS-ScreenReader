@@ -37,12 +37,13 @@
     </ul>
   </div>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top" id="nav">
-    <button class="navbar-toggler" type="button" id="menu"       data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded={expanded} on:click={() => (expanded = !expanded)}>
+    <button class="navbar-toggler" type="button" id="menu" on:click={() => (expanded = !expanded)} aria-expanded={expanded}>
       {#if navMenu}{navMenu}{/if}
       <label for="menu">Toggle navigation</label>
-<span					class="navbar-toggler-icon"></span>    </button>
-    			<div class="collapse navbar-collapse" id="navbarResponsive" hidden={!expanded}>
-				<ul id="main-menu" class="navbar-nav ml-auto">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" hidden={!expanded}>
+      <ul id="main-menu" class="navbar-nav ml-auto">
         <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
           <a href="/">Home</a>
         </li>
@@ -50,31 +51,23 @@
           <a href="/news">News</a>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="hide"
-            data-toggle="#list"
-id="Other-services" 
-            type="link"
-            href="\"
-            aria-haspopup={haspopup}
-            aria-label="Other service"
-            aria-expanded={expanded2}
-            on:click={() => (expanded2 = !expanded2)}
-          >
+          <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" aria-label="other services" aria-haspopup={haspopup} aria-expanded={expanded2} on:click={() => (expanded2 = !expanded2)}>
             {#if dropDownMenu}{dropDownMenu}{/if}
           </a>
-          <div class="collapse navbar-collapse" hidden={!expanded2}>
-            <ul class="dropdown-menu" aria-labelledby="Other-services">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" hidden={!expanded2}>
+            <ul class="dropdown-menu">
               <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
                 <a class="dropdown-item" href={githubLink} title="github repo">Github</a>
               </li>
+              <div class="dropdown-divider" />
               <li aria-current={$page.url.pathname === discordChat ? 'page' : undefined}>
                 <a class="dropdown-item" href={discordChat} title="discord chat">Discord</a>
               </li>
-              <li class="dropdown-divider"></li>
+              <div class="dropdown-divider" />
               <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
                 <a class="dropdown-item" href="/support">Support</a>
               </li>
+              <div class="dropdown-divider" />
               <li aria-current={$page.url.pathname === zeppOSDev ? 'page' : undefined}>
                 <a class="dropdown-item" href={zeppOSDev}>Zepp OS Developer</a>
               </li>
@@ -89,6 +82,7 @@ id="Other-services"
         </li>
       </ul>
     </div>
+  </nav>
     <i>Theme</i>
     <button on:click={toggle} class="darkMode" id="darkMode" type="button" aria-pressed={darkMode} tabindex={darkMode || !darkMode ? '0' : '-1'}>
       <label for="darkMode">Dark mode</label>
@@ -98,7 +92,6 @@ id="Other-services"
         Go dark
       {/if}
     </button>
-  </nav>
 </header>
 
 <style>
