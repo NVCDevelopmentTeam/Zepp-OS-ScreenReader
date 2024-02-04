@@ -12,8 +12,9 @@
     <h1>{pageTitle}</h1>
     <h2>About ZSR Project</h2>
     <p> The ZSR project, including the discussions and source code of this website as well as the Zepp OS screen reader, are hosted on GitHub. If you encounter an issue with the Zepp OS Screen Reader, you can report it on our GitHub page.</p>
-    
-    <section class="support-options">
+<h2>Note</h2> 
+<p>the product is only provided free of charge to end users. If any organization or individual wants to integrate the author's product into their service, they need the author's written consent. The author is not responsible for organizations or individuals distributing the author's products for other purposes.</p>     
+<section class="support-options">
       <h2>How Can We Assist You?</h2>
       <ul>
         <li><a href="#faq">FAQs</a></li>
