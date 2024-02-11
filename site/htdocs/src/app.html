@@ -2,14 +2,25 @@
 <html dir="ltr" lang="en-US" prefix="og: https://ogp.me/ns#" class="relative h-full antialiased dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+    <meta property="og:type" content="website" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, 
+    <meta property="og:locale" content="en_US" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.0/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sveltekit-embed/0.0.12/sveltekit-embed.min.css" rel="stylesheet"/>
     %sveltekit.head%
+    <style>
+      body {
+        background: url('background.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
   </head>
-
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
-
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
