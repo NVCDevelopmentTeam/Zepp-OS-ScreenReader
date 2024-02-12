@@ -1,5 +1,6 @@
 <script>
   import { siteTitle } from '$lib/info.js';
+import CollapsibleSection from '$lib/components/CollapsibleSection.svelte'
   let pageTitle = 'Support';
 </script>
 
@@ -28,7 +29,17 @@
       <h2>Frequently Asked Questions</h2>
       <!-- Add your FAQs here -->
     </section>
-
+<section>
+<CollapsibleSection headerText={'Questions 1?'} >
+	<div class="content">
+			Look at all this fun content
+	</div>
+</CollapsibleSection>
+	
+<CollapsibleSection headerText={'Question 2?'} >
+	Look at all this fun content
+</CollapsibleSection>
+</section>
     <section id="troubleshooting">
       <h2>Troubleshooting</h2>
       <!-- Add your troubleshooting guide here -->
@@ -46,3 +57,14 @@
       <!-- Add your feedback form or information here -->
     </section>
   </div>
+
+<style>
+	section {
+		width: 300px;
+	}
+	
+	.content {
+		background-color: #f4f4f4;
+		padding: 0.5em;
+	}
+</style>
