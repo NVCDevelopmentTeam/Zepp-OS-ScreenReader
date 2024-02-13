@@ -1,6 +1,7 @@
 <script>
   import { siteTitle } from '$lib/info.js';
 import CollapsibleSection from '$lib/components/CollapsibleSection.svelte'
+    import FeedbackDialog, { showDialog } from '$lib/components/FeedbackDialog.svelte';
   let pageTitle = 'Support';
 </script>
 
@@ -55,6 +56,9 @@ import CollapsibleSection from '$lib/components/CollapsibleSection.svelte'
       <h2>We Value Your Feedback</h2>
       <p>Your feedback helps us improve ZSR. Please share your thoughts and experiences with us.</p>
       <!-- Add your feedback form or information here -->
+
+<a href="#feedback" on:click|preventDefault={() => showDialog.set(true)}>Feedback</a>
+<FeedbackDialog />
     </section>
   </div>
 
