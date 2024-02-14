@@ -51,9 +51,10 @@
           <a href="/news">News</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" aria-label="other services" aria-haspopup={haspopup} aria-expanded={expanded2} on:click={() => (expanded2 = !expanded2)}>
+         <button  class="nav-link dropdown-toggle" id="navbarDropdown" role="link" aria-haspopup={haspopup} aria-expanded={expanded2} on:click={() => (expanded2 = !expanded2)}>
             {#if dropDownMenu}{dropDownMenu}{/if}
-          </a>
+<label for="navbarDropdown">other services</label>
+          </button>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" hidden={!expanded2}>
             <ul class="dropdown-menu">
               <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
