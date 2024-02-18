@@ -8,13 +8,6 @@
   let issue = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader/issues';
   const pageTitle = 'Support';
 
-  const sections = [
-    { id: 'faq', title: 'Frequently Asked Questions' },
-    { id: 'troubleshooting', title: 'Troubleshooting' },
-    { id: 'contact', title: 'Contact Support' },
-    { id: 'feedback', title: 'We Value Your Feedback' },
-  ];
-
   let status = "";
 
   const handleSubmit = async (event) => {
@@ -73,12 +66,10 @@
   <section class="support-options">
     <h2>How Can We Assist You?</h2>
     <ul>
-      {#each sections as { id, title }}
-        <li><a href="#{id}">{title}</a></li>
-      {/each}
+<a href="#frequently asked questions">frequently asked questions</a>
     </ul>
   </section>
-
+<h2 id="frequently asked questions">frequently asked questions</h2>
       <CollapsibleSection headerText={'What is ZSR?'}>
         <div class="content">
           Zepp OS Screen reader (ZSR) is a feature that supports users who are visually impaired or have difficulty reading the screen on Zepp OS smartwatches. ZSR uses speech synthesis technology to read the content displayed on the screen, helping users easily access and use the watch.
@@ -182,7 +173,7 @@
           <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
         </ul>
       </section>
-
+<h2>Send us feedback</h2>
   <button role="link" on:click={() => dialog.showModal()}>Send feedback</button>
 
   <Dialog bind:dialog on:close={() => console.log('closed')}>
@@ -202,7 +193,7 @@
       <input type=checkbox checked={checked} on:click|preventDefault={handleClick} />
 
       {#if checked}
-        <p>By sending us feedback, you agree to this website's [Privacy policy](/privacy-policy) and assume all legal responsibility when problems occur.</p>
+        <p>By sending us feedback, you agree to this website's <a href="/privacy-policy">Privacy policy</a> and assume all legal responsibility when problems occur.</p>
       {/if}
 
       <input type="submit" value="Send" />
