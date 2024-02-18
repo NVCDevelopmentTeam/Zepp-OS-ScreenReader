@@ -79,9 +79,6 @@
     </ul>
   </section>
 
-  {#each sections as { id, title }}
-    <section id="{id}">
-      <h2>{title}</h2>
       <CollapsibleSection headerText={'What is ZSR?'}>
         <div class="content">
           Zepp OS Screen reader (ZSR) is a feature that supports users who are visually impaired or have difficulty reading the screen on Zepp OS smartwatches. ZSR uses speech synthesis technology to read the content displayed on the screen, helping users easily access and use the watch.
@@ -185,8 +182,6 @@
           <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
         </ul>
       </section>
-    </section>
-  {/each}
 
   <button role="link" on:click={() => dialog.showModal()}>Send feedback</button>
 
