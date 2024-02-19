@@ -67,6 +67,7 @@
     <h2>How Can We Assist You?</h2>
     <ul>
 <a href="#frequently asked questions">frequently asked questions</a>
+<a href="#feedback">Send us feedback</a>
     </ul>
   </section>
 <h2 id="frequently asked questions">frequently asked questions</h2>
@@ -173,7 +174,7 @@
           <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
         </ul>
       </section>
-<h2>Send us feedback</h2>
+<h2 id="feedback">Send us feedback</h2>
   <button role="link" on:click={() => dialog.showModal()}>Send feedback</button>
 
   <Dialog bind:dialog on:close={() => console.log('closed')}>
