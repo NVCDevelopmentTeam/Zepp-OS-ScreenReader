@@ -179,7 +179,7 @@ let Agree = false;
 
 <input type="checkbox" id="Agree" name ="Agree" bind:checked={Agree} />
         <label for="Agree">By sending us feedback, you agree to this website's <a href="/privacy-policy">Privacy policy</a> and assume all legal responsibility when problems occur.</label>
-      <input type="submit" value="Send" />
+      <input type="submit" disabled={!Agree} value="Send" />
     </form>
 
     <div>{status}</div>
