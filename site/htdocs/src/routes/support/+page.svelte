@@ -34,21 +34,7 @@
       status = result.message || "Success";
     }
   };
-
-  let checked = false;
-
-  function handleInput(event) {
-    name = event.target.value;
-  }
-
-  function handleClick(event) {
-    if (!checked && !window.confirm('Really opt-in?')) {
-      return;
-    }
-
-    checked = !checked;
-    setTimeout(() => event.target.checked = checked, 0);
-  }
+let Agree = false;
 </script>
 
 <svelte:head>
@@ -125,7 +111,7 @@
       </CollapsibleSection>
 
       <CollapsibleSection headerText={'Where can I learn more about ZSR?'}>
-        <p>You can learn more about ZSR at Zepp's support site: [https://www.zepp.com/support/zsr](https://www.zepp.com/support/zsr)</p>
+        <p>You can learn more about ZSR at Zepp's support site <a href="https://www.zepp.com/support/zsr">here</a></p>
       </CollapsibleSection>
 
       <CollapsibleSection headerText={'Other FAQ'}>
@@ -180,23 +166,19 @@
   <Dialog bind:dialog on:close={() => console.log('closed')}>
     <form on:submit="{handleSubmit}">
       <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-      <label class="required" for="send-feedback">Send Feedback</label>
+      <label class="required" for="send-feedback">Detailed description of the problem</label>
       <textarea class="field req" id="send-feedback" name="Send feedback" required rows="3"></textarea>
       <label class="required" for="email">Email</label>
       <input class="field req" type="email" id="email" name="email" required />
       <label for="add-file">Attach audio or video files</label>
-      <input type="file" id="add-file" bind:files />
+      <input type="file" id="add-file" name="add file" accept="audio/*, video/*" bind:files />
 
       {#if files && files[0]}
         <p>{files[0].name}</p>
       {/if}
 
-      <input type=checkbox checked={checked} on:click|preventDefault={handleClick} />
-
-      {#if checked}
-        <p>By sending us feedback, you agree to this website's <a href="/privacy-policy">Privacy policy</a> and assume all legal responsibility when problems occur.</p>
-      {/if}
-
+<input type="checkbox" id="Agree" name ="Agree" bind:checked={Agree} />
+        <label for="Agree">By sending us feedback, you agree to this website's <a href="/privacy-policy">Privacy policy</a> and assume all legal responsibility when problems occur.</label>
       <input type="submit" value="Send" />
     </form>
 
