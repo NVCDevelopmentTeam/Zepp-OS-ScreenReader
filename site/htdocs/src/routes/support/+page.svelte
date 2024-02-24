@@ -161,7 +161,7 @@ let Agree = false;
         </ul>
       </section>
 <h2 id="feedback">Send us feedback</h2>
-  <button role="link" on:click={() => dialog.showModal()}>Send feedback</button>
+<p>If you have questions or problems with Zsr and need support, please leave your feedback <button role="link" on:click={() => dialog.showModal()}>here.</button> We will respond to you as soon as possible.</p>
 
   <Dialog bind:dialog on:close={() => console.log('closed')}>
     <form on:submit="{handleSubmit}">
