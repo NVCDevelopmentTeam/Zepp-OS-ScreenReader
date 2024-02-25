@@ -9,7 +9,7 @@
   const pageTitle = 'Support';
 
   let status = "";
-
+let Agree = false;
   const handleSubmit = async (event) => {
     event.preventDefault();
     status = 'Submitting...';
@@ -34,7 +34,6 @@
       status = result.message || "Success";
     }
   };
-let Agree = false;
 </script>
 
 <svelte:head>
@@ -53,6 +52,8 @@ let Agree = false;
     <h2>How Can We Assist You?</h2>
     <ul>
 <a href="#frequently asked questions">frequently asked questions</a>
+<a href="#TroubleshootingGuide">Troubleshooting Guide</a>
+<a href="#contact">Contact support</a>
 <a href="#feedback">Send us feedback</a>
     </ul>
   </section>
@@ -160,6 +161,26 @@ let Agree = false;
           <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
         </ul>
       </section>
+<h2 id="TroubleshootingGuide">Troubleshooting Guide</h2>
+<p>If you encounter any problems while using Zepp OS Screen Reader (ZSR), you can refer to the following steps to find a quick and effective solution:</p>
+<ul>
+<li><strong>Restart your device:</strong> This is a simple but effective way to solve temporary problems. Simply turn your device off and on again to see if there is any improvement.</li>
+<li><strong>Updating the application:</strong> You should ensure that you are using the latest version of ZSR to experience the latest features and fix old bugs. You can check and update the app in your device's app store or on <a href="https://www.zsr.com">ZSR official website</a>.</li>
+<li><strong>Check settings:</strong> You should also check that ZSR's settings are appropriate for your needs and device. If you need guidance, you can see our <a href="https://www.zsr.com/support">support documents</a> to learn how to adjust the settings.</li>
+</ul>
+<p>If you have tried all the steps above and still cannot solve the problem, you can contact us for timely support.</p>
+<h2 id="contact">Contact Support</h2>
+<p>We are always happy to support you at all times. You can contact us through the following channels:</p>
+<ul>
+<li><strong>Contact page:</strong> You can visit our <a href="https://www.zsr.com/contact">contact page</a> and fill out support request form. We will contact you via email as soon as possible.</li>
+<li><strong>Discord:</strong> You can join our <a href="https://discord.gg/zsr">Discord community</a> and chat directly with our support staff. You will receive detailed answers and instructions from us.</li>
+</ul>
+<p>When contacting, please provide us with the following information:</p>
+<ul>
+<li><strong>Problem description:</strong> Please clearly state the problem you are having, including error messages, scenarios, and attached video or audio if any.</li >
+<li><strong>Device information:</strong> Please tell us the model and operating system version of the device you are using. This will help us determine the cause and the most appropriate solution.</li>
+</ul>
+<p>We will try to respond to you within 24 hours. Thank you for trusting and using ZSR!</p>
 <h2 id="feedback">Send us feedback</h2>
 <p>If you have questions or problems with Zsr and need support, please leave your feedback <button role="link" on:click={() => dialog.showModal()}>here.</button> We will respond to you as soon as possible.</p>
 
