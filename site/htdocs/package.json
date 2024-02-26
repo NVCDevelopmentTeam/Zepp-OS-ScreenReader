@@ -19,6 +19,8 @@
 		"@sveltejs/adapter-vercel": "^5.0.0",
 		"@tailwindcss/typography": "^0.5.10",
 		"@vcarl/remark-headings": "^0.1.0",
+		"@vercel/analytics": "^1.2.2",
+		"@vercel/speed-insights": "^1.0.10",
 		"autoprefixer": "^10.4.16",
 		"date-fns": "^3.2.0",
 		"mdsvex": "^0.11.0",
