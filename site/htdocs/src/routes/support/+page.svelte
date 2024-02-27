@@ -165,7 +165,7 @@ let Agree = false;
 <p>If you encounter any problems while using Zepp OS Screen Reader (ZSR), you can refer to the following steps to find a quick and effective solution:</p>
 <ul>
 <li><strong>Restart your device:</strong> This is a simple but effective way to solve temporary problems. Simply turn your device off and on again to see if there is any improvement.</li>
-<li><strong>Updating the application:</strong> You should ensure that you are using the latest version of ZSR to experience the latest features and fix old bugs. You can check and update the app in your device's app store or on <a href="https://www.zsr.com">ZSR official website</a>.</li>
+<li><strong>Updating the application:</strong> You should ensure that you are using the latest version of ZSR to experience the latest features and fix old bugs. You can check and update the app in your device's app store or on <a href="https://www.zsr.com">ZSR official website.</a></li>
 <li><strong>Check settings:</strong> You should also check that ZSR's settings are appropriate for your needs and device. If you need guidance, you can see our <a href="https://www.zsr.com/support">support documents</a> to learn how to adjust the settings.</li>
 </ul>
 <p>If you have tried all the steps above and still cannot solve the problem, you can contact us for timely support.</p>
