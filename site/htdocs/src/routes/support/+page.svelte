@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, githubLink } from '$lib/info.js';
+  import { siteTitle, githubLink, accessKey } from '$lib/info.js';
   import Dialog from '$lib/components/Dialog.svelte';
   import CollapsibleSection from '$lib/components/CollapsibleSection.svelte';
 
@@ -186,7 +186,7 @@ let Agree = false;
 
   <Dialog bind:dialog on:close={() => console.log('closed')}>
     <form on:submit="{handleSubmit}">
-      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+      <input type="hidden" name="access_key" value={accessKey}>
       <label class="required" for="send-feedback">Detailed description of the problem</label>
       <textarea class="field req" id="send-feedback" name="Send feedback" required rows="3"></textarea>
       <label class="required" for="email">Email</label>

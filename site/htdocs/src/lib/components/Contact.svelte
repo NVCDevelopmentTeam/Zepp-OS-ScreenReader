@@ -1,4 +1,5 @@
 <script>
+import { accessKey } from '$lib/info.js';
   let status = "";
 
   const handleSubmit = async (event) => {
@@ -28,7 +29,7 @@
 </script>
 
 <form on:submit="{handleSubmit}">
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+  <input type="hidden" name="access_key" value={accessKey}>
 
   <label class="required" for="name">Name</label>
   <input class="field req" type="text" id="name" name="name" required />
