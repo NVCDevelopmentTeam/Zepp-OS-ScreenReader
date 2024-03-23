@@ -48,7 +48,7 @@ import { accessKey } from '$lib/info.js';
 
 <div>{status}</div>
 
-<style>
+<style lang="postcss">
   .required::after {
     content: " *";
     color: red;

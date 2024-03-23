@@ -45,7 +45,7 @@
   </footer>
 </div>
 
-<style>
+<style lang="postcss">
   .site-footer {
     margin-top: 32px;
     background-color: #f5f5f5;
