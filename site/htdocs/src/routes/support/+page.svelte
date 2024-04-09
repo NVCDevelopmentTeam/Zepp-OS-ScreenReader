@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, githubLink, accessKey } from '$lib/info.js';
+  import { siteTitle, githubLink, accessKey, discordChat } from '$lib/info.js';
   import Dialog from '$lib/components/Dialog.svelte';
   import CollapsibleSection from '$lib/components/CollapsibleSection.svelte';
 
@@ -172,8 +172,8 @@ let Agree = false;
 <h2 id="contact">Contact Support</h2>
 <p>We are always happy to support you at all times. You can contact us through the following channels:</p>
 <ul>
-<li><strong>Contact page:</strong> You can visit our <a href="https://www.zsr.com/contact">contact page</a> and fill out support request form. We will contact you via email as soon as possible.</li>
-<li><strong>Discord:</strong> You can join our <a href="https://discord.gg/zsr">Discord community</a> and chat directly with our support staff. You will receive detailed answers and instructions from us.</li>
+<li><strong>Contact page:</strong> You can visit our <a href="/contact">contact page</a> and fill out support request form. We will contact you via email as soon as possible.</li>
+<li><strong>Discord:</strong> You can join our <a href={discordChat}>Discord community</a> and chat directly with our support staff. You will receive detailed answers and instructions from us.</li>
 </ul>
 <p>When contacting, please provide us with the following information:</p>
 <ul>
@@ -207,7 +207,7 @@ let Agree = false;
   </Dialog>
 </div>
 
-<style>
+<style lang="postcss">
   section {
     width: 300px;
   }
