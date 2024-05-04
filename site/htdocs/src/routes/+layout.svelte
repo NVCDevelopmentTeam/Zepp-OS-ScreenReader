@@ -11,7 +11,6 @@
   <meta property="og:type" content="website" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta property="og:locale" content="en_US" />
-<meta name="google-adsense-account" content="ca-pub-3602487920405886">
 </svelte:head>
 
 <Header />
