@@ -3,7 +3,6 @@
   import ToC from '$lib/components/ToC.svelte';
   import { afterNavigate } from '$app/navigation';
   import PostDate from '$lib/components/PostDate.svelte';
-  import TextToSpeech from '$lib/components/TextToSpeech.svelte';
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -24,7 +23,7 @@
         </h1>
         <PostDate class="text-sm sm:text-base" post={data.post} decorate collapsed />
       </header>
-  <TextToSpeech posts={data.post} />
+
       <!-- render the post -->
       <div class="prose dark:prose-invert">
         <svelte:component this={data.component} />
