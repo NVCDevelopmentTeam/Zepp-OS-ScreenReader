@@ -33,10 +33,3 @@
     </p>
   </div>
 
-<style>
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-  }
-</style>

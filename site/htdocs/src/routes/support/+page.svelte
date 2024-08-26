@@ -206,14 +206,3 @@ let Agree = false;
     <div>{status}</div>
   </Dialog>
 </div>
-
-<style lang="postcss">
-  section {
-    width: 300px;
-  }
-
-  .content {
-    background-color: #f4f4f4;
-    padding: 0.5em;
-  }
-</style>
