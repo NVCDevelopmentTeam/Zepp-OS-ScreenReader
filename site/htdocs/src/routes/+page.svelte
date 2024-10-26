@@ -13,7 +13,7 @@
 <div class="flex flex-col flex-grow gap-8 pb-16">
   <h1>{siteTitle}</h1>
   <p>
-    ZSR (Zepp OS Screen reader) is a screen reader software (accessibility service) for the blind and low vision that integrates into devices AMatfit smart wearable runs Zepp OS operating system. This is open source software developed by NVCDevelopmentTeam to help blind people use AMatfit devices easily without looking at the screen. ZSR is free open source software, so anyone can customize to their liking and contribute to ZSR's source code.
+    ZSR (Zepp OS Screen reader) is a screen reader software (accessibility service) for the blind and low vision that integrates into devices Amazfit smart wearable runs Zepp OS operating system. This is open source software developed by NVCDevelopmentTeam to help blind people use Amazfit devices easily without looking at the screen. ZSR is free open source software, so anyone can customize to their liking and contribute to ZSR's source code.
   </p>
 <h2>The Issue</h2>
   <p>
@@ -21,7 +21,7 @@ Nowadays, with the help of technology, blind people can use devices such as comp
   </p>
 <h2>Device requirements</h2>
   <p>
-Support device running ZEP OS version 2.0 or higher. To install the app, please visit AMatfit's app store to install the app.
+Support device running ZEP OS version 2.0 or higher. To install the app, please visit Amazfit app store to install the app.
   </p>
   <section class="w-full">
     <div class="flex items-center justify-between gap-4 mb-8">
