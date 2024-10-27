@@ -4,13 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Google AdSense meta tag -->
-    <meta name="google-adsense-account" content="ca-pub-3602487920405886">
+    <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
     
     <!-- Favicon for the site -->
     <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-
-    <!-- Netlify Identity Widget script -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <!-- SvelteKit Head (dynamically injects head content) -->
     %sveltekit.head%
@@ -18,24 +15,21 @@
     <style>
       body {
         background: url('/background.jpg') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
         background-size: cover;
       }
     </style>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <!-- SvelteKit Body (dynamically injects body content) -->
     <div style="display: contents">%sveltekit.body%</div>
 
-    <!-- Netlify Identity Login handling -->
+    <!-- Netlify Identity Script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";  // Redirect to Netlify CMS Admin after login
+              document.location.href = "/admin/";  // Redirect after login
             });
           }
         });
