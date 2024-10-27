@@ -1,18 +1,22 @@
+# Backend configuration to use GitHub as the storage for content files
 backend:
-  name: github
-  repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader/tree/main/site/htdocs
-  base_url: https://zsr.net
-  branch: main
+  name: github            # Defines GitHub as the backend for storing content
+  repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader  # The GitHub repository where content will be committed
+  branch: main            # The branch where changes will be committed
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+# Media file configuration
+media_folder: "static/uploads"    # The folder where media files (like images) will be uploaded inside the repo
+public_folder: "/uploads"         # The folder where media files will be publicly available on the site
 
+# Collections define different types of content (posts, pages, etc.)
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "src/lib/posts"
-    create: true
-    slug: "{{slug}}"
+  - name: "posts"           # Name of the collection (for blog posts)
+    label: "Posts"          # Label shown in the Netlify CMS admin interface
+    folder: "src/lib/posts" # Folder in the repository where markdown files for posts will be stored
+    create: true            # Allow users to create new posts
+    slug: "{{slug}}"        # Automatically generate the slug (URL part) from the post's title
+
+    # Fields define the structure of the content (what data is required)
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Title", name: "title", widget: "string"}     # Title of the post
+      - {label: "Body", name: "body", widget: "markdown"}     # Main content/body of the post in markdown format
