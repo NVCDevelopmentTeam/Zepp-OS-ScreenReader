@@ -1,8 +1,8 @@
 backend:
-  name: github
+  [name: github]
   repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader
   branch: main
-  base_url: https://api.github.com
+  base_url: https://zsr.net
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
