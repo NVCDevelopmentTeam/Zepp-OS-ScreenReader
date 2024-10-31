@@ -1,6 +1,6 @@
 backend:
   [name: github]
-  repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader
+  repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader/site/htdocs
   branch: main
   base_url: https://zsr.net
 
