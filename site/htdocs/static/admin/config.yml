@@ -4,7 +4,6 @@ backend:
   branch: main
   site_domain: zsr.vercel.app
   base_url: https://zsr.vercel.app
-  auth_endpoint: oauth
 
 media_folder: "site/htdocs/src/lib/images"
 public_folder: "/src/lib/images"
