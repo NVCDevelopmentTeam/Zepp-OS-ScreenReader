@@ -6,20 +6,18 @@ backend:
   base_url: https://zsr.vercel.app
   auth_endpoint: oauth
 
-media_folder: "site/htdocs/src/lib/images"
-public_folder: "/src/lib/images"
+media_folder: "site/htdocs/src/lib/images" # Path to store media files
+public_folder: "/src/lib/images" # Public URL for media files
 
 collections:
   - name: "posts"
     label: "Posts"
     folder: "site/htdocs/src/lib/posts"
-    create: true # Allow users to create new documents in this collection
+    create: true # Allow users to create new posts
     preview_path_date_field: "date"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in mdsvex
-      - { label: "Source", name: "source", widget: "string" }
-      - { label: "URL", name: "url", widget: "string" }
-      - { label: "Featured Image", name: "img", widget: "image" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    slug: "{{slug}}" # URL-friendly slug for each post
+    fields:
+      # Basic content fields, similar to WordPress
+      - { label: "Title", name: "title", widget: "string" } # Post title
+      - { label: "Publish Date", name: "date", widget: "datetime" } # Publish date
+      - { label: "Body", name: "body", widget: "markdown" } # Post content
