@@ -7,6 +7,8 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@auth/core": "^0.37.3",
+		"@auth/sveltekit": "^1.7.3",
 		"@fontsource/fira-mono": "^5.0.0",
 		"@neoconfetti/svelte": "^2.0.0",
 		"@sveltejs/kit": "^2.0.0",
