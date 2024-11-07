@@ -18,7 +18,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-auto": "^3.3.1",
+		"@sveltejs/adapter-vercel": "^5.4.7",
 		"@sveltia/cms": "^0.46.1",
 		"@tailwindcss/typography": "^0.5.15",
 		"@vcarl/remark-headings": "^0.1.0",
