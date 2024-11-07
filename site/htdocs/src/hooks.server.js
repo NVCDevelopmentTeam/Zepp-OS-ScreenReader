@@ -1,5 +1,6 @@
 import { SvelteKitAuth } from "@auth/sveltekit"
 import GitHub from "@auth/sveltekit/providers/github"
+import dotenv from 'dotenv';
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from "$env/static/private";
 
 export const { handle, signIn, signOut } = SvelteKitAuth({

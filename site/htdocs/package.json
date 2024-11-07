@@ -26,6 +26,7 @@
 		"@vercel/speed-insights": "^1.0.12",
 		"autoprefixer": "^10.4.20",
 		"date-fns": "^4.1.0",
+		"dotenv": "^16.4.5",
 		"mdsvex": "^0.12.3",
 		"mdsvex-relative-images": "^1.0.3",
 		"node-html-parser": "^6.1.13",
