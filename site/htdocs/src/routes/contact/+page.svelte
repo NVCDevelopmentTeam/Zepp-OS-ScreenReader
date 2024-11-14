@@ -14,5 +14,6 @@ import Contact from '$lib/components/Contact.svelte';
 </p>
 <h2>Contact form</h2>
 <p>Please fill in your information in the form below <br> (Fields marked * are required)</p>
+<hr/>
 <Contact />
 </div>
