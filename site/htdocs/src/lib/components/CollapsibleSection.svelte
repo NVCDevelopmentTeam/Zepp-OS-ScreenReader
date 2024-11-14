@@ -3,58 +3,26 @@
     // Inclusive Components by Heydon Pickering https://inclusive-components.design/collapsible-sections/
     export let headerText;
 
-    let expanded = false
+    let expanded = false;
 </script>
 
-<div class="collapsible">
+<div class="border-b border-gray-200">
     <h2>
-        <button aria-expanded={expanded} on:click={() => expanded = !expanded}>{headerText}
-<svg viewBox="0 0 20 20" fill="none" >
-<path class="vert" d="M10 1V19" stroke="black" stroke-width="2"/>
-<path d="M1 10L19 10" stroke="black" stroke-width="2"/>
-</svg>
+        <button 
+            class="bg-white text-gray-900 flex justify-between w-full border-0 p-4" 
+            aria-expanded={expanded} 
+            on:click={() => expanded = !expanded}
+        >
+            {headerText}
+            <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5 transform transition-transform duration-200" 
+                class:rotate-180={expanded} >
+                <path class="vert" d="M10 1V19" stroke="currentColor" stroke-width="2"/>
+                <path d="M1 10L19 10" stroke="currentColor" stroke-width="2"/>
+            </svg>
         </button>
     </h2>
-    
-    <div class='contents' hidden={!expanded}>
+
+    <div class={expanded ? "block" : "hidden"}>
         <slot />
     </div>
 </div>
-
-<style>
-  .collapsible {
-    border-bottom: 1px solid var(--gray-light, #eee);
-  }
-	
-	h2 {
-		margin: 0;
-	}
-	
-  button {
-    background-color: var(--background, #fff);
-    color: var(--gray-darkest, #282828);
-    display: flex;
-		justify-content: space-between;
-    width: 100%;
-		border: none;
-		margin: 0;
-		padding: 1em 0.5em;
-  }
-
-  button[aria-expanded="true"] {
-    border-bottom: 1px solid var(--gray-light, #eee);
-  }
-
-    button[aria-expanded="true"] .vert {
-        display: none;
-    }
-
-    button:focus svg{
-        outline: 2px solid;
-    }
-
-    svg {
-        height: 0.7em;
-				width: 0.7em;
-    }
-</style>

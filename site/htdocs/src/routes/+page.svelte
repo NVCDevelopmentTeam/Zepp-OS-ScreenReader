@@ -31,6 +31,7 @@ Recent posts
     </div>
   <div class="mt-8">
     <PostsList posts={data.posts} />
+<hr/>
   </div>
   </section>
   <h2>Features:</h2>

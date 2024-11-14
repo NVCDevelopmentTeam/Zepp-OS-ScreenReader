@@ -1,5 +1,5 @@
 <script>
-import { accessKey } from '$lib/info.js';
+  import { accessKey } from '$lib/info.js';
   let status = "";
 
   const handleSubmit = async (event) => {
@@ -28,35 +28,30 @@ import { accessKey } from '$lib/info.js';
   };
 </script>
 
-<form on:submit="{handleSubmit}">
+<form on:submit="{handleSubmit}" class="flex flex-col w-72 mx-auto space-y-4">
   <input type="hidden" name="access_key" value={accessKey}>
 
-  <label class="required" for="name">Name</label>
-  <input class="field req" type="text" id="name" name="name" required />
+  <label for="name" class="text-gray-700 font-medium">
+    Name <span class="text-red-500">*</span>
+  </label>
+  <input class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" type="text" id="name" name="name" required />
 
-  <label class="required" for="email">Email</label>
-  <input class="field req" type="email" id="email" name="email" required />
+  <label for="email" class="text-gray-700 font-medium">
+    Email <span class="text-red-500">*</span>
+  </label>
+  <input class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" type="email" id="email" name="email" required />
 
-  <label class="required" for="title">Title</label>
-  <input class="field req" type="text" id="title" name="title" required />
+  <label for="title" class="text-gray-700 font-medium">
+    Title <span class="text-red-500">*</span>
+  </label>
+  <input class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" type="text" id="title" name="title" required />
 
-  <label class="required" for="message">Message</label>
-  <textarea class="field req" id="message" name="message" required rows="3"></textarea>
+  <label for="message" class="text-gray-700 font-medium">
+    Message <span class="text-red-500">*</span>
+  </label>
+  <textarea class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" id="message" name="message" required rows="3"></textarea>
 
-  <input type="submit" value="Send" />
+  <input type="submit" value="Send" class="bg-blue-500 text-white rounded py-2 cursor-pointer hover:bg-blue-600" />
 </form>
 
-<div>{status}</div>
-
-<style lang="postcss">
-  .required::after {
-    content: " *";
-    color: red;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
-</style>
+<div class="text-center mt-4 text-gray-600">{status}</div>

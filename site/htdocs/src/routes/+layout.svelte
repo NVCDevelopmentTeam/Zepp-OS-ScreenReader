@@ -14,9 +14,9 @@
 </svelte:head>
 
 <Header />
-
+<div class="bg-custom-background bg-cover bg-center min-h-screen">
 <main id="main">
   <slot />
 </main>
-
+</div>
 <Footer />

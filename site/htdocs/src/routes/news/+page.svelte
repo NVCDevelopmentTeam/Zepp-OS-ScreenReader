@@ -21,7 +21,9 @@
     <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
       News
     </h1>
-    <p class="mt-6">where to update the latest news and related events about Zepp os screen reader</p>
+    <p class="mt-6">
+      where to update the latest news and related events about Zepp OS screen reader
+    </p>
     <h2>Latest news</h2>
   </header>
 
@@ -37,7 +39,7 @@
         Previous
       </a>
     {:else}
-      <div />
+      <div></div> <!-- Sửa lỗi bằng cách sử dụng thẻ `<div></div>` thay vì `<div />` -->
     {/if}
 
     {#if hasNextPage}
