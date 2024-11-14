@@ -66,7 +66,7 @@ role="link"
           <ul class="absolute bg-white dark:bg-gray-800 shadow-md mt-2 rounded-md space-y-2">
             <li><a href={githubLink} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Github repository">Github</a></li>
             <li><a href={discordChat} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Discord chat">Discord</a></li>
-            <li><a href="/support" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" aria-current={$page.url.pathname === '/Support' ? 'page' : undefined}title="Support page">Support</a></li>
+            <li><a href="/support" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" aria-current={$page.url.pathname === '/Support' ? 'page' : undefined} title="Support page">Support</a></li>
             <li><a href={zeppOSDev} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Zepp OS Developer</a></li>
           </ul>
         {/if}
