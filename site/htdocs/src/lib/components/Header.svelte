@@ -3,7 +3,6 @@
   import { browser } from '$app/environment';
   import logo from '$lib/images/logo.png';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
-
   let expanded = false; // Mobile menu toggle
   let expandedDropdown = false; // Dropdown menu toggle
   let darkMode = false; // Dark mode status
