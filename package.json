@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@zeppos/device-types": "^1.0.0"
+    "@zeppos/device-types": "^3.0.0"
   }
 }
