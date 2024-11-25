@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: NVCDevelopmentTeam/Zepp-OS-ScreenReader
+  branch: main
+  site_domain: zsr.vercel.app
+
+media_folder: "site/htdocs/src/lib/images" # Path to store media files
+public_folder: "/src/lib/images" # Public URL for media files
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "site/htdocs/src/lib/posts"
+    create: true # Allow users to create new posts
+    preview_path_date_field: "date"
+    slug: "{{slug}}" # URL-friendly slug for each post
+    fields:
+      # Basic content fields, similar to WordPress
+      - { label: "Title", name: "title", widget: "string" } # Post title
+      - { label: "Publish Date", name: "date", widget: "datetime" } # Publish date
+      - { label: "Body", name: "body", widget: "markdown" } # Post content
