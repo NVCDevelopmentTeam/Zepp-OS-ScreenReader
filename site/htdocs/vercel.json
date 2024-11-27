@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "buildSettings": {
+    "env": {
+      "VITE_GITHUB_CLIENT_ID": "@github_client_id",
+      "VITE_GITHUB_CLIENT_SECRET": "@github_client_secret"
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/admin", "dest": "/admin/index.html" }
+  ]
+}
