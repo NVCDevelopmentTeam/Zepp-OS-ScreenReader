@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit';
 // Disable prerendering and SSR for this route
 export const prerender = false;
 export const ssr = false;
-
+export const csr = true;
 export async function load({ url, fetch }) {
   try {
     // Use SvelteKit's built-in fetch instead of node-fetch
