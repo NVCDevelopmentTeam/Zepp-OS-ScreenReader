@@ -67,17 +67,3 @@
 {:else}
   <div id="sveltia-cms"></div>
 {/if}
-
-<!-- Sign-in Form -->
-{#if provider && provider.signinUrl}
-  <form action={provider.signinUrl} method="POST">
-    {#if provider.callbackUrl}
-      <input type="hidden" name="callbackUrl" value={provider.callbackUrl} />
-    {/if}
-    <button type="submit" class="button">
-      Sign in with {provider.name}
-    </button>
-  </form>
-{:else}
-  <p class="text-gray-500 text-center">No provider available for sign-in.</p>
-{/if}
