@@ -1,6 +1,4 @@
 <script>
-  export let provider;
-
   import { siteTitle } from '$lib/info.js';
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
@@ -52,6 +50,7 @@
 
 <svelte:head>
   <title>Dashboard | {siteTitle}</title>
+  <meta name="description" content="Dashboard page" />
 </svelte:head>
 
 <!-- UI Rendering -->
