@@ -6,7 +6,7 @@ export async function GET() {
       name: 'github',
       repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader', // GitHub repository name
       branch: 'main', // Branch to be used
-      site_domain: 'zsr.vercel.app', // Domain of your site
+      site_domain: 'Zsr.vercel.app', // Domain of your site
       base_url: 'https://zsr.vercel.app', // Your production URL
       auth_endpoint: 'oauth', // OAuth endpoint provided by the integration
     },
