@@ -13,7 +13,7 @@ export default defineConfig({
             // Route for the admin dashboard
             adminRoute: '/admin',
             // Enable or disable OAuth functionality
-            oauthDisabled: false,
+            oauthDisabled: true,
             // Route for OAuth login
             oauthLoginRoute: '/oauth',
             // Route for OAuth callback
