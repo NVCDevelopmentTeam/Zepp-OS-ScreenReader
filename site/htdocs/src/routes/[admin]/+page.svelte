@@ -1,49 +1,47 @@
 <script>
+  // Import necessary modules from SvelteKit
   import { siteTitle } from '$lib/info.js';
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
-  import { error } from '@sveltejs/kit';
-  import YAML from 'js-yaml';
 
+  // Initialize variables for CMS and its state
   let CMS = null;
   let cmsInitialized = false;
   let cmsError = null;
 
-  async function fetchCMSConfig() {
+  // Function to initialize the CMS
+  async function initializeCMS() {
     try {
-      const response = await fetch('/admin/config.yml');
-      if (!response.ok) throw new Error('Failed to fetch CMS configuration');
-      const yamlText = await response.text(); // YAML needs to be parsed from text
-      return YAML.load(yamlText); // Parse YAML configuration
+      // Dynamically import the Sveltia CMS module
+      const sveltia = await import('@sveltia/cms');
+      CMS = sveltia.default;
+
+      // Initialize the CMS with the configuration
+      await CMS.init({
+        config: {
+          // Your CMS configuration goes here
+        },
+        hooks: {
+          // Hook to validate data before saving
+          preSave: (collection, data) => {
+            if (collection === 'posts' && data.title.length < 3) {
+              throw new Error('Post title must be at least 3 characters long.');
+            }
+            return data;
+          },
+        },
+      });
+      cmsInitialized = true;
     } catch (err) {
-      console.error('Error fetching CMS configuration:', err);
-      throw error(500, 'Error fetching CMS configuration');
+      cmsError = err;
+      console.error('CMS Initialization Error:', err);
     }
   }
 
-  onMount(async () => {
+  // Initialize the CMS when the component is mounted
+  onMount(() => {
     if (browser) {
-      try {
-        const cmsConfig = await fetchCMSConfig();
-        const sveltia = await import('@sveltia/cms');
-        CMS = sveltia.default;
-
-        await CMS.init({
-          config: cmsConfig,
-          hooks: {
-            preSave: (collection, data) => {
-              if (collection === 'posts' && data.title.length < 3) {
-                throw new Error('Post title must be at least 3 characters long.');
-              }
-              return data;
-            },
-          },
-        });
-        cmsInitialized = true;
-      } catch (err) {
-        cmsError = err;
-        console.error('CMS Initialization Error:', err);
-      }
+      initializeCMS();
     }
   });
 </script>

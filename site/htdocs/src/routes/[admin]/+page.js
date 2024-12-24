@@ -1,29 +1,26 @@
-import { redirect } from '@sveltejs/kit';
+// src/routes/[admin]/+page.js
 
-// Disable prerendering and SSR for this route
-export const prerender = false;
-export const ssr = false;
-export const csr = true;
-export async function load({ url, fetch }) {
+// Import the configuration from the project's root directory
+import config from '@config';
+
+export const prerender = false; // Disable prerendering for this page
+export const ssr = false;       // Disable server-side rendering
+export const csr = true;        // Enable client-side rendering
+
+export async function load() {
   try {
-    // Use SvelteKit's built-in fetch instead of node-fetch
-    const res = await fetch(`${url.origin}/admin/config.yml`);
-    
-    if (!res.ok) {
-      // Throw an error if config file is not found
-      throw new Error('CMS Configuration file not found');
-    }
-
-    // Return success status
+    // Return the CMS configuration
     return {
       cms: true,
-      config: await res.text() // Optional: return config contents if needed
+      config
     };
   } catch (error) {
-    // Log the error for debugging
-    console.error('CMS Configuration Load Error:', error);
-
-    // Redirect to an error page
-    throw redirect(307, '/error');
+    // Log any errors to the console
+    console.error('CMS Config Error:', error);
+    // Return an error message if the configuration fails to load
+    return {
+      cms: false,
+      error: error.message
+    };
   }
 }

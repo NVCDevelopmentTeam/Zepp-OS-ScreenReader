@@ -23,7 +23,6 @@
 		"astro-decap-cms-oauth": "^0.5.1",
 		"autoprefixer": "^10.4.20",
 		"date-fns": "^4.1.0",
-		"js-yaml": "^4.1.0",
 		"mdsvex": "^0.12.3",
 		"mdsvex-relative-images": "^1.0.3",
 		"node-html-parser": "^6.1.13",
