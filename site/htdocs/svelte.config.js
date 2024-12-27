@@ -5,7 +5,6 @@ import preprocess from 'svelte-preprocess';
 import sveltia from '@sveltia/cms';
 import sveltiaConfig from './sveltia.config.js';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', '.md', ...mdsvexConfig.extensions],
   preprocess: [
@@ -22,8 +21,6 @@ const config = {
       enabled: true,
       onError: 'continue',
       entries: ['*', '/sitemap.xml', '/rss.xml']
-    },
-      }
     }
   }
 };
