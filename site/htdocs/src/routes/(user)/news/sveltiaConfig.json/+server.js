@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-  const filePath = path.resolve('C:/Users/DELL/Documents/GitHub/Zepp-OS-ScreenReader/site/htdocs/sveltiaConfig.json');
+  const filePath = path.resolve/site/htdocs/sveltiaConfig.json');
 
   try {
     const data = fs.readFileSync(filePath, 'utf8');
