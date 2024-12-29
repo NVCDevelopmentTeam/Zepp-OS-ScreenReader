@@ -1,28 +1,29 @@
-import adapter from '@sveltejs/adapter-vercel';
-import { mdsvex } from 'mdsvex';
-import mdsvexConfig from './mdsvex.config.js';
-import preprocess from 'svelte-preprocess';
-import sveltia from '@sveltia/cms';
-import sveltiaConfig from './sveltia.config.js';
+import { mdsvex } from 'mdsvex'
+import mdsvexConfig from './mdsvex.config.js'
+import preprocess from 'svelte-preprocess'
+import adapter from '@sveltejs/adapter-vercel'
 
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', '.md', ...mdsvexConfig.extensions],
+  extensions: ['.svelte', ...mdsvexConfig.extensions],
+
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
   preprocess: [
     preprocess({
       postcss: true
     }),
-    mdsvex(mdsvexConfig),
-    sveltia(sveltiaConfig)
+    mdsvex(mdsvexConfig)
   ],
+
   kit: {
     adapter: adapter(),
+
+    // remove this if you don't want prerendering
     prerender: {
-      crawl: true,
-      enabled: true,
-      onError: 'continue',
       entries: ['*', '/sitemap.xml', '/rss.xml']
     }
   }
-};
+}
 
-export default config;
+export default config
