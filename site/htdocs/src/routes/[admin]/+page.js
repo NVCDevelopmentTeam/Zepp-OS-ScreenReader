@@ -1,10 +1,8 @@
 export const prerender = false;
+import sveltiaConfig from '../../../sveltiaConfig.json';
 
-export const load = async ({ fetch }) => {
-  const response = await fetch('/sveltiaConfig.json');
-  const config = await response.json();
-
+export const load = async () => {
   return {
-    config
+    config: sveltiaConfig
   };
 };
