@@ -7,6 +7,7 @@
 <svelte:head>
   <title>{siteTitle}</title>
     <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
+<link href="sveltiaconfig.json" type="application/json" rel="cms-config-url" />
 </svelte:head>
 <main>
 <slot />
