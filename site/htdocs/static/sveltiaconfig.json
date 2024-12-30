@@ -9,6 +9,11 @@
   },
   "media_folder": "site/htdocs/src/lib/images",
   "public_folder": "/src/lib/images",
+  adminDisabled: false,
+  adminRoute: "/admin",
+  oauthDisabled: false,
+  oauthLoginRoute: "/oauth",
+  oauthCallbackRoute: "/callback",
   "collections": [
     {
       "name": "posts",
