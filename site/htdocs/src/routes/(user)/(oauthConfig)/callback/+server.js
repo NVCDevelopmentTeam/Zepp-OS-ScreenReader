@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { json, error, redirect } from '@sveltejs/kit';
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_REPO_ID } from '$env/static/private';
 
 /** @type {import('./$types').RequestHandler} */
@@ -27,13 +27,14 @@ export async function GET({ url }) {
         });
 
         if (!response.ok) {
-            throw new Error(`GitHub OAuth error: ${response.status}`);
+            const errorText = await response.text();
+            throw error(response.status, `GitHub OAuth error: ${errorText}`);
         }
 
         const { access_token: token } = await response.json();
         
         if (!token) {
-            throw new Error('No access token received from GitHub');
+            throw error(500, 'No access token received from GitHub');
         }
 
         const content = {
@@ -41,7 +42,6 @@ export async function GET({ url }) {
             provider: 'github'
         };
 
-        // Create HTML response with postMessage script
         const html = `
             <!DOCTYPE html>
             <html>
@@ -70,7 +70,6 @@ export async function GET({ url }) {
         return new Response(html, {
             headers: {
                 'Content-Type': 'text/html',
-                // Add security headers
                 'X-Content-Type-Options': 'nosniff',
                 'X-Frame-Options': 'DENY'
             }
