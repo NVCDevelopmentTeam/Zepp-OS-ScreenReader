@@ -13,7 +13,7 @@
   "adminRoute": "/admin",
   "oauthDisabled": false,
   "oauthLoginRoute": "/oauth",
-  "oauthCallbackRoute": "/oauth/callback",
+  "oauthCallbackRoute": "/callback",
   "collections": [
     {
       "name": "posts",
