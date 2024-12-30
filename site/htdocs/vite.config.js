@@ -11,7 +11,7 @@ export default defineConfig({
       adminRoute: '/admin',
       oauthDisabled: true,
       oauthLoginRoute: '/oauth',
-      oauthCallbackRoute: '/oauth/callback',
+      oauthCallbackRoute: '/callback',
     }),
   ],
   server: {
