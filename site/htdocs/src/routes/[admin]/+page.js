@@ -1,5 +1,6 @@
 export const csr = true;
-import sveltiaConfig from '../../../static/admin/sveltiaConfig.json';
+export const prerender = false;
+import sveltiaConfig from '../../../sveltiaconfig.json';
 
 export const load = async () => {
   return {
