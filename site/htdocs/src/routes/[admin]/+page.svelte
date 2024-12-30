@@ -49,6 +49,7 @@
 <svelte:head>
   <title>Dashboard | {siteTitle}</title>
   <meta name="description" content="Dashboard page" />
+<link href="sveltiaconfig.json" type="application/json" rel="cms-config-url" />
 </svelte:head>
 
 <!-- UI Rendering -->
