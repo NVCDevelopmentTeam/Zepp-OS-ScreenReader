@@ -21,7 +21,7 @@ export async function GET({ url, cookies }) {
         scope: 'repo,user',
         state,
         // Ensure this matches your GitHub OAuth App configuration
-        redirect_uri: `${url.origin}/oauth/callback`
+        redirect_uri: `${url.origin}/callback`
     });
 
     // Redirect to GitHub's OAuth authorization page
