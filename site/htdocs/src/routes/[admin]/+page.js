@@ -1,5 +1,5 @@
-export const ssr = true;
-export const prerender = false;
+export const ssr = false;
+export const prerender = true;
 import sveltiaConfig from '../../../sveltiaconfig.json';
 
 export const load = async () => {
