@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import sveltiaConfig from '../../../../../sveltiaconfig.json';
+import sveltiaConfig from '../../../../../static/sveltiaconfig.json';
 
 export async function GET() {
   try {
