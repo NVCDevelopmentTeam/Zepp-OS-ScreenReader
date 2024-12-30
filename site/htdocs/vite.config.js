@@ -9,7 +9,7 @@ export default defineConfig({
       decapCMSSrcUrl: 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js',
       adminDisabled: false,
       adminRoute: '/admin',
-      oauthDisabled: true,
+      oauthDisabled: false,
       oauthLoginRoute: '/oauth',
       oauthCallbackRoute: '/callback',
     }),

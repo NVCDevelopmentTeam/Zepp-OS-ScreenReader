@@ -11,7 +11,7 @@
   "public_folder": "/src/lib/images",
   "adminDisabled": false,
   "adminRoute": "/admin",
-  "oauthDisabled": true,
+  "oauthDisabled": false,
   "oauthLoginRoute": "/oauth",
   "oauthCallbackRoute": "/callback",
   "collections": [
