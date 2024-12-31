@@ -1,21 +1,29 @@
+import { error, redirect } from '@sveltejs/kit';
 import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, OAUTH_GITHUB_REPO_ID } from '$env/static/private';
 
 export const prerender = false;
 
 export async function GET({ url }) {
+  const code = url.searchParams.get('code');
+
+  if (!code) {
+    throw error(400, 'Missing authorization code');
+  }
+
   const data = {
-    code: url.searchParams.get("code"),
+    code,
     client_id: OAUTH_GITHUB_CLIENT_ID,
     client_secret: OAUTH_GITHUB_CLIENT_SECRET,
     ...(OAUTH_GITHUB_REPO_ID ? { repository_id: OAUTH_GITHUB_REPO_ID } : {}),
   };
 
   try {
-    const response = await fetch("https://github.com/login/oauth/access_token", {
-      method: "POST",
+    // Gửi request POST với Content-Type là 'application/json'
+    const response = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -28,7 +36,7 @@ export async function GET({ url }) {
 
     const content = {
       token: body.access_token,
-      provider: "github",
+      provider: 'github',
     };
 
     const script = `
@@ -39,23 +47,23 @@ export async function GET({ url }) {
               'authorization:${content.provider}:success:${JSON.stringify(content)}',
               message.origin
             );
-
-            window.removeEventListener("message", receiveMessage, false);
+            window.removeEventListener('message', receiveMessage, false);
           }
-        }
-        window.addEventListener("message", receiveMessage, false);
+        };
+        window.addEventListener('message', receiveMessage, false);
 
         if (window.opener) {
-          window.opener.postMessage("authorizing:${content.provider}", "*");
+          window.opener.postMessage('authorizing:${content.provider}', '*');
         }
       </script>
     `;
 
     return new Response(script, {
-      headers: { "Content-Type": "text/html" },
+      headers: { 'Content-Type': 'text/html' },
     });
   } catch (err) {
-    console.log(err);
-    return Response.redirect("/?error=😡");
+    console.error(err);
+    // Nếu có lỗi, redirect về trang chủ và truyền thông tin lỗi
+    return redirect(302, '/?error=😡');
   }
 }
