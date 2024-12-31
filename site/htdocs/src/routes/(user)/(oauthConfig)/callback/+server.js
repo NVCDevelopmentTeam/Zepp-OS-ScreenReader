@@ -1,10 +1,12 @@
-import { error, redirect } from '@sveltejs/kit'; 
+import { error, redirect } from '@sveltejs/kit';  
 import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, OAUTH_GITHUB_REPO_ID } from '$env/static/private';
 
 export const prerender = false;
 
 export async function GET({ url }) {
   const code = url.searchParams.get('code');
+  console.log('Received code:', code); // Log code nhận từ URL
+
   if (!code) {
     throw error(400, 'Missing authorization code');
   }
@@ -26,9 +28,12 @@ export async function GET({ url }) {
       body: data.toString(),  // Use URLSearchParams to encode body correctly
     });
 
+    console.log('GitHub response status:', response.status); // Log status code
     const body = await response.json();
+    console.log('GitHub response body:', body); // Log body content
+
     if (!response.ok || !body.access_token) {
-      throw new Error(`GitHub OAuth error: ${body.error_description || body.error}`);
+      throw new Error(`GitHub OAuth error: ${body.error_description || body.error || 'Unknown error'}`);
     }
 
     const content = {
@@ -59,7 +64,7 @@ export async function GET({ url }) {
       headers: { 'Content-Type': 'text/html' },
     });
   } catch (err) {
-    console.error('GitHub OAuth Error:', err);
+    console.error('GitHub OAuth Error:', err); // Log lỗi khi có exception
     return redirect(302, '/?error=😡');
   }
 }
