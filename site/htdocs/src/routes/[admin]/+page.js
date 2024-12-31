@@ -1,9 +1,21 @@
 export const ssr = true;
 export const prerender = false;
-import sveltiaConfig from '../../../static/sveltiaconfig.json';
 
-export const load = async () => {
-  return {
-    config: sveltiaConfig
-  };
+export const load = async ({ fetch }) => {
+    try {
+        const response = await fetch('/sveltiaconfig.json');
+        if (!response.ok) {
+            throw new Error('Failed to load configuration');
+        }
+        const config = await response.json();
+        return {
+            config
+        };
+    } catch (error) {
+        console.error('Error loading configuration:', error);
+        return {
+            config: null,
+            error: 'Failed to load configuration'
+        };
+    }
 };
