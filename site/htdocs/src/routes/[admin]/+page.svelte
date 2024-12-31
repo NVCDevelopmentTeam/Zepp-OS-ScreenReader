@@ -1,8 +1,11 @@
 <script>
-  // Import necessary modules from SvelteKit
   import { siteTitle } from '$lib/info.js';
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
+
+  // Get the config data from the page load function
+  export let data;
+  const { config } = data;
 
   // Initialize variables for CMS and its state
   let CMS = null;
@@ -16,11 +19,9 @@
       const sveltia = await import('@sveltia/cms');
       CMS = sveltia.default;
 
-      // Initialize the CMS with the configuration
+      // Initialize the CMS with the loaded configuration
       await CMS.init({
-        config: {
-          // Your CMS configuration goes here
-        },
+        config: config, // Use the loaded config here
         hooks: {
           // Hook to validate data before saving
           preSave: (collection, data) => {
@@ -38,9 +39,9 @@
     }
   }
 
-  // Initialize the CMS when the component is mounted
+  // Initialize the CMS when the component is mounted and config is available
   onMount(() => {
-    if (browser) {
+    if (browser && config) {
       initializeCMS();
     }
   });
@@ -52,7 +53,12 @@
 </svelte:head>
 
 <!-- UI Rendering -->
-{#if cmsError}
+{#if !config}
+  <div class="text-red-500 text-center">
+    <h2>Configuration Error</h2>
+    <p>Failed to load CMS configuration</p>
+  </div>
+{:else if cmsError}
   <div class="text-red-500 text-center">
     <h2>CMS Initialization Failed</h2>
     <p>{cmsError.message}</p>
