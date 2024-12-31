@@ -7,8 +7,8 @@
     "base_url": "https://zsr.vercel.app",
     "auth_endpoint": "/oauth"
   },
-  "media_folder": "site/htdocs/src/lib/images",
-  "public_folder": "/src/lib/images",
+  "media_folder": "/site/htdocs/src/lib/images",
+  "public_folder": "/site/htdocs/src/lib/images",
   "adminDisabled": false,
   "adminRoute": "/admin",
   "oauthDisabled": false,
