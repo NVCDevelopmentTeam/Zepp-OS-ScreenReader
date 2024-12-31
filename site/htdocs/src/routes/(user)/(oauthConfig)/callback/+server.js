@@ -1,38 +1,35 @@
-import { error, redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit'; 
 import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, OAUTH_GITHUB_REPO_ID } from '$env/static/private';
 
 export const prerender = false;
 
 export async function GET({ url }) {
   const code = url.searchParams.get('code');
-
   if (!code) {
     throw error(400, 'Missing authorization code');
   }
 
-  const data = {
+  const data = new URLSearchParams({
     code,
     client_id: OAUTH_GITHUB_CLIENT_ID,
     client_secret: OAUTH_GITHUB_CLIENT_SECRET,
     ...(OAUTH_GITHUB_REPO_ID ? { repository_id: OAUTH_GITHUB_REPO_ID } : {}),
-  };
+  });
 
   try {
-    // Gửi request POST với Content-Type là 'application/json'
     const response = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',  // Change to x-www-form-urlencoded
       },
-      body: JSON.stringify(data),
+      body: data.toString(),  // Use URLSearchParams to encode body correctly
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
     const body = await response.json();
+    if (!response.ok || !body.access_token) {
+      throw new Error(`GitHub OAuth error: ${body.error_description || body.error}`);
+    }
 
     const content = {
       token: body.access_token,
@@ -62,8 +59,7 @@ export async function GET({ url }) {
       headers: { 'Content-Type': 'text/html' },
     });
   } catch (err) {
-    console.error(err);
-    // Nếu có lỗi, redirect về trang chủ và truyền thông tin lỗi
+    console.error('GitHub OAuth Error:', err);
     return redirect(302, '/?error=😡');
   }
 }
