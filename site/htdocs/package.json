@@ -20,7 +20,7 @@
 		"@vcarl/remark-headings": "^0.1.0",
 		"@vercel/analytics": "^1.4.1",
 		"@vercel/speed-insights": "^1.1.0",
-		"astro-decap-cms-oauth": "^0.5.1",
+		"astro-sveltia-cms": "^0.1.0",
 		"autoprefixer": "^10.4.20",
 		"date-fns": "^4.1.0",
 		"mdsvex": "^0.12.3",

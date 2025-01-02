@@ -53,7 +53,7 @@ export function sveltiaCMS(options = {}) {
         // mount SveltiaCMS admin route
         injectRoute({
           pattern: adminRoute,
-          entrypoint: "src/routes/[admin]/+page.svelte",
+          entrypoint: "src/routes/admin/+page.svelte",
         });
       }
 

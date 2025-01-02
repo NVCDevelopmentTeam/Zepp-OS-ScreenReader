@@ -1,13 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import decapCmsOauth from 'astro-decap-cms-oauth';
+import sveltiaCms from 'astro-sveltia-cms';
 
 export default defineConfig({
   plugins: [
     sveltekit(),
-    decapCmsOauth({
-      decapCMSSrcUrl: 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js',
-    }),
+    sveltiaCms(),
   ],
   server: {
     fs: {
