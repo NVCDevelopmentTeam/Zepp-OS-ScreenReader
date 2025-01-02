@@ -3,8 +3,8 @@
     "name": "github",
     "repo": "NVCDevelopmentTeam/Zepp-OS-ScreenReader",
     "branch": "main",
-    "site_domain": "zsr.vercel.app",
-    "base_url": "https://zsr.vercel.app",
+    "site_domain": "localhost:5173",
+    "base_url": "http://localhost:5173",
     "auth_endpoint": "/oauth"
   },
   "media_folder": "/site/htdocs/src/lib/images",
