@@ -3,6 +3,7 @@ import { json } from '@sveltejs/kit';
 
 export async function GET() {
   const config = {
+local_backend: true,
     backend: {
       name: 'github',
       repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
@@ -22,7 +23,7 @@ export async function GET() {
       {
         name: 'posts',
         label: 'Posts',
-        folder: 'site/htdocs/src/lib/posts',
+        folder: '/site/htdocs/src/lib/posts',
         create: true,
         preview_path_date_field: 'date',
         slug: '{{slug}}',
