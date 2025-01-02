@@ -29,7 +29,7 @@ export function sveltiaCMS(options = {}) {
   }
 
   return {
-    name: "sveltekit-sveltia-cms-oauth",
+    name: "astro-decap-cms-oauth",
     setup({ injectRoute, updateConfig }) {
       const envConfig = {
         validateSecrets: true,
@@ -53,7 +53,7 @@ export function sveltiaCMS(options = {}) {
         // mount SveltiaCMS admin route
         injectRoute({
           pattern: adminRoute,
-          entrypoint: "src/routes/admin/+page.svelte",
+          entrypoint: "src/routes/[admin]/+page.svelte",
         });
       }
 
