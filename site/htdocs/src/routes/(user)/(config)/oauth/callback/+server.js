@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, OAUTH_GITHUB_REPO_ID } from '$env/static/private';
+import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET } from '$env/static/private';
 
 export const prerender = false;
 
@@ -8,7 +8,6 @@ export const GET = async ({ url }) => {
     code: url.searchParams.get("code"),
     client_id: OAUTH_GITHUB_CLIENT_ID,
     client_secret: OAUTH_GITHUB_CLIENT_SECRET,
-    ...(OAUTH_GITHUB_REPO_ID ? { repository_id: OAUTH_GITHUB_REPO_ID } : {}),
   };
 
   try {
