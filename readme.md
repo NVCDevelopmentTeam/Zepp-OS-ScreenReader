@@ -1,17 +1,19 @@
 # Zepp OS Screen Reader
 
-## Introduction
+## Overview
 
-Zepp OS Screen Reader is a screen reader developed specifically for devices running Zepp OS. It enables blind and low-vision users to operate their devices without relying on visual cues. Key features include:
+The Zepp OS Screen Reader is a specialized application designed for devices operating on Zepp OS, aimed at assisting blind and low-vision users. This screen reader provides essential functionalities such as text-to-speech output, braille support, navigation commands, and interaction with applications and settings, ensuring an inclusive user experience.
 
-- Text-to-speech output
-- Braille support
-- Navigation commands
-- Interaction with applications and settings
+## Key Features
 
-## Supported Watch Models
+- **Text-to-Speech Output:** Converts text into spoken words.
+- **Braille Support:** Facilitates braille display compatibility.
+- **Navigation Commands:** Enables intuitive navigation.
+- **Application Interaction:** Seamlessly interacts with apps and device settings.
 
-Currently, Zepp OS Screen Reader supports the following Amazfit watch models:
+## Supported Devices
+
+The following Amazfit watch models are currently compatible with Zepp OS Screen Reader:
 
 - Amazfit GTS 3
 - Amazfit GTR 3
@@ -22,75 +24,74 @@ Currently, Zepp OS Screen Reader supports the following Amazfit watch models:
 - Amazfit Balance
 - Amazfit Bip 5
 
-*Note: This list may be updated. Please refer to the official Amazfit website for the latest information.*
+*Note: The list of supported devices is subject to updates. Please refer to the [official Amazfit website](https://www.zepp.com) for the latest information.*
 
 ## Recommended Zepp OS Version
 
-To ensure the best experience with Zepp OS Screen Reader, we recommend using watch models running Zepp OS 3.5 or higher. These newer versions integrate OpenAI's GPT-4o technology and Zepp Flow™, providing advanced text-to-speech (TTS) capabilities for a smoother and more natural user experience. [Source](https://www.zepp.com/press-release/zepp-health-introduces-zepp-os-4-redefining-wearable-intelligence-by-integrating-openais-gpt-4o-into-its-amazfit-smartwatches?utm_source=chatgpt.com)
+For optimal performance, we recommend using Zepp OS 3.5 or higher. These versions incorporate OpenAI's GPT-4o technology and Zepp Flow™, offering advanced text-to-speech capabilities for a smoother and more natural user experience. [Learn more](https://www.zepp.com/press-release/zepp-health-introduces-zepp-os-4-redefining-wearable-intelligence-by-integrating-openais-gpt-4o-into-its-amazfit-smartwatches?utm_source=chatgpt.com)
 
-*Note: On lower versions of Zepp OS, the application will use eSpeak TTS, which may not offer the same voice quality as OpenAI TTS.*
+*Note: On lower versions of Zepp OS, the application will use eSpeak TTS, which may not provide the same voice quality as OpenAI TTS.*
 
-## How to Check Zepp OS Version Before Purchase
+## Checking Zepp OS Version
 
-To ensure your Amazfit watch is compatible with Zepp OS Screen Reader, you can check the Zepp OS version as follows:
+To ensure compatibility, you can check the Zepp OS version on your Amazfit watch:
 
-1. **On the Watch:**
-   - Press the button to open the app menu.
-   - Select "Settings."
-   - Scroll down and select "System."
-   - Choose "About" or "Device Information."
-   - Look for "Software Version" or "Zepp OS Version."
+### On the Watch:
+1. Press the button to open the app menu.
+2. Select "Settings."
+3. Scroll down and select "System."
+4. Choose "About" or "Device Information."
+5. Look for "Software Version" or "Zepp OS Version."
 
-2. **On the Zepp App:**
-   - Connect your watch to your phone and open the Zepp app.
-   - Go to "Profile" > [Your Device Name].
-   - Select "System Update" to view the current Zepp OS version.
+### On the Zepp App:
+1. Connect your watch to your phone and open the Zepp app.
+2. Go to "Profile" > [Your Device Name].
+3. Select "System Update" to view the current Zepp OS version.
 
-*Note: Before purchasing, refer to the specifications on the official Amazfit website or consult the retailer to confirm the Zepp OS version of the watch model.*
+*Note: Before purchasing, refer to the specifications on the official Amazfit website or consult the retailer to confirm the Zepp OS version.*
 
-## How to Run
+## Getting Started
 
-To get started, clone the repository to your local machine and navigate to the project root directory. Then, start the preview compilation by running the following command:
+### Running the Application
+
+Clone the repository to your local machine and navigate to the project root directory. Start the preview compilation with the following command:
 
 ```bash
 zeus dev
 ```
 
-Once the preview is running, you can interact with the screen reader using the following keyboard shortcuts:
+### Interaction Shortcuts
+- **Spacebar:** Reads the current item.
+- **Tab:** Move to the next item.
+- **Shift + Tab:** Move to the previous item.
+- **Enter:** Selects the current item.
 
-- Spacebar - Reads the current item
-- Tab - Move to the next item
-- Shift + Tab - Move to the previous item
-- Enter - Selects the current item
+### Building the Application
 
-## How to Build
-
-To build the application, run the following command:
+To build the application, run:
 
 ```bash
 zeus build
 ```
 
-This will create a `.zab` file in the `dist` folder, which you can install on your Zepp OS device.
+This will generate a `.zab` file in the `dist` folder, ready for installation on your Zepp OS device.
 
-## How to Install
+## Installation
 
-To install the app on your device:
+Install the app on your device using the following steps:
 
 1. Connect your watch to your phone and open the Zepp app.
-2. Go to "Profile" > [Your Device Name] > "App Store."
+2. Navigate to "Profile" > [Your Device Name] > "App Store."
 3. Select the Zepp OS Screen Reader application.
-4. Click the "Install" button to install the app on your device.
+4. Click "Install" to install the app on your device.
 
-## How to Enable Screen Reader
+## Enabling the Screen Reader
 
-After installation, you can enable the screen reader by:
+After installation, enable the screen reader by:
 
-1. On the watch, go to "Settings" > "Accessibility" > "Zepp OS Screen Reader."
-2. Toggle the switch to the "On" position.
+1. Going to "Settings" > "Accessibility" > "Zepp OS Screen Reader" on your watch.
+2. Toggling the switch to the "On" position.
 
 ## Conclusion
 
-Zepp OS Screen Reader is a powerful tool that assists blind and low-vision users in independently operating their Zepp OS devices. For the optimal experience, we recommend using devices running Zepp OS 3.5 or higher to leverage the superior voice quality provided by OpenAI's GPT-4o technology.
-
-```
+The Zepp OS Screen Reader is an invaluable tool for blind and low-vision users, enhancing their ability to independently operate Zepp OS devices. For the best experience, we recommend using devices running Zepp OS 3.5 or higher to benefit from the superior voice quality powered by OpenAI's GPT-4o technology.
