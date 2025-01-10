@@ -8,15 +8,15 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "^2.15.1",
+		"@sveltejs/kit": "^2.15.2",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"svelte": "^5.16.1",
+		"svelte": "^5.17.2",
 		"vite": "^6.0.7"
 	},
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "^5.5.2",
-		"@sveltia/cms": "^0.52.1",
-		"@tailwindcss/typography": "^0.5.15",
+		"@sveltia/cms": "^0.53.2",
+		"@tailwindcss/typography": "^0.5.16",
 		"@vcarl/remark-headings": "^0.1.0",
 		"@vercel/analytics": "^1.4.1",
 		"@vercel/speed-insights": "^1.1.0",

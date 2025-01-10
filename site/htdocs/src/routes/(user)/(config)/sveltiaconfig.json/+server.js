@@ -1,4 +1,4 @@
-import sveltia from '$lib/sveltiaCMS.js';
+import sveltia from '$lib/data/sveltiaCMS.js';
 import { json } from '@sveltejs/kit';
 
 export async function GET() {
@@ -8,8 +8,8 @@ local_backend: true,
       name: 'github',
       repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
       branch: 'main',
-      site_domain: 'zsr.vercel.app',
-      base_url: 'https://zsr.vercel.app',
+      site_domain: 'zeppreader.com',
+      base_url: 'https://www.zeppreader.com',
       auth_endpoint: '/oauth',
     },
     media_folder: '/site/htdocs/src/lib/images',
