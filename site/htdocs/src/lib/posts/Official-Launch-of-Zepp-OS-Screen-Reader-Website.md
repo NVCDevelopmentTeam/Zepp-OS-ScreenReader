@@ -4,7 +4,7 @@ date: 2025-01-17T19:18:00
 ---
 Dear Users,
 
-We are thrilled to announce the official launch of the Zepp OS Screen Reader website, now live at [zeppreader.com](https://zeppreader.com). This marks a significant milestone in our commitment to providing accessible technology solutions for the visually impaired community.
+We are thrilled to announce the official launch of the Zepp OS Screen Reader website, now live at [zeppreader.com.](https://zeppreader.com/) This marks a significant milestone in our commitment to providing accessible technology solutions for the visually impaired community.
 
 ## Enhanced User Experience
 
@@ -13,11 +13,8 @@ Our team has dedicated extensive effort to optimize the website, ensuring it mee
 **Key Features:**
 
 - **Screen Reader Compatibility:** The website is fully compatible with screen readers, allowing users to navigate seamlessly.
-
 - **Keyboard Navigation:** All functionalities are accessible via keyboard shortcuts, eliminating the need for a mouse.
-
 - **High Contrast Mode:** An option to switch to high contrast mode is available, enhancing readability for users with low vision.
-
 - **Text-to-Speech Integration:** Integrated text-to-speech functionality enables content to be read aloud, providing an auditory experience.
 
 ## Feedback and Contributions
@@ -30,4 +27,4 @@ To stay updated on the latest developments, features, and announcements related 
 
 Thank you for your unwavering support and trust in our project. Together, we are making technology more inclusive and accessible for everyone.
 
-Wishing you a wonderful day.
+Wishing you a wonderful day!
