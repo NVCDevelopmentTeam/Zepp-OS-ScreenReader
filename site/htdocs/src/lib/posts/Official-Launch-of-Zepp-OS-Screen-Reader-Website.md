@@ -1,6 +1,6 @@
 ---
 title: Official Launch of Zepp OS Screen Reader Website
-date: 2025-17-01
+date: 2025-01-17T19:18:00
 ---
 Dear Users,
 
@@ -30,4 +30,4 @@ To stay updated on the latest developments, features, and announcements related 
 
 Thank you for your unwavering support and trust in our project. Together, we are making technology more inclusive and accessible for everyone.
 
-Wishing you a wonderful day.
+Wishing you a wonderful day!
