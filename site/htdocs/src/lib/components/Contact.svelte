@@ -1,6 +1,6 @@
 <script>
   import { accessKey } from '$lib/info.js';
-  let status = "";
+  let status = $state("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@
   };
 </script>
 
-<form on:submit="{handleSubmit}" class="flex flex-col w-72 mx-auto space-y-4">
+<form onsubmit={handleSubmit} class="flex flex-col w-72 mx-auto space-y-4">
   <input type="hidden" name="access_key" value={accessKey}>
 
   <label for="name" class="text-gray-700 font-medium">

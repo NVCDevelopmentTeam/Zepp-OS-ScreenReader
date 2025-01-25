@@ -3,17 +3,17 @@
   import { onMount } from 'svelte'
   import Card from './Card.svelte'
 
-  export let post
+  let { post, children } = $props();
 
   let elements = []
-  let headings = post.headings
+  let headings = $state(post.headings)
 
   onMount(() => {
     updateHeadings()
     setActiveHeading()
   })
 
-  let activeHeading = headings[0]
+  let activeHeading = $state(headings[0])
   let scrollY
 
   function updateHeadings() {
@@ -25,6 +25,7 @@
       })
     }
   }
+
   function setActiveHeading() {
     scrollY = window.scrollY
 
@@ -46,38 +47,26 @@
   }
 </script>
 
-<svelte:window on:scroll={setActiveHeading} />
+<svelte:window onscroll={setActiveHeading} />
 
-<Card>
-  <slot slot="description">
-    <ul class="flex flex-col gap-2">
-      {#each headings as heading}
-        <li
-          class="pl-2 transition-colors border-teal-500 heading text-zinc-500 dark:text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
-          class:active={activeHeading === heading}
-          style={`--depth: ${
-            // consider h1 and h2 at the same depth, as h1 will only be used for page title
-            Math.max(0, heading.depth - 1)
-          }`}
-        >
-          <a href={`#${heading.id}`}>{heading.value}</a>
-        </li>
-      {/each}
-    </ul>
-  </slot>
+<Card class="p-6 bg-white shadow-lg rounded-lg">
+  {#snippet description()}
+    {#if children}
+      {@render children()}
+    {:else}
+      <ul class="flex flex-col gap-3">
+        {#each headings as heading}
+          <li
+            class="pl-3 py-2 text-sm transition-colors border-l-4 border-teal-500 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-teal-50 dark:hover:bg-teal-700 rounded-md"
+            class:active={activeHeading === heading}
+            style={`--depth: ${Math.max(0, heading.depth - 1)}`}
+          >
+            <a href={`#${heading.id}`} class="flex items-center gap-2">
+              <span class="truncate">{heading.value}</span>
+            </a>
+          </li>
+        {/each}
+      </ul>
+    {/if}
+  {/snippet}
 </Card>
-
-<style lang="postcss">
-  .heading {
-    padding-left: calc(var(--depth, 0) * 0.35rem);
-  }
-
-  .active {
-    @apply font-medium text-slate-900 border-l-2 -ml-[2px];
-  }
-
-  /* can't use dark: modifier in @apply */
-  :global(.dark) .active {
-    @apply text-slate-100;
-  }
-</style>

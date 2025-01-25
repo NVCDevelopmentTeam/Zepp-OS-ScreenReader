@@ -1,4 +1,4 @@
-<script context="module">
+<script module>
   export async function load({ error }) {
     error(404, 'Not Found');
   }

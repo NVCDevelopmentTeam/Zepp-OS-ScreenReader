@@ -3,9 +3,9 @@
   import { browser } from '$app/environment';
   import logo from '$lib/images/logo.png';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
-  let expanded = false; // Mobile menu toggle
-  let expandedDropdown = false; // Dropdown menu toggle
-  let darkMode = false; // Dark mode status
+  let expanded = $state(false); // Mobile menu toggle
+  let expandedDropdown = $state(false); // Dropdown menu toggle
+  let darkMode = $state(false); // Dark mode status
 
   // Toggle dark mode class on document root
   function toggleDarkMode() {
@@ -33,7 +33,7 @@
     <!-- Mobile Menu Toggle -->
     <button
       class="lg:hidden text-gray-800 dark:text-gray-200"
-      on:click={() => (expanded = !expanded)}
+      onclick={() => (expanded = !expanded)}
       aria-expanded={expanded}
       aria-label="Toggle navigation"
     >
@@ -57,7 +57,7 @@
           aria-haspopup="true"
 role="link" 
           aria-expanded={expandedDropdown}
-          on:click={() => (expandedDropdown = !expandedDropdown)}
+          onclick={() => (expandedDropdown = !expandedDropdown)}
         >
           Other Services
         </button>
@@ -80,7 +80,7 @@ role="link"
   <div class="px-4 py-3 flex items-center">
     <i>Theme</i>
     <button
-      on:click={toggleDarkMode}
+      onclick={toggleDarkMode}
       class="ml-2 text-gray-800 dark:text-gray-200 focus:outline-none"
       aria-pressed={darkMode}
       aria-label="Toggle dark mode"

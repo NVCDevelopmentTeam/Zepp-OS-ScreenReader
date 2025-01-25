@@ -4,7 +4,7 @@
   import { siteAuthor, githubLink } from '$lib/info.js';
   import { onMount } from 'svelte';
 
-  let year;
+  let year = $state();
 
   onMount(() => {
     year = new Date().getFullYear();

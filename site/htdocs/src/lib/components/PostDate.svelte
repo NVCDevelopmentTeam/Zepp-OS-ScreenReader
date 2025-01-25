@@ -1,12 +1,23 @@
 <script>
   import { format, parseISO } from 'date-fns';
 
-  export let decorate;
-  export let post;
-  export let collapsed = false;
 
-  let _class;
-  export { _class as class };
+  /**
+   * @typedef {Object} Props
+   * @property {any} decorate
+   * @property {any} post
+   * @property {boolean} [collapsed]
+   * @property {any} class
+   */
+
+  /** @type {Props} */
+  let {
+    decorate,
+    post,
+    collapsed = false,
+    class: _class
+  } = $props();
+  
 </script>
 
 <div

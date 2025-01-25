@@ -1,15 +1,33 @@
 <script>
-  export let as = 'div';
-  export let href = undefined;
 
-  let _class = undefined;
-  export { _class as class };
+  /**
+   * @typedef {Object} Props
+   * @property {string} [as]
+   * @property {any} [href]
+   * @property {any} [class]
+   * @property {import('svelte').Snippet} [eyebrow]
+   * @property {import('svelte').Snippet} [title]
+   * @property {import('svelte').Snippet} [description]
+   * @property {import('svelte').Snippet} [actions]
+   */
+
+  /** @type {Props} */
+  let {
+    as = 'div',
+    href = undefined,
+    class: _class = undefined,
+    eyebrow,
+    title,
+    description,
+    actions
+  } = $props();
+  
 </script>
 
 <svelte:element this={as} class={['relative flex flex-col items-start group', _class].join(' ')}>
-  <slot name="eyebrow" />
+  {@render eyebrow?.()}
 
-  {#if $$slots.title}
+  {#if title}
     <div class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {#if href}
         <div
@@ -19,27 +37,27 @@
         <a {href} data-sveltekit-prefetch>
           <span class="absolute z-20 -inset-y-6 -inset-x-4 sm:-inset-x-6 sm:rounded-2xl"></span>
           <span class="relative z-10">
-            <slot name="title" />
+            {@render title?.()}
           </span>
         </a>
       {:else}
-        <slot name="title" />
+        {@render title?.()}
       {/if}
     </div>
   {/if}
 
-  {#if $$slots.description}
+  {#if description}
     <div
       class="relative z-10 flex-1 text-sm text-zinc-600 dark:text-zinc-400"
-      class:mt-2={!!$$slots.title}
+      class:mt-2={!!title}
     >
-      <slot name="description" />
+      {@render description?.()}
     </div>
   {/if}
 
-  {#if $$slots.actions}
+  {#if actions}
     <div aria-hidden="true" class="relative z-10 flex items-center mt-4">
-      <slot name="actions" />
+      {@render actions?.()}
     </div>
   {/if}
 </svelte:element>

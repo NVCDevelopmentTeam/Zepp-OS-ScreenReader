@@ -1,6 +1,13 @@
 <script>
   import { page } from '$app/stores';
   import logo from '$lib/images/logo.png';
+  /**
+   * @typedef {Object} Props
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { children } = $props();
 </script>
 
 <div class="min-h-screen flex flex-col">
@@ -14,7 +21,7 @@
   </header>
 
   <main class="flex-1 container mx-auto p-4 bg-gray-50">
-    <slot />
+    {@render children?.()}
   </main>
 
   <footer class="bg-gray-800 text-white py-6">

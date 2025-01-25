@@ -1,9 +1,16 @@
 <script>
     // based on suggestions from:
-    // Inclusive Components by Heydon Pickering https://inclusive-components.design/collapsible-sections/
-    export let headerText;
+    
+    /**
+     * @typedef {Object} Props
+     * @property {any} headerText - Inclusive Components by Heydon Pickering https://inclusive-components.design/collapsible-sections/
+     * @property {import('svelte').Snippet} [children]
+     */
 
-    let expanded = false;
+    /** @type {Props} */
+    let { headerText, children } = $props();
+
+    let expanded = $state(false);
 </script>
 
 <div class="border-b border-gray-200">
@@ -11,7 +18,7 @@
         <button 
             class="bg-white text-gray-900 flex justify-between w-full border-0 p-4" 
             aria-expanded={expanded} 
-            on:click={() => expanded = !expanded}
+            onclick={() => expanded = !expanded}
         >
             {headerText}
             <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5 transform transition-transform duration-200" 
@@ -23,6 +30,6 @@
     </h2>
 
     <div class={expanded ? "block" : "hidden"}>
-        <slot />
+        {@render children?.()}
     </div>
 </div>

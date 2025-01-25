@@ -3,12 +3,12 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
 
-  export let data;
+  let { data } = $props();
   const { config } = data;
 
   let CMS = null;
-  let cmsInitialized = false;
-  let cmsError = null;
+  let cmsInitialized = $state(false);
+  let cmsError = $state(null);
 
   async function initializeCMS() {
     try {

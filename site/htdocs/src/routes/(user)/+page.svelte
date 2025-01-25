@@ -1,7 +1,7 @@
 <script>
   import PostsList from '$lib/components/PostsList.svelte';
   import { siteTitle, siteDescription, features } from '$lib/info.js';
-  export let data;
+  let { data } = $props();
 </script>
 
 <svelte:head>

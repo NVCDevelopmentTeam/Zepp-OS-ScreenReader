@@ -3,13 +3,13 @@
   import Dialog from '$lib/components/Dialog.svelte';
   import CollapsibleSection from '$lib/components/CollapsibleSection.svelte';
 
-  let dialog;
-  let files;
+  let dialog = $state();
+  let files = $state();
   let issue = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader/issues';
   const pageTitle = 'Support';
 
-  let status = "";
-let Agree = false;
+  let status = $state("");
+let Agree = $state(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
     status = 'Submitting...';
@@ -182,10 +182,10 @@ let Agree = false;
 </ul>
 <p>We will try to respond to you within 24 hours. Thank you for trusting and using ZSR!</p>
 <h2 id="feedback">Send us feedback</h2>
-<p>If you have questions or problems with Zsr and need support, please leave your feedback <button role="link" on:click={() => dialog.showModal()}>here.</button> We will respond to you as soon as possible.</p>
+<p>If you have questions or problems with Zsr and need support, please leave your feedback <button role="link" onclick={() => dialog.showModal()}>here.</button> We will respond to you as soon as possible.</p>
 
   <Dialog bind:dialog on:close={() => console.log('closed')}>
-    <form on:submit="{handleSubmit}">
+    <form onsubmit={handleSubmit}>
       <input type="hidden" name="access_key" value={accessKey}>
       <label class="required" for="send-feedback">Detailed description of the problem</label>
       <textarea class="field req" id="send-feedback" name="Send feedback" required rows="3"></textarea>
