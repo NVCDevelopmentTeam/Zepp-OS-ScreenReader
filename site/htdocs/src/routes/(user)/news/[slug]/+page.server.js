@@ -9,7 +9,7 @@ export async function load({ params }) {
   const post = posts.find((post) => slug === post.slug)
 
   if (!post) {
-    throw error(404, 'Post not found')
+    error(404, 'Post not found');
   }
 
   return {

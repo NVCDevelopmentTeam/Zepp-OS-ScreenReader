@@ -11,5 +11,5 @@ export const GET = async ({ url }) => {
   });
 
   // Redirect to GitHub's OAuth authorization page
-  throw redirect(302, `https://github.com/login/oauth/authorize?${params.toString()}`);
+  redirect(302, `https://github.com/login/oauth/authorize?${params.toString()}`);
 };

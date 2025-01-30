@@ -56,6 +56,6 @@ export const GET = async ({ url }) => {
     });
   } catch (err) {
     console.log(err);
-    throw redirect(302, "/?error=😡");
+    redirect(302, "/?error=😡");
   }
 };

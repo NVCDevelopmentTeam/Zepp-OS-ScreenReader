@@ -11,7 +11,7 @@ export async function load({ params }) {
 
   // if page doesn't exist, 404
   if (postsForPage.length === 0 && page > 1) {
-    throw error(404, 'Page not found')
+    error(404, 'Page not found');
   }
 
   return {
