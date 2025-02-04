@@ -6,7 +6,7 @@ export const features = [
   'Custom settings for speech rate, volume, and language',
   'Support for multiple devices and screen sizes'
 ];
-export const siteURL = 'https://www.zeppreader.com';
+export const siteURL = 'https://zeppreader.com';
 export const siteAuthor = 'NVC Development Team';
 export const githubLink ='https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git';
 export const discordChat ='https://discord.gg/DAZU3E4mSP';
