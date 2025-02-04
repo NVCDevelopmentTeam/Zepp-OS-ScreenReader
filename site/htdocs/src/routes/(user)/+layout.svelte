@@ -3,7 +3,7 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
 let keyword="zepp OS screen reader, ZSR, assistive technology for the blind";
-import ogImageURL from "$lib/images/logo.jpg";
+import ogImageURL from "$lib/images/logo.png";
 let ogImageAlt="ZSR logo";
   /**
    * @typedef {Object} Props
