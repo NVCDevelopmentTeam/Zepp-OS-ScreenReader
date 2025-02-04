@@ -21,7 +21,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-ZK2KQKYDS6');
+  gtag('config', 'G-TG34FBKBKS');
 </script>
   <title>{siteTitle}</title>
     <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
