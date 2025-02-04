@@ -2,9 +2,9 @@
   import { siteTitle, siteDescription, siteURL, siteAuthor } from '$lib/info.js';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
-import let keyword="zepp OS screen reader, ZSR, assistive technology for the blind";
-import let ogImageURL="background.jpg";
-import let ogImageAlt="background image";
+let keyword="zepp OS screen reader, ZSR, assistive technology for the blind";
+let ogImageURL="background.jpg";
+let ogImageAlt="background image";
   /**
    * @typedef {Object} Props
    * @property {import('svelte').Snippet} [children]
