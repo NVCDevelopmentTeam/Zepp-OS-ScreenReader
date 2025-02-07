@@ -69,6 +69,6 @@
     <li>Our Terms of Service.</li>
   </ul>
   <p>
-    For further information about our privacy practices, please reach out to us at contact.ZSR.net.
+    For further information about our privacy practices, please reach out to us at contact.zeppreader.com.
   </p>
 </div>
