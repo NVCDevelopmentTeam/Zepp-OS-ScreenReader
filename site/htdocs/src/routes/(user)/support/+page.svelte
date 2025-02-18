@@ -61,7 +61,7 @@
 <div class="container">
   <h1>{pageTitle}</h1>
   <h2>About ZSR Project</h2>
-  <p>The ZSR project, including discussions and all source code for this site and the Zepp OS screen reader, is hosted on <a href={githubLink}>GitHub</a>. If you have a problem with Zepp OS Screen Reader, please report your problem <a href={issue}>here</a>.</p>
+  <p>The ZSR project, including discussions and all source code for this site and the Zepp OS screen reader, is hosted on <a href={githubLink}>GitHub</a>. If you have a problem with Zepp OS Screen Reader, please report your problem <a href={issue} aria-label="View open issues on GitHub">here</a>.</p>
   <h2>Note</h2>
   <p>The product is provided free of charge to end users only. If any organization or individual wants to integrate the author's product into their service, they need the author's written consent. The author is not responsible for organizations or individuals distributing the author's products for other purposes.</p>
 

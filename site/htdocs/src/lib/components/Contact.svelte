@@ -1,6 +1,6 @@
 <script>
   import { accessKey } from '$lib/info.js';
-  let status = $state("");
+  let status = '';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +51,7 @@
   </label>
   <textarea class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" id="message" name="message" required rows="3"></textarea>
 
-  <input type="submit" value="Send" class="bg-blue-500 text-white rounded py-2 cursor-pointer hover:bg-blue-600" />
+  <input type="submit" value="Send" class="bg-blue-700 text-white rounded py-2 cursor-pointer hover:bg-blue-800" />
 </form>
 
 <div class="text-center mt-4 text-gray-600">{status}</div>
