@@ -16,6 +16,13 @@ let ogImageAlt="ZSR logo";
 
 <svelte:head>
   <title>{siteTitle}</title>
+<link rel="shortlink" href={siteURL} />
+	<meta property="og:url" content={siteURL} />
+	<meta property="og:site_name" content={siteTitle} />
+	<meta property="og:title" content={siteTitle} />
+	<meta property="og:description" content={siteDescription} />
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="canonical" href={siteURL} />
   <meta name="description" content={siteDescription} />
   <meta name="keywords" content={keyword} />
   <meta name="author" content={siteAuthor} />
@@ -41,6 +48,17 @@ let ogImageAlt="ZSR logo";
       "url": siteURL
     })}
   </script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3602487920405886"
+     crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZK2KQKYDS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TG34FBKBKS');
+</script>
 </svelte:head>
 
 <Header />
