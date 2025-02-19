@@ -18,7 +18,8 @@ let ogImageAlt="ZSR logo";
   <title>{siteTitle}</title>
 <link rel="shortlink" href={siteURL} />
 <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
-
+    <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
+<link href="/sveltiaconfig.json" type="application/json" rel="cms-config-url" />
 	<meta property="og:url" content={siteURL} />
 	<meta property="og:site_name" content={siteTitle} />
 	<meta property="og:title" content={siteTitle} />
