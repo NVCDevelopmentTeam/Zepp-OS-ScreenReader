@@ -17,6 +17,8 @@ let ogImageAlt="ZSR logo";
 <svelte:head>
   <title>{siteTitle}</title>
 <link rel="shortlink" href={siteURL} />
+<link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
+
 	<meta property="og:url" content={siteURL} />
 	<meta property="og:site_name" content={siteTitle} />
 	<meta property="og:title" content={siteTitle} />
