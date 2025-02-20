@@ -181,7 +181,7 @@
   <ul>
     <li><strong>Restart your device:</strong> This is a simple but effective way to solve temporary problems. Simply turn your device off and on again to see if there is any improvement.</li>
     <li><strong>Updating the application:</strong> You should ensure that you are using the latest version of ZSR to experience the latest features and fix old bugs. You can check and update the app in your device's app store or on <a href="/">ZSR official website</a>.</li>
-    <li><strong>Check settings:</strong> You should also check that ZSR's settings are appropriate for your needs and device. If you need guidance, you can see our <a href="https://www.zeppreader.com/support">support page</a> to learn how to adjust the settings.</li>
+    <li><strong>Check settings:</strong> You should also check that ZSR's settings are appropriate for your needs and device. If you need guidance, you can see our <a href="/support">support page</a> to learn how to adjust the settings.</li>
   </ul>
   <p>If you have tried all the steps above and still cannot solve the problem, you can contact us for timely support.</p>
   <h2 id="contact">Contact Support</h2>
