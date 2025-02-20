@@ -129,6 +129,15 @@
     </ul>
   </CollapsibleSection>
 
+<CollapsibleSection headerText={'Where can I learn more about ZSR?'}>
+  <p>
+    You can learn more about ZSR at Zepp's support site. Visit the 
+    <a href="https://www.zepp.com/support/zsr" aria-label="Zepp OS Screen Reader support page">
+      Zepp OS Screen Reader support page
+    </a> 
+    for detailed information.
+  </p>
+</CollapsibleSection>
 
   <CollapsibleSection headerText={'Other FAQ'}>
     <ul>
