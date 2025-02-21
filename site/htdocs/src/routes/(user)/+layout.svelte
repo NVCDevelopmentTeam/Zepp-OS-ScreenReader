@@ -6,7 +6,7 @@
   import { partytownSnippet } from '@builder.io/partytown/integration';
   import { onMount } from 'svelte';
 
-  export let children;
+  let { children } = $props();
 
   let keyword = "zepp OS screen reader, ZSR, assistive technology for the blind";
   let ogImageAlt = "ZSR logo";
@@ -28,13 +28,10 @@
   <title>{siteTitle}</title>
   <link rel="shortlink" href={siteURL} />
   <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
-  <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
-  <link href="/sveltiaconfig.json" type="application/json" rel="cms-config-url" />
   <meta property="og:url" content={siteURL} />
   <meta property="og:site_name" content={siteTitle} />
   <meta property="og:title" content={siteTitle} />
   <meta property="og:description" content={siteDescription} />
-  <link rel="profile" href="https://gmpg.org/xfn/11">
   <link rel="canonical" href={siteURL} />
   <meta name="description" content={siteDescription} />
   <meta name="keywords" content={keyword} />
@@ -73,9 +70,7 @@
 <Header />
 <div class="bg-custom-background bg-cover bg-center min-h-screen">
   <main id="main">
-    {#if children}
-      {@render children()}
-    {/if}
+{@render children?.()}
   </main>
 </div>
 <Footer />
