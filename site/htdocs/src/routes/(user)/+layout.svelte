@@ -3,13 +3,13 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import ogImageURL from '$lib/images/logo.png';
+  import { partytownSnippet } from '@builder.io/partytown/integration';
 
   export let children;
 
   let keyword = "zepp OS screen reader, ZSR, assistive technology for the blind";
   let ogImageAlt = "ZSR logo";
 
-  // Schema.org JSON-LD data
   let jsonLD = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -44,12 +44,25 @@
   <meta name="twitter:title" content={siteTitle} />
   <meta name="twitter:description" content={siteDescription} />
   <meta name="twitter:image" content={ogImageURL} />
-
-  <!-- JSON-LD structured data -->
   <script type="application/ld+json">{JSON.stringify(jsonLD)}</script>
 
-  <!-- Include external-scripts.js -->
-  <script src="/external-scripts.js" defer></script>
+  {@html partytownSnippet()}
+
+  <script>
+    partytown = {
+      forward: ['dataLayer.push', 'gtag'],
+    };
+  </script>
+
+  <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-ZK2KQKYDS6" async></script>
+  <script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-ZK2KQKYDS6');
+  </script>
+
+  <script type="text/partytown" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3602487920405886" crossorigin="anonymous" async></script>
 </svelte:head>
 
 <Header />
