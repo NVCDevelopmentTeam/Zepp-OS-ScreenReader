@@ -4,18 +4,24 @@
   import Footer from '$lib/components/Footer.svelte';
   import ogImageURL from '$lib/images/logo.png';
   import { partytownSnippet } from '@builder.io/partytown/integration';
+  import { onMount } from 'svelte';
 
   export let children;
 
   let keyword = "zepp OS screen reader, ZSR, assistive technology for the blind";
   let ogImageAlt = "ZSR logo";
-
   let jsonLD = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": siteTitle,
     "url": siteURL
   };
+
+  let partytownHTML = '';
+
+  onMount(() => {
+    partytownHTML = partytownSnippet();
+  });
 </script>
 
 <svelte:head>
@@ -45,8 +51,7 @@
   <meta name="twitter:description" content={siteDescription} />
   <meta name="twitter:image" content={ogImageURL} />
   <script type="application/ld+json">{JSON.stringify(jsonLD)}</script>
-
-  {@html partytownSnippet()}
+  {@html partytownHTML}
 
   <script>
     partytown = {
@@ -68,7 +73,9 @@
 <Header />
 <div class="bg-custom-background bg-cover bg-center min-h-screen">
   <main id="main">
-{@render children?.()}
+    {#if children}
+      {@render children()}
+    {/if}
   </main>
 </div>
 <Footer />
