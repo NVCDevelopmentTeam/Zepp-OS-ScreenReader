@@ -55,16 +55,16 @@
       forward: ['dataLayer.push', 'gtag'],
     };
   </script>
+<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-TG34FBKBKS"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-ZK2KQKYDS6" async></script>
-  <script type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-ZK2KQKYDS6');
-  </script>
-
-  <script type="text/partytown" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3602487920405886" crossorigin="anonymous" async></script>
+  gtag('config', 'G-TG34FBKBKS');
+</script>
+<script type="text/partytown" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3602487920405886"
+     crossorigin="anonymous"></script>
 </svelte:head>
 
 <Header />
