@@ -38,10 +38,10 @@
   <meta name="author" content={siteAuthor} />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content={ogImageURL} />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={siteTitle} />
-  <meta name="twitter:description" content={siteDescription} />
-  <meta name="twitter:image" content={ogImageURL} />
+  <meta name="facebook:card" content="summary_large_image" />
+  <meta name="facebook:title" content={siteTitle} />
+  <meta name="facebook:description" content={siteDescription} />
+  <meta name="facebook:image" content={ogImageURL} />
   <script type="application/ld+json">{JSON.stringify(jsonLD)}</script>
   {@html partytownHTML}
 
