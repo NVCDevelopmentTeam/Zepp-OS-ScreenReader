@@ -36,13 +36,8 @@
   <meta name="description" content={siteDescription} />
   <meta name="keywords" content={keyword} />
   <meta name="author" content={siteAuthor} />
-  <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content={ogImageURL} />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
-  <meta name="msapplication-TileColor" content="#201e1a" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={siteTitle} />
   <meta name="twitter:description" content={siteDescription} />
