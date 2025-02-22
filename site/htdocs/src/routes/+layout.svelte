@@ -21,7 +21,6 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
   <meta name="msapplication-TileColor" content="#201e1a" />
-
 </svelte:head>
 <main>
 {@render children?.()}
