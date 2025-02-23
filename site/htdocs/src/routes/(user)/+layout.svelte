@@ -3,7 +3,6 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import ogImageURL from '$lib/images/logo.png';
-  import { partytownSnippet } from '@builder.io/partytown/integration';
   import { onMount } from 'svelte';
 
   const { children } = $props();
@@ -26,40 +25,17 @@
     url: siteURL
   };
 
-  // Improved Partytown configuration
-  const PARTYTOWN_CONFIG = {
-    debug: false,
-    forward: ['dataLayer.push', 'gtag'],
-    resolveUrl: (url) => {
-      const siteURL = new URL(url);
-      if (siteURL.hostname.includes('google')) {
-        return url;
-      }
-      return url;
-    }
-  };
-
-  // Initialize analytics after Partytown loads
-  const initAnalytics = () => {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', GA_ID, {
-      page_path: window.location.pathname,
-      transport_type: 'beacon'
-    });
-  };
-
-  let partytownHTML = '';
-  
-  onMount(async () => {
-    // Load Partytown asynchronously
-    partytownHTML = partytownSnippet();
-    
-    // Initialize analytics after component mounts
+  onMount(() => {
+    // Initialize Analytics
     if (typeof window !== 'undefined') {
-      window.partytown = PARTYTOWN_CONFIG;
-      initAnalytics();
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_ID, {
+        page_path: window.location.pathname,
+      });
     }
   });
 </script>
@@ -99,15 +75,11 @@
     {JSON.stringify(jsonLD)}
   </script>
 
-  <!-- Partytown Setup -->
-  {@html partytownHTML}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
   
-  <!-- Analytics (Loaded via Partytown) -->
-  <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  
-  <!-- AdSense (Loaded via Partytown) -->
+  <!-- Google AdSense -->
   <script 
-    type="text/partytown"
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}"
     crossorigin="anonymous"
