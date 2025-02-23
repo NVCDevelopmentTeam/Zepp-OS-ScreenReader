@@ -6,66 +6,110 @@
   import { partytownSnippet } from '@builder.io/partytown/integration';
   import { onMount } from 'svelte';
 
-  let { children } = $props();
+  // Props using Svelte 5 syntax
+  const { children } = $props();
 
-  let keyword = "zepp OS screen reader, ZSR, assistive technology for the blind";
-  let ogImageAlt = "ZSR logo";
-  let jsonLD = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": siteTitle,
-    "url": siteURL
+  // Constants
+  const META_DEFAULTS = {
+    keyword: 'zepp OS screen reader, ZSR, assistive technology for the blind',
+    ogImageAlt: 'ZSR logo',
+    locale: 'en_US'
   };
 
+  // Structured data
+  const jsonLD = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteTitle,
+    url: siteURL
+  };
+
+  // Partytown configuration
+  const PARTYTOWN_CONFIG = {
+    forward: ['dataLayer.push', 'gtag']
+  };
+
+  // Initialize partytown HTML
   let partytownHTML = '';
 
+  // Load partytown after component mounts
   onMount(() => {
     partytownHTML = partytownSnippet();
   });
+
+  // Google Analytics ID
+  const GA_ID = 'G-TG34FBKBKS';
+  const ADSENSE_CLIENT = 'ca-pub-3602487920405886';
 </script>
 
 <svelte:head>
+  <!-- Basic Meta Tags -->
   <title>{siteTitle}</title>
+  <meta name="description" content={siteDescription} />
+  <meta name="keywords" content={META_DEFAULTS.keyword} />
+  <meta name="author" content={siteAuthor} />
+
+  <!-- Canonical and RSS -->
+  <link rel="canonical" href={siteURL} />
   <link rel="shortlink" href={siteURL} />
-  <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
+  <link 
+    rel="alternate" 
+    type="application/rss+xml" 
+    title={siteTitle} 
+    href="{siteURL}/rss.xml" 
+  />
+
+  <!-- Open Graph -->
   <meta property="og:url" content={siteURL} />
   <meta property="og:site_name" content={siteTitle} />
   <meta property="og:title" content={siteTitle} />
   <meta property="og:description" content={siteDescription} />
-  <link rel="canonical" href={siteURL} />
-  <meta name="description" content={siteDescription} />
-  <meta name="keywords" content={keyword} />
-  <meta name="author" content={siteAuthor} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={META_DEFAULTS.locale} />
   <meta property="og:image" content={ogImageURL} />
+
+  <!-- Facebook -->
   <meta name="facebook:card" content="summary_large_image" />
   <meta name="facebook:title" content={siteTitle} />
   <meta name="facebook:description" content={siteDescription} />
   <meta name="facebook:image" content={ogImageURL} />
-  <script type="application/ld+json">{JSON.stringify(jsonLD)}</script>
-  {@html partytownHTML}
 
-  <script>
-    partytown = {
-      forward: ['dataLayer.push', 'gtag'],
-    };
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {JSON.stringify(jsonLD)}
   </script>
-<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-TG34FBKBKS"></script>
-<script type="text/partytown">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-TG34FBKBKS');
-</script>
-<script type="text/partytown" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3602487920405886"
-     crossorigin="anonymous"></script>
+  <!-- Partytown Setup -->
+  {@html partytownHTML}
+  <script>
+    partytown = {PARTYTOWN_CONFIG};
+  </script>
+
+  <!-- Analytics (Loaded via Partytown) -->
+  <script 
+    type="text/partytown" 
+    async 
+    src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"
+  ></script>
+  <script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{GA_ID}');
+  </script>
+
+  <!-- AdSense (Loaded via Partytown) -->
+  <script 
+    type="text/partytown" 
+    async 
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}"
+    crossorigin="anonymous"
+  ></script>
 </svelte:head>
 
 <Header />
 <div class="bg-custom-background bg-cover bg-center min-h-screen">
   <main id="main">
-{@render children?.()}
+    {@render children?.()}
   </main>
 </div>
 <Footer />
