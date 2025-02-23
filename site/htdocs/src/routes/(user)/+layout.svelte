@@ -10,7 +10,7 @@
   // Analytics & Ads Configuration
   const CONFIG = {
     analytics: {
-      id: 'G-ZK2KQKYDS6',
+      id: 'G-NPS24E6QFN',
       debugMode: import.meta.env.DEV
     },
     adsense: {
