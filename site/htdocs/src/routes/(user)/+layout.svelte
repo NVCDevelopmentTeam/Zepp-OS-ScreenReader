@@ -6,10 +6,12 @@
   import { partytownSnippet } from '@builder.io/partytown/integration';
   import { onMount } from 'svelte';
 
-  // Props using Svelte 5 syntax
   const { children } = $props();
 
   // Constants
+  const GA_ID = 'G-TG34FBKBKS';
+  const ADSENSE_CLIENT = 'ca-pub-3602487920405886';
+  
   const META_DEFAULTS = {
     keyword: 'zepp OS screen reader, ZSR, assistive technology for the blind',
     ogImageAlt: 'ZSR logo',
@@ -24,22 +26,42 @@
     url: siteURL
   };
 
-  // Partytown configuration
+  // Improved Partytown configuration
   const PARTYTOWN_CONFIG = {
-    forward: ['dataLayer.push', 'gtag']
+    debug: false,
+    forward: ['dataLayer.push', 'gtag'],
+    resolveUrl: (url) => {
+      const siteURL = new URL(url);
+      if (siteURL.hostname.includes('google')) {
+        return url;
+      }
+      return url;
+    }
   };
 
-  // Initialize partytown HTML
+  // Initialize analytics after Partytown loads
+  const initAnalytics = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', GA_ID, {
+      page_path: window.location.pathname,
+      transport_type: 'beacon'
+    });
+  };
+
   let partytownHTML = '';
-
-  // Load partytown after component mounts
-  onMount(() => {
+  
+  onMount(async () => {
+    // Load Partytown asynchronously
     partytownHTML = partytownSnippet();
+    
+    // Initialize analytics after component mounts
+    if (typeof window !== 'undefined') {
+      window.partytown = PARTYTOWN_CONFIG;
+      initAnalytics();
+    }
   });
-
-  // Google Analytics ID
-  const GA_ID = 'G-TG34FBKBKS';
-  const ADSENSE_CLIENT = 'ca-pub-3602487920405886';
 </script>
 
 <svelte:head>
@@ -48,16 +70,15 @@
   <meta name="description" content={siteDescription} />
   <meta name="keywords" content={META_DEFAULTS.keyword} />
   <meta name="author" content={siteAuthor} />
+  
+  <!-- Preconnect to required domains -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
   <!-- Canonical and RSS -->
   <link rel="canonical" href={siteURL} />
   <link rel="shortlink" href={siteURL} />
-  <link 
-    rel="alternate" 
-    type="application/rss+xml" 
-    title={siteTitle} 
-    href="{siteURL}/rss.xml" 
-  />
+  <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
 
   <!-- Open Graph -->
   <meta property="og:url" content={siteURL} />
@@ -80,27 +101,14 @@
 
   <!-- Partytown Setup -->
   {@html partytownHTML}
-  <script>
-    partytown = {PARTYTOWN_CONFIG};
-  </script>
-
+  
   <!-- Analytics (Loaded via Partytown) -->
-  <script 
-    type="text/partytown" 
-    async 
-    src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"
-  ></script>
-  <script type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{GA_ID}');
-  </script>
-
+  <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+  
   <!-- AdSense (Loaded via Partytown) -->
   <script 
-    type="text/partytown" 
-    async 
+    type="text/partytown"
+    async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}"
     crossorigin="anonymous"
   ></script>
