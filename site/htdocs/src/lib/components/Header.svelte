@@ -1,6 +1,8 @@
 <script>
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
+  import Adsense from '$lib/components/Adsense.svelte';
+  import Analytics from '$lib/components/Analytics.svelte';
   import logo from '$lib/images/logo.png';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
   let expanded = $state(false); // Mobile menu toggle
@@ -75,7 +77,8 @@ role="link"
       <li><a href="/contact" class="hover:underline" aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>Contact</a></li>
     </ul>
   </nav>
-
+    <Analytics />
+    <Adsense />
   <!-- Dark Mode Toggle -->
   <div class="px-4 py-3 flex items-center">
     <i>Theme</i>
