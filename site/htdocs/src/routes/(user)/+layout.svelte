@@ -3,8 +3,6 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import ogImageURL from '$lib/images/logo.png';
-  import Adsense from '$lib/components/Adsense.svelte';
-  import Analytics from '$lib/components/Analytics.svelte';
   let { children } = $props();
   import { onMount } from 'svelte';
 
@@ -73,8 +71,6 @@
 <div class="flex flex-col min-h-screen">
   <Header />
   <main id="main" class="flex-grow bg-custom-background bg-cover bg-center">
-    <Analytics />
-    <Adsense />
 {@render children?.()}
   </main>
   <Footer />

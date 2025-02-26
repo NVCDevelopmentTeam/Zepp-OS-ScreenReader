@@ -2,6 +2,8 @@
   import '../app.css'
   import '../prism.css'
   import { siteTitle } from '$lib/info.js';
+  import Adsense from '$lib/components/Adsense.svelte';
+  import Analytics from '$lib/components/Analytics.svelte';
   /**
    * @typedef {Object} Props
    * @property {import('svelte').Snippet} [children]
@@ -23,5 +25,7 @@
   <meta name="msapplication-TileColor" content="#201e1a" />
 </svelte:head>
 <main>
+    <Analytics />
+    <Adsense />
 {@render children?.()}
 </main>
