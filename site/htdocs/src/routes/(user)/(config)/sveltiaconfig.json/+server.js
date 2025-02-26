@@ -1,9 +1,9 @@
-import sveltia from '$lib/data/sveltiaCMS.js';
+import sveltia from '$lib/data/sveltiaCMS';
 import { json } from '@sveltejs/kit';
 
 export async function GET() {
   const config = {
-local_backend: true,
+local_backend: false,
     backend: {
       name: 'github',
       repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
