@@ -1,7 +1,10 @@
-// we don't need any JS on this page, though we'll load
-// it in dev so that we get hot module replacement
-export const csr = false;
+// remove this if you do not want your pages to be prerendered
+import { dev } from '$app/environment';
+import { inject } from '@vercel/analytics';
+ 
+inject({ mode: dev ? 'development' : 'production' });
+export const prerender  = true;
 
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+injectSpeedInsights();
