@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   $: {
     if (typeof client !== 'undefined') {
-     client('config', 'ca-pub-3602487920405886' {
+     client('config', 'ca-pub-3602487920405886', {
 
         page_title: document.title,
         page_path: $page.url.pathname,
