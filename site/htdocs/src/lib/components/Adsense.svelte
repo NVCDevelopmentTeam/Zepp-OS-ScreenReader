@@ -1,7 +1,8 @@
 <script>
   import { page } from '$app/stores';
+  import { browser } from '$app/environment';
   $: {
-    if (typeof client !== 'undefined') {
+    if (browser && typeof client !== 'undefined') {
      client('config', 'ca-pub-3602487920405886' {
 
         page_title: document.title,
