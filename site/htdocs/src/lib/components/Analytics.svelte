@@ -2,11 +2,8 @@
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
 
-  const trackingId = 'G-4YCKS1JTX8'; // Thay bằng mã đo lường của anh
-
-  // Theo dõi thay đổi đường dẫn
   $: if (browser && typeof gtag !== 'undefined') {
-    gtag('config', trackingId, {
+    gtag('config', 'G-4YCKS1JTX8', {
       page_title: document.title,
       page_path: $page.url.pathname,
     });
@@ -14,13 +11,11 @@
 </script>
 
 <svelte:head>
-  <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}></script>
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-4YCKS1JTX8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', '${trackingId}');
+    gtag('config', 'G-4YCKS1JTX8');
   </script>
 </svelte:head>
