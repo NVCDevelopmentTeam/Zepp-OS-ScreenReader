@@ -58,7 +58,6 @@
   <meta property="og:image" content={ogImageURL} />
   <meta property="og:image:alt" content={SEO.imageAlt} />
   <!-- Links -->
-  <link rel="canonical" href={siteURL} />
   <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://pagead2.googlesyndication.com">
