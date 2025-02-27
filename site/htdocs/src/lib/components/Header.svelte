@@ -1,6 +1,5 @@
 <script>
   import { page } from '$app/stores';
-  import { browser } from '$app/environment';
   import Adsense from '$lib/components/Adsense.svelte';
   import Analytics from '$lib/components/Analytics.svelte';
   import logo from '$lib/images/logo.png';

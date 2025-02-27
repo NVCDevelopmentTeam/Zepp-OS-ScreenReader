@@ -1,8 +1,7 @@
 <script>
   import { page } from '$app/stores';
-  import { browser } from '$app/environment';
   $: {
-    if (browser && typeof gtag !== 'undefined') {
+    if (typeof gtag !== 'undefined') {
       gtag('config', 'G-4YCKS1JTX8', {
         page_title: document.title,
         page_path: $page.url.pathname,

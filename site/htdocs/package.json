@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@sveltejs/kit": "^2.17.3",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"svelte": "^5.20.4",
+		"svelte": "^5.20.5",
 		"vite": "^6.2.0"
 	},
 	"pnpm": {
@@ -22,7 +22,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "^5.6.3",
-		"@sveltia/cms": "^0.60.0",
+		"@sveltia/cms": "^0.60.1",
 		"@tailwindcss/postcss": "^4.0.9",
 		"@vcarl/remark-headings": "^0.1.0",
 		"@vercel/analytics": "^1.5.0",

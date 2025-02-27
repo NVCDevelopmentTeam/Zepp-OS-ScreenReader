@@ -1,6 +1,5 @@
 <script>
   import { page } from '$app/stores';
-  import { browser } from '$app/environment';
   import { siteAuthor, githubLink } from '$lib/info.js';
   import { onMount } from 'svelte';
 
