@@ -1,24 +1,33 @@
 <script>
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
 
-  $: {
-    if (typeof gtag !== 'undefined') {
-      gtag('config', 'G-4YCKS1JTX8', {
-        page_title: document.title,
+  const trackingId = 'G-4YCKS1JTX8'; 
+
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+
+  onMount(() => {
+    if (browser) {
+      window.dataLayer = window.dataLayer || [];
+      gtag('js', new Date());
+      gtag('config', trackingId, {
         page_path: $page.url.pathname,
+        page_title: document.title,
       });
     }
+  });
+
+  $: if (browser && typeof gtag === 'function') {
+    gtag('config', trackingId, {
+      page_path: $page.url.pathname,
+      page_title: document.title,
+    });
   }
 </script>
 
 <svelte:head>
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-4YCKS1JTX8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-4YCKS1JTX8');
-  </script>
+  <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}></script>
 </svelte:head>
