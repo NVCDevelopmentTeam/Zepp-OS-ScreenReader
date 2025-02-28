@@ -2,7 +2,7 @@
   import { siteTitle, siteDescription, siteURL, siteAuthor } from '$lib/info.js';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
-  import ogImageURL from '$lib/images/logo.png';
+  import ogImageURL from '$lib/images/logo.jpg';
   let { children } = $props();
   import { onMount } from 'svelte';
 

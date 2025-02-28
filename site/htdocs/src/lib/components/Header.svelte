@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import Adsense from '$lib/components/Adsense.svelte';
   import Analytics from '$lib/components/Analytics.svelte';
-  import logo from '$lib/images/logo.png';
+  import logo from '$lib/images/logo.jpg';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
   let expanded = $state(false); // Mobile menu toggle
   let expandedDropdown = $state(false); // Dropdown menu toggle
