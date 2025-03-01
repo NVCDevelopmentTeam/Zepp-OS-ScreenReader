@@ -1,7 +1,7 @@
 // tailwind.config.cjs - Optimized for Lighthouse and Performance
 module.exports = {
   darkMode: 'class',
-  content: ['./src/**/*.{html,js,svelte,ts,md,svx}'],
+  content: ['./src/**/*.{html,js,svelte,md,svx}'],
   plugins: [require('@tailwindcss/typography')],
   theme: {
     extend: {

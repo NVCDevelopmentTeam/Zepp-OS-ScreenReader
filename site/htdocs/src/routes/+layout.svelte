@@ -1,6 +1,5 @@
 <script>
   import '../app.css'
-  import '../prism.css'
   import { siteTitle } from '$lib/info.js';
   /**
    * @typedef {Object} Props
