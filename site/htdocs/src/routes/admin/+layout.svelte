@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import logo from '$lib/images/logo.png';
+  import logo from '$lib/images/logo.jpg';
   /**
    * @typedef {Object} Props
    * @property {import('svelte').Snippet} [children]
