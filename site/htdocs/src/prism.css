@@ -1,5 +1,14 @@
+/* prism.css - Optimized for Tailwind CSS theme integration */
+
 pre[class*='language-'] {
   color: theme('colors.zinc.100');
+  background-color: theme('colors.zinc.800'); /* Added background for better contrast */
+  padding: 1rem; /* Added padding for better readability */
+  border-radius: 0.375rem; /* Added border radius for a modern look */
+  overflow-x: auto; /* Added horizontal scrolling for long lines */
+  font-size: 0.875rem; /* Reduced font size for better code density */
+  line-height: 1.5; /* Increased line height for better readability */
+  tab-size: 4; /* Standard tab size */
 }
 
 .token.tag,
@@ -7,7 +16,8 @@ pre[class*='language-'] {
 .token.selector,
 .token.selector .class,
 .token.selector.class,
-.token.function {
+.token.function,
+.token.module {
   color: theme('colors.pink.400');
 }
 
@@ -17,10 +27,6 @@ pre[class*='language-'] {
 .token.pseudo-class,
 .token.important {
   color: theme('colors.zinc.300');
-}
-
-.token.module {
-  color: theme('colors.pink.400');
 }
 
 .token.attr-value,
@@ -44,4 +50,26 @@ pre[class*='language-'] {
 .token.operator,
 .token.combinator {
   color: theme('colors.zinc.400');
+}
+
+/* Added styles for line numbers (if used) */
+.line-numbers-rows {
+  border-right: 1px solid theme('colors.zinc.700'); /* Added line number border */
+  padding-right: 0.5rem;
+  user-select: none;
+}
+
+.line-numbers-rows span {
+  display: block;
+  color: theme('colors.zinc.500'); /* Line number color */
+  padding: 0.25rem 0;
+}
+
+/* Added styles for inline code */
+:not(pre) > code[class*='language-'] {
+  background-color: theme('colors.zinc.800');
+  color: theme('colors.zinc.200');
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
 }
