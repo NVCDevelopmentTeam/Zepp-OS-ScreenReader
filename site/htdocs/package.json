@@ -11,7 +11,6 @@
 		"prepare": "svelte-kit sync || echo ''"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-cloudflare-workers": "^2.8.0",
 		"@sveltejs/kit": "^2.18.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"svelte": "^5.22.2",
@@ -23,6 +22,7 @@
 		]
 	},
 	"dependencies": {
+		"@sveltejs/adapter-cloudflare": "^5.0.3",
 		"@sveltia/cms": "^0.60.3",
 		"@tailwindcss/postcss": "^4.0.9",
 		"@vcarl/remark-headings": "^0.1.0",
