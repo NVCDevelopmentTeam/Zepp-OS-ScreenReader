@@ -292,13 +292,10 @@
   },
   "i18n": {
     "en-US": {
-      "appName": "Empty"
+      "appName": "Zepp OS Screen Reader"
     }
   },
-  "defaultLanguage": "en-US"
-}
-// app.json
-{
+  "defaultLanguage": "en-US",
   "app": {
     "name": "ZSR",
     "version": "1.0.0",
