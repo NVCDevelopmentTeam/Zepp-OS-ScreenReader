@@ -1,6 +1,6 @@
 <script>
-  import PostPreview from '$lib/components/PostPreview.svelte'
-  import PostDate from '$lib/components/PostDate.svelte'
+  import PostPreview from './PostPreview.svelte'
+  import PostDate from './PostDate.svelte'
 
   let { posts, children } = $props();
 </script>
