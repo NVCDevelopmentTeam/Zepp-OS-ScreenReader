@@ -1,18 +1,20 @@
 <script>
   import { page } from '$app/stores';
+  import { browser } from '$app/environment';
   import Adsense from './Adsense.svelte';
   import Analytics from './Analytics.svelte';
   import logo from '$lib/images/logo.jpg';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
-  let expanded = $state(false); // Mobile menu toggle
-  let expandedDropdown = $state(false); // Dropdown menu toggle
-  let darkMode = $state(false); // Dark mode status
 
-  // Toggle dark mode class on document root
-  function toggleDarkMode() {
+  let expanded = false; // Mobile menu toggle
+  let expandedDropdown = false; // Dropdown menu toggle
+  let darkMode = false;
+
+  function toggle() {
     darkMode = !darkMode;
+    // Only manipulate DOM in the browser, not during SSR
     if (browser) {
-      window.document.documentElement.classList.toggle('dark', darkMode);
+      window.document.body.classList.toggle('dark');
     }
   }
 </script>
@@ -34,7 +36,7 @@
     <!-- Mobile Menu Toggle -->
     <button
       class="lg:hidden text-gray-800 dark:text-gray-200"
-      onclick={() => (expanded = !expanded)}
+      on:click={() => (expanded = !expanded)}
       aria-expanded={expanded}
       aria-label="Toggle navigation"
     >
@@ -48,47 +50,71 @@
   <!-- Main Navigation -->
   <nav id="nav" class={`lg:flex ${expanded ? 'block' : 'hidden'} lg:block`}>
     <ul class="flex flex-col lg:flex-row lg:space-x-6 text-gray-800 dark:text-gray-200">
-      <li><a href="/" class="hover:underline" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>Home</a></li>
-      <li><a href="/news" class="hover:underline" aria-current={$page.url.pathname === '/news' ? 'page' : undefined}>News</a></li>
+      <li>
+        <a href="/" class="hover:underline" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>Home</a>
+      </li>
+      <li>
+        <a href="/news" class="hover:underline" aria-current={$page.url.pathname === '/news' ? 'page' : undefined}>News</a>
+      </li>
 
       <!-- Dropdown Menu for Other Services -->
       <li class="relative">
         <button
+role="link" 
           class="hover:underline"
           aria-haspopup="true"
-role="link" 
           aria-expanded={expandedDropdown}
-          onclick={() => (expandedDropdown = !expandedDropdown)}
+          on:click={() => (expandedDropdown = !expandedDropdown)}
         >
           Other Services
         </button>
         {#if expandedDropdown}
           <ul class="absolute bg-white dark:bg-gray-800 shadow-md mt-2 rounded-md space-y-2">
-            <li><a href={githubLink} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Github repository">Github</a></li>
-            <li><a href={discordChat} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Discord chat">Discord</a></li>
-            <li><a href="/support" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Support page" aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>Support</a></li>
-            <li><a href={zeppOSDev} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Zepp OS Developer</a></li>
+            <li>
+              <a href={githubLink} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Github repository">Github</a>
+            </li>
+            <li>
+              <a href={discordChat} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" title="Discord chat">Discord</a>
+            </li>
+            <li>
+              <a
+                href="/support"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                title="Support page"
+                aria-current={$page.url.pathname === '/support' ? 'page' : undefined}
+              >Support</a>
+            </li>
+            <li>
+              <a href={zeppOSDev} class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Zepp OS Developer</a>
+            </li>
           </ul>
         {/if}
       </li>
 
-      <li><a href="/about" class="hover:underline" aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>About</a></li>
-      <li><a href="/contact" class="hover:underline" aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>Contact</a></li>
+      <li>
+        <a href="/about" class="hover:underline" aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>About</a>
+      </li>
+      <li>
+        <a href="/contact" class="hover:underline" aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>Contact</a>
+      </li>
     </ul>
   </nav>
-    <Analytics />
-    <Adsense />
+
   <!-- Dark Mode Toggle -->
   <div class="px-4 py-3 flex items-center">
     <i>Theme</i>
     <button
-      onclick={toggleDarkMode}
+      on:click={toggle}
       class="ml-2 text-gray-800 dark:text-gray-200 focus:outline-none"
-      aria-pressed={darkMode}
       aria-label="Toggle dark mode"
+      aria-pressed={darkMode}
     >
-      <span aria-hidden="true">{#if darkMode}🌞{:else}🌙{/if}</span>
       <span class="sr-only">Toggle dark mode</span>
+      <span class="text-sm">{darkMode ? 'Go light' : 'Go dark'}</span>
+      <span class="ml-1" aria-hidden="true">{darkMode ? '🌞' : '🌙'}</span>
     </button>
   </div>
+
+  <Analytics />
+  <Adsense />
 </header>
