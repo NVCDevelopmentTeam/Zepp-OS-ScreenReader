@@ -40,6 +40,7 @@
     if (browser) {
       const savedPreference = localStorage.getItem('darkMode');
       darkMode = savedPreference ? savedPreference === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      console.log('Dark mode state updated from storage:', darkMode);
     }
   }
 
@@ -57,6 +58,7 @@
       darkMode = !darkMode;
       localStorage.setItem('darkMode', darkMode.toString());
       applyDarkMode(); // Ensure the DOM reflects the change immediately
+      console.log('Dark mode toggled. New state:', darkMode);
     }
   }
 
@@ -218,6 +220,7 @@
 
     <!-- Dark Mode Toggle -->
     <div class="flex items-center px-4 py-3 lg:p-0">
+      <i>Theme</i>
       <button
         onclick={toggleDarkMode}
         aria-label="Toggle dark mode"
