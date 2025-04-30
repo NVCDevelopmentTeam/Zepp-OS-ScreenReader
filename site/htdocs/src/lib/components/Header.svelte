@@ -96,7 +96,7 @@
   });
 </script>
 
-<header id="top" class="bg-white dark:bg-gray-900 shadow-md fixed top-0 w-full z-50">
+<header id="top" class="bg-white dark:bg-gray-900 shadow-md sticky top-0 w-full z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
     <!-- Logo -->
     <a href="/" class="flex items-center">
@@ -225,7 +225,7 @@
         onclick={toggleDarkMode}
         aria-label="Toggle dark mode"
         aria-pressed={darkMode}
-        class="p-2 bg-gray-200 dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200"
+        class="ml-2 p-2 bg-gray-200 dark:bg-gray-700 rounded text-gray-800 cursor-pointer dark:text-gray-200"
       >
         <div class="hidden dark:block">🌙</div>
         <div class="dark:hidden">☀️</div>

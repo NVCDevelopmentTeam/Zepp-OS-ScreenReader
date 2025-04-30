@@ -21,15 +21,15 @@
   <meta name="description" content="newsPage" />
 </svelte:head>
 
-<div class="flex flex-col min-h-screen bg-gray-50">
-  <header class="pt-4 px-6 bg-white shadow-md">
-    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+<div class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-700">
+  <header class="pt-4 px-6 shadow-md">
+    <h1 class="text-4xl font-bold">
       News
     </h1>
-    <p class="mt-4 text-lg text-gray-700">
+    <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
       Stay updated with the latest news and related events about Zepp OS screen reader
     </p>
-    <h2 class="mt-6 text-xl font-semibold text-gray-800">Latest News</h2>
+    <h2 class="mt-6 text-xl font-semibold text-gray-800 dark:text-gray-200">Latest News</h2>
   </header>
 
   <div class="mt-8 px-6">
@@ -37,7 +37,7 @@
   </div>
 
   <!-- Pagination -->
-  <div class="flex items-center justify-between pt-16 pb-8 px-6 bg-white shadow-md rounded-lg mt-8">
+  <div class="flex items-center justify-between pt-16 pb-8 px-6 shadow-md rounded-lg mt-8">
     {#if !isFirstPage}
       <a href={`/news/${data.page - 1}`} data-sveltekit-prefetch class="flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-800 transition">
         <ArrowLeftIcon class="w-4 h-4" />

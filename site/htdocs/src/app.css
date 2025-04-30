@@ -1,9 +1,11 @@
 @import './prism.css';
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
-    @apply text-zinc-600 dark:text-zinc-400;
+    @apply text-zinc-600 dark:text-zinc-400 dark:bg-gray-800;
   }
 
   h1,

@@ -69,7 +69,7 @@
 
 <div class="flex flex-col min-h-screen">
   <Header />
-  <main id="main" class="flex-grow bg-custom-background bg-cover bg-center">
+  <main id="main" class="flex-grow max-w-7xl mx-auto bg-custom-background bg-cover bg-center w-full">
 {@render children?.()}
   </main>
   <Footer />

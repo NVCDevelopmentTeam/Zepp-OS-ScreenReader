@@ -38,7 +38,7 @@
       </nav>
       <div class="copy-right-bar text-center md:text-left text-gray-200">
         © {year}, {siteAuthor} All rights reserved.
-        <a class="back ml-4 text-gray-100 hover:text-white underline" href="#top">Back to top</a>
+        <a class="back ml-4 text-gray-100 hover:text-white underline" href="#main">Back to top</a>
       </div>
     </div>
   </footer>
