@@ -1,3 +1,7 @@
+import { SettingsUtils } from './utils'
+import { Shortcut } from '@zos/interaction'
+import { log } from '@zos/utils'
+
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
 
@@ -16,42 +20,57 @@ Page({
     }
   },
   // The function to change the shortcut items
-  changeShortcutItems(e) {
-    // Get the new value from the list
-    let newValue = e.newValue;
-    // Update the data
-    this.setData({
-      shortcutItems: newValue
-    });
-    // Call the accessibility API to set the shortcut items
-    accessibility.setShortcutItems({
-      items: newValue
-    });
+  async changeShortcutItems(e) {
+    try {
+      const newValue = e.newValue
+      const success = await SettingsUtils.handleSettingChange(
+        () => Shortcut.setItems(newValue),
+        newValue,
+        'shortcutItems'
+      )
+      if (success) this.setState({ shortcutItems: newValue })
+    } catch (error) {
+      log.error('Shortcut items update failed:', error)
+    }
   },
   // The function to change the shortcut order
-  changeShortcutOrder(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      shortcutOrder: newValue
-    });
-    // Call the accessibility API to set the shortcut order
-    accessibility.setShortcutOrder({
-      order: newValue
-    });
+  async changeShortcutOrder(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateMenuOrder(newValue)) {
+        throw new Error('Invalid shortcut order')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Shortcut.setOrder(newValue),
+        newValue,
+        'shortcutOrder'
+      )
+      if (success) this.setState({ shortcutOrder: newValue })
+    } catch (error) {
+      log.error('Shortcut order change failed:', error)
+    }
   },
   // The function to change the shortcut actions
-  changeShortcutActions(e) {
-    // Get the new value from the map
-    let newValue = e.newValue;
-    // Update the data
-    this.setData({
-      shortcutActions: newValue
-    });
-    // Call the accessibility API to set the shortcut actions
-    accessibility.setShortcutActions({
-      actions: newValue
-    });
+  async changeShortcutActions(e) {
+    try {
+      const newValue = e.newValue
+      if (!this.validateShortcutItems(Object.keys(newValue))) {
+        throw new Error('Invalid shortcut actions')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Shortcut.setActions(newValue),
+        newValue,
+        'shortcutActions'
+      )
+      if (success) this.setState({ shortcutActions: newValue })
+    } catch (error) {
+      log.error('Shortcut actions update failed:', error)
+    }
+  },
+  validateShortcutItems(items) {
+    const validActions = Object.keys(this.data.shortcutActions)
+    return items.every(item => validActions.includes(item))
   }
 });

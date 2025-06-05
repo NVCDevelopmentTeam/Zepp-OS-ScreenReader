@@ -1,5 +1,8 @@
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
+import { createWidget } from '@zos/ui'
+import { settingsUtils } from './utils'
+import { log } from '@zos/utils'
 
 // Define the settings page
 Page({
@@ -29,17 +32,26 @@ Page({
     });
   },
   // The function to change the menu order
-  changeMenuOrder(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      menuOrder: newValue
-    });
-    // Call the accessibility API to set the menu order
-    accessibility.setMenuOrder({
-      order: newValue
-    });
+  async changeMenuOrder(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!settingsUtils.validateMenuOrder(newValue)) {
+        throw new Error('Invalid menu order')
+      }
+
+      const success = await settingsUtils.handleSettingChange(
+        () => this.updateMenuOrder(newValue),
+        newValue,
+        'menuOrder'
+      )
+
+      if (success) {
+        this.setData({ menuOrder: newValue })
+        await this.registerMenuActions()
+      }
+    } catch (error) {
+      settingsUtils.handleError(error, 'menu_order')
+    }
   },
   // The function to change the menu actions
   changeMenuActions(e) {
@@ -53,5 +65,21 @@ Page({
     accessibility.setMenuActions({
       actions: newValue
     });
+  },
+  async registerMenuActions() {
+    try {
+      const { menuActions } = this.data
+      const registrationPromises = Object.entries(menuActions).map(
+        ([name, action]) => settingsUtils.handleSettingChange(
+          () => accessibility.registerMenuAction(name, action),
+          action,
+          `menuAction_${name}`
+        )
+      )
+      
+      await Promise.all(registrationPromises)
+    } catch (error) {
+      log.error('Menu registration error:', error)
+    }
   }
 });

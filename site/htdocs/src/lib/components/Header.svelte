@@ -148,6 +148,7 @@
         <!-- Dropdown Menu for Other Services -->
         <li class="relative">
           <button
+role="link" 
             onclick={toggleDropdown}
             class="hover:underline py-2 lg:py-0 w-full text-left lg:w-auto block"
             aria-haspopup="true"

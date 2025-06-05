@@ -1,53 +1,97 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
+import { settingsManager } from './utils'
+import { Audio } from '@zos/sensor'
+import { log } from '@zos/utils'
 
-// Define the settings page
 Page({
+  state: {
+    initialized: false,
+    soundVolume: 50,
+    soundTheme: 'default',
+    soundEffects: true
+  },
+
   data: {
-    // The current values of the sound settings
     soundVolume: 1,
     soundTheme: 'default',
     soundEffects: true
   },
-  // The function to change the sound volume
-  changeSoundVolume(e) {
-    // Get the new value from the slider
-    let newValue = e.value;
-    // Update the data
-    this.setData({
-      soundVolume: newValue
-    });
-    // Call the accessibility API to set the sound volume
-    accessibility.setSoundVolume({
-      volume: newValue
-    });
+
+  async onInit() {
+    try {
+      const { success, capabilities } = await settingsManager.validateDevice(['audio'])
+      if (!success) {
+        throw new Error('Audio not supported')
+      }
+      await Audio.init()
+      this.setState({ initialized: true })
+    } catch (error) {
+      log.error('Sound initialization failed:', error.message)
+    }
   },
-  // The function to change the sound theme
-  changeSoundTheme(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      soundTheme: newValue
-    });
-    // Call the accessibility API to set the sound theme
-    accessibility.setSoundTheme({
-      theme: newValue
-    });
+
+  async changeSoundVolume(value) {
+    try {
+      if (!SettingsUtils.validateNumericRange(value, 0, 100)) {
+        throw new Error('Invalid volume level')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Audio.setVolume(value),
+        value,
+        'volume'
+      )
+      
+      if (success) {
+        this.setState({ soundVolume: value })
+      }
+    } catch (error) {
+      SettingsUtils.handleError(error, 'sound_volume')
+    }
   },
-  // The function to toggle the sound effects
-  toggleSoundEffects() {
-    // Get the current value of the sound effects
-    let currentValue = this.data.soundEffects;
-    // Set the new value to the opposite of the current value
-    let newValue = !currentValue;
-    // Update the data
-    this.setData({
-      soundEffects: newValue
-    });
-    // Call the accessibility API to enable or disable the sound effects
-    accessibility.setSoundEffects({
-      enable: newValue
-    });
+
+  changeSoundTheme: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateInput.sound.themes.includes(newValue)) {
+        logger.error('Invalid sound theme:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setSoundTheme({ theme: newValue }),
+        newValue,
+        'soundTheme'
+      );
+
+      if (success) {
+        this.setData({ soundTheme: newValue });
+      }
+    } catch (error) {
+      logger.error('Sound theme change error:', error);
+    }
+  },
+
+  async toggleSoundEffects() {
+    try {
+      const currentValue = this.data.soundEffects;
+      const newValue = !currentValue;
+
+      if (!validateBoolean(newValue)) {
+        logger.error('Invalid sound effects value:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setSoundEffects({ enable: newValue }),
+        newValue,
+        'soundEffects'
+      );
+
+      if (success) {
+        this.setData({ soundEffects: newValue });
+      }
+    } catch (error) {
+      logger.error('Sound effects toggle error:', error);
+    }
   }
 });

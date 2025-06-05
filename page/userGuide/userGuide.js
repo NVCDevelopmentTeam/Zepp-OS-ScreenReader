@@ -1,20 +1,40 @@
-const tts = new EspeakTTSNG(); // Assuming EspeakTTSNG is a separate class for Text-to-Speech functionality
+import { createWidget, widget } from '@zos/ui'
+import { ScreenReader } from '../../lib/core/screenReader'
+import { VibrationManager } from '../../lib/feedback/vibrate feedback'
 
-console.log("User Guide Page Initialized");
-tts.speak('Welcome to the User Guide');
+Page({
+  state: {
+    initialized: false
+  },
 
-const element = (
-  <div>
-    <text>Welcome to the User Guide</text>
-    <button onClick={navigateToDetail}>Go to Detail</button>
-  </div>
-);
+  async onInit() {
+    try {
+      await ScreenReader.speak('Welcome to the User Guide')
+      await VibrationManager.feedback('notification')
+      this.setState({ initialized: true })
+    } catch (error) {
+      log.error('Guide initialization failed:', error)
+    }
+  },
 
-function navigateToDetail() {
-  tts.speak('Navigating to detail page');
-  // Assuming $router is a reference for navigation (replace with your navigation logic)
-  window.location.href = "userGuideDetail"; // Redirect to userGuideDetail route
-}
+  build() {
+    const container = createWidget(widget.GROUP)
+    this.createGuideContent(container)
+    return container
+  },
 
-// Assuming this code is being used within a framework, render the element
-document.body.appendChild(element);
+  createGuideContent(container) {
+    const element = (
+      <div>
+        <text>Welcome to the User Guide</text>
+        <button onClick={this.navigateToDetail.bind(this)}>Go to Detail</button>
+      </div>
+    );
+    container.appendChild(element)
+  },
+
+  navigateToDetail() {
+    ScreenReader.speak('Navigating to detail page')
+    window.location.href = "userGuideDetail"; // Redirect to userGuideDetail route
+  }
+})

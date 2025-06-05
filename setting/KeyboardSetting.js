@@ -1,5 +1,7 @@
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
+const settingsUtils = require('./utils');
+const logger = require('../utils/logger');
 
 // Define the settings page
 Page({
@@ -10,44 +12,59 @@ Page({
     keyboardLayout: 'en-US'
   },
   // The function to toggle the keyboard shortcuts
-  toggleKeyboardShortcuts() {
-    // Get the current value of the keyboard shortcuts
-    let currentValue = this.data.keyboardShortcuts;
-    // Set the new value to the opposite of the current value
-    let newValue = !currentValue;
-    // Update the data
-    this.setData({
-      keyboardShortcuts: newValue
-    });
-    // Call the accessibility API to enable or disable the keyboard shortcuts
-    accessibility.setKeyboardShortcuts({
-      enable: newValue
-    });
+  async toggleKeyboardShortcuts() {
+    const [success, newValue] = await handleToggleSetting(
+      (value) => accessibility.setKeyboardShortcuts({ enable: value }),
+      this.data.keyboardShortcuts,
+      'keyboardShortcuts'
+    );
+
+    if (success) {
+      this.setData({ keyboardShortcuts: newValue });
+    }
   },
   // The function to change the keyboard echo
-  changeKeyboardEcho(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      keyboardEcho: newValue
-    });
-    // Call the accessibility API to set the keyboard echo
-    accessibility.setKeyboardEcho({
-      mode: newValue
-    });
+  changeKeyboardEcho: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateInput.keyboard.echo.includes(newValue)) {
+        logger.error('Invalid keyboard echo mode:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setKeyboardEcho({ mode: newValue }),
+        newValue,
+        'keyboardEcho'
+      );
+
+      if (success) {
+        this.setData({ keyboardEcho: newValue });
+      }
+    } catch (error) {
+      logger.error('Keyboard echo change error:', error);
+    }
   },
   // The function to change the keyboard layout
-  changeKeyboardLayout(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      keyboardLayout: newValue
-    });
-    // Call the accessibility API to set the keyboard layout
-    accessibility.setKeyboardLayout({
-      layout: newValue
-    });
+  changeKeyboardLayout: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateInput.keyboard.layouts.includes(newValue)) {
+        logger.error('Invalid keyboard layout:', newValue);
+        return;
+      }
+
+      const success = await settingsUtils.handleSettingChange(
+        () => accessibility.setKeyboardLayout({ layout: newValue }),
+        newValue,
+        'keyboardLayout'
+      );
+
+      if (success) {
+        this.setData({ keyboardLayout: newValue });
+      }
+    } catch (error) {
+      logger.error('Keyboard layout change error:', error);
+    }
   }
 });

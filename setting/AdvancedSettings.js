@@ -1,41 +1,63 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
+import { createWidget } from '@zos/ui'
+import { accessibility } from '@zos/sensor'
+import settingsUtils from './utils'
+const { validateNumericRange, handleSettingChange } = require('./utils');
+const logger = require('../utils/logger');
 
-// Define the settings page
 Page({
-  data: {
-    // The current values of the advanced settings
+  state: {
     speechRate: 1,
     speechPitch: 1,
     speechVolume: 1,
     speechLanguage: 'en-US',
     speechPunctuation: true
   },
-  // The function to change the speech rate
-  changeSpeechRate(e) {
-    // Get the new value from the slider
-    let newValue = e.value;
-    // Update the data
-    this.setData({
-      speechRate: newValue
-    });
-    // Call the accessibility API to set the speech rate
-    accessibility.setSpeechRate({
-      rate: newValue
-    });
+
+  build() {
+    const { capabilities } = settingsUtils.validateDevice()
+    
+    if (!capabilities.accessibility) {
+      return this.showError('Device not supported')
+    }
+
+    this.createControls()
   },
+
+  // The function to change the speech rate
+  async changeSpeechRate(value) {
+    try {
+      const [success] = await settingsUtils.handleSettingChange(
+        () => accessibility.setSpeechRate(value),
+        value,
+        'speechRate'
+      )
+      if (success) this.setState({ speechRate: value })
+    } catch (error) {
+      log.error(error)
+    }
+  },
+
   // The function to change the speech pitch
-  changeSpeechPitch(e) {
-    // Get the new value from the slider
-    let newValue = e.value;
-    // Update the data
-    this.setData({
-      speechPitch: newValue
-    });
-    // Call the accessibility API to set the speech pitch
-    accessibility.setSpeechPitch({
-      pitch: newValue
-    });
+  async changeSpeechPitch(e) {
+    try {
+      const newValue = e.value;
+      if (!validateNumericRange(newValue, 0.5, 2.0)) {
+        logger.error('Invalid speech pitch:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setSpeechPitch({ pitch: newValue }),
+        newValue,
+        'speechPitch'
+      );
+
+      if (success) {
+        this.setData({ speechPitch: newValue });
+      }
+    } catch (error) {
+      logger.error('Speech pitch change error:', error);
+    }
   },
   // The function to change the speech volume
   changeSpeechVolume(e) {

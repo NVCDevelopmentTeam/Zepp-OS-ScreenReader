@@ -1,3 +1,7 @@
+import { SettingsUtils } from './utils'
+import { Text } from '@zos/ui'
+import { log } from '@zos/utils'
+
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
 
@@ -10,42 +14,57 @@ Page({
     languageDetection: 'auto'
   },
   // The function to change the preferred language
-  changePreferredLanguage(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      preferredLanguage: newValue
-    });
-    // Call the accessibility API to set the preferred language
-    accessibility.setPreferredLanguage({
-      language: newValue
-    });
+  async changePreferredLanguage(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateLanguage(newValue)) {
+        throw new Error('Invalid language code')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Text.setLanguage(newValue),
+        newValue,
+        'preferredLanguage'
+      )
+      if (success) this.setState({ preferredLanguage: newValue })
+    } catch (error) {
+      log.error('Language change failed:', error)
+    }
   },
   // The function to change the fallback language
-  changeFallbackLanguage(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      fallbackLanguage: newValue
-    });
-    // Call the accessibility API to set the fallback language
-    accessibility.setFallbackLanguage({
-      language: newValue
-    });
+  async changeFallbackLanguage(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateLanguage(newValue)) {
+        throw new Error('Invalid fallback language')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Text.setFallbackLanguage(newValue),
+        newValue,
+        'fallbackLanguage'
+      )
+      if (success) this.setState({ fallbackLanguage: newValue })
+    } catch (error) {
+      log.error('Fallback language change failed:', error)
+    }
   },
   // The function to change the language detection mode
-  changeLanguageDetection(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      languageDetection: newValue
-    });
-    // Call the accessibility API to set the language detection mode
-    accessibility.setLanguageDetection({
-      mode: newValue
-    });
+  async changeLanguageDetection(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateSettings.mode(newValue)) {
+        throw new Error('Invalid detection mode')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Text.setLanguageDetection(newValue),
+        newValue,
+        'languageDetection'
+      )
+      if (success) this.setState({ languageDetection: newValue })
+    } catch (error) {
+      log.error('Language detection change failed:', error)
+    }
   }
 });

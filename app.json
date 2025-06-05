@@ -1,23 +1,57 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 20095,
-    "appName": "Zepp OS Screen Reader",
+    "appId": 1000001,
+    "appName": "Screen Reader",
     "appType": "app",
     "version": {
       "code": 1,
-      "name": "1.0.1"
+      "name": "1.0.0"
     },
-    "icon": "icon.png",
+    "icon": "assets/480x480-gtr-3-pro/icon.png",
     "vender": "zepp",
-    "description": "This is a screen reader for Zepp OS"
+    "description": "Screen reader accessibility app"
   },
-  "permissions": [],
+  "permissions": [
+    "device:os.accessibility",
+    "device:os.tts",
+    "device:os.haptic",
+    "device:os.audio"
+  ],
   "runtime": {
     "apiVersion": {
-      "compatible": "1.0.0",
-      "target": "1.0.1",
-      "minVersion": "1.0.0"
+      "compatible": "2.0.0",
+      "target": "2.0.0",
+      "minVersion": "2.0.0"
+    }
+  },
+  "deviceTypes": ["smartwatch"],
+  "defaultLanguage": "en-US",
+  "development": {
+    "prefix": "",
+    "openLogLevel": "debug"
+  },
+  "module": {
+    "page": {
+      "pages": [
+        "page/home/index",
+        "page/home/Welcome",
+        "page/userGuide/userGuide",
+        "setting/index",
+        "setting/SoundSetting",
+        "setting/SpeechSetting",
+        "setting/DisplaySetting",
+        "setting/InputGestureSetting",
+        "setting/LanguageSetting",
+        "setting/KeyboardSetting",
+        "setting/GeneralSetting"
+      ]
+    },
+    "app-side": {
+      "path": "app-side/index"
+    },
+    "setting": {
+      "path": "setting"
     }
   },
   "targets": {
@@ -25,285 +59,97 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/userGuide/userGuide"
           ]
         },
         "app-side": {
           "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
         }
+      },
+      "designWidth": 480,
+      "assets": {
+        "path": "assets/480x480-gtr-3-pro",
+        "icon": "assets/480x480-gtr-3-pro/icon.png"
       },
       "platforms": [
         {
           "name": "gtr3-pro",
           "deviceSource": 229
-        },
-        {
-          "name": "gtr3-pro-w",
-          "deviceSource": 230
-        },
-        {
-          "name": "gtr3-pro-meilin",
-          "deviceSource": 6095106
         }
-      ],
-      "designWidth": 480
-    },
-    "390x450-gts-3": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gts3",
-          "deviceSource": 224
-        },
-        {
-          "name": "gts3-w",
-          "deviceSource": 225
-        }
-      ],
-      "designWidth": 390
-    },
-    "454x454-t-rex-2": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "t-rex2",
-          "deviceSource": 418
-        },
-        {
-          "name": "t-rex2-w",
-          "deviceSource": 419
-        }
-      ],
-      "designWidth": 454
-    },
-    "336x384-gts-4-mini": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gts4-mini",
-          "deviceSource": 246
-        },
-        {
-          "name": "gts4-mini-w",
-          "deviceSource": 247
-        }
-      ],
-      "designWidth": 336
-    },
-    "194x368-amazfit-band-7": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "amazfit-band7-nfc",
-          "deviceSource": 252
-        },
-        {
-          "name": "amazfit-band7",
-          "deviceSource": 253
-        },
-        {
-          "name": "amazfit-band7-w",
-          "deviceSource": 254
-        }
-      ],
-      "designWidth": 194
+      ]
     },
     "466x466-gtr-4": {
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/userGuide/userGuide"
           ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
         }
+      },
+      "designWidth": 466,
+      "assets": {
+        "path": "assets/466x466-gtr-4",
+        "icon": "assets/466x466-gtr-4/icon.png"
       },
       "platforms": [
         {
           "name": "gtr4",
           "deviceSource": 7930112
-        },
-        {
-          "name": "gtr4-w",
-          "deviceSource": 7930113
         }
-      ],
-      "designWidth": 466
+      ]
     },
     "390x450-gts-4": {
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/userGuide/userGuide"
           ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
         }
+      },
+      "designWidth": 390,
+      "assets": {
+        "path": "assets/390x450-gts-4",
+        "icon": "assets/390x450-gts-4/icon.png"
       },
       "platforms": [
         {
           "name": "gts4",
           "deviceSource": 7995648
-        },
-        {
-          "name": "gts4-w",
-          "deviceSource": 7995649
         }
-      ],
-      "designWidth": 390
-    },
-    "416x416-falcon": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "falcon",
-          "deviceSource": 414
-        },
-        {
-          "name": "falcon",
-          "deviceSource": 415
-        }
-      ],
-      "designWidth": 416
-    },
-    "416x416-gtr-mini": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gtr-mini",
-          "deviceSource": 250
-        },
-        {
-          "name": "gtr-mini-w",
-          "deviceSource": 251
-        }
-      ],
-      "designWidth": 416
+      ]
     },
     "454x454-t-rex-ultra": {
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/userGuide/userGuide"
           ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
         }
+      },
+      "designWidth": 454,
+      "assets": {
+        "path": "assets/454x454-t-rex-ultra",
+        "icon": "assets/454x454-t-rex-ultra/icon.png"
       },
       "platforms": [
         {
           "name": "t-rex-ultra",
           "deviceSource": 6553856
-        },
-        {
-          "name": "t-rex-ultra-w",
-          "deviceSource": 6553857
         }
-      ],
-      "designWidth": 454
+      ]
     }
   },
   "i18n": {
     "en-US": {
       "appName": "Zepp OS Screen Reader"
-    }
-  },
-  "defaultLanguage": "en-US",
-  "app": {
-    "name": "ZSR",
-    "version": "1.0.0",
-    "description": "Zepp OS Screen reader",
-    "icon": "assets/icon.png",
-    "screen": {
-      "type": ["square", "round", "band"],
-      "size": [436, 480]
     }
   }
 }

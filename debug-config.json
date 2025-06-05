@@ -1,0 +1,74 @@
+{
+  "version": "0.2.0",
+  "configurations": {
+    "node": {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Project",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/index.js",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "preLaunchTask": "npm: build"
+    },
+    "debug-tests": {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Tests",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      "args": ["--runInBand"],
+      "console": "integratedTerminal",
+      "sourceMaps": true
+    },
+    "debug-folder": {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Folder",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "node",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    "workspace-debug": {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Workspace",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/index.js",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "smartStep": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    "collect-problems": {
+      "type": "node",
+      "request": "launch",
+      "name": "Collect Problems",
+      "program": "${workspaceFolder}/node_modules/.bin/tsc",
+      "args": ["--noEmit", "--project", "${workspaceFolder}"],
+      "console": "integratedTerminal",
+      "outFiles": []
+    },
+    "attach": {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Process",
+      "processId": "${command:PickProcess}",
+      "sourceMaps": true
+    }
+  },
+  "compounds": {
+    "Full Debug": {
+      "configurations": ["node", "debug-tests", "debug-folder", "workspace-debug", "collect-problems"]
+    }
+  }
+}

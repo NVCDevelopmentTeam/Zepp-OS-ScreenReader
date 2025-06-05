@@ -1,20 +1,39 @@
-import { Page } from '@zeppos/zml';
+import { createWidget, widget } from '@zos/ui'
+import { ScreenReader } from '../../lib/core/screenReader'
 
-export default Page({
-    onInit() {
-        console.log("Welcome Page Initialized");
-    },
+Page({
+  state: {
+    ready: false
+  },
 
-    build() {
-        return (
-            <div>
-                <text>Welcome to Zepp OS Screen Reader</text>
-                <button onClick={this.onNavigateToUserGuide}>Go to User Guide</button>
-            </div>
-        );
-    },
+  async onInit() {
+    await ScreenReader.speak('Welcome to Zepp OS Screen Reader')
+    this.setState({ ready: true })
+  },
 
-    onNavigateToUserGuide() {
-        this.$router.push('userGuide');
-    }
+  build() {
+    return createWidget(widget.GROUP, {
+      children: [
+        this.createWelcomeText(),
+        this.createGuideButton()
+      ]
+    })
+  },
+
+  createWelcomeText() {
+    return createWidget(widget.TEXT, {
+      text: 'Welcome to Zepp OS Screen Reader'
+    })
+  },
+
+  createGuideButton() {
+    return createWidget(widget.BUTTON, {
+      text: 'Go to User Guide',
+      onClick: this.onNavigateToUserGuide
+    })
+  },
+
+  onNavigateToUserGuide() {
+    this.$router.push('userGuide');
+  }
 });

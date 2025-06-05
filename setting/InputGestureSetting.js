@@ -1,5 +1,8 @@
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
+import { Gesture, Vibrator } from '@zos/sensor'
+import { SettingsUtils } from './utils'
+import { log } from '@zos/utils'
 
 // Define the settings page
 Page({
@@ -9,43 +12,78 @@ Page({
     tapAction: 'pause',
     doubleTapAction: 'next'
   },
+  onInit() {
+    this.validateDevice()
+  },
+
+  validateDevice() {
+    const { capabilities } = SettingsUtils.init()
+    if (!capabilities.gesture) {
+      throw new Error('Gesture not supported')
+    }
+  },
   // The function to change the swipe action
-  changeSwipeAction(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      swipeAction: newValue
-    });
-    // Call the accessibility API to set the swipe action
-    accessibility.setSwipeAction({
-      action: newValue
-    });
+  changeSwipeAction: async function(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateInput.gesture.actions.includes(newValue)) {
+        throw new Error('Invalid swipe action')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Gesture.setSwipeAction(newValue),
+        newValue,
+        'swipeAction'
+      )
+
+      if (success) {
+        this.setData({ swipeAction: newValue })
+      }
+    } catch (error) {
+      logger.error('Swipe action error:', error)
+    }
   },
   // The function to change the tap action
-  changeTapAction(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      tapAction: newValue
-    });
-    // Call the accessibility API to set the tap action
-    accessibility.setTapAction({
-      action: newValue
-    });
+  async changeTapAction(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateGesture.actions.includes(newValue)) {
+        throw new Error('Invalid tap action')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Gesture.setTapAction(newValue),
+        newValue,
+        'tapAction'
+      )
+
+      if (success) {
+        this.setData({ tapAction: newValue })
+      }
+    } catch (error) {
+      SettingsUtils.handleError(error, 'tap_action')
+    }
   },
   // The function to change the double tap action
-  changeDoubleTapAction(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      doubleTapAction: newValue
-    });
-    // Call the accessibility API to set the double tap action
-    accessibility.setDoubleTapAction({
-      action: newValue
-    });
+  async changeDoubleTapAction(e) {
+    try {
+      const newValue = e.newValue[0]
+      if (!SettingsUtils.validateGesture.actions.includes(newValue)) {
+        throw new Error('Invalid double tap action')
+      }
+
+      const success = await SettingsUtils.handleSettingChange(
+        () => Gesture.setDoubleTapAction(newValue),
+        newValue,
+        'doubleTapAction'
+      )
+
+      if (success) {
+        this.setData({ doubleTapAction: newValue })
+        await Vibrator.vibrate({ mode: 'short' })
+      }
+    } catch (error) {
+      log.error('Double tap action error:', error)
+    }
   }
 });

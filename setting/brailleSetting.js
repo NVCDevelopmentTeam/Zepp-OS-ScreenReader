@@ -1,5 +1,7 @@
 // Import the accessibility module
 const accessibility = require('@system.accessibility');
+const settingsUtils = require('./utils');
+const logger = require('../utils/logger');
 
 // Define the settings page
 Page({
@@ -10,42 +12,69 @@ Page({
     brailleKeyboardLayout: 'en-US'
   },
   // The function to change the braille display mode
-  changeBrailleDisplayMode(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      brailleDisplayMode: newValue
-    });
-    // Call the accessibility API to set the braille display mode
-    accessibility.setBrailleDisplayMode({
-      mode: newValue
-    });
+  changeBrailleDisplayMode: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateInput.braille.modes.includes(newValue)) {
+        logger.error('Invalid braille display mode:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setBrailleDisplayMode({ mode: newValue }),
+        newValue,
+        'brailleDisplayMode'
+      );
+
+      if (success) {
+        this.setData({ brailleDisplayMode: newValue });
+      }
+    } catch (error) {
+      logger.error('Braille display mode change error:', error);
+    }
   },
   // The function to change the braille input mode
-  changeBrailleInputMode(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      brailleInputMode: newValue
-    });
-    // Call the accessibility API to set the braille input mode
-    accessibility.setBrailleInputMode({
-      mode: newValue
-    });
+  changeBrailleInputMode: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateSettings.mode(newValue)) {
+        logger.error('Invalid input mode:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setBrailleInputMode({ mode: newValue }),
+        newValue,
+        'brailleInputMode'
+      );
+
+      if (success) {
+        this.setData({ brailleInputMode: newValue });
+      }
+    } catch (error) {
+      logger.error('Braille input mode change error:', error);
+    }
   },
   // The function to change the braille keyboard layout
-  changeBrailleKeyboardLayout(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setData({
-      brailleKeyboardLayout: newValue
-    });
-    // Call the accessibility API to set the braille keyboard layout
-    accessibility.setBrailleKeyboardLayout({
-      layout: newValue
-    });
+  changeBrailleKeyboardLayout: async function(e) {
+    try {
+      const newValue = e.newValue[0];
+      if (!settingsUtils.validateInput.braille.layouts.includes(newValue)) {
+        logger.error('Invalid braille keyboard layout:', newValue);
+        return;
+      }
+
+      const success = await handleSettingChange(
+        () => accessibility.setBrailleKeyboardLayout({ layout: newValue }),
+        newValue,
+        'brailleKeyboardLayout'
+      );
+
+      if (success) {
+        this.setData({ brailleKeyboardLayout: newValue });
+      }
+    } catch (error) {
+      logger.error('Braille keyboard layout change error:', error);
+    }
   }
 });
