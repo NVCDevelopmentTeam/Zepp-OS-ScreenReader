@@ -11,15 +11,15 @@
 		"prepare": "svelte-kit sync || echo ''"
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "^2.21.0",
-		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"svelte": "^5.30.2",
+		"@sveltejs/kit": "^2.21.2",
+		"@sveltejs/vite-plugin-svelte": "^5.1.0",
+		"svelte": "^5.33.14",
 		"vite": "^6.3.5"
 	},
 	"dependencies": {
 		"@sveltejs/adapter-cloudflare": "^7.0.3",
-		"@sveltia/cms": "^0.75.0",
-		"@tailwindcss/postcss": "^4.1.7",
+		"@sveltia/cms": "^0.79.3",
+		"@tailwindcss/postcss": "^4.1.8",
 		"@vcarl/remark-headings": "^0.1.0",
 		"astro-sveltia-cms": "^0.1.0",
 		"autoprefixer": "^10.4.21",
