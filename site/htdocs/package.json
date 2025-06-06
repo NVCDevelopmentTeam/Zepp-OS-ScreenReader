@@ -2,7 +2,7 @@
 	"name": "zsr",
 	"description": "Zepp OS screen reader official website",
 	"private": true,
-	"version": "0.0.1",
+	"version": "1.0.6",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -18,7 +18,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-cloudflare": "^7.0.3",
-		"@sveltia/cms": "^0.79.3",
+		"@sveltia/cms": "^0.80.0",
 		"@tailwindcss/postcss": "^4.1.8",
 		"@vcarl/remark-headings": "^0.1.0",
 		"astro-sveltia-cms": "^0.1.0",
