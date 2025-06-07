@@ -7,236 +7,296 @@
   import { browser } from '$app/environment';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  // State using Svelte 5 reactivity
-  let expanded = $state(false);
-  let expandedDropdown = $state(false);
-  let darkMode = $state(false);
-
-  // Track the current path to detect meaningful route changes
+  let expanded = false; // mobile menu
+  let expandedDropdown = false; // dropdown menu
+  let darkMode = false; // theme mode
   let currentPath = $page.url.pathname;
 
-  // Function to toggle mobile menu
   function toggleMobileMenu() {
     expanded = !expanded;
-    console.log('Mobile menu toggled. Expanded:', expanded);
   }
 
-  // Function to toggle dropdown menu
-  function toggleDropdown() {
+  function toggleDropdown(event) {
+    event.stopPropagation();
     expandedDropdown = !expandedDropdown;
-    console.log('Dropdown toggled. ExpandedDropdown:', expandedDropdown);
   }
 
-  // Close dropdown when clicking outside
   function closeDropdown(event) {
-    if (!event.target.closest('.dropdown')) {
+    const target = event?.target;
+    if (!target) return;
+    if (
+      expandedDropdown &&
+      !target.closest('.dropdown') &&
+      !target.closest('.dropdown-toggle')
+    ) {
       expandedDropdown = false;
-      console.log('Dropdown closed due to outside click.');
     }
   }
 
-  // Function to update the dark mode state based on the stored preference
-  function updateDarkModeState() {
-    if (browser) {
-      const savedPreference = localStorage.getItem('darkMode');
-      darkMode = savedPreference ? savedPreference === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      console.log('Dark mode state updated from storage:', darkMode);
+  function handleResize() {
+    if (window.innerWidth >= 1024) {
+      expanded = false;
     }
   }
 
-  // Apply dark mode class based on state
   function applyDarkMode() {
     if (browser) {
       document.documentElement.classList.toggle('dark', darkMode);
-      console.log('Dark mode applied. Current state:', darkMode);
     }
   }
 
-  // Toggle dark mode on button click
-  function toggleDarkMode() {
-    if (browser) {
-      darkMode = !darkMode;
+  function toggleDarkMode(event) {
+    if (!browser) return;
+
+    if (event?.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+
+    darkMode = !darkMode;
+    localStorage.setItem('darkMode', darkMode.toString());
+    applyDarkMode();
+
+    const liveRegion = document.getElementById('dark-mode-status');
+    if (liveRegion) {
+      liveRegion.textContent = darkMode
+        ? 'toggle switching to dark mode'
+        : 'toggle switching to light mode';
+    }
+
+    if (event?.key === ' ') {
+      event.preventDefault();
+    }
+  }
+
+  function initDarkMode() {
+    if (!browser) return;
+    const saved = localStorage.getItem('darkMode');
+    if (saved !== null) {
+      darkMode = saved === 'true';
+    } else {
+      darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       localStorage.setItem('darkMode', darkMode.toString());
-      applyDarkMode(); // Ensure the DOM reflects the change immediately
-      console.log('Dark mode toggled. New state:', darkMode);
     }
+    applyDarkMode();
   }
 
-  // Update the state when the component mounts
-  onMount(() => {
-    if (browser) {
-      updateDarkModeState();
-      applyDarkMode();
-
-      // Add listener for system preference changes
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = (e) => {
-        if (!localStorage.getItem('darkMode')) {
-          darkMode = e.matches;
-          applyDarkMode();
-        }
-      };
-      mediaQuery.addEventListener('change', handleChange);
-
-      return () => {
-        mediaQuery.removeEventListener('change', handleChange);
-      };
-    }
-  });
-
-  // Watch for route changes and close menus using $effect
-  $effect(() => {
-    const newPath = $page.url.pathname;
-    if (newPath !== currentPath) {
-      currentPath = newPath;
+  let previousPath = currentPath;
+  $: {
+    if ($page.url.pathname !== previousPath) {
+      previousPath = $page.url.pathname;
       expanded = false;
       expandedDropdown = false;
-      console.log('Route changed. Menus closed.');
     }
+  }
+
+  onMount(() => {
+    if (!browser) return;
+
+    initDarkMode();
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (event) => {
+      if (!localStorage.getItem('darkMode')) {
+        darkMode = event.matches;
+        applyDarkMode();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    mediaQuery.addEventListener('change', handleChange);
+    document.addEventListener('click', closeDropdown);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      document.removeEventListener('click', closeDropdown);
+      window.removeEventListener('resize', handleResize);
+    };
   });
 </script>
 
+<!-- Live region for dark mode status, screen reader only -->
+<div id="dark-mode-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
 <header id="top" class="bg-white dark:bg-gray-900 shadow-md sticky top-0 w-full z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+
     <!-- Logo -->
-    <a href="/" class="flex items-center">
+    <a href="/" class="flex items-center" aria-current={$page.url.pathname === '/' ? 'page' : undefined} aria-label="Home">
+      Zepp OS screen reader
       <img src={logo} alt="ZSR logo" class="h-10 w-auto" loading="lazy" />
     </a>
 
-    <!-- Skip Links for Accessibility -->
+    <!-- Skip links -->
     <ul class="sr-only">
       <li><a href="#nav">Skip to main navigation</a></li>
       <li><a href="#main">Skip to main content</a></li>
       <li><a href="#footer">Skip to footer</a></li>
     </ul>
 
-    <!-- Mobile Menu Toggle -->
+    <!-- Mobile menu toggle -->
     <button
       class="lg:hidden text-gray-800 dark:text-gray-200"
-      onclick={toggleMobileMenu}
-      aria-expanded={expanded}
       aria-label="Toggle navigation"
+      aria-expanded={expanded}
+      aria-controls="nav"
+      on:click={toggleMobileMenu}
+      on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleMobileMenu()}
     >
       <span class="sr-only">Toggle navigation</span>
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <!-- Main Navigation -->
-    <nav id="nav" class={`${expanded ? 'block' : 'hidden'} lg:block`}>
+    <!-- Navigation menu with items sorted A-Z -->
+    <nav
+      id="nav"
+      class={`${expanded ? 'block' : 'hidden'} lg:block`}
+            aria-label="Primary"
+    >
       <ul class="flex flex-col lg:flex-row lg:space-x-6 text-gray-800 dark:text-gray-200 px-4 py-3 lg:p-0">
         <li>
-          <a 
-            href="/" 
-            class="hover:underline py-2 lg:py-0 block" 
-            aria-current={$page.url.pathname === '/' ? 'page' : undefined}
-          >
-            Home
-          </a>
+          <a
+            href="/about"
+            class="hover:underline py-2 lg:py-0 block"
+            aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
+          >About</a>
         </li>
         <li>
-          <a 
-            href="/news" 
-            class="hover:underline py-2 lg:py-0 block" 
+          <a
+            href="/contact"
+            class="hover:underline py-2 lg:py-0 block"
+            aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}
+          >Contact</a>
+        </li>
+        <li>
+          <a
+            href="/"
+            class="hover:underline py-2 lg:py-0 block"
+            aria-current={$page.url.pathname === '/' ? 'page' : undefined}
+          >Home</a>
+        </li>
+        <li>
+          <a
+            href="/news"
+            class="hover:underline py-2 lg:py-0 block"
             aria-current={$page.url.pathname === '/news' ? 'page' : undefined}
-          >
-            News
-          </a>
+          >News</a>
         </li>
 
-        <!-- Dropdown Menu for Other Services -->
+        <!-- Dropdown -->
         <li class="relative">
           <button
-role="link" 
-            onclick={toggleDropdown}
-            class="hover:underline py-2 lg:py-0 w-full text-left lg:w-auto block"
+            type="button"
+              role="link"
+            class="dropdown-toggle hover:underline py-2 lg:py-0 w-full text-left lg:w-auto block"
             aria-haspopup="true"
             aria-expanded={expandedDropdown}
+            aria-controls="dropdown-menu"
+            on:click={toggleDropdown}
+            on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown(e)}
           >
             Other Services
           </button>
+
           {#if expandedDropdown}
-            <ul class="absolute bg-white dark:bg-gray-800 shadow-md mt-2 rounded-md space-y-2 lg:space-y-0 w-full lg:w-48 z-20 dropdown">
-              <li>
-                <a 
-                  href={githubLink} 
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" 
-                  title="Github repository"
+            <ul
+              id="dropdown-menu"
+              class="absolute bg-white dark:bg-gray-800 shadow-md mt-2 rounded-md space-y-2 lg:space-y-0 w-full lg:w-48 z-20 dropdown"
+              role="menu"
+              aria-label="Other services"
+            >
+              <li role="none">
+                <a
+                  href={discordChat}
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  role="menuitem"
+                  tabindex="0"
+                  >Discord</a
                 >
-                  Github
-                </a>
               </li>
-              <li>
-                <a 
-                  href={discordChat} 
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" 
-                  title="Discord chat"
+              <li role="none">
+                <a
+                  href={githubLink}
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  role="menuitem"
+                  tabindex="0"
+                  >Github</a
                 >
-                  Discord
-                </a>
               </li>
-              <li>
+              <li role="none">
                 <a
                   href="/support"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  title="Support page"
                   aria-current={$page.url.pathname === '/support' ? 'page' : undefined}
+                  role="menuitem"
+                  tabindex="0"
+                  >Support</a
                 >
-                  Support
-                </a>
               </li>
-              <li>
-                <a 
-                  href={zeppOSDev} 
+              <li role="none">
+                <a
+                  href={zeppOSDev}
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  role="menuitem"
+                  tabindex="0"
+                  >Zepp OS Development</a
                 >
-                  Zepp OS Developer
-                </a>
               </li>
             </ul>
           {/if}
         </li>
-
-        <li>
-          <a 
-            href="/about" 
-            class="hover:underline py-2 lg:py-0 block" 
-            aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
-          >
-            About
-          </a>
-        </li>
-        <li>
-          <a 
-            href="/contact" 
-            class="hover:underline py-2 lg:py-0 block" 
-            aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}
-          >
-            Contact
-          </a>
-        </li>
       </ul>
     </nav>
 
-    <!-- Dark Mode Toggle -->
-    <div class="flex items-center px-4 py-3 lg:p-0">
-      <i>Theme</i>
-      <button
-        onclick={toggleDarkMode}
-        aria-label="Toggle dark mode"
-        aria-pressed={darkMode}
-        class="ml-2 p-2 bg-gray-200 dark:bg-gray-700 rounded text-gray-800 cursor-pointer dark:text-gray-200"
-      >
-        <div class="hidden dark:block">🌙</div>
-        <div class="dark:hidden">☀️</div>
-      </button>
-    </div>
+    <!-- Change to theme mode text, italic by Tailwind -->
+    <span class="italic">Change to theme mode</span>
+
+    <!-- Dark mode toggle -->
+    <button
+      id="dark-mode-toggle"
+      class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500"
+      aria-pressed={darkMode}
+      aria-label="Toggle dark mode"
+      on:click={toggleDarkMode}
+      on:keydown={toggleDarkMode}
+      tabindex="0"
+      type="button"
+    >
+      {#if darkMode}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m8.66-10.66l-.707.707M4.34 12l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      {:else}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
+          />
+        </svg>
+      {/if}
+    </button>
   </div>
 
-  <!-- Lazy-load Adsense and Analytics components -->
-  {#if true}
-    <Adsense />
-    <Analytics />
-  {/if}
+  <Adsense />
+  <Analytics />
 </header>
