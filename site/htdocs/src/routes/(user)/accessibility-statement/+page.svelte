@@ -28,7 +28,7 @@
     <p>
       If you experience any problems accessing this website or have any
       suggestions for improving its accessibility, please contact us via email
-      at contact@ZSR.net or visit the <a href="/contact">contact</a> page to
+      at contact@zeppreader.com or visit the <a href="/contact">contact</a> page to
       leave your information. We will contact you as soon as possible.
     </p>
   </div>
