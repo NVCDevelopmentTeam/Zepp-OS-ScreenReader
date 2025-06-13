@@ -4,7 +4,6 @@
   import Footer from '$lib/components/Footer.svelte';
   import ogImageURL from '$lib/images/logo.jpg';
   let { children } = $props();
-  import { onMount } from 'svelte';
 
   // SEO Configuration
   const SEO = {
@@ -26,29 +25,16 @@
       name: siteAuthor
     }
   };
-
-  onMount(() => {
-    if (typeof window !== 'undefined') {
-      // Track performance metrics if needed
-      const observer = new PerformanceObserver((list) => {
-        list.getEntries().forEach((entry) => {
-          if (entry.name === 'first-contentful-paint') {
-            // Performance tracking can be handled by your separate analytics component
-          }
-        });
-      });
-      observer.observe({ entryTypes: ['paint'] });
-    }
-  });
 </script>
 
 <svelte:head>
   <!-- Basic Meta -->
   <title>{siteTitle}</title>
   <meta name="description" content={siteDescription} />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href={siteURL} />
   <meta name="keywords" content={SEO.keywords} />
   <meta name="author" content={siteAuthor} />
-  <!-- OpenGraph -->
   <meta property="og:type" content={SEO.type} />
   <meta property="og:url" content={siteURL} />
   <meta property="og:site_name" content={siteTitle} />
@@ -57,11 +43,10 @@
   <meta property="og:locale" content={SEO.locale} />
   <meta property="og:image" content={ogImageURL} />
   <meta property="og:image:alt" content={SEO.imageAlt} />
-  <!-- Links -->
-  <link rel="alternate" type="application/rss+xml" title={siteTitle} href="{siteURL}/rss.xml" />
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-  <!-- Structured Data -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={siteTitle} />
+  <meta name="twitter:description" content={siteDescription} />
+  <meta name="twitter:image" content={ogImageURL} />
   <script type="application/ld+json">
     {JSON.stringify(schemaData)}
   </script>
@@ -70,7 +55,7 @@
 <div class="flex flex-col min-h-screen">
   <Header />
   <main id="main" class="flex-grow max-w-7xl mx-auto bg-custom-background bg-cover bg-center w-full">
-{@render children?.()}
+    {@render children?.()}
   </main>
   <Footer />
 </div>

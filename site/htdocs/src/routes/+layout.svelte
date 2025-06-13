@@ -1,7 +1,7 @@
 <script>
   import '../app.css';
 import '../prism.css';
-  import { siteTitle } from '$lib/info.js';
+  import { siteTitle, siteURl } from '$lib/info.js';
   /**
    * @typedef {Object} Props
    * @property {import('svelte').Snippet} [children]
@@ -15,8 +15,8 @@ import '../prism.css';
   <title>{siteTitle}</title>
   <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
   <link href="/sveltiaconfig.json" type="application/json" rel="cms-config-url" />
-  <meta property="og:type" content="website" />
 </svelte:head>
+
 <main>
 {@render children?.()}
 </main>
