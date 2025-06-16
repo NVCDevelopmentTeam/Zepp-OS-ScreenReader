@@ -8,7 +8,7 @@ const staticPages = [
   { loc: `${siteURL}/`, priority: 1.0 },
   { loc: `${siteURL}/about`, priority: 0.8 },
   { loc: `${siteURL}/contact`, priority: 0.8 },
-  { loc: `${siteURL}/accessibility`, priority: 0.7 },
+  { loc: `${siteURL}/accessibility-statement`, priority: 0.7 },
   { loc: `${siteURL}/support`, priority: 0.7 },
   { loc: `${siteURL}/privacy-policy`, priority: 0.6 }
 ];
