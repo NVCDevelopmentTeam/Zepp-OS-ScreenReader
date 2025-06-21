@@ -1,18 +1,19 @@
-# sv
+# Zepp OS Screen Reader - Official Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Welcome to the official website repository for the Zepp OS Screen Reader project. This website is built using Svelte and provides information about our screen reader solution for Zepp OS.
 
-## Creating a project
+## Overview
 
-If you're seeing this, you've probably already done this step. Congrats!
+Zepp OS Screen Reader is an accessibility solution designed to help visually impaired users navigate and interact with Zepp OS devices. This website serves as the main hub for documentation, downloads, and community resources.
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Features
 
-# create a new project in my-app
-npx sv create my-app
-```
+- Real-time text-to-speech conversion
+- Customizable voice settings
+- Intuitive gesture controls
+- Multi-language support
+- Low battery impact
+- Seamless Zepp OS integration
 
 ## Developing
 
@@ -25,14 +26,39 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+## Development Setup
 
-To create a production version of your app:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   
+   Or open in a new browser tab:
+   ```bash
+   npm run dev -- --open
+   ```
 
+## Building for Production
+
+Create a production build:
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build:
+```bash
+npm run preview
+```
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Contributing
+
+We welcome contributions! Please read our contributing guidelines before submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

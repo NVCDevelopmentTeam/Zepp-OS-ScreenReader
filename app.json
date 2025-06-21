@@ -1,22 +1,21 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 1000001,
-    "appName": "Screen Reader",
+    "appId": 27189,
+    "appName": "Zepp OS screen reader",
     "appType": "app",
     "version": {
       "code": 1,
       "name": "1.0.0"
     },
-    "icon": "assets/480x480-gtr-3-pro/icon.png",
+    "icon": "icon.png",
     "vender": "zepp",
-    "description": "Screen reader accessibility app"
+    "description": "Zepp OS screen reader application"
   },
   "permissions": [
-    "device:os.accessibility",
-    "device:os.tts",
-    "device:os.haptic",
-    "device:os.audio"
+    "data:os.device.info",
+    "device:os.local_storage",
+    "data:user.hd.calorie"
   ],
   "runtime": {
     "apiVersion": {
@@ -25,131 +24,682 @@
       "minVersion": "2.0.0"
     }
   },
-  "deviceTypes": ["smartwatch"],
-  "defaultLanguage": "en-US",
-  "development": {
-    "prefix": "",
-    "openLogLevel": "debug"
-  },
-  "module": {
-    "page": {
-      "pages": [
-        "page/home/index",
-        "page/home/Welcome",
-        "page/userGuide/userGuide",
-        "setting/index",
-        "setting/SoundSetting",
-        "setting/SpeechSetting",
-        "setting/DisplaySetting",
-        "setting/InputGestureSetting",
-        "setting/LanguageSetting",
-        "setting/KeyboardSetting",
-        "setting/GeneralSetting"
-      ]
-    },
-    "app-side": {
-      "path": "app-side/index"
-    },
-    "setting": {
-      "path": "setting"
-    }
-  },
   "targets": {
-    "480x480-gtr-3-pro": {
+    "390x450-amazfit-gts-3": {
       "module": {
         "page": {
           "pages": [
-            "page/index",
-            "page/home/Welcome",
-            "page/userGuide/userGuide"
+            "page/index"
           ]
         },
         "app-side": {
           "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
         }
-      },
-      "designWidth": 480,
-      "assets": {
-        "path": "assets/480x480-gtr-3-pro",
-        "icon": "assets/480x480-gtr-3-pro/icon.png"
       },
       "platforms": [
         {
-          "name": "gtr3-pro",
+          "name": "Zurich",
+          "deviceSource": 224
+        },
+        {
+          "name": "ZurichW",
+          "deviceSource": 225
+        }
+      ],
+      "designWidth": 390
+    },
+    "454x454-amazfit-gtr-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Verona",
+          "deviceSource": 226
+        },
+        {
+          "name": "VeronaW",
+          "deviceSource": 227
+        }
+      ],
+      "designWidth": 454
+    },
+    "480x480-amazfit-gtr-3-pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Madrid",
           "deviceSource": 229
+        },
+        {
+          "name": "MadridW",
+          "deviceSource": 230
+        },
+        {
+          "name": "Madrid2",
+          "deviceSource": 6095106
         }
-      ]
+      ],
+      "designWidth": 480
     },
-    "466x466-gtr-4": {
+    "416x416-amazfit-gtr-mini": {
       "module": {
         "page": {
           "pages": [
-            "page/index",
-            "page/home/Welcome",
-            "page/userGuide/userGuide"
+            "page/index"
           ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
         }
-      },
-      "designWidth": 466,
-      "assets": {
-        "path": "assets/466x466-gtr-4",
-        "icon": "assets/466x466-gtr-4/icon.png"
       },
       "platforms": [
         {
-          "name": "gtr4",
-          "deviceSource": 7930112
+          "name": "LeidenW",
+          "deviceSource": 251
         }
-      ]
+      ],
+      "designWidth": 416
     },
-    "390x450-gts-4": {
+    "416x416-amazfit-falcon": {
       "module": {
         "page": {
           "pages": [
-            "page/index",
-            "page/home/Welcome",
-            "page/userGuide/userGuide"
+            "page/index"
           ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
         }
-      },
-      "designWidth": 390,
-      "assets": {
-        "path": "assets/390x450-gts-4",
-        "icon": "assets/390x450-gts-4/icon.png"
       },
       "platforms": [
         {
-          "name": "gts4",
-          "deviceSource": 7995648
+          "name": "Vienna",
+          "deviceSource": 414
+        },
+        {
+          "name": "ViennaW",
+          "deviceSource": 415
         }
-      ]
+      ],
+      "designWidth": 416
     },
-    "454x454-t-rex-ultra": {
+    "454x454-amazfit-t-rex-2": {
       "module": {
         "page": {
           "pages": [
-            "page/index",
-            "page/home/Welcome",
-            "page/userGuide/userGuide"
+            "page/index"
           ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
         }
-      },
-      "designWidth": 454,
-      "assets": {
-        "path": "assets/454x454-t-rex-ultra",
-        "icon": "assets/454x454-t-rex-ultra/icon.png"
       },
       "platforms": [
         {
-          "name": "t-rex-ultra",
+          "name": "Teide",
+          "deviceSource": 418
+        },
+        {
+          "name": "Teidew",
+          "deviceSource": 419
+        }
+      ],
+      "designWidth": 454
+    },
+    "454x454-amazfit-t-rex-ultra": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Andes",
           "deviceSource": 6553856
+        },
+        {
+          "name": "AndesW",
+          "deviceSource": 6553857
         }
-      ]
+      ],
+      "designWidth": 454
+    },
+    "466x466-amazfit-gtr-4-limited-edition": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "FlorenceW",
+          "deviceSource": 7864577
+        }
+      ],
+      "designWidth": 466
+    },
+    "466x466-amazfit-gtr-4": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Berlin",
+          "deviceSource": 7930112
+        },
+        {
+          "name": "BerlinW",
+          "deviceSource": 7930113
+        }
+      ],
+      "designWidth": 466
+    },
+    "390x450-amazfit-gts-4": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Lille",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "Lillew",
+          "deviceSource": 7995649
+        }
+      ],
+      "designWidth": 390
+    },
+    "480x480-amazfit-cheetah-pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Cheetah",
+          "deviceSource": 8126720
+        },
+        {
+          "name": "CheetahW",
+          "deviceSource": 8126721
+        }
+      ],
+      "designWidth": 480
+    },
+    "480x480-cheetah-pro-kelvin-kiptum": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "KentahW",
+          "deviceSource": 8126727
+        }
+      ],
+      "designWidth": 480
+    },
+    "454x454-amazfit-cheetah-round": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Swift",
+          "deviceSource": 8192256
+        },
+        {
+          "name": "SwiftW",
+          "deviceSource": 8192257
+        }
+      ],
+      "designWidth": 454
+    },
+    "390x450-amazfit-cheetah-square": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "SwordfishW",
+          "deviceSource": 8257793
+        }
+      ],
+      "designWidth": 390
+    },
+    "390x450-amazfit-active": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Hannover（国内）",
+          "deviceSource": 8323328
+        },
+        {
+          "name": "Hannover（海外版）",
+          "deviceSource": 8323329
+        }
+      ],
+      "designWidth": 390
+    },
+    "360x360-amazfit-active-edge": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Etna（国内版）",
+          "deviceSource": 8388864
+        },
+        {
+          "name": "Etna（海外版）",
+          "deviceSource": 8388865
+        }
+      ],
+      "designWidth": 360
+    },
+    "320x380-amazfit-bip-5": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Altai",
+          "deviceSource": 8454400
+        },
+        {
+          "name": "AltaiW",
+          "deviceSource": 8454401
+        }
+      ],
+      "designWidth": 320
+    },
+    "480x480-amazfit-balance": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Monaco",
+          "deviceSource": 8519936
+        },
+        {
+          "name": "MonacoWN",
+          "deviceSource": 8519937
+        },
+        {
+          "name": "MonacoW",
+          "deviceSource": 8519939
+        }
+      ],
+      "designWidth": 480
+    },
+    "480x480-amazfit-t-rex-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Matterhorn",
+          "deviceSource": 8716544
+        },
+        {
+          "name": "MatterhornWN",
+          "deviceSource": 8716545
+        },
+        {
+          "name": "MatterhornW",
+          "deviceSource": 8716547
+        }
+      ],
+      "designWidth": 480
+    },
+    "320x380-amazfit-bip-5-unity": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "KunlunW",
+          "deviceSource": 8782081
+        },
+        {
+          "name": "KunlunWA",
+          "deviceSource": 8782088
+        }
+      ],
+      "designWidth": 320
+    },
+    "320x380-amazfit-bip-5-core": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "KunlunWAWalmart",
+          "deviceSource": 8782089
+        }
+      ],
+      "designWidth": 320
+    },
+    "466x466-amazfit-active-2-nfc-round": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Milan",
+          "deviceSource": 8913152
+        },
+        {
+          "name": "MilanWNFC",
+          "deviceSource": 8913153
+        },
+        {
+          "name": "Milan64",
+          "deviceSource": 10092800
+        },
+        {
+          "name": "MilanWNFC64",
+          "deviceSource": 10092801
+        }
+      ],
+      "designWidth": 466
+    },
+    "466x466-amazfit-active-2-round": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "MilanW",
+          "deviceSource": 8913155
+        },
+        {
+          "name": "MilanWNA",
+          "deviceSource": 8913159
+        },
+        {
+          "name": "MilanW64",
+          "deviceSource": 10092803
+        },
+        {
+          "name": "MilanWNA64",
+          "deviceSource": 10092807
+        },
+        {
+          "name": "MilanWGolf",
+          "deviceSource": 10617091
+        }
+      ],
+      "designWidth": 466
+    },
+    "480x480-amazfit-balance-2": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Lyon",
+          "deviceSource": 9568512
+        },
+        {
+          "name": "LyonWN",
+          "deviceSource": 9568513
+        },
+        {
+          "name": "LyonW",
+          "deviceSource": 9568515
+        }
+      ],
+      "designWidth": 480
+    },
+    "390x450-amazfit-bip-6": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Pamir",
+          "deviceSource": 9765120
+        },
+        {
+          "name": "PamirW",
+          "deviceSource": 9765121
+        },
+        {
+          "name": "PamirW64",
+          "deviceSource": 10158337
+        }
+      ],
+      "designWidth": 390
     }
   },
   "i18n": {
     "en-US": {
-      "appName": "Zepp OS Screen Reader"
+      "appName": "Empty"
     }
-  }
+  },
+  "defaultLanguage": "en-US"
 }

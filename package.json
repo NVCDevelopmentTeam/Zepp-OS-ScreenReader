@@ -1,37 +1,17 @@
 {
-  "name": "zepp-os-screen-reader",
+  "name": "Zepp OS screen reader",
   "version": "1.0.0",
-  "private": true,
+  "description": "this is screen reader for Zepp OS",
+  "main": "app.js",
   "scripts": {
-    "dev": "zeus dev",
-    "build": "zeus build",
-    "preview": "zeus preview",
-    "lint": "eslint . --ext .js",
-    "test": "jest"
+		"dev": "zeus dev",
+		"build": "zeus build",
+		"preview": "zeus preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@sveltejs/kit": "^2.21.5",
-    "@sveltejs/vite-plugin-svelte": "^5.1.0",
-    "svelte": "^5.34.3",
-    "vite": "^6.3.5",
-    "@zeppos/device-types": "^3.0.0",
-    "@zeppos/zeus-cli": "^3.0.0",
-    "@zeppos/zml": "^0.0.40",
-    "@zeppos/ui": "^3.0.0",
-    "eslint": "^9.29.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.4.1",
-    "jest": "^30.0.0",
-    "prettier": "^3.5.3"
-  },
-  "dependencies": {
-    "@guidepup/virtual-screen-reader": "^0.32.1",
-    "accessibility": "^6.1.0",
-    "braille-translator": "^2.0.1",
-    "espeak-ng": "^1.0.2",
-    "express": "^5.1.0",
-    "node-tesseract-ocr": "^2.2.1",
-    "tailwindcss": "^4.1.10",
-    "use-sound": "^5.0.0"
+    "@zeppos/device-types": "^2.0.0"
   }
 }

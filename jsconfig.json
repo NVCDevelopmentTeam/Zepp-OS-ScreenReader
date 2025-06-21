@@ -1,20 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@zos/*": ["node_modules/@zeppos/*"],
-      "@/*": ["lib/*"]
-    },
-    "checkJs": true,
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "resolveJsonModule": true
+    "module": "commonjs",
+    "target": "es6",
+    "checkJs": true
   },
-  "include": ["lib/**/*", "app-side/**/*", "page/**/*", "setting/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "**/node_modules/*"],
+  "files": ["node_modules/@zeppos/device-types/dist/index.d.ts"]
 }
