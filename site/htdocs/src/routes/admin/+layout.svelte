@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import logo from '$lib/images/logo.jpg';
   /**
    * @typedef {Object} Props

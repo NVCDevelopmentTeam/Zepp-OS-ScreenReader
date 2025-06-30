@@ -3,12 +3,11 @@
   import { onMount } from 'svelte';
   import Card from './Card.svelte';
 
-  export let post;
-  export let children; // children should be a function
+  let { post, children } = $props();
 
   let elements = [];
-  let headings = post.headings;
-  let activeHeading = headings[0];
+  let headings = $state(post.headings);
+  let activeHeading = $state(headings[0]);
   let scrollY;
 
   function updateHeadings() {
@@ -47,7 +46,7 @@
   });
 </script>
 
-<svelte:window on:scroll={setActiveHeading} />
+<svelte:window onscroll={setActiveHeading} />
 
 <Card class="p-6 bg-white shadow-lg rounded-lg">
   {#if children}

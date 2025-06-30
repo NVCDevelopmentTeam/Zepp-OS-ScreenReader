@@ -1,13 +1,15 @@
 <script>
-  import { page } from '$app/stores';
-  $: {
+  import { run } from 'svelte/legacy';
+
+  import { page } from '$app/state';
+  run(() => {
     if (typeof gtag !== 'undefined') {
       gtag('config', 'G-4YCKS1JTX8', {
         page_title: document.title,
-        page_path: $page.url.pathname,
+        page_path: page.url.pathname,
       });
     }
-  }
+  });
 </script>
 
 <svelte:head>

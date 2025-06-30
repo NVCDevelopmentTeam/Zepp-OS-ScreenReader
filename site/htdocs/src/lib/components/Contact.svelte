@@ -1,6 +1,6 @@
 <script>
   import { accessKey } from '$lib/info.js';
-  let status = '';
+  let status = $state('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();

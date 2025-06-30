@@ -6,13 +6,13 @@ export async function GET({ fetch }) {
         const response = await fetch('/sveltiaconfig.json');
 
         if (!response.ok) {
-            throw error(response.status, 'Không thể tải file cấu hình');
+            error(response.status, 'Không thể tải file cấu hình');
         }
 
         const data = await response.json();
         return json(data);
     } catch (err) {
         console.error('Lỗi khi đọc JSON:', err);
-        throw error(500, 'Lỗi server khi đọc file JSON');
+        error(500, 'Lỗi server khi đọc file JSON');
     }
 }

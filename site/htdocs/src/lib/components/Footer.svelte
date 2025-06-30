@@ -1,9 +1,9 @@
 <script>
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import { siteAuthor, githubLink } from '$lib/info.js';
   import { onMount } from 'svelte';
 
-  let year;
+  let year = $state();
 
   onMount(() => {
     year = new Date().getFullYear();
@@ -16,22 +16,22 @@
       <nav>
         <h2 class="text-xl font-semibold mb-4 text-gray-100">Useful links</h2>
         <ul class="space-y-2">
-          <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
             <a href="/about" class="text-gray-100 hover:text-white">About</a>
           </li>
-          <li aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === '/contact' ? 'page' : undefined}>
             <a href="/contact" class="text-gray-100 hover:text-white">Contact</a>
           </li>
-          <li aria-current={$page.url.pathname === '/accessibility-statement' ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === '/accessibility-statement' ? 'page' : undefined}>
             <a href="/accessibility-statement" class="text-gray-100 hover:text-white">Accessibility Statement</a>
           </li>
-          <li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === '/support' ? 'page' : undefined}>
             <a href="/support" class="text-gray-100 hover:text-white">Support</a>
           </li>
-          <li aria-current={$page.url.pathname === '/privacy-policy' ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === '/privacy-policy' ? 'page' : undefined}>
             <a href="/privacy-policy" class="text-gray-100 hover:text-white">Privacy policy</a>
           </li>
-          <li aria-current={$page.url.pathname === githubLink ? 'page' : undefined}>
+          <li aria-current={page.url.pathname === githubLink ? 'page' : undefined}>
             <a href={githubLink} class="text-gray-100 hover:text-white">GitHub</a>
           </li>
         </ul>

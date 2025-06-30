@@ -1,5 +1,7 @@
 <script>
-  import { page } from '$app/stores';
+  import { run } from 'svelte/legacy';
+
+  import { page } from '$app/state';
   import { onMount } from 'svelte';
   import Adsense from './Adsense.svelte';
   import Analytics from './Analytics.svelte';
@@ -7,10 +9,10 @@
   import { browser } from '$app/environment';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  let expanded = false; // mobile menu
-  let expandedDropdown = false; // dropdown menu
-  let darkMode = false; // theme mode
-  let currentPath = $page.url.pathname;
+  let expanded = $state(false); // mobile menu
+  let expandedDropdown = $state(false); // dropdown menu
+  let darkMode = $state(false); // theme mode
+  let currentPath = page.url.pathname;
 
   function toggleMobileMenu() {
     expanded = !expanded;
@@ -78,14 +80,14 @@
     applyDarkMode();
   }
 
-  let previousPath = currentPath;
-  $: {
-    if ($page.url.pathname !== previousPath) {
-      previousPath = $page.url.pathname;
+  let previousPath = $state(currentPath);
+  run(() => {
+    if (page.url.pathname !== previousPath) {
+      previousPath = page.url.pathname;
       expanded = false;
       expandedDropdown = false;
     }
-  }
+  });
 
   onMount(() => {
     if (!browser) return;
@@ -119,7 +121,7 @@
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
 
     <!-- Logo -->
-    <a href="/" class="flex items-center" aria-current={$page.url.pathname === '/' ? 'page' : undefined} aria-label="Home">
+    <a href="/" class="flex items-center" aria-current={page.url.pathname === '/' ? 'page' : undefined} aria-label="Home">
       Zepp OS screen reader
       <img src={logo} alt="ZSR logo" class="h-10 w-auto" loading="lazy" />
     </a>
@@ -137,8 +139,8 @@
       aria-label="Toggle navigation"
       aria-expanded={expanded}
       aria-controls="nav"
-      on:click={toggleMobileMenu}
-      on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleMobileMenu()}
+      onclick={toggleMobileMenu}
+      onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleMobileMenu()}
     >
       <span class="sr-only">Toggle navigation</span>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -157,28 +159,28 @@
           <a
             href="/about"
             class="hover:underline py-2 lg:py-0 block"
-            aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
+            aria-current={page.url.pathname === '/about' ? 'page' : undefined}
           >About</a>
         </li>
         <li>
           <a
             href="/contact"
             class="hover:underline py-2 lg:py-0 block"
-            aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}
+            aria-current={page.url.pathname === '/contact' ? 'page' : undefined}
           >Contact</a>
         </li>
         <li>
           <a
             href="/"
             class="hover:underline py-2 lg:py-0 block"
-            aria-current={$page.url.pathname === '/' ? 'page' : undefined}
+            aria-current={page.url.pathname === '/' ? 'page' : undefined}
           >Home</a>
         </li>
         <li>
           <a
             href="/news"
             class="hover:underline py-2 lg:py-0 block"
-            aria-current={$page.url.pathname === '/news' ? 'page' : undefined}
+            aria-current={page.url.pathname === '/news' ? 'page' : undefined}
           >News</a>
         </li>
 
@@ -191,8 +193,8 @@
             aria-haspopup="true"
             aria-expanded={expandedDropdown}
             aria-controls="dropdown-menu"
-            on:click={toggleDropdown}
-            on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown(e)}
+            onclick={toggleDropdown}
+            onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleDropdown(e)}
           >
             Other Services
           </button>
@@ -226,7 +228,7 @@
                 <a
                   href="/support"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  aria-current={$page.url.pathname === '/support' ? 'page' : undefined}
+                  aria-current={page.url.pathname === '/support' ? 'page' : undefined}
                   role="menuitem"
                   tabindex="0"
                   >Support</a
@@ -256,8 +258,8 @@
       class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500"
       aria-pressed={darkMode}
       aria-label="Toggle dark mode"
-      on:click={toggleDarkMode}
-      on:keydown={toggleDarkMode}
+      onclick={toggleDarkMode}
+      onkeydown={toggleDarkMode}
       tabindex="0"
       type="button"
     >
