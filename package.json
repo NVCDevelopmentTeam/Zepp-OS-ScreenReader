@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NVC DevelopmentTeam",
-  "license": "ISC",
+  "license": "MIT License",
   "devDependencies": {
     "@zeppos/device-types": "^3.0.0"
   }
