@@ -4,14 +4,16 @@
   "description": "this is screen reader for Zepp OS",
   "main": "app.js",
   "scripts": {
-		"dev": "zeus dev",
-		"build": "zeus build",
-		"preview": "zeus preview",
+    "dev": "zeus dev",
+    "build": "zeus build",
+    "preview": "zeus preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NVC DevelopmentTeam",
   "license": "MIT License",
   "devDependencies": {
-    "@zeppos/device-types": "^3.0.0"
+    "@zeppos/device-types": "^3.0.0",
+    "@zeppos/zeus-cli": "^1.7.0"
   }
 }
+
