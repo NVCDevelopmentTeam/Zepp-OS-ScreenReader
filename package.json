@@ -1,5 +1,6 @@
 {
-  "name": "Zepp OS screen reader",
+  "name": "ZSR",
+	"private": true,
   "version": "1.0.0",
   "description": "this is screen reader for Zepp OS",
   "main": "app.js",
@@ -9,11 +10,9 @@
     "preview": "zeus preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "NVC DevelopmentTeam",
+  "author": "NVC development Team",
   "license": "MIT License",
   "devDependencies": {
-    "@zeppos/device-types": "^3.0.0",
-    "@zeppos/zeus-cli": "^1.7.0"
+    "@zeppos/device-types": "^2.0.0"
   }
 }
-

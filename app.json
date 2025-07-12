@@ -1,8 +1,8 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 27189,
-    "appName": "Zepp OS screen reader",
+    "appId": 25032,
+    "appName": "Empty",
     "appType": "app",
     "version": {
       "code": 1,
@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "zepp",
-    "description": "Zepp OS screen reader application"
+    "description": "empty application"
   },
   "permissions": [
     "data:os.device.info",
@@ -691,6 +691,54 @@
         {
           "name": "PamirW64",
           "deviceSource": 10158337
+        }
+      ],
+      "designWidth": 390
+    },
+    "390x450-amazfit-active-2-nfc-square": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "Rome64",
+          "deviceSource": 10223872
+        },
+        {
+          "name": "RomeWNFC64",
+          "deviceSource": 10223873
+        }
+      ],
+      "designWidth": 390
+    },
+    "390x450-amazfit-active-2-square": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "RomeW64",
+          "deviceSource": 10223875
         }
       ],
       "designWidth": 390
