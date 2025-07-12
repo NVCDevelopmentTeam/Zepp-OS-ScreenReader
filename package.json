@@ -13,6 +13,6 @@
   "author": "NVC development Team",
   "license": "MIT License",
   "devDependencies": {
-    "@zeppos/device-types": "^2.0.0"
+    "@zeppos/device-types": "^3.0.0"
   }
 }
