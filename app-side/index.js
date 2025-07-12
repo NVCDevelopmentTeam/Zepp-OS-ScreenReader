@@ -1,4 +1,4 @@
-import { gettext } from 'i18n'
+
 import { messageBuilder } from '@zos/message'
 import { Settings } from '@zos/settings'
 import { log } from '@zos/utils'
@@ -35,7 +35,7 @@ AppSideService({
   queueMessage(ctx) {
     if (this.state.messageQueue.length >= MAX_QUEUE_SIZE) {
       log.warn('Message queue full, dropping message')
-      ctx.response({ success: false, error: 'Queue full' })
+      ctx.response({ success: false, error: 'Message queue is full. Please try again later.' })
       return
     }
     this.state.messageQueue.push(ctx)
@@ -54,9 +54,13 @@ AppSideService({
         const ctx = state.messageQueue[0]
         try {
           await this.processMessage(ctx)
-          state.messageQueue.shift()
+          state.messageQueue.shift() // Only shift if successful
         } catch (error) {
-          if (!await this.handleMessageError(ctx, error)) break
+          if (!await this.handleMessageError(ctx, error)) {
+            state.messageQueue.shift() // Shift if not retrying (error handled, remove from queue)
+            break // Stop processing queue if not retrying
+          }
+          // If retrying, the item remains at the head of the queue
         }
       }
     } finally {
@@ -124,14 +128,16 @@ AppSideService({
 
     try {
       switch (request.method) {
-        case 'SPEAK':
+        case 'SPEAK': {
           const result = await this.handleSpeak(request.params)
           ctx.response({ success: true, data: result })
           break
-        case 'GET_SETTINGS':
+        }
+        case 'GET_SETTINGS': {
           const settings = await this.state.settings.get()
           ctx.response({ success: true, data: settings })
           break
+        }
         default:
           ctx.response({ success: false, error: 'Unknown method' })
       }

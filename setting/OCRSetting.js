@@ -1,4 +1,4 @@
-import { SettingsUtils } from './utils'
+import { settingsManager } from './utils'
 import { OCR } from '@zos/sensor'
 import { log } from '@zos/utils'
 
@@ -15,7 +15,7 @@ Page({
   },
 
   validateOCRCapability() {
-    const { capabilities } = SettingsUtils.init()
+    const { capabilities } = settingsManager.deviceManager.validate()
     if (!capabilities.ocr) {
       throw new Error('OCR not supported on this device')
     }
@@ -24,7 +24,7 @@ Page({
   validateOCR(type, value) {
     const validations = {
       mode: ['auto', 'manual'],
-      language: SettingsUtils.validateLanguage,
+      language: settingsManager.validateLanguage,
       region: ['full', 'selection']
     }
 
@@ -40,7 +40,7 @@ Page({
       if (!this.validateOCR('mode', newValue)) {
         throw new Error('Invalid OCR mode')
       }
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => OCR.setMode(newValue),
         newValue,
         'ocrMode'
@@ -57,7 +57,7 @@ Page({
       if (!this.validateOCR('language', newValue)) {
         throw new Error('Invalid OCR language')
       }
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => OCR.setLanguage(newValue),
         newValue,
         'ocrLanguage'
@@ -74,7 +74,7 @@ Page({
       if (!this.validateOCR('region', newValue)) {
         throw new Error('Invalid OCR region')
       }
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => OCR.setRegion(newValue),
         newValue,
         'ocrRegion'

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { logger } from '../../lib/utils/logger'
-import AccessibilityManager from '../../lib/accessibility'
+import AccessibilityManager from '../../lib/accessibility/index.js'
 
 const router = Router()
 

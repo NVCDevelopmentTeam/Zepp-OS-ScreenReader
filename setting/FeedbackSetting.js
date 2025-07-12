@@ -1,5 +1,5 @@
-import { SettingsUtils } from './utils'
-import { Vibrator, Sound } from '@zos/sensor'
+import { settingsManager } from './utils'
+import { Vibrator } from '@zos/sensor'
 import { log } from '@zos/utils'
 
 Page({
@@ -12,7 +12,7 @@ Page({
   async toggleHapticFeedback() {
     try {
       const currentValue = this.state.hapticFeedback
-      const success = await SettingsUtils.handleToggleSetting(
+      const success = await settingsManager.handleToggleSetting(
         value => Vibrator.setEnabled(value),
         currentValue,
         'hapticFeedback'
@@ -25,11 +25,11 @@ Page({
 
   async changeFeedbackIntensity(value) {
     try {
-      if (!SettingsUtils.validateFeedback.intensity.includes(value)) {
+      if (!settingsManager.validateFeedback.intensity.includes(value)) {
         throw new Error('Invalid feedback intensity')
       }
       
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Vibrator.setIntensity(value),
         value,
         'feedbackIntensity'

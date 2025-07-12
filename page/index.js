@@ -36,9 +36,10 @@ Page({
   },
 
   showError(error) {
-    createWidget(widget.TEXT, {
+    const errorText = createWidget(widget.TEXT, {
       text: `Error: ${error.message}`,
       color: 0xff0000
     })
+    this.append(errorText)
   }
 })

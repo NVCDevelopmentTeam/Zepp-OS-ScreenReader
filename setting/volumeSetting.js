@@ -1,49 +1,57 @@
-import { createWidget } from '@zos/ui'
-import { Slider } from '@zos/components'
-import settingsUtils from './utils'
+import { createWidget, widget } from '@zos/ui'
+import { settingsManager } from './utils'
+import { Audio } from '@zos/sensor'
 
 Page({
+  state: {
+    volumeLevel: 50 // Default volume
+  },
+
+  onInit() {
+    // Initialize volume level from settings or a default
+    // For now, just set a default
+    this.setState({ volumeLevel: 50 });
+  },
+
   build() {
-    const slider = createWidget(Slider, {
+    createWidget(widget.SLIDER, {
       x: 0,
       y: 0,
       w: '100%',
       h: 80,
       min: 0,
       max: 100,
+      value: this.state.volumeLevel,
       onChange: async (value) => {
-        const [success] = await settingsUtils.handleSettingChange(
-          () => this.setVolumeLevel(value),
+        const [success] = await settingsManager.handleSettingChange(
+          () => Audio.setVolume(Math.round(value)),
           value,
           'volume'
         );
-        if (success) this.updateLabel(value);
+        if (success) {
+          this.setState({ volumeLevel: value });
+          this.updateLabel(value);
+        }
       }
     });
 
-    const label = createWidget(widget.LABEL, {
+    createWidget(widget.TEXT, {
       x: 0,
       y: 100,
-      w: 480,
+      w: '100%', // Use '100%' for width
       h: 50,
-      text: 'Volume: ' + hmSetting.getVolumeLevel() + '%',
+      text: `Volume: ${this.state.volumeLevel}%`,
       fontSize: 24,
       color: '#ffffff',
-      textAlign: 'center'
+      textAlign: 'center',
+      id: 'volumeLabel' // Add an ID to find it later
     });
-
-    this.append(slider);
-    this.append(label);
-  },
-
-  setVolumeLevel(value) {
-    return hmSetting.setVolumeLevel(Math.round(value));
   },
 
   updateLabel(value) {
-    const label = this.findWidgetById('volumeLabel');
-    if (label) {
-      label.setProperty(hmUI.prop.TEXT, `Volume: ${value}%`);
+    const labelWidget = this.getElementById('volumeLabel'); // Use getElementById
+    if (labelWidget) {
+      labelWidget.setProperty(widget.TEXT, `Volume: ${value}%`);
     }
   }
 });

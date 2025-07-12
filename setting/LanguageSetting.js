@@ -1,13 +1,10 @@
-import { SettingsUtils } from './utils'
+import { settingsManager } from './utils'
 import { Text } from '@zos/ui'
 import { log } from '@zos/utils'
 
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
-
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the language settings
     preferredLanguage: 'en-US',
     fallbackLanguage: 'zh-CN',
@@ -17,11 +14,11 @@ Page({
   async changePreferredLanguage(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateLanguage(newValue)) {
-        throw new Error('Invalid language code')
+      if (!settingsManager.validateLanguage(newValue)) {
+        throw new Error('Invalid preferred language')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Text.setLanguage(newValue),
         newValue,
         'preferredLanguage'
@@ -35,11 +32,11 @@ Page({
   async changeFallbackLanguage(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateLanguage(newValue)) {
+      if (!settingsManager.validateLanguage(newValue)) {
         throw new Error('Invalid fallback language')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Text.setFallbackLanguage(newValue),
         newValue,
         'fallbackLanguage'
@@ -53,11 +50,11 @@ Page({
   async changeLanguageDetection(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateSettings.mode(newValue)) {
+      if (!settingsManager.validateSettings.mode(newValue)) {
         throw new Error('Invalid detection mode')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Text.setLanguageDetection(newValue),
         newValue,
         'languageDetection'

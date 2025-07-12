@@ -1,9 +1,8 @@
-const accessibility = require('@system.accessibility');
-const { handleToggleSetting } = require('./utils');
-const logger = require('../utils/logger');
+import { accessibility } from '@zos/accessibility'
+import { handleToggleSetting } from './utils'
 
 Page({
-  data: {
+  state: {
     vibrationFeedback: true,
     gestureNavigation: true,
     shortcutKeys: true
@@ -17,7 +16,7 @@ Page({
     );
 
     if (success) {
-      this.setData({ vibrationFeedback: newValue });
+      this.setState({ vibrationFeedback: newValue });
     }
   },
 
@@ -29,7 +28,7 @@ Page({
     );
 
     if (success) {
-      this.setData({ gestureNavigation: newValue });
+      this.setState({ gestureNavigation: newValue });
     }
   },
 
@@ -41,7 +40,7 @@ Page({
     );
 
     if (success) {
-      this.setData({ shortcutKeys: newValue });
+      this.setState({ shortcutKeys: newValue });
     }
   }
 });

@@ -1,4 +1,4 @@
-import { SettingsUtils } from './utils'
+import { settingsManager } from './utils'
 import { Display } from '@zos/display'
 import { log } from '@zos/utils'
 
@@ -13,8 +13,8 @@ Page({
     this.validateDisplayCapabilities()
   },
 
-  validateDisplayCapabilities() {
-    const { capabilities } = SettingsUtils.init()
+  async validateDisplayCapabilities() {
+    const { capabilities } = await settingsManager.deviceManager.validate()
     if (!capabilities.display) {
       throw new Error('Display customization not supported')
     }
@@ -22,7 +22,7 @@ Page({
 
   async changeBrightness(value) {
     try {
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Display.setBrightness(value),
         value,
         'brightness'
@@ -35,11 +35,11 @@ Page({
 
   async changeContrast(value) {
     try {
-      if (!SettingsUtils.validateDisplay.contrast(value)) {
+      if (!settingsManager.validateDisplay.contrast(value)) {
         throw new Error('Invalid contrast value')
       }
       
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Display.setContrast(value),
         value,
         'contrast'

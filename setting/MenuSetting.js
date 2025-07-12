@@ -1,12 +1,10 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
-import { createWidget } from '@zos/ui'
-import { settingsUtils } from './utils'
+import { accessibility } from '@zos/accessibility'
+import { settingsManager } from './utils'
 import { log } from '@zos/utils'
 
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the menu settings
     menuItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
     menuOrder: 'asc',
@@ -23,7 +21,7 @@ Page({
     // Get the new value from the list
     let newValue = e.newValue;
     // Update the data
-    this.setData({
+    this.setState({
       menuItems: newValue
     });
     // Call the accessibility API to set the menu items
@@ -35,30 +33,35 @@ Page({
   async changeMenuOrder(e) {
     try {
       const newValue = e.newValue[0]
-      if (!settingsUtils.validateMenuOrder(newValue)) {
+      if (!settingsManager.validateMenuOrder(newValue)) {
         throw new Error('Invalid menu order')
       }
 
-      const success = await settingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => this.updateMenuOrder(newValue),
         newValue,
         'menuOrder'
       )
 
       if (success) {
-        this.setData({ menuOrder: newValue })
+        this.setState({ menuOrder: newValue })
         await this.registerMenuActions()
       }
     } catch (error) {
-      settingsUtils.handleError(error, 'menu_order')
+      settingsManager.handleError(error, 'menu_order')
     }
+  },
+  // Placeholder for updateMenuOrder
+  updateMenuOrder(newValue) {
+    log.log('Updating menu order:', newValue)
+    // Actual implementation for updating menu order would go here
   },
   // The function to change the menu actions
   changeMenuActions(e) {
     // Get the new value from the map
     let newValue = e.newValue;
     // Update the data
-    this.setData({
+    this.setState({
       menuActions: newValue
     });
     // Call the accessibility API to set the menu actions
@@ -70,7 +73,7 @@ Page({
     try {
       const { menuActions } = this.data
       const registrationPromises = Object.entries(menuActions).map(
-        ([name, action]) => settingsUtils.handleSettingChange(
+        ([name, action]) => settingsManager.handleSettingChange(
           () => accessibility.registerMenuAction(name, action),
           action,
           `menuAction_${name}`

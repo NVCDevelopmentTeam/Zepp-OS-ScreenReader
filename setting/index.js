@@ -23,6 +23,7 @@ Page({
       if (!success) {
         throw new Error('Device validation failed');
       }
+      await this.registerSettings(capabilities);
       await this.createWidgets();
       this.setState({ initialized: true });
     } catch (error) {
@@ -34,7 +35,7 @@ Page({
   },
   async initialize() {
     try {
-      const { success, capabilities } = await settingsManager.validateDevice();
+      const { success } = await settingsManager.validateDevice();
       if (!success) throw new Error('Device not supported');
       await this.createWidgets();
       this.setState({ initialized: true });

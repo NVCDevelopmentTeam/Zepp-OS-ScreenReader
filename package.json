@@ -1,18 +1,29 @@
 {
   "name": "ZSR",
-	"private": true,
+  "private": true,
   "version": "1.0.0",
   "description": "this is screen reader for Zepp OS",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "zeus dev",
     "build": "zeus build",
     "preview": "zeus preview",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint --fix . --ext .js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NVC development Team",
   "license": "MIT License",
   "devDependencies": {
-    "@zeppos/device-types": "^3.0.0"
+		"@eslint/compat": "^1.3.1",
+    "@eslint/js": "^9.31.0",
+    "@zeppos/device-types": "^3.0.0",
+		"eslint": "^9.30.1",
+		"eslint-config-prettier": "^10.1.5",
+    "globals": "^16.3.0"
+  },
+  "dependencies": {
+    "eslint": "^9.31.0"
   }
 }

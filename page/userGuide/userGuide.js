@@ -1,6 +1,7 @@
 import { createWidget, widget } from '@zos/ui'
-import { ScreenReader } from '../../lib/core/screenReader'
-import { VibrationManager } from '../../lib/feedback/vibrate feedback'
+import ScreenReader from '../../lib/core/screenReader'
+import { VibrationManager } from '../../lib/feedback/vibrateFeedback'
+import { log } from '@zos/utils'
 
 Page({
   state: {
@@ -24,17 +25,29 @@ Page({
   },
 
   createGuideContent(container) {
-    const element = (
-      <div>
-        <text>Welcome to the User Guide</text>
-        <button onClick={this.navigateToDetail.bind(this)}>Go to Detail</button>
-      </div>
-    );
-    container.appendChild(element)
+    const welcomeText = createWidget(widget.TEXT, {
+      text: 'Welcome to the User Guide',
+      x: 0,
+      y: 0,
+      w: '100%',
+      h: 50
+    });
+
+    const detailButton = createWidget(widget.BUTTON, {
+      text: 'Go to Detail',
+      x: 0,
+      y: 60,
+      w: '100%',
+      h: 50,
+      onClick: this.navigateToDetail.bind(this)
+    });
+
+    container.appendChild(welcomeText);
+    container.appendChild(detailButton);
   },
 
   navigateToDetail() {
     ScreenReader.speak('Navigating to detail page')
-    window.location.href = "userGuideDetail"; // Redirect to userGuideDetail route
+    this.$router.push('userGuideDetail');
   }
 })

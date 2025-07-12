@@ -1,13 +1,11 @@
-import { SettingsUtils } from './utils'
+import { settingsManager } from './utils'
 import { Shortcut } from '@zos/interaction'
 import { log } from '@zos/utils'
-
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
+import { accessibility } from '@zos/accessibility'
 
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the shortcut settings
     shortcutItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
     shortcutOrder: 'asc',
@@ -23,7 +21,7 @@ Page({
   async changeShortcutItems(e) {
     try {
       const newValue = e.newValue
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Shortcut.setItems(newValue),
         newValue,
         'shortcutItems'
@@ -37,11 +35,11 @@ Page({
   async changeShortcutOrder(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateMenuOrder(newValue)) {
+      if (!settingsManager.validateMenuOrder(newValue)) {
         throw new Error('Invalid shortcut order')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Shortcut.setOrder(newValue),
         newValue,
         'shortcutOrder'
@@ -59,7 +57,7 @@ Page({
         throw new Error('Invalid shortcut actions')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Shortcut.setActions(newValue),
         newValue,
         'shortcutActions'
@@ -70,7 +68,7 @@ Page({
     }
   },
   validateShortcutItems(items) {
-    const validActions = Object.keys(this.data.shortcutActions)
+    const validActions = Object.keys(this.state.shortcutActions)
     return items.every(item => validActions.includes(item))
   }
 });

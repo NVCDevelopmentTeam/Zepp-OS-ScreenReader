@@ -1,5 +1,5 @@
 import { createWidget, widget } from '@zos/ui'
-import { ScreenReader } from '../../lib/core/screenReader'
+import ScreenReader from '../../lib/core/screenReader'
 
 Page({
   state: {
@@ -29,7 +29,7 @@ Page({
   createGuideButton() {
     return createWidget(widget.BUTTON, {
       text: 'Go to User Guide',
-      onClick: this.onNavigateToUserGuide
+      onClick: this.onNavigateToUserGuide.bind(this)
     })
   },
 

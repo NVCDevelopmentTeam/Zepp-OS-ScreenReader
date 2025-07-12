@@ -1,12 +1,11 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
 import { Gesture, Vibrator } from '@zos/sensor'
-import { SettingsUtils } from './utils'
+import { settingsManager } from './utils'
 import { log } from '@zos/utils'
+import { logger } from '../utils/logger'
 
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the input gesture settings
     swipeAction: 'read',
     tapAction: 'pause',
@@ -16,8 +15,8 @@ Page({
     this.validateDevice()
   },
 
-  validateDevice() {
-    const { capabilities } = SettingsUtils.init()
+  async validateDevice() {
+    const { capabilities } = await settingsManager.deviceManager.validate()
     if (!capabilities.gesture) {
       throw new Error('Gesture not supported')
     }
@@ -26,11 +25,11 @@ Page({
   changeSwipeAction: async function(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateInput.gesture.actions.includes(newValue)) {
+      if (!settingsManager.validateInput.gesture.actions.includes(newValue)) {
         throw new Error('Invalid swipe action')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Gesture.setSwipeAction(newValue),
         newValue,
         'swipeAction'
@@ -47,39 +46,39 @@ Page({
   async changeTapAction(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateGesture.actions.includes(newValue)) {
+      if (!settingsManager.validateInput.gesture.actions.includes(newValue)) {
         throw new Error('Invalid tap action')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Gesture.setTapAction(newValue),
         newValue,
         'tapAction'
       )
 
       if (success) {
-        this.setData({ tapAction: newValue })
+        this.setState({ tapAction: newValue })
       }
     } catch (error) {
-      SettingsUtils.handleError(error, 'tap_action')
+      settingsManager.handleError(error, 'tap_action')
     }
   },
   // The function to change the double tap action
   async changeDoubleTapAction(e) {
     try {
       const newValue = e.newValue[0]
-      if (!SettingsUtils.validateGesture.actions.includes(newValue)) {
+      if (!settingsManager.validateInput.gesture.actions.includes(newValue)) {
         throw new Error('Invalid double tap action')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Gesture.setDoubleTapAction(newValue),
         newValue,
         'doubleTapAction'
       )
 
       if (success) {
-        this.setData({ doubleTapAction: newValue })
+        this.setState({ doubleTapAction: newValue })
         await Vibrator.vibrate({ mode: 'short' })
       }
     } catch (error) {

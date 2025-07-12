@@ -3,7 +3,7 @@ import { OAUTH_GITHUB_CLIENT_ID } from '$env/static/private';
 
 export const prerender = false;
 
-export const GET = async ({ url }) => {
+export const GET = async () => {
   // Prepare the URLSearchParams with the necessary OAuth details
   const params = new URLSearchParams({
     client_id: OAUTH_GITHUB_CLIENT_ID,

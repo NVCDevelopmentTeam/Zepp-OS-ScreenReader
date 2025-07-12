@@ -36,6 +36,7 @@ class ScreenReader extends EventEmitter {
     this.emit('debug', `Debug mode ${enabled ? 'enabled' : 'disabled'}`);
   }
 
+   
   private logDebug(message: string, data?: any): void {
     if (this.debugMode) {
       log.debug(`[ScreenReader] ${message}`, data || '');

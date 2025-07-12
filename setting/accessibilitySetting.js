@@ -1,5 +1,6 @@
 import { accessibility } from '@zos/accessibility';
 import errorMonitor from '../lib/utils/errorMonitor'
+import { log } from '@zos/utils'
 
 Page({
   data: {

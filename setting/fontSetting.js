@@ -100,5 +100,20 @@ Page({
     } catch (error) {
       log.error('Font scale change failed:', error)
     }
+  },
+
+  async changeFontFamily(value) {
+    try {
+      // Implement font family change logic here
+      log.log('Changing font family to:', value)
+      this.setState({ fontFamily: value })
+    } catch (error) {
+      log.error('Font family change failed:', error)
+    }
+  },
+
+  showUnsupportedMessage() {
+    // Implement unsupported message display here
+    log.warn('Font customization not supported on this device.')
   }
 })

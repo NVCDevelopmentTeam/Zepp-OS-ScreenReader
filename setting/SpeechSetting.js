@@ -1,5 +1,4 @@
 import { settingsManager } from './utils'
-import { Speech } from '@zos/sensor'
 import { createWidget, widget } from '@zos/ui'
 import { log } from '@zos/utils'
 
@@ -15,7 +14,7 @@ Page({
   },
 
   async validateSpeechCapability() {
-    const { speech } = await settingsManager.checkDeviceSupport()
+    const { speech } = await settingsManager.deviceManager.validate()
     if (!speech) {
       throw new Error('Speech not supported')
     }
@@ -47,6 +46,23 @@ Page({
       if (success) this.setState({ rate: value })
     } catch (error) {
       log.error('Speech rate change failed:', error)
+    }
+  },
+
+  async changeSpeechPitch(value) {
+    try {
+      if (!settingsManager.validateNumericRange(value, 0.5, 2.0)) {
+        throw new Error('Invalid speech pitch')
+      }
+
+      const success = await settingsManager.handleSettingChange(
+        () => Speech.setPitch(value),
+        value,
+        'speechPitch'
+      )
+      if (success) this.setState({ pitch: value })
+    } catch (error) {
+      log.error('Speech pitch change failed:', error)
     }
   },
 

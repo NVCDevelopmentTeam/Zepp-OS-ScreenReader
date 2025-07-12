@@ -1,13 +1,5 @@
-import * as hmUI from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { log } from '@zos/utils'
-
-const DEVICE_CAPABILITIES = {
-  audio: ['volume', 'sound'],
-  display: ['brightness', 'contrast'],
-  speech: ['rate', 'pitch'],
-  gesture: ['swipe', 'tap']
-}
 
 const deviceManager = {
   async validate() {
@@ -44,7 +36,7 @@ export const settingsManager = {
       }
       
       const caps = info.capabilities || {}
-      const validated = this.validateCapabilities(caps)
+      const validated = settingsManager.validateCapabilities(caps)
 
       if (requiredCapabilities.length) {
         const missing = requiredCapabilities.filter(cap => !validated[cap])
@@ -153,15 +145,18 @@ export const settingsManager = {
       layouts: ['en-US', 'zh-CN', 'ja-JP', 'ko-KR']
     },
     sound: {
-      volume: (val) => this.validateNumericRange(val, 0, 100),
+      volume: (val) => settingsManager.validateNumericRange(val, 0, 100),
       themes: ['default', 'classic', 'modern']
+    },
+    feedback: {
+      intensity: ['low', 'medium', 'high'],
+      patterns: ['single', 'double', 'long']
+    },
+    gesture: {
+      actions: ['read', 'pause', 'next', 'previous', 'select']
     }
   },
 
-  validateGesture: {
-    actions: ['read', 'pause', 'next', 'previous', 'select']
-  },
-  
   validateMenuOrder: (order) => {
     return ['asc', 'desc'].includes(order)
   },

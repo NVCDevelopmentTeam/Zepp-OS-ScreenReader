@@ -1,7 +1,7 @@
 // Import the accessibility module
-const accessibility = require('@system.accessibility');
-const settingsUtils = require('./utils');
-const logger = require('../utils/logger');
+import { accessibility } from '@system.accessibility';
+import settingsUtils, { handleSettingChange } from './utils';
+import { logger } from '../utils/logger';
 
 // Define the settings page
 Page({

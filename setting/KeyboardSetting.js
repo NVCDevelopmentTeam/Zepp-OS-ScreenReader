@@ -1,11 +1,10 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
-const settingsUtils = require('./utils');
-const logger = require('../utils/logger');
+import { accessibility } from '@zos/accessibility'
+import { settingsManager, handleToggleSetting, handleSettingChange } from './utils'
+import { logger } from '../utils/logger'
 
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the keyboard settings
     keyboardShortcuts: true,
     keyboardEcho: 'character',
@@ -20,14 +19,14 @@ Page({
     );
 
     if (success) {
-      this.setData({ keyboardShortcuts: newValue });
+      this.setState({ keyboardShortcuts: newValue });
     }
   },
   // The function to change the keyboard echo
   changeKeyboardEcho: async function(e) {
     try {
       const newValue = e.newValue[0];
-      if (!settingsUtils.validateInput.keyboard.echo.includes(newValue)) {
+      if (!settingsManager.validateInput.keyboard.echo.includes(newValue)) {
         logger.error('Invalid keyboard echo mode:', newValue);
         return;
       }
@@ -39,7 +38,7 @@ Page({
       );
 
       if (success) {
-        this.setData({ keyboardEcho: newValue });
+        this.setState({ keyboardEcho: newValue });
       }
     } catch (error) {
       logger.error('Keyboard echo change error:', error);
@@ -49,19 +48,19 @@ Page({
   changeKeyboardLayout: async function(e) {
     try {
       const newValue = e.newValue[0];
-      if (!settingsUtils.validateInput.keyboard.layouts.includes(newValue)) {
+      if (!settingsManager.validateInput.keyboard.layouts.includes(newValue)) {
         logger.error('Invalid keyboard layout:', newValue);
         return;
       }
 
-      const success = await settingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => accessibility.setKeyboardLayout({ layout: newValue }),
         newValue,
         'keyboardLayout'
       );
 
       if (success) {
-        this.setData({ keyboardLayout: newValue });
+        this.setState({ keyboardLayout: newValue });
       }
     } catch (error) {
       logger.error('Keyboard layout change error:', error);

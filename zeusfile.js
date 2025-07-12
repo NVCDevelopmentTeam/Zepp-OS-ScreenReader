@@ -18,7 +18,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
-    targets: ['gtr3-pro', 'gts4', 'falcon'],
+    targets: ['480x480-amazfit-gtr-3-pro'],
     capabilities: {
       'screen-reader': true,
       'accessibility': true,

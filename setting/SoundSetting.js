@@ -1,6 +1,8 @@
-import { settingsManager } from './utils'
+import { settingsManager, validateBoolean, handleSettingChange } from './utils'
 import { Audio } from '@zos/sensor'
 import { log } from '@zos/utils'
+import { logger } from '../utils/logger'
+import { accessibility } from '@zos/accessibility'
 
 Page({
   state: {
@@ -10,15 +12,9 @@ Page({
     soundEffects: true
   },
 
-  data: {
-    soundVolume: 1,
-    soundTheme: 'default',
-    soundEffects: true
-  },
-
   async onInit() {
     try {
-      const { success, capabilities } = await settingsManager.validateDevice(['audio'])
+      const { success } = await settingsManager.validateDevice(['audio'])
       if (!success) {
         throw new Error('Audio not supported')
       }
@@ -31,11 +27,11 @@ Page({
 
   async changeSoundVolume(value) {
     try {
-      if (!SettingsUtils.validateNumericRange(value, 0, 100)) {
+      if (!settingsManager.validateNumericRange(value, 0, 100)) {
         throw new Error('Invalid volume level')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => Audio.setVolume(value),
         value,
         'volume'
@@ -45,26 +41,26 @@ Page({
         this.setState({ soundVolume: value })
       }
     } catch (error) {
-      SettingsUtils.handleError(error, 'sound_volume')
+      settingsManager.handleError(error, 'sound_volume')
     }
   },
 
   changeSoundTheme: async function(e) {
     try {
       const newValue = e.newValue[0];
-      if (!settingsUtils.validateInput.sound.themes.includes(newValue)) {
+      if (!settingsManager.validateInput.sound.themes.includes(newValue)) {
         logger.error('Invalid sound theme:', newValue);
         return;
       }
 
-      const success = await handleSettingChange(
+      const success = await settingsManager.handleSettingChange(
         () => accessibility.setSoundTheme({ theme: newValue }),
         newValue,
         'soundTheme'
       );
 
       if (success) {
-        this.setData({ soundTheme: newValue });
+        this.setState({ soundTheme: newValue });
       }
     } catch (error) {
       logger.error('Sound theme change error:', error);
@@ -73,7 +69,7 @@ Page({
 
   async toggleSoundEffects() {
     try {
-      const currentValue = this.data.soundEffects;
+      const currentValue = this.state.soundEffects;
       const newValue = !currentValue;
 
       if (!validateBoolean(newValue)) {
@@ -88,7 +84,7 @@ Page({
       );
 
       if (success) {
-        this.setData({ soundEffects: newValue });
+        this.setState({ soundEffects: newValue });
       }
     } catch (error) {
       logger.error('Sound effects toggle error:', error);

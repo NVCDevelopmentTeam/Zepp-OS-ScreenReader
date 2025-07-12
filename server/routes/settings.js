@@ -18,7 +18,19 @@ router.post('/update', async (req, res) => {
   try {
     const { setting, value } = req.body
     const [success] = await settingsManager.handleSettingChange(
-      () => settingsManager[setting](value),
+      async () => {
+        switch (setting) {
+          case 'brightness':
+            await settingsManager.changeBrightness(value);
+            break;
+          case 'contrast':
+            await settingsManager.changeContrast(value);
+            break;
+          // Add other settings here as needed
+          default:
+            throw new Error(`Unknown setting: ${setting}`);
+        }
+      },
       value,
       setting
     )

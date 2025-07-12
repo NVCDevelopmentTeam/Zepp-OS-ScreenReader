@@ -1,42 +1,66 @@
-// Import the modules
-const ScreenReader = require('@system.screen-reader');
-const UI = require('@system.ui');
+import { createWidget, widget } from '@zos/ui'
+import { settingsManager } from './utils'
+import { log } from '@zos/utils'
 
-// Create an array of voice options
-const voices = ['Male', 'Female', 'Child'];
+Page({
+  state: {
+    selectedVoice: 'Male',
+    voices: ['Male', 'Female', 'Child']
+  },
 
-// Create a list element
-const list = UI.createElement('list', {
-  // Set the data source to the voices array
-  data: voices,
-  // Set the event handler for the select event
-  onselect: function (e) {
-    // Get the selected index from the event object
-    const selectedIndex = e.index;
-    // Set the voice to the selected option
-    ScreenReader.setVoice(voices[selectedIndex]);
-    // Update the label text
-    label.text = 'Voice: ' + voices[selectedIndex];
+  onInit() {
+    // You might want to load the initial voice from settings here
+    // For now, we'll use a default.
+  },
+
+  build() {
+    const voiceList = createWidget(widget.SELECT, {
+      x: 0,
+      y: 0,
+      w: '100%',
+      h: 200,
+      options: this.state.voices.map(voice => ({ text: voice, value: voice })),
+      value: this.state.selectedVoice,
+      onChange: (value) => this.changeVoice(value)
+    });
+
+    const voiceLabel = createWidget(widget.TEXT, {
+      x: 0,
+      y: 220,
+      w: '100%',
+      h: 50,
+      text: `Voice: ${this.state.selectedVoice}`,
+      fontSize: 24,
+      color: '#ffffff',
+      textAlign: 'center',
+      id: 'voiceLabel'
+    });
+
+    this.append(voiceList);
+    this.append(voiceLabel);
+  },
+
+  async changeVoice(value) {
+    try {
+      const [success] = await settingsManager.handleSettingChange(
+        // TODO: Replace with actual API call to set voice
+        () => log.log('Setting voice:', value),
+        value,
+        'voice'
+      );
+      if (success) {
+        this.setState({ selectedVoice: value });
+        this.updateLabel(value);
+      }
+    } catch (error) {
+      log.error('Voice change failed:', error);
+    }
+  },
+
+  updateLabel(value) {
+    const labelWidget = this.getElementById('voiceLabel');
+    if (labelWidget) {
+      labelWidget.setProperty(widget.TEXT, `Voice: ${value}`);
+    }
   }
 });
-
-// Create a label element
-const label = UI.createElement('label', {
-  // Set the initial text to the current voice
-  text: 'Voice: ' + ScreenReader.getVoice(),
-  // Set the style properties
-  fontSize: 24,
-  color: '#ffffff',
-  textAlign: 'center'
-});
-
-// Create a page element
-const page = UI.createElement('page', {
-  // Set the background color
-  backgroundColor: '#000000',
-  // Add the list and the label as children
-  children: [list, label]
-});
-
-// Export the page element
-module.exports = page;

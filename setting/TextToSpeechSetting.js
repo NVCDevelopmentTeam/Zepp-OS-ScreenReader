@@ -1,9 +1,8 @@
-// Import the accessibility module
-const accessibility = require('@system.accessibility');
+import { accessibility } from '@zos/accessibility'
 
 // Define the settings page
 Page({
-  data: {
+  state: {
     // The current values of the TTS settings
     ttsEngine: 'default',
     ttsVoice: 'en-US',
@@ -14,7 +13,7 @@ Page({
     // Get the new value from the picker
     let newValue = e.newValue[0];
     // Update the data
-    this.setData({
+    this.setState({
       ttsEngine: newValue
     });
     // Call the accessibility API to set the TTS engine
@@ -27,7 +26,7 @@ Page({
     // Get the new value from the picker
     let newValue = e.newValue[0];
     // Update the data
-    this.setData({
+    this.setState({
       ttsVoice: newValue
     });
     // Call the accessibility API to set the TTS voice
@@ -40,7 +39,7 @@ Page({
     // Get the new value from the picker
     let newValue = e.newValue[0];
     // Update the data
-    this.setData({
+    this.setState({
       ttsQuality: newValue
     });
     // Call the accessibility API to set the TTS quality
