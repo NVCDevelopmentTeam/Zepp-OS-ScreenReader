@@ -2,35 +2,36 @@
   import { browser } from '$app/environment';
   import { onMount } from 'svelte';
   import Card from './Card.svelte';
-
+  
   let { post, children } = $props();
-
   let elements = [];
   let headings = $state(post.headings);
-  let activeHeading = $state(headings[0]);
+  
+  // Alternative fix: Initialize as null and set in updateHeadings
+  let activeHeading = $state(null);
+  
   let scrollY;
-
+  
   function updateHeadings() {
     headings = post.headings;
-
+    activeHeading = headings[0]; // Set the initial active heading here
     if (browser) {
       elements = headings.map((heading) => {
         return document.getElementById(heading.id);
       });
     }
   }
-
+  
   function setActiveHeading() {
     scrollY = window.scrollY;
-
     const visibleIndex =
       elements.findIndex((element) => element.offsetTop + element.clientHeight > scrollY) - 1;
-
+    
     activeHeading = headings[visibleIndex];
-
+    
     const pageHeight = document.body.scrollHeight;
     const scrollProgress = (scrollY + window.innerHeight) / pageHeight;
-
+    
     if (!activeHeading) {
       if (scrollProgress > 0.5) {
         activeHeading = headings[headings.length - 1];
@@ -39,7 +40,7 @@
       }
     }
   }
-
+  
   onMount(() => {
     updateHeadings();
     setActiveHeading();

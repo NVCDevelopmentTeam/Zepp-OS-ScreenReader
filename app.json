@@ -2,7 +2,7 @@
   "configVersion": "v2",
   "app": {
     "appId": 25032,
-    "appName": "Empty",
+    "appName": "ZSR",
     "appType": "app",
     "version": {
       "code": 1,
@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "zepp",
-    "description": "empty application"
+    "description": "This is screen reader for zepp OS"
   },
   "permissions": [
     "data:os.device.info",
