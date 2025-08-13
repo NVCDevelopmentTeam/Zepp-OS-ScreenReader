@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-col gap-16 md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-  {#each posts as post}
+  {#each posts as post (post.slug)}
     <article class="grid items-start grid-cols-4 gap-8">
       <PostDate class="flex-col hidden md:flex text-sm" {post} />
 

@@ -34,11 +34,13 @@ npm run dev -- --open
    npm install
    ```
 3. Start the development server:
+
    ```bash
    npm run dev
    ```
-   
+
    Or open in a new browser tab:
+
    ```bash
    npm run dev -- --open
    ```
@@ -46,11 +48,13 @@ npm run dev -- --open
 ## Building for Production
 
 Create a production build:
+
 ```bash
 npm run build
 ```
 
 Preview the production build:
+
 ```bash
 npm run preview
 ```

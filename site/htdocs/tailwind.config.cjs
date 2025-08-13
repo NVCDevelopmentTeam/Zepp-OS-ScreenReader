@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {},
     backgroundImage: {
-      'custom-background': "url('/background.jpg')",
+      'custom-background': "url('/background.jpg')"
       // Add other custom wallpapers here
     },
     fontSize: {
@@ -88,27 +88,27 @@ module.exports = {
           '--tw-prose-invert-pre-border': theme('colors.zinc.200 / 0.1'),
           '--tw-prose-invert-th-borders': theme('colors.zinc.700'),
           '--tw-prose-invert-td-borders': theme('colors.zinc.800'),
-          'color': 'var(--tw-prose-body)',
+          color: 'var(--tw-prose-body)',
           'line-height': theme('lineHeight.7'),
           '> *': {
             'margin-top': theme('spacing.10'),
             'margin-bottom': theme('spacing.10')
           },
-          'p': {
+          p: {
             'margin-top': theme('spacing.7'),
             'margin-bottom': theme('spacing.7')
           },
           'h2, h3': {
-            'color': 'var(--tw-prose-headings)',
+            color: 'var(--tw-prose-headings)',
             'font-weight': 'semibold'
           },
-          'h2': {
+          h2: {
             'font-size': theme('fontSize.xl')[0],
             'line-height': theme('lineHeight.7'),
             'margin-top': theme('spacing.20'),
             'margin-bottom': theme('spacing.4')
           },
-          'h3': {
+          h3: {
             'font-size': theme('fontSize.base')[0],
             'line-height': theme('lineHeight.7'),
             'margin-top': theme('spacing.16'),
@@ -117,14 +117,14 @@ module.exports = {
           ':is(h2, h3) + *': {
             'margin-top': 0
           },
-          'img': {
+          img: {
             'border-radius': theme('borderRadius.3xl')
           },
-          'video': {
+          video: {
             'border-radius': theme('borderRadius.3xl')
           },
-          'a': {
-            'color': 'var(--tw-prose-links)',
+          a: {
+            color: 'var(--tw-prose-links)',
             'font-weight': 'semibold',
             'text-decoration': 'underline',
             'text-decoration-color': 'var(--tw-prose-underline)',
@@ -133,21 +133,21 @@ module.exports = {
             'transition-timing-function': theme('transitionTimingFunction.in-out')
           },
           'a:hover': {
-            'color': 'var(--tw-prose-links-hover)',
+            color: 'var(--tw-prose-links-hover)',
             'text-decoration-color': 'var(--tw-prose-underline-hover)'
           },
           ':is(h1,h2,h3,h4,h5,h6) a': {
-            'color': 'var(--tw-prose-headings)',
+            color: 'var(--tw-prose-headings)',
             'text-decoration': 'none',
             'font-weight': 'inherit'
           },
-          'strong': {
-            'color': 'var(--tw-prose-bold)',
+          strong: {
+            color: 'var(--tw-prose-bold)',
             'font-weight': 'semibold'
           },
-          'code': {
-            'display': 'inline-block',
-            'color': 'var(--tw-prose-code)',
+          code: {
+            display: 'inline-block',
+            color: 'var(--tw-prose-code)',
             'font-size': theme('fontSize.sm')[0],
             'font-weight': 'semibold',
             'background-color': 'var(--tw-prose-code-bg)',
@@ -156,36 +156,36 @@ module.exports = {
             'padding-right': theme('spacing.1')
           },
           'a code': {
-            'color': 'inherit'
+            color: 'inherit'
           },
           ':is(h2, h3) code': {
             'font-weight': 'bold'
           },
-          'blockquote': {
+          blockquote: {
             'padding-left': theme('spacing.6'),
             'border-left-width': theme('borderWidth.2'),
             'border-left-color': 'var(--tw-prose-quote-borders)',
             'font-style': 'italic'
           },
-          'figcaption': {
-            'color': 'var(--tw-prose-captions)',
+          figcaption: {
+            color: 'var(--tw-prose-captions)',
             'font-size': theme('fontSize.sm')[0],
             'line-height': theme('lineHeight.6'),
             'margin-top': theme('spacing.3')
           },
           'figcaption > p': {
-            'margin': 0
+            margin: 0
           },
-          'ul': {
+          ul: {
             'list-style-type': 'disc'
           },
-          'ol': {
+          ol: {
             'list-style-type': 'decimal'
           },
           'ul, ol': {
             'padding-left': theme('spacing.6')
           },
-          'li': {
+          li: {
             'margin-top': theme('spacing.6'),
             'margin-bottom': theme('spacing.6'),
             'padding-left': theme('spacing[3.5]')
@@ -195,10 +195,10 @@ module.exports = {
             'font-weight': 'semibold'
           },
           'ol > li::marker': {
-            'color': 'var(--tw-prose-counters)'
+            color: 'var(--tw-prose-counters)'
           },
           'ul > li::marker': {
-            'color': 'var(--tw-prose-bullets)'
+            color: 'var(--tw-prose-bullets)'
           },
           'li :is(ol, ul)': {
             'margin-top': theme('spacing.4'),
@@ -208,50 +208,50 @@ module.exports = {
             'margin-top': theme('spacing.3'),
             'margin-bottom': theme('spacing.3')
           },
-          'pre': {
-            'color': 'var(--tw-prose-pre-code)',
+          pre: {
+            color: 'var(--tw-prose-pre-code)',
             'font-size': theme('fontSize.sm')[0],
             'font-weight': 'medium',
             'background-color': 'var(--tw-prose-pre-bg)',
             'border-radius': theme('borderRadius.3xl'),
-            'padding': theme('spacing.8'),
+            padding: theme('spacing.8'),
             'overflow-x': 'auto',
-            'border': '1px solid',
+            border: '1px solid',
             'border-color': 'var(--tw-prose-pre-border)'
           },
           'pre code': {
-            'display': 'inline',
-            'color': 'inherit',
+            display: 'inline',
+            color: 'inherit',
             'font-size': 'inherit',
             'font-weight': 'inherit',
             'background-color': 'transparent',
             'border-radius': 0,
-            'padding': 0
+            padding: 0
           },
-          'hr': {
+          hr: {
             'margin-top': theme('spacing.20'),
             'margin-bottom': theme('spacing.20'),
             'border-top-width': '1px',
             'border-color': 'var(--tw-prose-hr)'
           },
           '@media (min-width: 1024px)': {
-            'hr': {
+            hr: {
               'margin-left': `calc(${theme('spacing.12')} * -1)`,
               'margin-right': `calc(${theme('spacing.12')} * -1)`
             }
           },
-          'table': {
-            'width': '100%',
+          table: {
+            width: '100%',
             'table-layout': 'auto',
             'text-align': 'left',
             'font-size': theme('fontSize.sm')[0]
           },
-          'thead': {
+          thead: {
             'border-bottom-width': '1px',
             'border-bottom-color': 'var(--tw-prose-th-borders)'
           },
           'thead th': {
-            'color': 'var(--tw-prose-headings)',
+            color: 'var(--tw-prose-headings)',
             'font-weight': 'semibold',
             'vertical-align': 'bottom',
             'padding-bottom': theme('spacing.2')
@@ -272,7 +272,7 @@ module.exports = {
           'tbody td': {
             'vertical-align': 'baseline'
           },
-          'tfoot': {
+          tfoot: {
             'border-top-width': '1px',
             'border-top-color': 'var(--tw-prose-th-borders)'
           },

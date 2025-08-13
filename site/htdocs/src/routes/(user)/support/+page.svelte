@@ -8,10 +8,7 @@
   let issue = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader/issues';
   const pageTitle = 'Support';
 
-  const openDialog = () => {
-    dialog.showModal();
-    dialog.focus();
-  };
+  
   const closeDialog = () => {
     dialog.close();
   };
@@ -74,12 +71,12 @@
     </ul>
   </section>
   <h2 id="frequently asked questions">frequently asked questions</h2>
-  <CollapsibleSection headerText={'What is ZSR?'}>
+  <CollapsibleSection headerText='What is ZSR?'>
     <div class="content">
       Zepp OS Screen reader (ZSR) is a feature that supports users who are visually impaired or have difficulty reading the screen on Zepp OS smartwatches. ZSR uses speech synthesis technology to read the content displayed on the screen, helping users easily access and use the watch.
     </div>
   </CollapsibleSection>
-  <CollapsibleSection headerText={'How to enable ZSR?'}>
+  <CollapsibleSection headerText='How to enable ZSR?'>
     <ol>
       <li>Open the Settings app on your watch.</li>
       <li>Select Accessibility.</li>
@@ -87,7 +84,7 @@
       <li>Turn on the Screen Reader switch.</li>
     </ol>
   </CollapsibleSection>
-  <CollapsibleSection headerText={'How to use ZSR?'}>
+  <CollapsibleSection headerText='How to use ZSR?'>
     <ul>
       <li>Swipe up or down to move through items.</li>
       <li>Double-tap to select an item.</li>
@@ -95,7 +92,7 @@
       <li>Press and hold to activate the voice assistant.</li>
     </ul>
   </CollapsibleSection>
-  <CollapsibleSection headerText={'What contents can ZSR read?'}>
+  <CollapsibleSection headerText='What contents can ZSR read?'>
     <p>ZSR can read most of the content displayed on the watch screen, including:</p>
     <ul>
       <li>Time</li>
@@ -107,7 +104,7 @@
       <li>etc.</li>
     </ul>
   </CollapsibleSection>
-  <CollapsibleSection headerText={'What languages does ZSR support?'}>
+  <CollapsibleSection headerText='What languages does ZSR support?'>
     <p>ZSR currently supports the following languages:</p>
     <ul>
       <li>English</li>
@@ -122,7 +119,7 @@
       <li>Italian</li>
     </ul>
   </CollapsibleSection>
-<CollapsibleSection headerText={'Where can I learn more about ZSR?'}>
+<CollapsibleSection headerText='Where can I learn more about ZSR?'>
   <p>
     You can learn more about ZSR at Zepp's support site. Visit the 
     <a href="https://www.zepp.com/support/zsr" aria-label="Zepp OS Screen Reader support page">
@@ -131,7 +128,7 @@
     for detailed information.
   </p>
 </CollapsibleSection>
-  <CollapsibleSection headerText={'Other FAQ'}>
+  <CollapsibleSection headerText='Other FAQ'>
     <ul>
       <li>
         <h3>Does ZSR consume a lot of battery?</h3>

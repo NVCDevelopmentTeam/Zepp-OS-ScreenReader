@@ -1,7 +1,7 @@
 <script>
-  import { siteTitle, siteURL, siteAuthor } from '$lib/info.js';
+  import { siteTitle, siteAuthor } from '$lib/info.js';
   import ToC from '$lib/components/ToC.svelte';
-  import { afterNavigate } from '$app/navigation';
+  
   import PostDate from '$lib/components/PostDate.svelte';
 
   /**

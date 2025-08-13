@@ -2,6 +2,7 @@
 title: Official Launch of Zepp OS Screen Reader Website
 date: 2025-01-17T18:30:00
 ---
+
 Dear Users,
 
 We are thrilled to announce the official launch of the Zepp OS Screen Reader website, now live at zeppreader.com. This marks a significant milestone in our commitment to providing accessible technology solutions for the visually impaired community.

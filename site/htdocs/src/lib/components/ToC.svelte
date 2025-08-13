@@ -54,7 +54,7 @@
     {@render children()}
   {:else}
     <ul class="flex flex-col gap-3">
-      {#each headings as heading}
+      {#each headings as heading (heading.id)}
         <li
           class="pl-3 py-2 text-sm transition-colors border-l-4 border-teal-500 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-teal-50 dark:hover:bg-teal-700 rounded-md"
           class:active={activeHeading === heading}

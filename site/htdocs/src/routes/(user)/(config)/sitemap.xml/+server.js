@@ -1,7 +1,7 @@
-import { posts } from '$lib/data/posts';
-import { siteURL } from '$lib/info';
+import { posts } from '$lib/data/posts'
+import { siteURL } from '$lib/info'
 
-export const prerender = true;
+export const prerender = true
 
 // Definition of static pages
 const staticPages = [
@@ -11,10 +11,10 @@ const staticPages = [
   { loc: `${siteURL}/accessibility-statement`, priority: 0.7 },
   { loc: `${siteURL}/support`, priority: 0.7 },
   { loc: `${siteURL}/privacy-policy`, priority: 0.6 }
-];
+]
 
 // Definition of the path for the article
-const getPostUrl = (slug) => `${siteURL}/news/${slug}`;
+const getPostUrl = (slug) => `${siteURL}/news/${slug}`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -23,7 +23,7 @@ export async function GET({ setHeaders }) {
   setHeaders({
     'Cache-Control': 'max-age=0, s-max-age=600',
     'Content-Type': 'application/xml'
-  });
+  })
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset
@@ -47,16 +47,14 @@ export async function GET({ setHeaders }) {
     <url>
       <loc>${getPostUrl(post.slug)}</loc>
       <lastmod>${
-        post.updated
-          ? new Date(post.updated).toISOString()
-          : new Date(post.date).toISOString()
+        post.updated ? new Date(post.updated).toISOString() : new Date(post.date).toISOString()
       }</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
     </url>`
     )
     .join('')}
-</urlset>`;
+</urlset>`
 
-  return new Response(xml);
+  return new Response(xml)
 }

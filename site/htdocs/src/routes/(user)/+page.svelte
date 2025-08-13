@@ -34,7 +34,7 @@
   </section>
   <h2 class="text-2xl font-semibold mt-6">Features:</h2>
   <ul class="list-disc list-inside mt-2 text-lg">
-    {#each features as feature}
+    {#each features as feature (feature)}
       <li>{feature}</li>
     {/each}
   </ul>

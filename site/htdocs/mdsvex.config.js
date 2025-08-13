@@ -54,7 +54,7 @@ function headings() {
     remarkHeadings()(tree, vfile)
 
     // include the headings data in mdsvex frontmatter
-    vfile.data.fm = vfile.data.fm || {};
+    vfile.data.fm = vfile.data.fm || {}
     vfile.data.fm.headings = vfile.data.headings.map((heading) => ({
       ...heading,
       // slugify heading.value

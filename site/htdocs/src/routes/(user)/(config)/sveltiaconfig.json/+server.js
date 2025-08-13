@@ -1,15 +1,15 @@
-import { json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit'
 
 export async function GET() {
   const config = {
-local_backend: false,
+    local_backend: false,
     backend: {
       name: 'github',
       repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
       branch: 'main',
       site_domain: 'zeppreader.com',
       base_url: 'https://www.zeppreader.com',
-      auth_endpoint: '/oauth',
+      auth_endpoint: '/oauth'
     },
     media_folder: '/site/htdocs/src/lib/images',
     public_folder: '/site/htdocs/src/lib/images',
@@ -30,45 +30,45 @@ local_backend: false,
           {
             label: 'Title',
             name: 'title',
-            widget: 'string',
+            widget: 'string'
           },
           {
             label: 'Publish Date',
             name: 'date',
-            widget: 'datetime',
+            widget: 'datetime'
           },
           {
             label: 'Body',
             name: 'body',
-            widget: 'markdown',
-          },
-        ],
-      },
-    ],
-  };
+            widget: 'markdown'
+          }
+        ]
+      }
+    ]
+  }
 
-  return json(config);
+  return json(config)
 }
 
 export async function POST({ url }) {
   try {
     // Fetch OAuth login data
-    const postRes = await fetch(`${url.origin}/oauth`);
+    const postRes = await fetch(`${url.origin}/oauth`)
     if (!postRes.ok) {
-      throw new Error(`Failed to fetch OAuth login data: ${postRes.statusText}`);
+      throw new Error(`Failed to fetch OAuth login data: ${postRes.statusText}`)
     }
-    const posts = await postRes.json();
+    const posts = await postRes.json()
 
     // Fetch OAuth callback data
-    const totalRes = await fetch(`${url.origin}/oauth/callback`);
+    const totalRes = await fetch(`${url.origin}/oauth/callback`)
     if (!totalRes.ok) {
-      throw new Error(`Failed to fetch OAuth callback data: ${totalRes.statusText}`);
+      throw new Error(`Failed to fetch OAuth callback data: ${totalRes.statusText}`)
     }
-    const total = await totalRes.json();
+    const total = await totalRes.json()
 
     // Return the combined data as JSON
-    return json({ posts, total });
+    return json({ posts, total })
   } catch (error) {
-    return json({ error: error.message }, { status: 500 });
+    return json({ error: error.message }, { status: 500 })
   }
 }
