@@ -1,5 +1,4 @@
 <script>
-  
   import logo from '$lib/images/logo.jpg';
   /**
    * @typedef {Object} Props
