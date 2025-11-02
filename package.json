@@ -16,14 +16,14 @@
   "author": "NVC development Team",
   "license": "MIT License",
   "devDependencies": {
-    "@eslint/compat": "^1.4.0",
-    "@eslint/js": "^9.37.0",
+    "@eslint/compat": "^1.4.1",
+    "@eslint/js": "^9.39.0",
     "@zeppos/device-types": "^3.0.0",
-    "eslint": "^9.37.0",
+    "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
-    "globals": "^16.4.0"
+    "globals": "^16.5.0"
   },
   "dependencies": {
-    "eslint": "^9.37.0"
+    "eslint": "^9.39.0"
   }
 }

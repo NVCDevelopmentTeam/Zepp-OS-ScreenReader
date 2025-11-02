@@ -29,17 +29,17 @@
         <PostDate class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400" post={data.post} decorate collapsed />
       </header>
 
-      <!-- render the post -->
-      <div class="mt-6">
-        <data.component />
-      </div>
-    </article>
-
     <!-- table of contents -->
     <div class="hidden xl:block pt-10">
       <aside class="sticky top-8 xl:block w-48 ml-8" aria-label="Table of Contents">
         <ToC post={data.post} />
       </aside>
     </div>
+
+      <!-- render the post -->
+      <div class="mt-6">
+        <data.component />
+      </div>
+    </article>
   </div>
 </div>
