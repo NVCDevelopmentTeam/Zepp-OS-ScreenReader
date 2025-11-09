@@ -2,51 +2,33 @@ module.exports = {
   type: 'app',
   builder: '@zeppos/zeus-cli',
   options: {
-    deviceType: 'gtr3-pro',
+    deviceType: 'gts-4',
     targets: [
       '480x480-gtr-3-pro',
       '466x466-gtr-4',
       '390x450-gts-4',
-      '454x454-t-rex-ultra'
+      '454x454-t-rex-ultra',
+      '416x416-gts-3',
+      '454x454-gtr-3',
+      '454x454-gtr-3-pro',
+      '466x466-gts-4-mini',
+      '466x466-t-rex-2',
+      '466x466-falcon',
+      '466x466-balance',
+      '466x466-bip-5',
+      '466x466-gts-2',
+      '466x466-gtr-2',
+      '466x466-gtr-2e',
+      '466x466-gts-2e',
+      '466x466-gts-2-mini',
+      '466x466-bip-u',
+      '466x466-bip-u-pro',
+      '466x466-band-7',
+      '466x466-band-5',
+      '466x466-band-6',
+      '466x466-band-8',
+      '466x466-band-9',
+      '466x466-band-10'
     ],
-    development: {
-      outputPath: 'dist',
-      targetDevice: 'simulator'
-    },
-    assets: {
-      path: 'assets',
-      icons: {
-        'gtr3-pro': { path: 'assets/480x480-gtr-3-pro/icons/icon.png', size: 120 },
-        'gtr4': { path: 'assets/466x466-gtr-4/icons/icon.png', size: 120 },
-        'gts4': { path: 'assets/390x450-gts-4/icons/icon.png', size: 120 },
-        't-rex-ultra': { path: 'assets/454x454-t-rex-ultra/icons/icon.png', size: 120 }
-      },
-      sounds: {
-        path: 'assets/sounds',
-        files: [
-          'tap.wav',
-          'success.wav',
-          'error.wav',
-          'warning.wav',
-          'notification.wav'
-        ]
-      }
-    },
-    moduleResolution: {
-      alias: {
-        '@zos': '@zeppos/zeus-cli/api',
-        '@zos/ui': '@zeppos/zeus-cli/api/ui',
-        '@zos/utils': '@zeppos/zeus-cli/api/utils',
-        '@zos/device': '@zeppos/zeus-cli/api/device',
-        '@zos/settings': '@zeppos/zeus-cli/api/settings'
-      },
-      fallback: {
-        '@zos/ui': false,
-        '@zos/utils': false,
-        '@zos/device': false,
-        '@zos/settings': false
-      },
-      extensions: ['.js', '.json']
-    }
-  }
-}
+  },
+};

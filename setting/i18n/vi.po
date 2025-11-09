@@ -1,2 +1,56 @@
-msgid "example"
-msgstr "This is an example in app-side"
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Voice"
+msgstr "Giọng nói"
+
+msgid "Gesture"
+msgstr "Cử chỉ"
+
+msgid "General"
+msgstr "Chung"
+
+msgid "Display"
+msgstr "Hiển thị"
+
+msgid "Feedback"
+msgstr "Phản hồi"
+
+msgid "Advanced"
+msgstr "Nâng cao"
+
+msgid "Braille"
+msgstr "Chữ nổi Braille"
+
+msgid "OCR"
+msgstr "Nhận dạng ký tự quang học"
+
+msgid "Sound"
+msgstr "Âm thanh"
+
+msgid "Speech"
+msgstr "Giọng nói"
+
+msgid "Font"
+msgstr "Phông chữ"
+
+msgid "Text-to-Speech"
+msgstr "Chuyển văn bản thành giọng nói"
+
+msgid "Shortcut"
+msgstr "Phím tắt"
+
+msgid "Accessibility"
+msgstr "Trợ năng"
+
+msgid "Volume"
+msgstr "Âm lượng"
+
+msgid "Keyboard"
+msgstr "Bàn phím"
+
+msgid "Menu"
+msgstr "Thực đơn"
+
+msgid "Input Gesture"
+msgstr "Cử chỉ nhập liệu đầu vào"
