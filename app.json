@@ -17,6 +17,14 @@
     "device:os.local_storage",
     "data:user.hd.calorie"
   ],
+  "external": [
+    "@zos/message",
+    "@zos/utils",
+    "@zos/sensor",
+    "@zos/settings",
+    "@zos/ui",
+    "@zos/device"
+  ],
   "runtime": {
     "apiVersion": {
       "compatible": "2.0.0",
