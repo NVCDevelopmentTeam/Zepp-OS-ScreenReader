@@ -23,6 +23,6 @@
     "prettier": "^3.2.5"
   },
   "dependencies": {
-    "@zeppos/zml": "latest"
+    "@zeppos/mini-program-watchface-sdk": "^3.0.0"
   }
 }

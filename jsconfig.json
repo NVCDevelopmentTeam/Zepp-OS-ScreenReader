@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "checkJs": true
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@zos/*": ["./node_modules/@zeppos/device-types/types/zos/*"]
+    }
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "files": ["node_modules/@zeppos/device-types/dist/index.d.ts"]
+  "include": ["**/*.js", "**/*.json"]
 }
