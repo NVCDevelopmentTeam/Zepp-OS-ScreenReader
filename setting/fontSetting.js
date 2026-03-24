@@ -1,5 +1,5 @@
-import { SettingsUtils } from './utils'
-import { createWidget, widget, text } from '@zos/ui' 
+import { settingsManager } from './utils.js'
+import { createWidget, widget, text } from '@zos/ui'
 import { log } from '@zos/utils'
 import { getDeviceInfo } from '@zos/device'
 
@@ -19,8 +19,8 @@ Page({
   async checkFontSupport() {
     try {
       const deviceInfo = await getDeviceInfo()
-      this.setState({ 
-        supported: deviceInfo.capabilities?.text?.fonts || false 
+      this.setState({
+        supported: deviceInfo.capabilities?.text?.fonts || false
       })
     } catch (error) {
       log.error('Font support check failed:', error)
@@ -56,7 +56,7 @@ Page({
       h: 50,
       options: ['default', 'system', 'monospace'],
       value: this.state.fontFamily,
-      onChange: (value) => this.changeFontFamily(value) 
+      onChange: (value) => this.changeFontFamily(value)
     })
 
     return container
@@ -64,11 +64,11 @@ Page({
 
   async changeFontSize(value) {
     try {
-      if (!SettingsUtils.validateNumericRange(value, 12, 32)) {
-        throw new Error('Invalid font size') 
+      if (!settingsManager.validateNumericRange(value, 12, 32)) {
+        throw new Error('Invalid font size')
       }
 
-      const success = await SettingsUtils.handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => text.setFontSize(value),
         value,
         'fontSize'
@@ -84,13 +84,13 @@ Page({
 
   async changeFontScale(value) {
     try {
-      if (!SettingsUtils.validateDisplay.fontScale(value)) {
+      if (!settingsManager.validateDisplay.fontScale(value)) {
         throw new Error('Invalid font scale')
       }
-      
-      const success = await SettingsUtils.handleSettingChange(
+
+      const [success] = await settingsManager.handleSettingChange(
         () => text.setFontScale(value),
-        value, 
+        value,
         'fontScale'
       )
 

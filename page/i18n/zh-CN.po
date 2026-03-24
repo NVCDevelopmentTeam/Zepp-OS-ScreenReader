@@ -1,0 +1,380 @@
+msgid "readFromTop"
+msgstr "从顶部开始读取"
+
+msgid "screenRecognition"
+msgstr "屏幕识别"
+
+msgid "describeCamera"
+msgstr "描述相机"
+
+msgid "imageDescription"
+msgstr "图像描述"
+
+msgid "brailleKeyboard"
+msgstr "盲文键盘"
+
+msgid "repeatLast"
+msgstr "重复最后一项"
+
+msgid "cancel"
+msgstr "取消"
+
+msgid "contextMenuOpened"
+msgstr "上下文菜单已打开"
+
+msgid "contextMenuClosed"
+msgstr "上下文菜单已关闭"
+
+msgid "noImageFocused"
+msgstr "未聚焦图像"
+
+msgid "nothingToRepeat"
+msgstr "没有可重复的内容"
+
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+msgid "Debug Log"
+msgstr "调试日志"
+
+msgid "Verbose"
+msgstr "详细"
+
+msgid "Export Logs"
+msgstr "导出日志"
+
+msgid "Exporting logs"
+msgstr "正在导出日志"
+
+msgid "Clear Speech History"
+msgstr "清除语音历史记录"
+
+msgid "Speech history cleared"
+msgstr "语音历史记录已清除"
+
+msgid "Contact & Feedback"
+msgstr "联系与反馈"
+
+msgid "Introduction"
+msgstr "简介"
+
+msgid "App Information"
+msgstr "应用信息"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Build Date"
+msgstr "构建日期"
+
+msgid "Developer"
+msgstr "开发者"
+
+msgid "Supported"
+msgstr "已支持"
+
+msgid "Optimized"
+msgstr "已优化"
+
+msgid "Developer options unlocked!"
+msgstr "开发者选项已解锁！"
+
+msgid "Tap"
+msgstr "点按"
+
+msgid "more times to unlock."
+msgstr "次以解锁。"
+
+msgid "Accessibility"
+msgstr "辅助功能"
+
+msgid "Gestures"
+msgstr "手势"
+
+msgid "Shortcuts"
+msgstr "快捷键"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Sensors"
+msgstr "传感器"
+
+msgid "Voice Control"
+msgstr "语音控制"
+
+msgid "User Guide"
+msgstr "用户指南"
+
+msgid "Section"
+msgstr "章节"
+
+msgid "of"
+msgstr "/"
+
+msgid "Swipe right for next."
+msgstr "向右滑动以继续。"
+
+msgid "Previous"
+msgstr "上一个"
+
+msgid "Next"
+msgstr "下一个"
+
+msgid "Braille Pairing"
+msgstr "盲文配对"
+
+msgid "Scanning..."
+msgstr "正在扫描..."
+
+msgid "Ready to scan"
+msgstr "准备扫描"
+
+msgid "No displays found"
+msgstr "未找到显示器"
+
+msgid "Stop Scan"
+msgstr "停止扫描"
+
+msgid "Start Scan"
+msgstr "开始扫描"
+
+msgid "Scanning for Braille displays"
+msgstr "正在扫描盲文显示器"
+
+msgid "Connecting to"
+msgstr "正在连接到"
+
+msgid "Connected to"
+msgstr "已连接到"
+
+msgid "Audio & Braille"
+msgstr "音频和盲文"
+
+msgid "Braille Output"
+msgstr "盲文输出"
+
+msgid "Table"
+msgstr "表格"
+
+msgid "Change Table"
+msgstr "更改表格"
+
+msgid "Pair Display"
+msgstr "配对显示器"
+
+msgid "Swipe Up"
+msgstr "向上滑动"
+
+msgid "Swipe Down"
+msgstr "向下滑动"
+
+msgid "Swipe Left"
+msgstr "向左滑动"
+
+msgid "Swipe Right"
+msgstr "向右滑动"
+
+msgid "Double Tap"
+msgstr "双击"
+
+msgid "Long Press"
+msgstr "长按"
+
+msgid "Gestures & Input"
+msgstr "手势和输入"
+
+msgid "General Settings"
+msgstr "常规设置"
+
+msgid "ZSR Status"
+msgstr "ZSR 状态"
+
+msgid "Confirm Disable"
+msgstr "确认禁用"
+
+msgid "Auto-start"
+msgstr "自启动"
+
+msgid "Check for Updates"
+msgstr "检查更新"
+
+msgid "Remote Access"
+msgstr "远程访问"
+
+msgid "Allow Access"
+msgstr "允许访问"
+
+msgid "Start Session"
+msgstr "开始会话"
+
+msgid "Remote session started"
+msgstr "远程会话已开始"
+
+msgid "Object Presentation"
+msgstr "对象演示"
+
+msgid "Read Emoji"
+msgstr "读取表情符号"
+
+msgid "Read Symbols"
+msgstr "读取符号"
+
+msgid "Report Passwords"
+msgstr "朗读密码"
+
+msgid "Announce Day"
+msgstr "播报日期"
+
+msgid "Passwords"
+msgstr "密码"
+
+msgid "Spell"
+msgstr "拼写"
+
+msgid "Mask"
+msgstr "掩码"
+
+msgid "Log History"
+msgstr "日志历史记录"
+
+msgid "Limit"
+msgstr "限制"
+
+msgid "items"
+msgstr "项"
+
+msgid "View History"
+msgstr "查看历史记录"
+
+msgid "Clear History"
+msgstr "清除历史记录"
+
+msgid "Speech Settings"
+msgstr "语音设置"
+
+msgid "Speech Rate"
+msgstr "语速"
+
+msgid "Speech Pitch"
+msgstr "语调"
+
+msgid "Read Status Bar"
+msgstr "读取状态栏"
+
+msgid "Read Progress"
+msgstr "读取进度"
+
+msgid "Read Hints"
+msgstr "读取提示"
+
+msgid "Engine"
+msgstr "引擎"
+
+msgid "TTS engine set to"
+msgstr "TTS 引擎设置为"
+
+msgid "Vision Settings"
+msgstr "视觉设置"
+
+msgid "Screen Curtain"
+msgstr "屏幕幕布"
+
+msgid "Explore Mode"
+msgstr "探索模式"
+
+msgid "Magnification"
+msgstr "放大"
+
+msgid "Navigation Settings"
+msgstr "导航设置"
+
+msgid "Review Cursor"
+msgstr "审查光标"
+
+msgid "Browse by"
+msgstr "浏览方式"
+
+msgid "Change Type"
+msgstr "更改类型"
+
+msgid "Notification Settings"
+msgstr "通知设置"
+
+msgid "Read All"
+msgstr "全部读取"
+
+msgid "Read SMS"
+msgstr "读取短信"
+
+msgid "Read Calls"
+msgstr "读取通话"
+
+msgid "Read Missed"
+msgstr "读取未接来电"
+
+msgid "Document Settings"
+msgstr "文档设置"
+
+msgid "Formatting"
+msgstr "格式化"
+
+msgid "Tables"
+msgstr "表格"
+
+msgid "Input Composition"
+msgstr "输入组合"
+
+msgid "Echo"
+msgstr "回声"
+
+msgid "Change Echo"
+msgstr "更改回声"
+
+msgid "Autocomplete"
+msgstr "自动完成"
+
+msgid "Sensor Information"
+msgstr "传感器信息"
+
+msgid "Read Heart Rate"
+msgstr "读取心率"
+
+msgid "Read SpO2"
+msgstr "读取血氧"
+
+msgid "Read Sleep Data"
+msgstr "读取睡眠数据"
+
+msgid "Read Steps"
+msgstr "读取步数"
+
+msgid "Read Stress"
+msgstr "读取压力"
+
+msgid "ZSR Dashboard"
+msgstr "ZSR 仪表板"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Enabled"
+msgstr "已启用"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Battery"
+msgstr "电池"
+
+msgid "Turn OFF ZSR"
+msgstr "关闭 ZSR"
+
+msgid "Turn ON ZSR"
+msgstr "开启 ZSR"
+
+msgid "About"
+msgstr "关于"

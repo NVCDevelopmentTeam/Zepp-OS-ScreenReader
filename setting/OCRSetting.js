@@ -1,4 +1,4 @@
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { OCR } from '@zos/sensor'
 import { log } from '@zos/utils'
 
@@ -29,9 +29,7 @@ Page({
     }
 
     const validator = validations[type]
-    return Array.isArray(validator) 
-      ? validator.includes(value)
-      : validator(value)
+    return Array.isArray(validator) ? validator.includes(value) : validator(value)
   },
 
   async changeOcrMode(e) {

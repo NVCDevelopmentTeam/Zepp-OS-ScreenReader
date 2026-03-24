@@ -1,5 +1,5 @@
 import { accessibility } from '@zos/accessibility'
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { log } from '@zos/utils'
 
 // Define the settings page
@@ -9,25 +9,25 @@ Page({
     menuItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
     menuOrder: 'asc',
     menuActions: {
-      'Read': accessibility.read,
-      'Pause': accessibility.pause,
-      'Next': accessibility.next,
-      'Previous': accessibility.previous,
-      'Settings': accessibility.settings
+      Read: accessibility.read,
+      Pause: accessibility.pause,
+      Next: accessibility.next,
+      Previous: accessibility.previous,
+      Settings: accessibility.settings
     }
   },
   // The function to change the menu items
   changeMenuItems(e) {
     // Get the new value from the list
-    let newValue = e.newValue;
+    let newValue = e.newValue
     // Update the data
     this.setState({
       menuItems: newValue
-    });
+    })
     // Call the accessibility API to set the menu items
     accessibility.setMenuItems({
       items: newValue
-    });
+    })
   },
   // The function to change the menu order
   async changeMenuOrder(e) {
@@ -59,30 +59,30 @@ Page({
   // The function to change the menu actions
   changeMenuActions(e) {
     // Get the new value from the map
-    let newValue = e.newValue;
+    let newValue = e.newValue
     // Update the data
     this.setState({
       menuActions: newValue
-    });
+    })
     // Call the accessibility API to set the menu actions
     accessibility.setMenuActions({
       actions: newValue
-    });
+    })
   },
   async registerMenuActions() {
     try {
       const { menuActions } = this.data
-      const registrationPromises = Object.entries(menuActions).map(
-        ([name, action]) => settingsManager.handleSettingChange(
+      const registrationPromises = Object.entries(menuActions).map(([name, action]) =>
+        settingsManager.handleSettingChange(
           () => accessibility.registerMenuAction(name, action),
           action,
           `menuAction_${name}`
         )
       )
-      
+
       await Promise.all(registrationPromises)
     } catch (error) {
       log.error('Menu registration error:', error)
     }
   }
-});
+})

@@ -1,96 +1,76 @@
-import { settingsManager } from './utils'
-import { createWidget, widget } from '@zos/ui'
-import { log } from '@zos/utils'
+import { Section, Row, Text, Toggle, Select, Slider } from '@zeppos/zml'
 
-Page({
-  state: {
-    rate: 1.0,
-    pitch: 1.0,
-    volume: 0.8
-  },
-
-  onInit() {
-    this.validateSpeechCapability()
-  },
-
-  async validateSpeechCapability() {
-    const { speech } = await settingsManager.deviceManager.validate()
-    if (!speech) {
-      throw new Error('Speech not supported')
-    }
-  },
-
-  build() {
-    try {
-      const rateSlider = this.createRateControl()
-      const pitchSlider = this.createPitchControl()
-      
-      this.append(rateSlider)
-      this.append(pitchSlider)
-    } catch (error) {
-      log.error('Speech controls build error:', error)
-    }
-  },
-
-  async changeSpeechRate(value) {
-    try {
-      if (!settingsManager.validateNumericRange(value, 0.5, 2.0)) {
-        throw new Error('Invalid speech rate')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Speech.setRate(value),
-        value,
-        'speechRate'
-      )
-      if (success) this.setState({ rate: value })
-    } catch (error) {
-      log.error('Speech rate change failed:', error)
-    }
-  },
-
-  async changeSpeechPitch(value) {
-    try {
-      if (!settingsManager.validateNumericRange(value, 0.5, 2.0)) {
-        throw new Error('Invalid speech pitch')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Speech.setPitch(value),
-        value,
-        'speechPitch'
-      )
-      if (success) this.setState({ pitch: value })
-    } catch (error) {
-      log.error('Speech pitch change failed:', error)
-    }
-  },
-
-  createRateControl() {
-    return createWidget(widget.SLIDER, {
-      x: 0,
-      y: 0,
-      w: '100%',
-      h: 40,
-      min: 0.5,
-      max: 2.0,
-      step: 0.1,
-      value: this.state.rate,
-      onChange: this.changeSpeechRate.bind(this)
-    })
-  },
-
-  createPitchControl() {
-    return createWidget(widget.SLIDER, {
-      x: 0,
-      y: 50,
-      w: '100%', 
-      h: 40,
-      min: 0.5,
-      max: 2.0,
-      step: 0.1,
-      value: this.state.pitch,
-      onChange: this.changeSpeechPitch.bind(this)
-    })
-  }
-})
+export default function renderSpeech(_props) {
+  return [
+    Section({ title: 'Speech' }, [
+      Row([
+        Text('Primary TTS Engine'),
+        Select({
+          settingsKey: 'primaryTTSEngine',
+          options: [
+            { label: 'eSpeak-NG', value: 'espeak' },
+            { label: 'Native TTS', value: 'native' },
+            { label: 'OpenAI (Cloud)', value: 'openai' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Secondary TTS Engine'),
+        Select({
+          settingsKey: 'secondaryTTSEngine',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'eSpeak-NG', value: 'espeak' },
+            { label: 'Native TTS', value: 'native' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Speech Rate'),
+        Slider({
+          settingsKey: 'speechRate',
+          min: 0.1,
+          max: 3.0,
+          step: 0.1
+        })
+      ]),
+      Row([
+        Text('Pitch'),
+        Slider({
+          settingsKey: 'speechPitch',
+          min: 0.1,
+          max: 2.0,
+          step: 0.1
+        })
+      ]),
+      Row([
+        Text('Volume'),
+        Slider({
+          settingsKey: 'speechVolume',
+          min: 0,
+          max: 1.0,
+          step: 0.1
+        })
+      ]),
+      Row([Text('Audio Ducking'), Toggle({ settingsKey: 'audioDucking' })]),
+      Row([Text('Read when screen off'), Toggle({ settingsKey: 'readScreenOff' })]),
+      Row([
+        Text('Granularity'),
+        Select({
+          settingsKey: 'defaultGranularity',
+          options: [
+            { label: 'Character', value: 'character' },
+            { label: 'Word', value: 'word' },
+            { label: 'Sentence', value: 'sentence' },
+            { label: 'Paragraph', value: 'paragraph' }
+          ]
+        })
+      ]),
+      Row([Text('Spell out mode'), Toggle({ settingsKey: 'spellOutMode' })]),
+      Row([Text('Read list position'), Toggle({ settingsKey: 'readListPosition' })]),
+      Row([Text('Read status bar'), Toggle({ settingsKey: 'readStatusBar' })]),
+      Row([Text('Read progress bars'), Toggle({ settingsKey: 'readProgressBars' })]),
+      Row([Text('Read usage hints'), Toggle({ settingsKey: 'readUsageHints' })])
+    ])
+  ]
+}

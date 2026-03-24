@@ -1,28 +1,28 @@
-import { log } from '@zos/utils';
-import { createWidget, widget } from '@zos/ui';
-import { settingsManager } from '../../setting/utils';
+import { log } from '@zos/utils'
+import { createWidget, widget } from '@zos/ui'
+import { settingsManager } from '../../setting/utils.js'
 
-Page({
+export default Page({
   state: {
     initialized: false
   },
 
   build() {
-    this.createMainUI();
+    this.createMainUI()
   },
 
   async createMainUI() {
     try {
-      const { capabilities } = await settingsManager.validateDevice();
-      
-      const container = createWidget(widget.GROUP);
-      this.createScreenReaderControls(container, capabilities);
+      const { capabilities } = await settingsManager.validateDevice()
 
-      return container;
+      const container = createWidget(widget.GROUP)
+      this.createScreenReaderControls(container, capabilities)
+
+      return container
     } catch (error) {
-      log.error('UI creation failed:', error);
+      log.error('UI creation failed:', error)
     }
-  },
+  }
 
   // ...existing code...
-});
+})

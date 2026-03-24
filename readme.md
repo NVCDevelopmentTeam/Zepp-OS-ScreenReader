@@ -6,37 +6,41 @@ The Zepp OS Screen Reader is a specialized application designed for devices oper
 
 ## Key Features
 
-- **Text-to-Speech Output:** Converts text into spoken words.
-- **Braille Support:** Facilitates braille display compatibility.
-- **Navigation Commands:** Enables intuitive navigation.
-- **Application Interaction:** Seamlessly interacts with apps and device settings.
+- **Text-to-Speech Output:** Dual TTS engine support (Native + eSpeak-NG).
+- **Screen Explore Mode:** Touch-to-read functionality for intuitive screen exploration.
+- **Braille Support:** Vibration Braille and BLE Braille display compatibility.
+- **Voice Control:** Hands-free operation with robust command recognition.
+- **Gesture Engine:** Fully customizable single and multi-finger gestures.
+- **Notification Reading:** Real-time announcements for SMS, Calls, and App notifications.
+- **Health Sensor Accessibility:** Verbal readings for Heart Rate, SpO2, Sleep, Steps, and Stress.
+- **Hardware Button Remapping:** Use physical buttons for precise navigation.
 
 ## Supported Devices
 
-The following Amazfit watch models are currently compatible with Zepp OS Screen Reader:
+ZSR is optimized for a wide range of Zepp OS devices, including:
 
-- Amazfit GTS 3
-- Amazfit GTR 3
-- Amazfit GTR 3 Pro
-- Amazfit GTS 4 Mini
-- Amazfit T-Rex 2
-- Amazfit Falcon
-- Amazfit Balance
-- Amazfit Bip 5
+- **Amazfit Bip 6 (New)**
+- **Amazfit T-Rex 2 & Ultra**
+- **Amazfit GTR 4 & Mini**
+- **Amazfit GTS 4**
+- **Amazfit Balance & Cheetah Pro**
+- **Amazfit Falcon**
+- And all other devices running Zepp OS 2.0 or higher.
 
-*Note: The list of supported devices is subject to updates. Please refer to the [official Amazfit website](https://www.zepp.com) for the latest information.*
+_Note: The list of supported devices is subject to updates. Please refer to the [official Amazfit website](https://www.zepp.com) for the latest information._
 
 ## Recommended Zepp OS Version
 
 For optimal performance, we recommend using Zepp OS 3.5 or higher. These versions incorporate OpenAI's GPT-4o technology and Zepp Flow™, offering advanced text-to-speech capabilities for a smoother and more natural user experience. [Learn more](https://www.zepp.com/press-release/zepp-health-introduces-zepp-os-4-redefining-wearable-intelligence-by-integrating-openais-gpt-4o-into-its-amazfit-smartwatches?utm_source=chatgpt.com)
 
-*Note: On lower versions of Zepp OS, the application will use eSpeak TTS, which may not provide the same voice quality as OpenAI TTS.*
+_Note: On lower versions of Zepp OS, the application will use eSpeak TTS, which may not provide the same voice quality as OpenAI TTS._
 
 ## Checking Zepp OS Version
 
 To ensure compatibility, you can check the Zepp OS version on your Amazfit watch:
 
 ### On the Watch:
+
 1. Press the button to open the app menu.
 2. Select "Settings."
 3. Scroll down and select "System."
@@ -44,11 +48,12 @@ To ensure compatibility, you can check the Zepp OS version on your Amazfit watch
 5. Look for "Software Version" or "Zepp OS Version."
 
 ### On the Zepp App:
+
 1. Connect your watch to your phone and open the Zepp app.
 2. Go to "Profile" > [Your Device Name].
 3. Select "System Update" to view the current Zepp OS version.
 
-*Note: Before purchasing, refer to the specifications on the official Amazfit website or consult the retailer to confirm the Zepp OS version.*
+_Note: Before purchasing, refer to the specifications on the official Amazfit website or consult the retailer to confirm the Zepp OS version._
 
 ## Getting Started
 
@@ -61,6 +66,7 @@ zeus dev
 ```
 
 ### Interaction Shortcuts
+
 - **Spacebar:** Reads the current item.
 - **Tab:** Move to the next item.
 - **Shift + Tab:** Move to the previous item.

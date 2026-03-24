@@ -1,4 +1,4 @@
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { Display } from '@zos/display'
 import { log } from '@zos/utils'
 
@@ -38,7 +38,7 @@ Page({
       if (!settingsManager.validateDisplay.contrast(value)) {
         throw new Error('Invalid contrast value')
       }
-      
+
       const success = await settingsManager.handleSettingChange(
         () => Display.setContrast(value),
         value,

@@ -1,6 +1,6 @@
 import { accessibility } from '@zos/accessibility'
-import { settingsManager, handleToggleSetting, handleSettingChange } from './utils'
-import { logger } from '../utils/logger'
+import { settingsManager } from './utils.js'
+import { logger } from '../utils/logger.js'
 
 // Define the settings page
 Page({
@@ -12,58 +12,58 @@ Page({
   },
   // The function to toggle the keyboard shortcuts
   async toggleKeyboardShortcuts() {
-    const [success, newValue] = await handleToggleSetting(
+    const [success, newValue] = await settingsManager.handleToggleSetting(
       (value) => accessibility.setKeyboardShortcuts({ enable: value }),
-      this.data.keyboardShortcuts,
+      this.state.keyboardShortcuts,
       'keyboardShortcuts'
-    );
+    )
 
     if (success) {
-      this.setState({ keyboardShortcuts: newValue });
+      this.setState({ keyboardShortcuts: newValue })
     }
   },
   // The function to change the keyboard echo
-  changeKeyboardEcho: async function(e) {
+  changeKeyboardEcho: async function (e) {
     try {
-      const newValue = e.newValue[0];
+      const newValue = e.newValue[0]
       if (!settingsManager.validateInput.keyboard.echo.includes(newValue)) {
-        logger.error('Invalid keyboard echo mode:', newValue);
-        return;
+        logger.error('Invalid keyboard echo mode:', newValue)
+        return
       }
 
-      const success = await handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => accessibility.setKeyboardEcho({ mode: newValue }),
         newValue,
         'keyboardEcho'
-      );
+      )
 
       if (success) {
-        this.setState({ keyboardEcho: newValue });
+        this.setState({ keyboardEcho: newValue })
       }
     } catch (error) {
-      logger.error('Keyboard echo change error:', error);
+      logger.error('Keyboard echo change error:', error)
     }
   },
   // The function to change the keyboard layout
-  changeKeyboardLayout: async function(e) {
+  changeKeyboardLayout: async function (e) {
     try {
-      const newValue = e.newValue[0];
+      const newValue = e.newValue[0]
       if (!settingsManager.validateInput.keyboard.layouts.includes(newValue)) {
-        logger.error('Invalid keyboard layout:', newValue);
-        return;
+        logger.error('Invalid keyboard layout:', newValue)
+        return
       }
 
-      const success = await settingsManager.handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => accessibility.setKeyboardLayout({ layout: newValue }),
         newValue,
         'keyboardLayout'
-      );
+      )
 
       if (success) {
-        this.setState({ keyboardLayout: newValue });
+        this.setState({ keyboardLayout: newValue })
       }
     } catch (error) {
-      logger.error('Keyboard layout change error:', error);
+      logger.error('Keyboard layout change error:', error)
     }
   }
-});
+})

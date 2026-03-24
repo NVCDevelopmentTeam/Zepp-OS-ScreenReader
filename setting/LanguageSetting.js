@@ -1,4 +1,4 @@
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { Text } from '@zos/ui'
 import { log } from '@zos/utils'
 
@@ -64,4 +64,4 @@ Page({
       log.error('Language detection change failed:', error)
     }
   }
-});
+})

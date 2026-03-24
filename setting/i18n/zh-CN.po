@@ -1,0 +1,2 @@
+msgid "appName"
+msgstr "ZSR - Zepp OS 屏幕阅读器"

@@ -1,11 +1,11 @@
 class AudioSettings {
   constructor() {
-    this.soundSplitMode = 'disabled';
-    this.volume = 100;
-    this.followsVoiceVolume = false;
-    this.duckingMode = 'none';
-    this.deviceId = 'default';
-    this.keepAwakeTime = 30;
+    this.soundSplitMode = 'disabled'
+    this.volume = 100
+    this.followsVoiceVolume = false
+    this.duckingMode = 'none'
+    this.deviceId = 'default'
+    this.keepAwakeTime = 30
   }
 
   setSoundSplitMode(mode) {
@@ -16,29 +16,29 @@ class AudioSettings {
       'leftBoth',
       'rightLeft',
       'rightBoth'
-    ];
+    ]
     if (validModes.includes(mode)) {
-      this.soundSplitMode = mode;
+      this.soundSplitMode = mode
     }
   }
 
   setVolume(level) {
-    this.volume = Math.min(Math.max(0, level), 100);
+    this.volume = Math.min(Math.max(0, level), 100)
   }
 
   setDuckingMode(mode) {
-    const validModes = ['none', 'speech', 'always'];
+    const validModes = ['none', 'speech', 'always']
     if (validModes.includes(mode)) {
-      this.duckingMode = mode;
+      this.duckingMode = mode
     }
   }
 
   setAudioDevice(deviceId) {
-    this.deviceId = deviceId;
+    this.deviceId = deviceId
   }
 
   setKeepAwakeTime(seconds) {
-    this.keepAwakeTime = Math.max(0, seconds);
+    this.keepAwakeTime = Math.max(0, seconds)
   }
 
   getSettings() {
@@ -49,9 +49,9 @@ class AudioSettings {
       duckingMode: this.duckingMode,
       deviceId: this.deviceId,
       keepAwakeTime: this.keepAwakeTime
-    };
+    }
   }
 }
 
 // Export the settings class
-export default AudioSettings;
+export default AudioSettings

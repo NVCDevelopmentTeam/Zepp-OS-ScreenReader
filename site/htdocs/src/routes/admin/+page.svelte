@@ -4,7 +4,7 @@
   import { browser } from '$app/environment';
 
   let { data } = $props();
-  const { config } = data;
+  let config = $derived(data.config);
 
   let CMS = null;
   let cmsInitialized = $state(false);
@@ -16,7 +16,6 @@
       CMS = sveltia.default;
 
       await CMS.init({
-        config: config,
         hooks: {
           preSave: (collection, data) => {
             if (collection === 'posts' && data.title.length < 3) {
@@ -42,23 +41,37 @@
 
 <svelte:head>
   <title>Dashboard | {siteTitle}</title>
-  <meta name="description" content="Dashboard page" />
 </svelte:head>
 
-{#if !config}
-  <div class="text-red-500 text-center mt-10">
-    <h2 class="text-2xl font-bold">Configuration Error</h2>
-    <p class="mt-2">Failed to load CMS configuration.</p>
-  </div>
-{:else if cmsError}
-  <div class="text-red-500 text-center mt-10">
-    <h2 class="text-2xl font-bold">CMS Initialization Failed</h2>
-    <p class="mt-2">{cmsError.message}</p>
-  </div>
-{:else if !cmsInitialized}
-  <div class="text-center text-lg mt-10">
-    <p>Loading Content Management System...</p>
-  </div>
-{:else}
-  <div id="sveltia-cms" class="mt-10"></div>
-{/if}
+<div class="max-w-5xl mx-auto">
+  {#if !config}
+    <div class="card bg-red-500/10 border-red-500/20 p-16 text-center reveal-up">
+      <div class="w-20 h-20 rounded-3xl bg-red-500 text-white flex-center mx-auto mb-8 shadow-xl shadow-red-500/20">
+        <div class="i-lucide-alert-triangle w-10 h-10"></div>
+      </div>
+      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-600 mb-4">Configuration Error</h2>
+      <p class="text-red-500/80 font-medium max-w-md mx-auto leading-relaxed">Failed to load CMS configuration. Please check your sveltiaconfig.json route.</p>
+    </div>
+  {:else if cmsError}
+    <div class="card bg-red-500/10 border-red-500/20 p-16 text-center reveal-up">
+      <div class="w-20 h-20 rounded-3xl bg-red-500 text-white flex-center mx-auto mb-8 shadow-xl shadow-red-500/20">
+        <div class="i-lucide-x-circle w-10 h-10"></div>
+      </div>
+      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-600 mb-4">Initialization Failed</h2>
+      <p class="text-red-500/80 font-medium max-w-md mx-auto leading-relaxed">{cmsError.message}</p>
+    </div>
+  {:else if !cmsInitialized}
+    <div class="flex flex-col items-center justify-center py-32 space-y-10 reveal-up">
+      <div class="relative">
+        <div class="w-24 h-24 border-4 border-blue-600/20 rounded-full"></div>
+        <div class="w-24 h-24 border-4 border-blue-600 border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+      </div>
+      <div class="text-center">
+        <h2 class="text-2xl font-black uppercase tracking-[0.2em] mb-3">Syncing CMS</h2>
+        <p class="text-gray-400 font-bold text-[10px] uppercase tracking-[0.3em]">Preparing your environment...</p>
+      </div>
+    </div>
+  {:else}
+    <div id="sveltia-cms" class="animate-in fade-in zoom-in duration-700"></div>
+  {/if}
+</div>

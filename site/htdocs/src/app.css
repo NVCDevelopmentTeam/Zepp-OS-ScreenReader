@@ -1,23 +1,140 @@
-@import './prism.css';
-@import 'tailwindcss';
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Lexend', var(--font-sans);
+  --zepp-blue: #0052ff;
+  --zepp-dark: #0b0e11;
+}
 
-@custom-variant dark (&:where(.dark, .dark *));
+* {
+  box-sizing: border-box;
+}
 
-@layer base {
-  body {
-    @apply text-zinc-600 dark:text-zinc-400 dark:bg-gray-800;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #111111;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: var(--zepp-dark);
+  color: #f5f5f7;
+}
+
+/* Background gradient inspired by Zepp */
+.bg-zepp {
+  background-image:
+    radial-gradient(at 100% 0%, rgba(0, 82, 255, 0.08) 0, transparent 40%),
+    radial-gradient(at 0% 100%, rgba(0, 82, 255, 0.05) 0, transparent 40%);
+}
+
+.dark .bg-zepp {
+  background-image:
+    radial-gradient(at 100% 0%, rgba(0, 82, 255, 0.15) 0, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(0, 82, 255, 0.1) 0, transparent 50%);
+}
+
+/* Smooth transitions for specific properties when theme changes */
+html.dark,
+html.dark body,
+html.dark .bg-zepp {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Typography refinements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 82, 255, 0.5);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Remove default list bullets globally as requested */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Custom bullet for prose if needed, but avoiding standard • */
+.prose ul li {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.prose ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--zepp-blue);
+  font-weight: bold;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animation Utilities */
+.reveal-up {
+  animation: reveal-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-zinc-900 dark:text-zinc-200;
-  }
-
-  hr {
-    @apply border-zinc-100 dark:border-zinc-700/25;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

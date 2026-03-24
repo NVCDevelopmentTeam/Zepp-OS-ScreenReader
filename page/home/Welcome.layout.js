@@ -1,5 +1,5 @@
-import { createWidget, widget } from '@zos/ui';
-import { push } from '@zos/router';
+import { createWidget, widget } from '@zos/ui'
+import { push } from '@zos/router'
 
 export default {
   build() {
@@ -11,8 +11,8 @@ export default {
       text: 'Welcome to Zepp OS Screen Reader',
       text_size: 24,
       align_h: hmUI.align.CENTER_H,
-      align_v: hmUI.align.CENTER_V,
-    });
+      align_v: hmUI.align.CENTER_V
+    })
 
     createWidget(widget.BUTTON, {
       x: 140,
@@ -22,9 +22,9 @@ export default {
       text: 'Go to User Guide',
       click_func: () => {
         push({
-          url: 'page/userGuide/index',
-        });
-      },
-    });
-  },
-};
+          url: 'page/userGuide/index'
+        })
+      }
+    })
+  }
+}

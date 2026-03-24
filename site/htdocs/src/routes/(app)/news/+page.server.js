@@ -3,8 +3,8 @@ import { paginate } from '$lib/util'
 import { error } from '@sveltejs/kit'
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
-  let page = params.page ? parseInt(params.page) : 1
+export async function load({ url }) {
+  let page = url.searchParams.get('page') ? parseInt(url.searchParams.get('page')) : 1
   let limit = 10
 
   const postsForPage = paginate(posts, { limit, page })

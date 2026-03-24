@@ -1,4 +1,4 @@
-import { createWidget, widget } from '@zos/ui';
+import { createWidget, widget } from '@zos/ui'
 
 export default {
   build() {
@@ -9,8 +9,8 @@ export default {
       h: 50,
       text: 'Instructions for use',
       text_size: 24,
-      align_h: hmUI.align.CENTER_H,
-    });
+      align_h: hmUI.align.CENTER_H
+    })
 
     createWidget(widget.TEXT, {
       x: 20,
@@ -19,7 +19,7 @@ export default {
       h: 300,
       text: 'This is a detailed guide on how to use the Screen Reader application...',
       text_size: 18,
-      text_style: hmUI.text_style.WRAP,
-    });
-  },
-};
+      text_style: hmUI.text_style.WRAP
+    })
+  }
+}

@@ -1,2 +1,62 @@
-msgid "example"
-msgstr "This is an example in app-side"
+msgid "appName"
+msgstr "ZSR - Trình đọc màn hình Zepp OS"
+
+msgid "description"
+msgstr "Trình đọc màn hình cho người khiếm thị"
+
+msgid "General"
+msgstr "Cài đặt chung"
+
+msgid "Enable ZSR"
+msgstr "Bật ZSR"
+
+msgid "Accessibility Shortcut"
+msgstr "Phím tắt Trợ năng"
+
+msgid "Confirm before disable"
+msgstr "Xác nhận trước khi tắt"
+
+msgid "Auto-start on boot"
+msgstr "Tự động khởi chạy khi khởi động"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Check for updates"
+msgstr "Kiểm tra cập nhật"
+
+msgid "Speech"
+msgstr "Giọng nói"
+
+msgid "Vision"
+msgstr "Thị giác"
+
+msgid "Notifications"
+msgstr "Thông báo"
+
+msgid "Gestures & Input"
+msgstr "Cử chỉ & Nhập liệu"
+
+msgid "Object Presentation"
+msgstr "Trình bày đối tượng"
+
+msgid "Cursor & Navigation"
+msgstr "Con trỏ & Điều hướng"
+
+msgid "Audio & Braille"
+msgstr "Âm thanh & Chữ nổi"
+
+msgid "Input Composition"
+msgstr "Soạn thảo nhập liệu"
+
+msgid "Speech History"
+msgstr "Lịch sử giọng nói"
+
+msgid "Remote Access"
+msgstr "Truy cập từ xa"
+
+msgid "Document Settings"
+msgstr "Cài đặt tài liệu"
+
+msgid "Developer Options"
+msgstr "Tùy chọn nhà phát triển"

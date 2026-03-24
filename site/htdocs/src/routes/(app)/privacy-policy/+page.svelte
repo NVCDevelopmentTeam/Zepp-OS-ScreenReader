@@ -1,74 +1,71 @@
 <script>
-  import { onMount } from 'svelte';
   import { siteTitle } from '$lib/info.js';
-  let pageTitle = 'Privacy Policy';
-  onMount(() => {
-    document.title = `${pageTitle} | ${siteTitle}`;
-  });
 </script>
+
 <svelte:head>
-  <title>{pageTitle}</title>
-  <meta name="description" content="Privacy Policy" />
+  <title>Privacy Policy | {siteTitle}</title>
+  <meta name="description" content="Privacy Policy for Zepp OS Screen Reader (ZSR) website." />
 </svelte:head>
-<div class="text-column">
-  <h1>{pageTitle}</h1>
-  <p>
-    Welcome to the official privacy policy of the Zepp OS Screen Reader (ZSR) website. This policy outlines our practices for data collection and usage when you access our website.
-  </p>
-  <p>
-    The NVC Development Team values your privacy and is dedicated to safeguarding your personal data.
-  </p>
-  <h2>Data Collection</h2>
-  <p>
-    We may gather specific information during your visit to our website, including but not limited to:
-  </p>
-  <ul>
-    <li>Device specifics such as the model, operating system version, and unique identifiers.</li>
-    <li>Usage details such as the features you access, the settings you modify, and the actions you perform within the website.</li>
-    <li>Information about your interactions with ads served by Google AdSense.</li>
-    <li>Information collected through cookies, as outlined in our Cookie Policy.</li>
-  </ul>
-  <h2>Usage of Your Data</h2>
-  <p>
-    We utilize the data collected from you to:
-  </p>
-  <ul>
-    <li>Enhance the website and its functionalities.</li>
-    <li>Analyze website usage patterns and trends to improve user experience.</li>
-    <li>Address your inquiries, requests, or feedback.</li>
-    <li>Maintain the security and integrity of our systems.</li>
-    <li>Fulfill legal obligations.</li>
-    <li>Comply with our Data Processing Agreement and Developer Agreement.</li>
-  </ul>
-  <h2>Data Disclosure</h2>
-  <p>
-    We may disclose your data under the following circumstances:
-  </p>
-  <ul>
-    <li>To trusted third-party service providers who assist us in managing our website and delivering services to you.</li>
-    <li>If we deem disclosure necessary to protect our rights, property, or safety, or those of others.</li>
-    <li>To comply with relevant laws, regulations, or legal processes.</li>
-  </ul>
-  <h2>Security Measures</h2>
-  <p>
-    We implement reasonable measures to protect your data from unauthorized access, disclosure, alteration, or destruction. However, please note that no transmission or storage method is entirely secure, and we cannot assure absolute security.
-  </p>
-  <h2>Privacy Policy Updates</h2>
-  <p>
-    We may revise this privacy policy periodically. Any changes will be posted on this page, and the updated policy will become effective upon posting.
-  </p>
-  <p>
-    We have established an access policy for users visiting our website to ensure safety and security, enabling visitors to have full control over their personal data. We also provide an access policy for users with special needs.
-  </p>
-  <h2>Legal Basis, Website Terms, and Policies</h2>
-  <p>
-    By accessing the ZSR website, you consent to the following:
-  </p>
-  <ul>
-    <li>Our End User License Agreement.</li>
-    <li>Our Terms of Service.</li>
-  </ul>
-  <p>
-    For further information about our privacy practices, please reach out to us at contact.zeppreader.com.
-  </p>
+
+<div class="container py-20 md:py-32 reveal-up">
+  <div class="max-w-4xl mx-auto">
+    <header class="text-center mb-24">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
+        Data Protection
+      </div>
+      <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-12 leading-[0.9] tracking-tighter uppercase">
+        Privacy <br /> <span class="text-blue-600">Policy</span>
+      </h1>
+      <p class="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed italic">
+        "Your trust is our most valuable asset. We are committed to protecting your personal data with the highest standards of security."
+      </p>
+    </header>
+
+    <div class="card glass p-10 md:p-20 space-y-16">
+      <article class="prose prose-lg dark:prose-invert max-w-none 
+        prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter
+        prose-p:text-gray-500 prose-p:font-medium prose-p:leading-relaxed">
+        
+        <p class="lead">
+          The NVC Development Team values your privacy. This policy outlines our practices for data collection and usage when you access our website.
+        </p>
+
+        <h2>Data Collection</h2>
+        <p>We may gather specific information during your visit, including:</p>
+        <div class="not-prose grid md:grid-cols-2 gap-6 my-10">
+          <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+            <div class="i-lucide-smartphone text-blue-600 w-6 h-6 mb-4"></div>
+            <h4 class="font-black uppercase text-xs tracking-widest mb-2">Device Info</h4>
+            <p class="text-sm text-gray-500 font-medium m-0">Model, OS version, and unique identifiers.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+            <div class="i-lucide-activity text-blue-600 w-6 h-6 mb-4"></div>
+            <h4 class="font-black uppercase text-xs tracking-widest mb-2">Usage Data</h4>
+            <p class="text-sm text-gray-500 font-medium m-0">Features accessed and actions performed.</p>
+          </div>
+        </div>
+
+        <h2>How We Use Your Data</h2>
+        <p>
+          The data collected is used to enhance website functionality, analyze usage patterns, maintain system security, and comply with legal obligations.
+        </p>
+
+        <h2>Security Measures</h2>
+        <p>
+          We implement industry-standard measures to protect your data from unauthorized access. However, please note that no digital transmission is 100% secure.
+        </p>
+
+        <div class="not-prose mt-16 p-8 bg-zeppDark rounded-[2rem] text-white border border-white/5 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 blur-3xl"></div>
+          <p class="text-sm font-medium text-gray-400 m-0 relative z-10 leading-relaxed">
+            By accessing the ZSR website, you consent to our <strong>End User License Agreement</strong> and <strong>Terms of Service</strong>.
+          </p>
+        </div>
+
+        <p class="text-xs font-black uppercase tracking-widest text-gray-400 mt-12">
+          Last updated: March 10, 2026
+        </p>
+      </article>
+    </div>
+  </div>
 </div>

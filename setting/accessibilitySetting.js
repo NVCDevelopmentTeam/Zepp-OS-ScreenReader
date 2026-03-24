@@ -1,5 +1,5 @@
-import { accessibility } from '@zos/accessibility';
-import errorMonitor from '../lib/utils/errorMonitor'
+import { accessibility } from '@zos/accessibility'
+import errorMonitor from '../lib/utils/errorMonitor.js'
 import { log } from '@zos/utils'
 
 Page({
@@ -22,7 +22,7 @@ Page({
   },
 
   onInit() {
-    this.initScreenReader();
+    this.initScreenReader()
   },
 
   validateFeatures() {
@@ -39,7 +39,7 @@ Page({
         missing.push(feature)
       }
     }
-    
+
     if (missing.length) {
       throw new Error(`Missing required features: ${missing.join(', ')}`)
     }
@@ -48,45 +48,48 @@ Page({
   async initScreenReader() {
     try {
       this.validateFeatures()
-      this.setData({ isLoading: true });
+      this.setData({ isLoading: true })
       if (this.data.timeoutId) {
-        clearTimeout(this.data.timeoutId);
+        clearTimeout(this.data.timeoutId)
       }
-  
-      const timeoutId = setTimeout(function() {
-        if (this.data.isLoading && this.data.retryCount < 3) {
-          this.data.retryCount++;
-          this.initScreenReader();
-        } else {
-          this.setData({
-            isLoading: false,
-            errorMsg: 'Operation timed out'
-          });
-        }
-      }.bind(this), 5000);
-  
-      this.setData({ timeoutId });
-  
+
+      const timeoutId = setTimeout(
+        function () {
+          if (this.data.isLoading && this.data.retryCount < 3) {
+            this.data.retryCount++
+            this.initScreenReader()
+          } else {
+            this.setData({
+              isLoading: false,
+              errorMsg: 'Operation timed out'
+            })
+          }
+        }.bind(this),
+        5000
+      )
+
+      this.setData({ timeoutId })
+
       accessibility.isScreenReaderEnabled({
-        complete: function(result) {
-          clearTimeout(this.data.timeoutId);
+        complete: function (result) {
+          clearTimeout(this.data.timeoutId)
           if (result && typeof result.value === 'boolean') {
-            this.setData({ 
+            this.setData({
               screenReader: Boolean(result.value),
               isLoading: false,
               errorMsg: ''
-            });
-            this.trackApiCall(true);
+            })
+            this.trackApiCall(true)
           } else {
-            this.handleError('Invalid response format');
-            this.trackApiCall(false);
+            this.handleError('Invalid response format')
+            this.trackApiCall(false)
           }
         }.bind(this),
-        fail: function(error) {
-          this.handleError(error);
-          this.trackApiCall(false);
+        fail: function (error) {
+          this.handleError(error)
+          this.trackApiCall(false)
         }.bind(this)
-      });
+      })
     } catch (error) {
       const errorEntry = errorMonitor.trackError(error, {
         operation: 'init',
@@ -100,7 +103,7 @@ Page({
   },
 
   handleError(error) {
-    console.error('Screen reader error:', error);
+    console.error('Screen reader error:', error)
     this.setData({
       isLoading: false,
       errorMsg: error && error.toString ? error.toString() : 'Operation failed',
@@ -110,10 +113,10 @@ Page({
         message: error.toString(),
         type: error.name || 'Unknown'
       }
-    });
+    })
 
     if (this.shouldAttemptRecovery(error)) {
-      this.recoverFromError();
+      this.recoverFromError()
     }
   },
 
@@ -128,7 +131,7 @@ Page({
     if (!this.validateApiVersion()) {
       errors.push('Incompatible API version')
     }
-    
+
     this.setData({
       isValid: errors.length === 0,
       validationErrors: errors
@@ -202,45 +205,48 @@ Page({
     }
 
     if (!accessibility || typeof accessibility.setScreenReaderEnabled !== 'function') {
-      this.handleError('Screen reader API not available');
-      return;
+      this.handleError('Screen reader API not available')
+      return
     }
 
-    if (this.data.isLoading) return;
-    
-    const newValue = !this.data.screenReader;
-    this.setData({ 
+    if (this.data.isLoading) return
+
+    const newValue = !this.data.screenReader
+    this.setData({
       isLoading: true,
       retryCount: 0
-    });
+    })
 
     if (this.data.timeoutId) {
-      clearTimeout(this.data.timeoutId);
+      clearTimeout(this.data.timeoutId)
     }
 
-    const timeoutId = setTimeout(function() {
-      this.handleError('Toggle operation timed out');
-      this.trackApiCall(false);
-    }.bind(this), 5000);
+    const timeoutId = setTimeout(
+      function () {
+        this.handleError('Toggle operation timed out')
+        this.trackApiCall(false)
+      }.bind(this),
+      5000
+    )
 
-    this.setData({ timeoutId });
-    
+    this.setData({ timeoutId })
+
     accessibility.setScreenReaderEnabled({
       value: newValue,
-      success: function() {
-        clearTimeout(this.data.timeoutId);
-        this.setData({ 
+      success: function () {
+        clearTimeout(this.data.timeoutId)
+        this.setData({
           screenReader: newValue,
           isLoading: false,
           errorMsg: ''
-        });
-        this.trackApiCall(true);
+        })
+        this.trackApiCall(true)
       }.bind(this),
-      fail: function(error) {
-        this.handleError(error);
-        this.trackApiCall(false);
+      fail: function (error) {
+        this.handleError(error)
+        this.trackApiCall(false)
       }.bind(this)
-    });
+    })
   },
 
   trackApiCall(success) {
@@ -248,7 +254,7 @@ Page({
     diagnostics.apiCalls++
     if (!success) diagnostics.failures++
     if (success) diagnostics.lastSuccess = Date.now()
-    
+
     this.setData({ diagnostics })
   },
 
@@ -256,14 +262,14 @@ Page({
     return {
       ...this.data.diagnostics,
       errors: errorMonitor.getErrorStats(),
-      successRate: 1 - (this.data.diagnostics.failures / this.data.diagnostics.apiCalls),
+      successRate: 1 - this.data.diagnostics.failures / this.data.diagnostics.apiCalls,
       uptime: Date.now() - (this.data.diagnostics.lastSuccess || Date.now())
     }
   },
 
   onDestroy() {
     if (this.data.timeoutId) {
-      clearTimeout(this.data.timeoutId);
+      clearTimeout(this.data.timeoutId)
     }
     this.setData({
       screenReader: false,
@@ -271,6 +277,6 @@ Page({
       errorMsg: '',
       recoveryAttempts: 0,
       lastError: null
-    });
+    })
   }
-});
+})

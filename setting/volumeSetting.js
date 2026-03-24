@@ -1,5 +1,5 @@
 import { createWidget, widget } from '@zos/ui'
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { Audio } from '@zos/sensor'
 
 Page({
@@ -10,7 +10,7 @@ Page({
   onInit() {
     // Initialize volume level from settings or a default
     // For now, just set a default
-    this.setState({ volumeLevel: 50 });
+    this.setState({ volumeLevel: 50 })
   },
 
   build() {
@@ -27,13 +27,13 @@ Page({
           () => Audio.setVolume(Math.round(value)),
           value,
           'volume'
-        );
+        )
         if (success) {
-          this.setState({ volumeLevel: value });
-          this.updateLabel(value);
+          this.setState({ volumeLevel: value })
+          this.updateLabel(value)
         }
       }
-    });
+    })
 
     createWidget(widget.TEXT, {
       x: 0,
@@ -45,13 +45,13 @@ Page({
       color: '#ffffff',
       textAlign: 'center',
       id: 'volumeLabel' // Add an ID to find it later
-    });
+    })
   },
 
   updateLabel(value) {
-    const labelWidget = this.getElementById('volumeLabel'); // Use getElementById
+    const labelWidget = this.getElementById('volumeLabel') // Use getElementById
     if (labelWidget) {
-      labelWidget.setProperty(widget.TEXT, `Volume: ${value}%`);
+      labelWidget.setProperty(widget.TEXT, `Volume: ${value}%`)
     }
   }
-});
+})

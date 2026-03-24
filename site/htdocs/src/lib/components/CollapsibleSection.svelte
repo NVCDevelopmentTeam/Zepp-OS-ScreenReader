@@ -1,9 +1,7 @@
 <script>
-    // based on suggestions from:
-    
     /**
      * @typedef {Object} Props
-     * @property {any} headerText - Inclusive Components by Heydon Pickering https://inclusive-components.design/collapsible-sections/
+     * @property {string} headerText
      * @property {import('svelte').Snippet} [children]
      */
 
@@ -11,25 +9,37 @@
     let { headerText, children } = $props();
 
     let expanded = $state(false);
+    const id = Math.random().toString(36).substring(2, 9);
 </script>
 
-<div class="border-b border-gray-200">
-    <h2>
+<div class="group border border-gray-100 dark:border-white/10 rounded-[2rem] overflow-hidden bg-white dark:bg-white/5 transition-all duration-500 shadow-sm hover:shadow-xl">
+    <h3>
         <button 
-            class="bg-white text-gray-900 flex justify-between w-full border-0 p-4" 
+            class="w-full flex items-center justify-between p-7 text-left transition-colors hover:bg-blue-500/5" 
             aria-expanded={expanded} 
+            aria-controls={`content-${id}`}
+            id={`button-${id}`}
             onclick={() => expanded = !expanded}
         >
-            {headerText}
-            <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5 transform transition-transform duration-200" 
-                class:rotate-180={expanded} >
-                <path class="vert" d="M10 1V19" stroke="currentColor" stroke-width="2"/>
-                <path d="M1 10L19 10" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <span class="text-gray-900 dark:text-white font-black uppercase tracking-widest text-sm">{headerText}</span>
+            <div 
+                class="i-lucide-chevron-down w-5 h-5 text-blue-500 transition-transform duration-500" 
+                class:rotate-180={expanded}
+                aria-hidden="true"
+            ></div>
         </button>
-    </h2>
+    </h3>
 
-    <div class={expanded ? "block" : "hidden"}>
-        {@render children?.()}
-    </div>
+    {#if expanded}
+        <div 
+            id={`content-${id}`}
+            class="px-7 pb-8 animate-in fade-in slide-in-from-top-4 duration-500"
+            role="region"
+            aria-labelledby={`button-${id}`}
+        >
+            <div class="pt-4 border-t border-gray-100 dark:border-white/5 mt-2">
+                {@render children?.()}
+            </div>
+        </div>
+    {/if}
 </div>

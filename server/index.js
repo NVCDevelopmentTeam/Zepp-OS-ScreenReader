@@ -1,16 +1,18 @@
 import express from 'express'
 import cors from 'cors'
-import { logger } from '../lib/utils/logger'
-import { errorHandler } from './middleware/error'
-import { routes } from './routes'
+import { logger } from '../lib/utils/logger.js'
+import { errorHandler } from './middleware/error.js'
+import { routes } from './routes.js'
 
 const app = express()
 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

@@ -1,7 +1,7 @@
-import { settingsManager, validateBoolean, handleSettingChange } from './utils'
+import { settingsManager } from './utils.js'
 import { Audio } from '@zos/sensor'
 import { log } from '@zos/utils'
-import { logger } from '../utils/logger'
+import { logger } from '../utils/logger.js'
 import { accessibility } from '@zos/accessibility'
 
 Page({
@@ -14,7 +14,7 @@ Page({
 
   async onInit() {
     try {
-      const { success } = await settingsManager.validateDevice(['audio'])
+      const { success } = await settingsManager.validateDeviceFeatures(['audio'])
       if (!success) {
         throw new Error('Audio not supported')
       }
@@ -31,12 +31,12 @@ Page({
         throw new Error('Invalid volume level')
       }
 
-      const success = await settingsManager.handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => Audio.setVolume(value),
         value,
         'volume'
       )
-      
+
       if (success) {
         this.setState({ soundVolume: value })
       }
@@ -45,49 +45,49 @@ Page({
     }
   },
 
-  changeSoundTheme: async function(e) {
+  changeSoundTheme: async function (e) {
     try {
-      const newValue = e.newValue[0];
+      const newValue = e.newValue[0]
       if (!settingsManager.validateInput.sound.themes.includes(newValue)) {
-        logger.error('Invalid sound theme:', newValue);
-        return;
+        logger.error('Invalid sound theme:', newValue)
+        return
       }
 
-      const success = await settingsManager.handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => accessibility.setSoundTheme({ theme: newValue }),
         newValue,
         'soundTheme'
-      );
+      )
 
       if (success) {
-        this.setState({ soundTheme: newValue });
+        this.setState({ soundTheme: newValue })
       }
     } catch (error) {
-      logger.error('Sound theme change error:', error);
+      logger.error('Sound theme change error:', error)
     }
   },
 
   async toggleSoundEffects() {
     try {
-      const currentValue = this.state.soundEffects;
-      const newValue = !currentValue;
+      const currentValue = this.state.soundEffects
+      const newValue = !currentValue
 
-      if (!validateBoolean(newValue)) {
-        logger.error('Invalid sound effects value:', newValue);
-        return;
+      if (!settingsManager.validateBoolean(newValue)) {
+        logger.error('Invalid sound effects value:', newValue)
+        return
       }
 
-      const success = await handleSettingChange(
+      const [success] = await settingsManager.handleSettingChange(
         () => accessibility.setSoundEffects({ enable: newValue }),
         newValue,
         'soundEffects'
-      );
+      )
 
       if (success) {
-        this.setState({ soundEffects: newValue });
+        this.setState({ soundEffects: newValue })
       }
     } catch (error) {
-      logger.error('Sound effects toggle error:', error);
+      logger.error('Sound effects toggle error:', error)
     }
   }
-});
+})

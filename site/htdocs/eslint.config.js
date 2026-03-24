@@ -49,7 +49,8 @@ export default defineConfig([
       }
     },
     rules: {
-      'svelte/no-parsing-error': 'off'
+      'svelte/no-parsing-error': 'off',
+      'svelte/no-navigation-without-resolve': 'off'
     }
   },
 

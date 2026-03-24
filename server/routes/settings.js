@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { logger } from '../../lib/utils/logger'
-import { settingsManager } from '../../setting/utils'
+import { logger } from '../../lib/utils/logger.js'
+import { settingsManager } from '../../setting/utils.js'
 
 const router = Router()
 
@@ -21,14 +21,14 @@ router.post('/update', async (req, res) => {
       async () => {
         switch (setting) {
           case 'brightness':
-            await settingsManager.changeBrightness(value);
-            break;
+            await settingsManager.changeBrightness(value)
+            break
           case 'contrast':
-            await settingsManager.changeContrast(value);
-            break;
+            await settingsManager.changeContrast(value)
+            break
           // Add other settings here as needed
           default:
-            throw new Error(`Unknown setting: ${setting}`);
+            throw new Error(`Unknown setting: ${setting}`)
         }
       },
       value,

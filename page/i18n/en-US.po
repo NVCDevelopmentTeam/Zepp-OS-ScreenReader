@@ -1,2 +1,347 @@
-msgid "example"
-msgstr "This is an example in device"
+msgid "Advanced Settings"
+msgstr "Advanced Settings"
+
+msgid "Debug Log"
+msgstr "Debug Log"
+
+msgid "Verbose"
+msgstr "Verbose"
+
+msgid "Export Logs"
+msgstr "Export Logs"
+
+msgid "Exporting logs"
+msgstr "Exporting logs"
+
+msgid "Clear Speech History"
+msgstr "Clear Speech History"
+
+msgid "Speech history cleared"
+msgstr "Speech history cleared"
+
+msgid "Contact & Feedback"
+msgstr "Contact & Feedback"
+
+msgid "Introduction"
+msgstr "Introduction"
+
+msgid "App Information"
+msgstr "App Information"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Build Date"
+msgstr "Build Date"
+
+msgid "Developer"
+msgstr "Developer"
+
+msgid "Supported"
+msgstr "Supported"
+
+msgid "Optimized"
+msgstr "Optimized"
+
+msgid "Developer options unlocked!"
+msgstr "Developer options unlocked!"
+
+msgid "Tap"
+msgstr "Tap"
+
+msgid "more times to unlock."
+msgstr "more times to unlock."
+
+msgid "Accessibility"
+msgstr "Accessibility"
+
+msgid "Gestures"
+msgstr "Gestures"
+
+msgid "Shortcuts"
+msgstr "Shortcuts"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Sensors"
+msgstr "Sensors"
+
+msgid "Voice Control"
+msgstr "Voice Control"
+
+msgid "User Guide"
+msgstr "User Guide"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "of"
+msgstr "of"
+
+msgid "Swipe right for next."
+msgstr "Swipe right for next."
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Braille Pairing"
+msgstr "Braille Pairing"
+
+msgid "Scanning..."
+msgstr "Scanning..."
+
+msgid "Ready to scan"
+msgstr "Ready to scan"
+
+msgid "No displays found"
+msgstr "No displays found"
+
+msgid "Stop Scan"
+msgstr "Stop Scan"
+
+msgid "Start Scan"
+msgstr "Start Scan"
+
+msgid "Scanning for Braille displays"
+msgstr "Scanning for Braille displays"
+
+msgid "Connecting to"
+msgstr "Connecting to"
+
+msgid "Connected to"
+msgstr "Connected to"
+
+msgid "Audio & Braille"
+msgstr "Audio & Braille"
+
+msgid "Braille Output"
+msgstr "Braille Output"
+
+msgid "Table"
+msgstr "Table"
+
+msgid "Change Table"
+msgstr "Change Table"
+
+msgid "Pair Display"
+msgstr "Pair Display"
+
+msgid "Swipe Up"
+msgstr "Swipe Up"
+
+msgid "Swipe Down"
+msgstr "Swipe Down"
+
+msgid "Swipe Left"
+msgstr "Swipe Left"
+
+msgid "Swipe Right"
+msgstr "Swipe Right"
+
+msgid "Double Tap"
+msgstr "Double Tap"
+
+msgid "Long Press"
+msgstr "Long Press"
+
+msgid "Gestures & Input"
+msgstr "Gestures & Input"
+
+msgid "General Settings"
+msgstr "General Settings"
+
+msgid "ZSR Status"
+msgstr "ZSR Status"
+
+msgid "Confirm Disable"
+msgstr "Confirm Disable"
+
+msgid "Auto-start"
+msgstr "Auto-start"
+
+msgid "Check for Updates"
+msgstr "Check for Updates"
+
+msgid "Remote Access"
+msgstr "Remote Access"
+
+msgid "Allow Access"
+msgstr "Allow Access"
+
+msgid "Start Session"
+msgstr "Start Session"
+
+msgid "Remote session started"
+msgstr "Remote session started"
+
+msgid "Object Presentation"
+msgstr "Object Presentation"
+
+msgid "Read Emoji"
+msgstr "Read Emoji"
+
+msgid "Read Symbols"
+msgstr "Read Symbols"
+
+msgid "Report Passwords"
+msgstr "Report Passwords"
+
+msgid "Announce Day"
+msgstr "Announce Day"
+
+msgid "Passwords"
+msgstr "Passwords"
+
+msgid "Spell"
+msgstr "Spell"
+
+msgid "Mask"
+msgstr "Mask"
+
+msgid "Log History"
+msgstr "Log History"
+
+msgid "Limit"
+msgstr "Limit"
+
+msgid "items"
+msgstr "items"
+
+msgid "View History"
+msgstr "View History"
+
+msgid "Clear History"
+msgstr "Clear History"
+
+msgid "Speech Settings"
+msgstr "Speech Settings"
+
+msgid "Speech Rate"
+msgstr "Speech Rate"
+
+msgid "Speech Pitch"
+msgstr "Speech Pitch"
+
+msgid "Read Status Bar"
+msgstr "Read Status Bar"
+
+msgid "Read Progress"
+msgstr "Read Progress"
+
+msgid "Read Hints"
+msgstr "Read Hints"
+
+msgid "Engine"
+msgstr "Engine"
+
+msgid "TTS engine set to"
+msgstr "TTS engine set to"
+
+msgid "Vision Settings"
+msgstr "Vision Settings"
+
+msgid "Screen Curtain"
+msgstr "Screen Curtain"
+
+msgid "Explore Mode"
+msgstr "Explore Mode"
+
+msgid "Magnification"
+msgstr "Magnification"
+
+msgid "Navigation Settings"
+msgstr "Navigation Settings"
+
+msgid "Review Cursor"
+msgstr "Review Cursor"
+
+msgid "Browse by"
+msgstr "Browse by"
+
+msgid "Change Type"
+msgstr "Change Type"
+
+msgid "Notification Settings"
+msgstr "Notification Settings"
+
+msgid "Read All"
+msgstr "Read All"
+
+msgid "Read SMS"
+msgstr "Read SMS"
+
+msgid "Read Calls"
+msgstr "Read Calls"
+
+msgid "Read Missed"
+msgstr "Read Missed"
+
+msgid "Document Settings"
+msgstr "Document Settings"
+
+msgid "Formatting"
+msgstr "Formatting"
+
+msgid "Tables"
+msgstr "Tables"
+
+msgid "Input Composition"
+msgstr "Input Composition"
+
+msgid "Echo"
+msgstr "Echo"
+
+msgid "Change Echo"
+msgstr "Change Echo"
+
+msgid "Autocomplete"
+msgstr "Autocomplete"
+
+msgid "Sensor Information"
+msgstr "Sensor Information"
+
+msgid "Read Heart Rate"
+msgstr "Read Heart Rate"
+
+msgid "Read SpO2"
+msgstr "Read SpO2"
+
+msgid "Read Sleep Data"
+msgstr "Read Sleep Data"
+
+msgid "Read Steps"
+msgstr "Read Steps"
+
+msgid "Read Stress"
+msgstr "Read Stress"
+
+msgid "ZSR Dashboard"
+msgstr "ZSR Dashboard"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Battery"
+msgstr "Battery"
+
+msgid "Turn OFF ZSR"
+msgstr "Turn OFF ZSR"
+
+msgid "Turn ON ZSR"
+msgstr "Turn ON ZSR"
+
+msgid "About"
+msgstr "About"

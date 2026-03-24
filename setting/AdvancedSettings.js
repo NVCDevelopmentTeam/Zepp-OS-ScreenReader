@@ -1,100 +1,114 @@
-import { accessibility } from '@zos/accessibility'
-import settingsUtils, { validateNumericRange, handleSettingChange } from './utils'
-import { logger } from '../utils/logger'
+import { createWidget, widget } from '@zos/ui'
+import { gettext } from '@zos/i18n'
+import { getDeviceInfo } from '@zos/device'
+import { replace } from '@zos/router'
 import { log } from '@zos/utils'
+import { loadSettings, saveSettings } from '../lib/core/config.js'
+import SpeechHistory from '../lib/utils/speechHistory.js'
+import ScreenReader from '../lib/core/screenReader.js'
 
-Page({
-  state: {
-    speechRate: 1,
-    speechPitch: 1,
-    speechVolume: 1,
-    speechLanguage: 'en-US',
-    speechPunctuation: true
+const { width, height } = getDeviceInfo()
+
+export default Page({
+  onInit() {
+    globalThis.ScreenReaderConfig = loadSettings()
   },
 
   build() {
-    const { capabilities } = settingsUtils.validateDevice()
-    
-    if (!capabilities.accessibility) {
-      return this.showError('Device not supported')
-    }
+    const root = createWidget(widget.GROUP, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height
+    })
 
-    this.createControls()
-  },
+    const config = globalThis.ScreenReaderConfig
 
-  // The function to change the speech rate
-  async changeSpeechRate(value) {
-    try {
-      const [success] = await settingsUtils.handleSettingChange(
-        () => accessibility.setSpeechRate(value),
-        value,
-        'speechRate'
-      )
-      if (success) this.setState({ speechRate: value })
-    } catch (error) {
-      log.error(error)
-    }
-  },
+    root.createWidget(widget.TEXT, {
+      x: 0,
+      y: 20,
+      w: width,
+      h: 60,
+      text: gettext('Advanced Settings'),
+      color: 0xffffff,
+      align_h: 2,
+      align_v: 2,
+      text_size: 32
+    })
 
-  // The function to change the speech pitch
-  async changeSpeechPitch(e) {
-    try {
-      const newValue = e.value;
-      if (!validateNumericRange(newValue, 0.5, 2.0)) {
-        logger.error('Invalid speech pitch:', newValue);
-        return;
+    const buttonWidth = width - 80
+    const buttonX = 40
+
+    // Debug Logging Toggle
+    root.createWidget(widget.BUTTON, {
+      x: buttonX,
+      y: 100,
+      w: buttonWidth,
+      h: 70,
+      text: `${gettext('Debug Log')}: ${config.debugLogging ? 'ON' : 'OFF'}`,
+      color: 0xffffff,
+      normal_color: config.debugLogging ? 0x00aa00 : 0x333333,
+      press_color: 0x666666,
+      radius: 35,
+      click_func: () => {
+        config.debugLogging = !config.debugLogging
+        saveSettings(config)
+        replace({ url: 'setting/AdvancedSettings' })
       }
+    })
 
-      const success = await handleSettingChange(
-        () => accessibility.setSpeechPitch({ pitch: newValue }),
-        newValue,
-        'speechPitch'
-      );
+    // Verbose Speech Toggle
+    root.createWidget(widget.BUTTON, {
+      x: buttonX,
+      y: 180,
+      w: buttonWidth,
+      h: 70,
+      text: `${gettext('Verbose')}: ${config.verboseSpeech ? 'ON' : 'OFF'}`,
+      color: 0xffffff,
+      normal_color: config.verboseSpeech ? 0x00aa00 : 0x333333,
+      press_color: 0x666666,
+      radius: 35,
+      click_func: () => {
+        config.verboseSpeech = !config.verboseSpeech
+        saveSettings(config)
+        replace({ url: 'setting/AdvancedSettings' })
+      }
+    })
 
-      if (success) { this.setState({ speechPitch: newValue }); }
-    } catch (error) {
-      logger.error('Speech pitch change error:', error);
-    }
-  },
-  // The function to change the speech volume
-  changeSpeechVolume(e) {
-    // Get the new value from the slider
-    let newValue = e.value;
-    // Update the data
-    this.setState({
-      speechVolume: newValue
-    });
-    // Call the accessibility API to set the speech volume
-    accessibility.setSpeechVolume({
-      volume: newValue
-    });
-  },
-  // The function to change the speech language
-  changeSpeechLanguage(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0];
-    // Update the data
-    this.setState({
-      speechLanguage: newValue
-    });
-    // Call the accessibility API to set the speech language
-    accessibility.setSpeechLanguage({
-      language: newValue
-    });
-  },
-  // The function to toggle the punctuation reading
-  toggleSpeechPunctuation() {
-    // Get the current value of the punctuation reading
-    let currentValue = this.state.speechPunctuation;
-    // Set the new value to the opposite of the current value
-    let newValue = !currentValue;
-    // Update the data
-    this.setState({
-      speechPunctuation: newValue
-    });
-    // Call the accessibility API to enable or disable the punctuation reading
-    accessibility.setSpeechPunctuation({
-      enable: newValue
-    });
+    // Export Log Button
+    root.createWidget(widget.BUTTON, {
+      x: buttonX,
+      y: 260,
+      w: buttonWidth,
+      h: 70,
+      text: gettext('Export Logs'),
+      color: 0xffffff,
+      normal_color: 0x555555,
+      press_color: 0x666666,
+      radius: 35,
+      click_func: () => {
+        log.info('Exporting logs to phone side...')
+        ScreenReader.speak(gettext('Exporting logs'), { priority: 'high' })
+      }
+    })
+
+    // Clear History Button
+    root.createWidget(widget.BUTTON, {
+      x: buttonX,
+      y: 340,
+      w: buttonWidth,
+      h: 70,
+      text: gettext('Clear Speech History'),
+      color: 0xffffff,
+      normal_color: 0xaa5500,
+      press_color: 0x666666,
+      radius: 35,
+      click_func: () => {
+        SpeechHistory.clear()
+        ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' })
+      }
+    })
+
+    return root
   }
-});
+})

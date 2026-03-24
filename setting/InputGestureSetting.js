@@ -1,7 +1,7 @@
 import { Gesture, Vibrator } from '@zos/sensor'
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { log } from '@zos/utils'
-import { logger } from '../utils/logger'
+import { logger } from '../utils/logger.js'
 
 // Define the settings page
 Page({
@@ -22,7 +22,7 @@ Page({
     }
   },
   // The function to change the swipe action
-  changeSwipeAction: async function(e) {
+  changeSwipeAction: async function (e) {
     try {
       const newValue = e.newValue[0]
       if (!settingsManager.validateInput.gesture.actions.includes(newValue)) {
@@ -85,4 +85,4 @@ Page({
       log.error('Double tap action error:', error)
     }
   }
-});
+})

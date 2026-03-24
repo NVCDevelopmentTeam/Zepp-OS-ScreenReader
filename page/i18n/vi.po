@@ -1,2 +1,380 @@
-msgid "example"
-msgstr "This is an example in device"
+msgid "readFromTop"
+msgstr "Đọc từ đầu"
+
+msgid "screenRecognition"
+msgstr "Nhận dạng màn hình"
+
+msgid "describeCamera"
+msgstr "Mô tả camera"
+
+msgid "imageDescription"
+msgstr "Mô tả hình ảnh"
+
+msgid "brailleKeyboard"
+msgstr "Bàn phím chữ nổi"
+
+msgid "repeatLast"
+msgstr "Nhắc lại lần cuối"
+
+msgid "cancel"
+msgstr "Hủy"
+
+msgid "contextMenuOpened"
+msgstr "Đã mở menu ngữ cảnh"
+
+msgid "contextMenuClosed"
+msgstr "Đã đóng menu ngữ cảnh"
+
+msgid "noImageFocused"
+msgstr "Không có hình ảnh nào được chọn"
+
+msgid "nothingToRepeat"
+msgstr "Không có gì để nhắc lại"
+
+msgid "Advanced Settings"
+msgstr "Cài đặt nâng cao"
+
+msgid "Debug Log"
+msgstr "Nhật ký gỡ lỗi"
+
+msgid "Verbose"
+msgstr "Chi tiết"
+
+msgid "Export Logs"
+msgstr "Xuất nhật ký"
+
+msgid "Exporting logs"
+msgstr "Đang xuất nhật ký"
+
+msgid "Clear Speech History"
+msgstr "Xóa lịch sử giọng nói"
+
+msgid "Speech history cleared"
+msgstr "Đã xóa lịch sử giọng nói"
+
+msgid "Contact & Feedback"
+msgstr "Liên hệ & Phản hồi"
+
+msgid "Introduction"
+msgstr "Giới thiệu"
+
+msgid "App Information"
+msgstr "Thông tin ứng dụng"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Version"
+msgstr "Phiên bản"
+
+msgid "Build Date"
+msgstr "Ngày tạo"
+
+msgid "Developer"
+msgstr "Nhà phát triển"
+
+msgid "Supported"
+msgstr "Được hỗ trợ"
+
+msgid "Optimized"
+msgstr "Được tối ưu hóa"
+
+msgid "Developer options unlocked!"
+msgstr "Tùy chọn nhà phát triển đã được mở khóa!"
+
+msgid "Tap"
+msgstr "Chạm"
+
+msgid "more times to unlock."
+msgstr "lần nữa để mở khóa."
+
+msgid "Accessibility"
+msgstr "Hỗ trợ tiếp cận"
+
+msgid "Gestures"
+msgstr "Cử chỉ"
+
+msgid "Shortcuts"
+msgstr "Phím tắt"
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Sensors"
+msgstr "Cảm biến"
+
+msgid "Voice Control"
+msgstr "Điều khiển bằng giọng nói"
+
+msgid "User Guide"
+msgstr "Hướng dẫn sử dụng"
+
+msgid "Section"
+msgstr "Phần"
+
+msgid "of"
+msgstr "của"
+
+msgid "Swipe right for next."
+msgstr "Vuốt sang phải để tiếp tục."
+
+msgid "Previous"
+msgstr "Trước"
+
+msgid "Next"
+msgstr "Tiếp theo"
+
+msgid "Braille Pairing"
+msgstr "Ghép nối chữ nổi"
+
+msgid "Scanning..."
+msgstr "Đang quét..."
+
+msgid "Ready to scan"
+msgstr "Sẵn sàng quét"
+
+msgid "No displays found"
+msgstr "Không tìm thấy màn hình"
+
+msgid "Stop Scan"
+msgstr "Dừng quét"
+
+msgid "Start Scan"
+msgstr "Bắt đầu quét"
+
+msgid "Scanning for Braille displays"
+msgstr "Đang quét các màn hình chữ nổi"
+
+msgid "Connecting to"
+msgstr "Đang kết nối với"
+
+msgid "Connected to"
+msgstr "Đã kết nối với"
+
+msgid "Audio & Braille"
+msgstr "Âm thanh & Chữ nổi"
+
+msgid "Braille Output"
+msgstr "Đầu ra chữ nổi"
+
+msgid "Table"
+msgstr "Bảng"
+
+msgid "Change Table"
+msgstr "Thay đổi bảng"
+
+msgid "Pair Display"
+msgstr "Ghép nối màn hình"
+
+msgid "Swipe Up"
+msgstr "Vuốt lên"
+
+msgid "Swipe Down"
+msgstr "Vuốt xuống"
+
+msgid "Swipe Left"
+msgstr "Vuốt sang trái"
+
+msgid "Swipe Right"
+msgstr "Vuốt sang phải"
+
+msgid "Double Tap"
+msgstr "Chạm hai lần"
+
+msgid "Long Press"
+msgstr "Nhấn giữ"
+
+msgid "Gestures & Input"
+msgstr "Cử chỉ & Nhập liệu"
+
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+msgid "ZSR Status"
+msgstr "Trạng thái ZSR"
+
+msgid "Confirm Disable"
+msgstr "Xác nhận tắt"
+
+msgid "Auto-start"
+msgstr "Tự động khởi động"
+
+msgid "Check for Updates"
+msgstr "Kiểm tra cập nhật"
+
+msgid "Remote Access"
+msgstr "Truy cập từ xa"
+
+msgid "Allow Access"
+msgstr "Cho phép truy cập"
+
+msgid "Start Session"
+msgstr "Bắt đầu phiên"
+
+msgid "Remote session started"
+msgstr "Phiên từ xa đã bắt đầu"
+
+msgid "Object Presentation"
+msgstr "Trình bày đối tượng"
+
+msgid "Read Emoji"
+msgstr "Đọc biểu tượng cảm xúc"
+
+msgid "Read Symbols"
+msgstr "Đọc ký hiệu"
+
+msgid "Report Passwords"
+msgstr "Đọc mật khẩu"
+
+msgid "Announce Day"
+msgstr "Thông báo ngày"
+
+msgid "Passwords"
+msgstr "Mật khẩu"
+
+msgid "Spell"
+msgstr "Đánh vần"
+
+msgid "Mask"
+msgstr "Mặt nạ"
+
+msgid "Log History"
+msgstr "Lịch sử nhật ký"
+
+msgid "Limit"
+msgstr "Giới hạn"
+
+msgid "items"
+msgstr "mục"
+
+msgid "View History"
+msgstr "Xem lịch sử"
+
+msgid "Clear History"
+msgstr "Xóa lịch sử"
+
+msgid "Speech Settings"
+msgstr "Cài đặt giọng nói"
+
+msgid "Speech Rate"
+msgstr "Tốc độ giọng nói"
+
+msgid "Speech Pitch"
+msgstr "Cao độ giọng nói"
+
+msgid "Read Status Bar"
+msgstr "Đọc thanh trạng thái"
+
+msgid "Read Progress"
+msgstr "Đọc tiến trình"
+
+msgid "Read Hints"
+msgstr "Đọc gợi ý"
+
+msgid "Engine"
+msgstr "Công cụ"
+
+msgid "TTS engine set to"
+msgstr "Công cụ TTS được đặt thành"
+
+msgid "Vision Settings"
+msgstr "Cài đặt thị giác"
+
+msgid "Screen Curtain"
+msgstr "Màn rèm màn hình"
+
+msgid "Explore Mode"
+msgstr "Chế độ khám phá"
+
+msgid "Magnification"
+msgstr "Phóng đại"
+
+msgid "Navigation Settings"
+msgstr "Cài đặt điều hướng"
+
+msgid "Review Cursor"
+msgstr "Con trỏ xem lại"
+
+msgid "Browse by"
+msgstr "Duyệt theo"
+
+msgid "Change Type"
+msgstr "Thay đổi loại"
+
+msgid "Notification Settings"
+msgstr "Cài đặt thông báo"
+
+msgid "Read All"
+msgstr "Đọc tất cả"
+
+msgid "Read SMS"
+msgstr "Đọc tin nhắn"
+
+msgid "Read Calls"
+msgstr "Đọc cuộc gọi"
+
+msgid "Read Missed"
+msgstr "Đọc cuộc gọi lỡ"
+
+msgid "Document Settings"
+msgstr "Cài đặt tài liệu"
+
+msgid "Formatting"
+msgstr "Định dạng"
+
+msgid "Tables"
+msgstr "Bảng"
+
+msgid "Input Composition"
+msgstr "Thành phần nhập liệu"
+
+msgid "Echo"
+msgstr "Tiếng vang"
+
+msgid "Change Echo"
+msgstr "Thay đổi tiếng vang"
+
+msgid "Autocomplete"
+msgstr "Tự động hoàn thành"
+
+msgid "Sensor Information"
+msgstr "Thông tin cảm biến"
+
+msgid "Read Heart Rate"
+msgstr "Đọc nhịp tim"
+
+msgid "Read SpO2"
+msgstr "Đọc SpO2"
+
+msgid "Read Sleep Data"
+msgstr "Đọc dữ liệu giấc ngủ"
+
+msgid "Read Steps"
+msgstr "Đọc số bước"
+
+msgid "Read Stress"
+msgstr "Đọc mức độ căng thẳng"
+
+msgid "ZSR Dashboard"
+msgstr "Bảng điều khiển ZSR"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Battery"
+msgstr "Pin"
+
+msgid "Turn OFF ZSR"
+msgstr "Tắt ZSR"
+
+msgid "Turn ON ZSR"
+msgstr "Bật ZSR"
+
+msgid "About"
+msgstr "Giới thiệu"

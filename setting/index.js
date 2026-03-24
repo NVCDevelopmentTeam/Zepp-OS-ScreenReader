@@ -1,116 +1,113 @@
-import { gettext } from '@zos/utils'
-import { createWidget, widget } from '@zos/ui'
-import { Settings } from '@zos/settings'
-import { settingsManager } from './utils'
-import { log } from '@zos/utils'
+import { AppSettingsPage, Section, Select, Text } from '@zeppos/zml'
+import renderGeneral from './GeneralSetting.js'
+import renderSpeech from './SpeechSetting.js'
+import renderVision from './VisionSetting.js'
+import renderGesturesInput from './GesturesInputSetting.js'
+import renderNotifications from './NotificationSetting.js'
+import renderObjectPresentation from './ObjectPresentationSetting.js'
+import renderNavigation from './NavigationSetting.js'
+import renderAudioBraille from './AudioBrailleSetting.js'
+import renderInputComposition from './InputCompositionSetting.js'
+import renderSpeechHistory from './SpeechHistorySetting.js'
+import renderRemoteAccess from './RemoteAccessSetting.js'
+import renderDocument from './DocumentSetting.js'
+import renderDeveloperOptions from './DeveloperSettings.js'
 
-const SETTINGS_CONFIG = {
-  volume: { path: 'volumeSetting', requires: ['audio'] },
-  keyboard: { path: 'KeyboardSetting', requires: ['keyboard'] },
-  speech: { path: 'SpeechSetting', requires: ['speech'] },
-  display: { path: 'DisplaySetting', requires: ['display'] }
-};
+AppSettingsPage({
+  build(props) {
+    const activeTab = props.settingsStorage.getItem('activeTab') || 'general'
 
-Page({
-  state: {
-    initialized: false,
-    error: null,
-    widgets: new Map()
-  },
-  async onInit() {
-    try {
-      const { success, capabilities } = await settingsManager.deviceManager.validate();
-      if (!success) {
-        throw new Error('Device validation failed');
-      }
-      await this.registerSettings(capabilities);
-      await this.createWidgets();
-      this.setState({ initialized: true });
-    } catch (error) {
-      this.setState({ error: error.message });
+    const isDevMode = props.settingsStorage.getItem('devMode') === true
+
+    const categories = [
+      { label: 'General', value: 'general' },
+      { label: 'Speech', value: 'speech' },
+      { label: 'Vision', value: 'vision' },
+      { label: 'Gestures & Input', value: 'gestures' },
+      { label: 'Notifications', value: 'notifications' },
+      { label: 'Object Presentation', value: 'object' },
+      { label: 'Cursor & Navigation', value: 'navigation' },
+      { label: 'Audio & Braille', value: 'audio' },
+      { label: 'Input Composition', value: 'input' },
+      { label: 'Speech History', value: 'history' },
+      { label: 'Remote Access', value: 'remote' },
+      { label: 'Document Settings', value: 'document' }
+    ]
+
+    if (isDevMode) {
+      categories.push({ label: 'Developer Options', value: 'developer' })
     }
-  },
-  build() {
-    this.initialize();
-  },
-  async initialize() {
-    try {
-      const { success } = await settingsManager.validateDevice();
-      if (!success) throw new Error('Device not supported');
-      await this.createWidgets();
-      this.setState({ initialized: true });
-    } catch (error) {
-      this.setState({ error: error.message });
+
+    let content
+    switch (activeTab) {
+      case 'general':
+        content = renderGeneral(props)
+        break
+      case 'speech':
+        content = renderSpeech(props)
+        break
+      case 'vision':
+        content = renderVision(props)
+        break
+      case 'gestures':
+        content = renderGesturesInput(props)
+        break
+      case 'notifications':
+        content = renderNotifications(props)
+        break
+      case 'object':
+        content = renderObjectPresentation(props)
+        break
+      case 'navigation':
+        content = renderNavigation(props)
+        break
+      case 'audio':
+        content = renderAudioBraille(props)
+        break
+      case 'input':
+        content = renderInputComposition(props)
+        break
+      case 'history':
+        content = renderSpeechHistory(props)
+        break
+      case 'remote':
+        content = renderRemoteAccess(props)
+        break
+      case 'document':
+        content = renderDocument(props)
+        break
+      case 'developer':
+        content = renderDeveloperOptions(props)
+        break
+      default:
+        content = renderGeneral(props)
     }
-  },
-  async registerSettings(capabilities) {
-    Object.entries(SETTINGS_CONFIG).forEach(([key, config]) => {
-      if (config.requires.every(cap => capabilities[cap])) {
-        Settings.register(key, { ...config, deviceSupported: true });
-      }
-    });
-  },
-  async createWidgets() {
-    try {
-      const container = await this.createContainer();
-      await this.createControls(container);
-      return container;
-    } catch (error) {
-      log.error('Widget creation failed:', error);
-      return null;
-    }
-  },
-  async createContainer() {
-    return createWidget(widget.GROUP, {
-      x: 0,
-      y: 0,
-      w: '100%',
-      h: '100%'
-    });
-  },
-  createControls(container) {
-    this.createToggle(container);
-    this.createVolumeControl(container);
-  },
-  createToggle(parent) {
-    const toggle = createWidget(widget.SWITCH, {
-      x: 0,
-      y: 0,
-      w: '100%',
-      h: 48,
-      label: gettext('Screen Reader'),
-      checked: false,
-      onChange: (value) => this.handleToggle(value)
-    });
-    parent.appendChild(toggle);
-    this.state.widgets.set('toggle', toggle);
-  },
-  createVolumeControl(parent) {
-    const slider = createWidget(widget.SLIDER, {
-      x: 0,
-      y: 56,
-      w: '100%',
-      h: 48,
-      min: 0,
-      max: 100,
-      value: 50,
-      onChange: (value) => this.handleVolume(value)
-    });
-    parent.appendChild(slider);
-    this.state.widgets.set('volume', slider);
-  },
-  handleToggle(enabled) {
-    settingsManager.handleSettingChange(
-      () => Settings.setScreenReaderEnabled(enabled),
-      enabled,
-      'screenReader'
-    );
-  },
-  handleVolume(value) {
-    settingsManager.handleSettingChange(
-      () => Settings.setVolume(value),
-      value,
-      'volume'
-    );
+
+    return [
+      Section({ title: 'ZSR Settings' }, [
+        Select({
+          label: 'Category',
+          settingsKey: 'activeTab',
+          options: categories
+        })
+      ]),
+      ...content,
+      Section({ title: 'About' }, [
+        Text('ZSR — Zepp OS Screen Reader'),
+        Text('Version: 1.0.1', {
+          onClick: () => {
+            const taps = (props.settingsStorage.getItem('devTaps') || 0) + 1
+            if (taps >= 7) {
+              const currentDevMode = props.settingsStorage.getItem('devMode')
+              props.settingsStorage.setItem('devMode', !currentDevMode)
+              props.settingsStorage.setItem('devTaps', 0)
+            } else {
+              props.settingsStorage.setItem('devTaps', taps)
+            }
+          }
+        }),
+        Text('Developer: NVCDevelopmentTeam')
+      ])
+    ]
   }
-});
+})

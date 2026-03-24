@@ -4,17 +4,8 @@
   import CollapsibleSection from '$lib/components/CollapsibleSection.svelte';
 
   let dialog = $state();
-  let files = $state();
-  let issue = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader/issues';
-  const pageTitle = 'Support';
-
-  
-  const closeDialog = () => {
-    dialog.close();
-  };
-
   let status = $state("");
-  let Agree = $state(false);
+  let agree = $state(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,180 +28,173 @@
       const result = await response.json();
 
       if (result.success) {
-        console.log(result);
-        status = result.message || "Success";
-        closeDialog();
+        status = "Feedback sent! Thank you.";
+        setTimeout(() => dialog.close(), 2000);
       } else {
         status = result.message || "Submission failed.";
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (_) {
+      console.error('Submission error:', _);
       status = "Error submitting form.";
     }
   };
+
+  const faqs = [
+    {
+      q: 'What is ZSR?',
+      a: 'Zepp OS Screen reader (ZSR) is a professional accessibility feature designed for visually impaired users. It uses advanced speech synthesis to read on-screen content, enabling full device interaction without visual reliance.'
+    },
+    {
+      q: 'How do I enable ZSR?',
+      a: 'Navigate to Settings > Accessibility > Screen Reader on your Zepp OS device and toggle the switch to ON.'
+    },
+    {
+      q: 'Basic Gestures',
+      a: '→ Swipe up/down: Navigate items\n→ Double-tap: Select/Activate\n→ Swipe left/right: Switch screens\n→ Long press: Voice assistant'
+    },
+    {
+      q: 'Supported Languages',
+      a: 'ZSR currently supports English, Chinese, Japanese, Korean, German, French, Spanish, Portuguese, Russian, and Italian.'
+    }
+  ];
 </script>
 
 <svelte:head>
-  <title>{pageTitle} | {siteTitle}</title>
-  <meta name="description" content="Find support for Zepp OS Screen Reader (ZSR), a screen reader developed for the visually impaired for smart wearable devices running Zepp OS." />
+  <title>Support | {siteTitle}</title>
 </svelte:head>
 
-<div class="container">
-  <h1>{pageTitle}</h1>
-  <h2>About ZSR Project</h2>
-  <p>The ZSR project, including discussions and all source code for this site and the Zepp OS screen reader, is hosted on <a href={githubLink}>GitHub</a>. If you have a problem with Zepp OS Screen Reader, please report your problem on our <a href={issue} aria-label="GitHub issue tracker for Zepp OS Screen Reader">GitHub issue tracker</a>.</p>
-  <h2>Note</h2>
-  <p>The product is provided free of charge to end users only. If any organization or individual wants to integrate the author's product into their service, they need the author's written consent. The author is not responsible for organizations or individuals distributing the author's products for other purposes.</p>
-  <section class="support-options">
-    <h2>How Can We Assist You?</h2>
-    <ul>
-      <li><a href="#frequently asked questions">frequently asked questions</a></li>
-      <li><a href="#TroubleshootingGuide">Troubleshooting Guide</a></li>
-      <li><a href="#contact">Contact support</a></li>
-      <li><a href="#feedback">Send us feedback</a></li>
-    </ul>
-  </section>
-  <h2 id="frequently asked questions">frequently asked questions</h2>
-  <CollapsibleSection headerText='What is ZSR?'>
-    <div class="content">
-      Zepp OS Screen reader (ZSR) is a feature that supports users who are visually impaired or have difficulty reading the screen on Zepp OS smartwatches. ZSR uses speech synthesis technology to read the content displayed on the screen, helping users easily access and use the watch.
+<div class="container py-20 md:py-32 reveal-up">
+  <header class="text-center mb-32">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10">
+      Support Center
     </div>
-  </CollapsibleSection>
-  <CollapsibleSection headerText='How to enable ZSR?'>
-    <ol>
-      <li>Open the Settings app on your watch.</li>
-      <li>Select Accessibility.</li>
-      <li>Select Screen Reader.</li>
-      <li>Turn on the Screen Reader switch.</li>
-    </ol>
-  </CollapsibleSection>
-  <CollapsibleSection headerText='How to use ZSR?'>
-    <ul>
-      <li>Swipe up or down to move through items.</li>
-      <li>Double-tap to select an item.</li>
-      <li>Swipe left or right to switch between screens.</li>
-      <li>Press and hold to activate the voice assistant.</li>
-    </ul>
-  </CollapsibleSection>
-  <CollapsibleSection headerText='What contents can ZSR read?'>
-    <p>ZSR can read most of the content displayed on the watch screen, including:</p>
-    <ul>
-      <li>Time</li>
-      <li>Date</li>
-      <li>Battery status</li>
-      <li>Notification</li>
-      <li>Application name</li>
-      <li>Message content</li>
-      <li>etc.</li>
-    </ul>
-  </CollapsibleSection>
-  <CollapsibleSection headerText='What languages does ZSR support?'>
-    <p>ZSR currently supports the following languages:</p>
-    <ul>
-      <li>English</li>
-      <li>Chinese</li>
-      <li>Japanese</li>
-      <li>Korean</li>
-      <li>German</li>
-      <li>French</li>
-      <li>Spanish</li>
-      <li>Portuguese</li>
-      <li>Russian</li>
-      <li>Italian</li>
-    </ul>
-  </CollapsibleSection>
-<CollapsibleSection headerText='Where can I learn more about ZSR?'>
-  <p>
-    You can learn more about ZSR at Zepp's support site. Visit the 
-    <a href="https://www.zepp.com/support/zsr" aria-label="Zepp OS Screen Reader support page">
-      Zepp OS Screen Reader support page
-    </a> 
-    for detailed information.
-  </p>
-</CollapsibleSection>
-  <CollapsibleSection headerText='Other FAQ'>
-    <ul>
-      <li>
-        <h3>Does ZSR consume a lot of battery?</h3>
-        <p>Yes, ZSR will drain battery more than when not in use.</p>
-      </li>
-      <li>
-        <h3>Can ZSR be used with Bluetooth headphones?</h3>
-        <p>Yes, ZSR can be used with Bluetooth headphones.</p>
-      </li>
-      <li>
-        <h3>Can ZSR be used with third-party applications?</h3>
-        <p>Currently, ZSR can only read content in system applications.</p>
-      </li>
-      <li>
-        <h3>What problems might I encounter when using ZSR?</h3>
-        <p>Some problems you may encounter when using ZSR include:</p>
-        <ul>
-          <li>ZSR may not read some content correctly.</li>
-          <li>ZSR may have difficulty reading content in third-party applications.</li>
-          <li>ZSR may drain battery faster.</li>
-        </ul>
-        <p>If you encounter any problems using ZSR, you can refer to the following resources:</p>
-        <ul>
-          <li><a href="https://www.zepp.com/support/zsr-faq">ZSR FAQ</a></li>
-          <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
-        </ul>
-      </li>
-      <li>
-        <h3>Can I change ZSR's voice?</h3>
-        <p>Yes, you can change ZSR's voice in Screen Reader settings.</p>
-      </li>
-      <li>
-        <h3>Can I report a bug about ZSR?</h3>
-        <p>Yes, you can report bugs about ZSR using the Zepp app on your smartphone.</p>
-      </li>
-    </ul>
-  </CollapsibleSection>
-  <section>
-    <h2>Additional Resources</h2>
-    <ul>
-      <li><a href="https://www.zepp.com/support/zsr-faq">ZSR FAQ</a></li>
-      <li><a href="https://www.zepp.com/support/zsr-user-guide">ZSR User Guide</a></li>
-    </ul>
-  </section>
-  <h2 id="TroubleshootingGuide">Troubleshooting Guide</h2>
-  <p>If you encounter any problems while using Zepp OS Screen Reader (ZSR), you can refer to the following steps to find a quick and effective solution:</p>
-  <ul>
-    <li><strong>Restart your device:</strong> This is a simple but effective way to solve temporary problems. Simply turn your device off and on again to see if there is any improvement.</li>
-    <li><strong>Updating the application:</strong> You should ensure that you are using the latest version of ZSR to experience the latest features and fix old bugs. You can check and update the app in your device's app store or on <a href="/">ZSR official website</a>.</li>
-    <li><strong>Check settings:</strong> You should also check that ZSR's settings are appropriate for your needs and device. If you need guidance, you can see our <a href="/support">support page</a> to learn how to adjust the settings.</li>
-  </ul>
-  <p>If you have tried all the steps above and still cannot solve the problem, you can contact us for timely support.</p>
-  <h2 id="contact">Contact Support</h2>
-  <p>We are always happy to support you at all times. You can contact us through the following channels:</p>
-  <ul>
-    <li><strong>Contact page:</strong> You can visit our <a href="/contact">contact page</a> and fill out the support request form. We will contact you via email as soon as possible.</li>
-    <li><strong>Discord:</strong> You can join our <a href={discordChat}>Discord community</a> and chat directly with our support staff. You will receive detailed answers and instructions from us.</li>
-  </ul>
-  <p>When contacting, please provide us with the following information:</p>
-  <ul>
-    <li><strong>Problem description:</strong> Please clearly state the problem you are having, including error messages, scenarios, and attach video or audio if available.</li>
-    <li><strong>Device information:</strong> Please tell us the model and operating system version of the device you are using. This will help us determine the cause and the most appropriate solution.</li>
-  </ul>
-  <p>We will try to respond to you within 24 hours. Thank you for trusting and using ZSR!</p>
-  <h2 id="feedback">Send us feedback</h2>
-  <p>If you have questions or problems with ZSR and need support, please leave your feedback <button role="link" onclick={() => dialog.showModal()}>here</button>. We will respond to you as soon as possible.</p>
-  <Dialog bind:dialog on:close={() => console.log('closed')}>
-    <form onsubmit={handleSubmit}>
-      <input type="hidden" name="access_key" value={accessKey} />
-      <label class="required" for="send-feedback">Detailed description of the problem</label>
-      <textarea class="field req" id="send-feedback" name="Send feedback" required rows="3"></textarea>
-      <label class="required" for="email">Email</label>
-      <input class="field req" type="email" id="email" name="email" required />
-      <label for="add-file">Attach audio or video files</label>
-      <input type="file" id="add-file" name="add file" accept="audio/*, video/*" bind:files />
-      {#if files && files[0]}
-        <p>{files[0].name}</p>
-      {/if}
-      <input type="checkbox" id="Agree" name="Agree" bind:checked={Agree} />
-      <label for="Agree">By sending us feedback, you agree to this website's <a href="/privacy-policy">Privacy policy</a> and assume all legal responsibility when problems occur.</label>
-      <input type="submit" disabled={!Agree} value="Send" />
-    </form>
-    <div>{status}</div>
-  </Dialog>
+    <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-12 leading-[0.9] tracking-tighter uppercase">
+      Help & <br /> <span class="text-blue-600">Guidance</span>
+    </h1>
+    <p class="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+      Troubleshooting tips, FAQs, and everything you need to know about ZSR.
+    </p>
+  </header>
+
+  <div class="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+    
+    <!-- Left: FAQ & Content -->
+    <div class="lg:col-span-2 space-y-16">
+      
+      <section>
+        <div class="flex items-center gap-4 mb-12">
+          <div class="w-1 h-8 bg-blue-600 rounded-full"></div>
+          <h2 class="text-3xl font-black uppercase tracking-tighter">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-6">
+          {#each faqs as faq (faq.q)}
+            <CollapsibleSection headerText={faq.q}>
+              <div class="prose dark:prose-invert py-4 text-gray-500 font-medium whitespace-pre-line leading-relaxed">
+                {faq.a}
+              </div>
+            </CollapsibleSection>
+          {/each}
+        </div>
+      </section>
+
+      <section class="card glass border-blue-500/5 p-10 md:p-16">
+        <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Troubleshooting</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex-center shadow-lg shadow-blue-500/20">
+              <div class="i-lucide-rotate-ccw w-6 h-6"></div>
+            </div>
+            <h3 class="text-xl font-black uppercase tracking-tight">Restart Device</h3>
+            <p class="text-sm text-gray-500 leading-relaxed font-medium">A quick restart solves 90% of temporary performance issues on Zepp OS devices.</p>
+          </div>
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex-center shadow-lg shadow-blue-500/20">
+              <div class="i-lucide-refresh-cw w-6 h-6"></div>
+            </div>
+            <h3 class="text-xl font-black uppercase tracking-tight">Update ZSR</h3>
+            <p class="text-sm text-gray-500 leading-relaxed font-medium">Ensure you have the latest version from the App Store for the best accessibility support.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right: Sidebar Support Options -->
+    <aside class="space-y-8">
+      <div class="card bg-zeppDark text-white p-10 border-none relative overflow-hidden group">
+        <div class="absolute -top-12 -right-12 w-48 h-48 bg-blue-600/30 blur-[60px] group-hover:bg-blue-600/50 transition-all duration-700"></div>
+        <h3 class="text-2xl font-black uppercase tracking-tighter mb-6 relative z-10">Expert Help</h3>
+        <p class="text-gray-400 mb-10 text-sm font-medium leading-relaxed relative z-10">
+          Connect with our development team directly via Discord or GitHub for complex technical queries.
+        </p>
+        <div class="space-y-4 relative z-10">
+          <a href={discordChat} class="btn bg-white text-zeppDark w-full justify-between gap-3 py-4 text-xs font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-all">
+            Discord Community
+            <div class="i-lucide-message-circle w-4 h-4"></div>
+          </a>
+          <a href={githubLink} class="btn bg-white/10 text-white w-full justify-between gap-3 py-4 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/20 transition-all">
+            GitHub Issues
+            <div class="i-lucide-github w-4 h-4"></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="card p-10 flex flex-col items-center text-center">
+        <div class="w-16 h-16 rounded-full bg-blue-500/10 text-blue-600 flex-center mb-6">
+          <div class="i-lucide-heart w-8 h-8"></div>
+        </div>
+        <h3 class="text-xl font-black uppercase mb-4 tracking-tight">Feedback</h3>
+        <p class="text-sm text-gray-500 mb-8 font-medium">Help us shape the future of ZSR with your insights.</p>
+        <button 
+          onclick={() => dialog.showModal()}
+          class="btn-primary w-full py-4 text-xs uppercase tracking-widest"
+        >
+          Send Feedback
+        </button>
+      </div>
+    </aside>
+  </div>
 </div>
+
+<Dialog bind:dialog>
+  <div class="p-4">
+    <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 leading-none">Feedback</h2>
+    <p class="text-gray-500 font-medium mb-12">How can we improve your experience?</p>
+
+    <form onsubmit={handleSubmit} class="space-y-8">
+      <input type="hidden" name="access_key" value={accessKey} />
+      
+      <div class="space-y-3">
+        <label for="support-email" class="block text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Your Email</label>
+        <input class="input-field" type="email" id="support-email" name="email" required placeholder="name@example.com" />
+      </div>
+
+      <div class="space-y-3">
+        <label for="support-feedback" class="block text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Message</label>
+        <textarea class="input-field min-h-[150px] resize-none" id="support-feedback" name="feedback" required placeholder="Tell us more..."></textarea>
+      </div>
+
+      <div class="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-white/5">
+        <input type="checkbox" id="support-agree" bind:checked={agree} class="mt-1 accent-blue-600 w-5 h-5" />
+        <label for="support-agree" class="text-xs text-gray-500 font-medium leading-relaxed">
+          I agree to the <a href="/privacy-policy" class="text-blue-600 font-bold hover:underline">Privacy Policy</a> and terms.
+        </label>
+      </div>
+
+      <div class="flex flex-col gap-4 pt-6">
+        <button type="submit" disabled={!agree || status === 'Submitting...'} class="btn-primary w-full py-5 text-xs font-black uppercase tracking-widest">
+          {status === 'Submitting...' ? 'Processing...' : 'Submit Feedback'}
+        </button>
+        <button type="button" onclick={() => dialog.close()} class="btn-secondary w-full py-4 text-xs font-black uppercase tracking-widest border-none">Cancel</button>
+      </div>
+      
+      {#if status && status !== 'Submitting...'}
+        <div 
+          aria-live="polite"
+          class="text-center p-4 rounded-2xl bg-blue-500/10 text-blue-600 font-bold text-xs uppercase tracking-widest"
+        >
+          {status}
+        </div>
+      {/if}
+    </form>
+  </div>
+</Dialog>

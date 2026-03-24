@@ -1,70 +1,42 @@
 <script>
   import { browser } from '$app/environment';
   import { onMount } from 'svelte';
-  import Card from './Card.svelte';
   
-  let { post, children } = $props();
-  let elements = [];
-  let headings = $state(post.headings);
+  let { post } = $props();
+  let headings = $derived(post.headings || []);
+  let activeHeadingId = $state(null);
   
-  // Alternative fix: Initialize as null and set in updateHeadings
-  let activeHeading = $state(null);
-  
-  let scrollY;
-  
-  function updateHeadings() {
-    headings = post.headings;
-    activeHeading = headings[0]; // Set the initial active heading here
-    if (browser) {
-      elements = headings.map((heading) => {
-        return document.getElementById(heading.id);
-      });
-    }
-  }
-  
-  function setActiveHeading() {
-    scrollY = window.scrollY;
-    const visibleIndex =
-      elements.findIndex((element) => element.offsetTop + element.clientHeight > scrollY) - 1;
+  function handleScroll() {
+    if (!browser) return;
     
-    activeHeading = headings[visibleIndex];
-    
-    const pageHeight = document.body.scrollHeight;
-    const scrollProgress = (scrollY + window.innerHeight) / pageHeight;
-    
-    if (!activeHeading) {
-      if (scrollProgress > 0.5) {
-        activeHeading = headings[headings.length - 1];
-      } else {
-        activeHeading = headings[0];
+    const headingElements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
+    const scrollPosition = window.scrollY + 100;
+
+    for (let i = headingElements.length - 1; i >= 0; i--) {
+      if (scrollPosition >= headingElements[i].offsetTop) {
+        activeHeadingId = headings[i].id;
+        break;
       }
     }
   }
   
   onMount(() => {
-    updateHeadings();
-    setActiveHeading();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   });
 </script>
 
-<svelte:window onscroll={setActiveHeading} />
-
-<Card class="p-6 bg-white shadow-lg rounded-lg">
-  {#if children}
-    {@render children()}
-  {:else}
-    <ul class="flex flex-col gap-3">
-      {#each headings as heading (heading.id)}
-        <li
-          class="pl-3 py-2 text-sm transition-colors border-l-4 border-teal-500 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-teal-50 dark:hover:bg-teal-700 rounded-md"
-          class:active={activeHeading === heading}
-          style={`--depth: ${Math.max(0, heading.depth - 1)}`}
-        >
-          <a href={`#${heading.id}`} class="flex items-center gap-2">
-            <span class="truncate">{heading.value}</span>
-          </a>
-        </li>
-      {/each}
-    </ul>
-  {/if}
-</Card>
+<nav class="space-y-1 relative" aria-label="Table of Contents" role="region">
+  <div class="absolute left-0 top-0 w-px h-full bg-gray-100 dark:bg-white/5"></div>
+  {#each headings as heading (heading.id)}
+    {@const isActive = activeHeadingId === heading.id}
+    <a 
+      href={`#${heading.id}`}
+      class="block py-2 pr-4 text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-l-2 relative z-10 {isActive ? 'border-blue-600 text-blue-600 pl-4' : 'border-transparent text-gray-400 pl-4 hover:text-gray-900 dark:hover:text-white'}"
+      style:margin-left={`${(heading.depth - 2) * 1}rem`}
+    >
+      {heading.value}
+    </a>
+  {/each}
+</nav>

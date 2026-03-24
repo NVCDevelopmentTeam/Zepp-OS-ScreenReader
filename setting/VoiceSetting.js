@@ -1,5 +1,5 @@
 import { createWidget, widget } from '@zos/ui'
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { log } from '@zos/utils'
 
 Page({
@@ -19,10 +19,10 @@ Page({
       y: 0,
       w: '100%',
       h: 200,
-      options: this.state.voices.map(voice => ({ text: voice, value: voice })),
+      options: this.state.voices.map((voice) => ({ text: voice, value: voice })),
       value: this.state.selectedVoice,
       onChange: (value) => this.changeVoice(value)
-    });
+    })
 
     const voiceLabel = createWidget(widget.TEXT, {
       x: 0,
@@ -34,10 +34,10 @@ Page({
       color: '#ffffff',
       textAlign: 'center',
       id: 'voiceLabel'
-    });
+    })
 
-    this.append(voiceList);
-    this.append(voiceLabel);
+    this.append(voiceList)
+    this.append(voiceLabel)
   },
 
   async changeVoice(value) {
@@ -47,20 +47,20 @@ Page({
         () => log.log('Setting voice:', value),
         value,
         'voice'
-      );
+      )
       if (success) {
-        this.setState({ selectedVoice: value });
-        this.updateLabel(value);
+        this.setState({ selectedVoice: value })
+        this.updateLabel(value)
       }
     } catch (error) {
-      log.error('Voice change failed:', error);
+      log.error('Voice change failed:', error)
     }
   },
 
   updateLabel(value) {
-    const labelWidget = this.getElementById('voiceLabel');
+    const labelWidget = this.getElementById('voiceLabel')
     if (labelWidget) {
-      labelWidget.setProperty(widget.TEXT, `Voice: ${value}`);
+      labelWidget.setProperty(widget.TEXT, `Voice: ${value}`)
     }
   }
-});
+})

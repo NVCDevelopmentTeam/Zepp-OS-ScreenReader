@@ -1,41 +1,29 @@
 <script>
-  import { format, parseISO } from 'date-fns';
-
+  import { format } from 'date-fns/format';
+  import { parseISO } from 'date-fns/parseISO';
 
   /**
    * @typedef {Object} Props
-   * @property {any} decorate
-   * @property {any} post
-   * @property {boolean} [collapsed]
-   * @property {any} class
+   * @property {any} [post]
+   * @property {string} [class]
    */
 
   /** @type {Props} */
   let {
-    decorate,
     post,
-    collapsed = false,
-    class: _class
+    class: _class = ''
   } = $props();
-  
 </script>
 
-<div
-  class={['relative z-10 order-first mb-3 flex text-zinc-500 dark:text-zinc-400', _class].join(' ')}
-  class:pl-3.5={decorate}
->
-  {#if decorate}
-    <span class="absolute inset-y-0 left-0 flex items-center py-1" aria-hidden="true">
-      <span class="h-full w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
-    </span>
-  {/if}
-  <div class="flex" class:flex-col={!collapsed}>
+{#if post}
+  <div class="flex items-center gap-3 text-gray-400 font-black uppercase tracking-widest text-[10px] {_class}">
     <time datetime={post.date}>
-      {format(new Date(parseISO(post.date)), 'MMMM d, yyyy')}
+      {format(new Date(parseISO(post.date)), 'MMM d, yyyy')}
     </time>
-    {#if collapsed}
-      <span class="mx-1">•</span>
-    {/if}
-    <span>{post.readingTime}</span>
+    <span class="w-1 h-1 rounded-full bg-blue-600" aria-hidden="true"></span>
+    <span class="flex items-center gap-2">
+      <div class="i-lucide-clock w-3.5 h-3.5 text-blue-500" aria-hidden="true"></div>
+      {post.readingTime}
+    </span>
   </div>
-</div>
+{/if}

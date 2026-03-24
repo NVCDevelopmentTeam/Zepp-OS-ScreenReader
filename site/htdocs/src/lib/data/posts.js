@@ -1,5 +1,6 @@
 import { browser } from '$app/environment'
-import { format, isAfter } from 'date-fns'
+import { format } from 'date-fns/format'
+import { isAfter } from 'date-fns/isAfter'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 

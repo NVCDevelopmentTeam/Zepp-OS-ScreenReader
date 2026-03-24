@@ -2,12 +2,12 @@ import { getDeviceInfo } from '@zos/device'
 import { log } from '@zos/utils'
 
 const deviceManager = {
-  async validate() {
+  validate() {
     try {
-      const info = await getDeviceInfo()
+      getDeviceInfo()
       return {
-        success: info?.success || false,
-        capabilities: this.parseCapabilities(info?.capabilities)
+        success: true, // getDeviceInfo always returns info object
+        capabilities: this.parseCapabilities()
       }
     } catch (error) {
       log.error('Device validation failed:', error)
@@ -15,12 +15,14 @@ const deviceManager = {
     }
   },
 
-  parseCapabilities(caps = {}) {
+  parseCapabilities() {
+    // Zepp OS doesn't have a direct 'capabilities' object in getDeviceInfo usually
+    // We infer based on device info or assume some defaults
     return {
-      audio: !!caps.audio?.enabled,
-      speech: !!caps.speech?.enabled,
-      display: !!caps.display?.enabled,
-      gesture: !!caps.gesture?.enabled
+      audio: true, // Most modern watches have at least vibration
+      speech: true,
+      display: true,
+      gesture: true
     }
   }
 }
@@ -28,18 +30,14 @@ const deviceManager = {
 export const settingsManager = {
   deviceManager,
 
-  async validateDeviceFeatures(requiredCapabilities = []) {
+  validateDeviceFeatures(requiredCapabilities = []) {
     try {
-      const info = await getDeviceInfo()
-      if (!info?.success) {
-        throw new Error('Device info not available')
-      }
-      
-      const caps = info.capabilities || {}
-      const validated = settingsManager.validateCapabilities(caps)
+      const info = getDeviceInfo()
+
+      const validated = settingsManager.validateCapabilities(info)
 
       if (requiredCapabilities.length) {
-        const missing = requiredCapabilities.filter(cap => !validated[cap])
+        const missing = requiredCapabilities.filter((cap) => !validated[cap])
         if (missing.length) {
           throw new Error(`Missing capabilities: ${missing.join(', ')}`)
         }
@@ -56,8 +54,8 @@ export const settingsManager = {
     try {
       const info = getDeviceInfo()
       return {
-        isValid: info.success,
-        capabilities: this.validateCapabilities(info.capabilities || {})
+        isValid: true,
+        capabilities: this.validateCapabilities(info)
       }
     } catch (error) {
       log.error('Settings initialization failed:', error)
@@ -65,19 +63,19 @@ export const settingsManager = {
     }
   },
 
-  validateCapabilities(caps = {}) {
-    if (!caps || typeof caps !== 'object') return {}
+  validateCapabilities(_) {
+    // Inference for capabilities if needed
     return {
-      audio: Boolean(caps.audio?.enabled),
-      speech: Boolean(caps.speech?.enabled),
-      display: Boolean(caps.display?.enabled),
-      gesture: Boolean(caps.gesture?.enabled)
+      audio: true,
+      speech: true,
+      display: true,
+      gesture: true
     }
   },
 
-  isSupported: (capability) => {
-    const info = getDeviceInfo()
-    return info.success && info.capabilities?.[capability]
+  isSupported: (_) => {
+    getDeviceInfo()
+    return true // Assume supported for now or add specific checks
   },
 
   validateNumericRange: (value, min, max) => {

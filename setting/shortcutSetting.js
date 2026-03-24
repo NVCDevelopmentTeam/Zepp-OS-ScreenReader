@@ -1,4 +1,4 @@
-import { settingsManager } from './utils'
+import { settingsManager } from './utils.js'
 import { Shortcut } from '@zos/interaction'
 import { log } from '@zos/utils'
 import { accessibility } from '@zos/accessibility'
@@ -10,11 +10,11 @@ Page({
     shortcutItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
     shortcutOrder: 'asc',
     shortcutActions: {
-      'Read': accessibility.read,
-      'Pause': accessibility.pause,
-      'Next': accessibility.next,
-      'Previous': accessibility.previous,
-      'Settings': accessibility.settings
+      Read: accessibility.read,
+      Pause: accessibility.pause,
+      Next: accessibility.next,
+      Previous: accessibility.previous,
+      Settings: accessibility.settings
     }
   },
   // The function to change the shortcut items
@@ -69,6 +69,6 @@ Page({
   },
   validateShortcutItems(items) {
     const validActions = Object.keys(this.state.shortcutActions)
-    return items.every(item => validActions.includes(item))
+    return items.every((item) => validActions.includes(item))
   }
-});
+})

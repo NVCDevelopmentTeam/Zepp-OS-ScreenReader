@@ -1,125 +1,80 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 25032,
+    "appId": 23022,
     "appName": "ZSR",
     "appType": "app",
     "version": {
       "code": 1,
-      "name": "1.0.0"
+      "name": "1.0.1"
     },
     "icon": "icon.png",
-    "vender": "zepp",
-    "description": "This is screen reader for zepp OS"
+    "vender": "NVCDevelopmentTeam",
+    "description": "description",
+    "i18n": true
   },
   "permissions": [
     "data:os.device.info",
     "device:os.local_storage",
-    "data:user.hd.calorie"
-  ],
-  "external": [
-    "@zos/message",
-    "@zos/utils",
-    "@zos/sensor",
-    "@zos/settings",
-    "@zos/ui",
-    "@zos/device"
+    "data:user.hd.calorie",
+    "device:os.vibration",
+    "device:os.sound",
+    "data:user.hd.heart_rate",
+    "data:user.hd.sleep",
+    "data:user.hd.spo2",
+    "data:user.hd.step",
+    "data:user.hd.stress",
+    "device:os.camera",
+    "device:os.ble"
   ],
   "runtime": {
     "apiVersion": {
       "compatible": "2.0.0",
-      "target": "2.0.0",
+      "target": "2.0",
       "minVersion": "2.0.0"
+    },
+    "accessibility": {
+      "type": "screen_reader"
+    },
+    "boot": {
+      "enable": true
     }
   },
   "targets": {
-    "390x450-amazfit-gts-3": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "Zurich",
-          "deviceSource": 224
-        },
-        {
-          "name": "ZurichW",
-          "deviceSource": 225
-        }
-      ],
-      "designWidth": 390
-    },
-    "454x454-amazfit-gtr-3": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "Verona",
-          "deviceSource": 226
-        },
-        {
-          "name": "VeronaW",
-          "deviceSource": 227
-        }
-      ],
-      "designWidth": 454
-    },
-    "480x480-amazfit-gtr-3-pro": {
-      "module": {
-        "page": {
-          "pages": [
-            "page/index"
-          ]
-        },
-        "app-side": {
-          "path": "app-side/index"
-        },
-        "setting": {
-          "path": "setting/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "Madrid",
-          "deviceSource": 229
-        },
-        {
-          "name": "MadridW",
-          "deviceSource": 230
-        },
-        {
-          "name": "Madrid2",
-          "deviceSource": 6095106
-        }
-      ],
-      "designWidth": 480
-    },
     "416x416-amazfit-gtr-mini": {
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -127,6 +82,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -141,7 +114,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -149,6 +151,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -167,7 +187,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -175,6 +224,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -193,7 +260,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -201,6 +297,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -219,7 +333,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -227,6 +370,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -241,7 +402,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -249,6 +439,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -267,7 +475,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -275,6 +512,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -293,7 +548,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -301,6 +585,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -319,7 +621,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -327,6 +658,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -341,7 +690,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -349,6 +727,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -367,7 +763,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -375,6 +800,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -389,7 +832,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -397,6 +869,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -415,7 +905,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -423,6 +942,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -441,7 +978,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -449,6 +1015,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -467,7 +1051,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -475,6 +1088,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -497,7 +1128,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -505,6 +1165,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -527,7 +1205,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -535,6 +1242,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -553,7 +1278,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -561,6 +1315,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -575,7 +1347,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -583,6 +1384,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -609,7 +1428,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -617,6 +1465,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -647,7 +1513,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -655,6 +1550,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -677,7 +1590,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -685,6 +1627,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -707,7 +1667,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -715,6 +1704,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -733,7 +1740,36 @@
       "module": {
         "page": {
           "pages": [
-            "page/index"
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
           ]
         },
         "app-side": {
@@ -741,6 +1777,24 @@
         },
         "setting": {
           "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
         }
       },
       "platforms": [
@@ -750,11 +1804,324 @@
         }
       ],
       "designWidth": 390
+    },
+    "480x480-amazfit-balance-2-xt": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Warsaw",
+          "deviceSource": 10486016
+        },
+        {
+          "name": "WarsawWN",
+          "deviceSource": 10486017
+        },
+        {
+          "name": "WarsawW",
+          "deviceSource": 10486019
+        }
+      ],
+      "designWidth": 480
+    },
+    "480x480-amazfit-t-rex-3-pro-48-mm": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Rocky",
+          "deviceSource": 10551552
+        },
+        {
+          "name": "RockyWN",
+          "deviceSource": 10551553
+        },
+        {
+          "name": "RockyW",
+          "deviceSource": 10551555
+        }
+      ],
+      "designWidth": 480
+    },
+    "466x466-amazfit-t-rex-3-pro-44-mm": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Rimo",
+          "deviceSource": 10682624
+        },
+        {
+          "name": "RimoWN",
+          "deviceSource": 10682625
+        },
+        {
+          "name": "RimoW",
+          "deviceSource": 10682627
+        }
+      ],
+      "designWidth": 466
+    },
+    "480x480-amazfit-active-max": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors",
+            "setting/AdvancedSettings"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "GenevaWN",
+          "deviceSource": 10813697
+        },
+        {
+          "name": "GenevaW",
+          "deviceSource": 10813699
+        }
+      ],
+      "designWidth": 480
     }
   },
   "i18n": {
     "en-US": {
-      "appName": "Empty"
+      "appName": "ZSR - Zepp OS Screen Reader",
+      "description": "The professional screen reader for Zepp OS, enabling full accessibility for blind and low-vision users."
+    },
+    "vi-VN": {
+      "appName": "ZSR - Trình đọc màn hình Zepp OS",
+      "description": "Trình đọc màn hình chuyên nghiệp cho Zepp OS, mang lại khả năng truy cập đầy đủ cho người khiếm thị."
+    },
+    "zh-CN": {
+      "appName": "ZSR - Zepp OS 屏幕阅读器",
+      "description": "Zepp OS 专业屏幕阅读器，为视障人士提供全面的无障碍支持。"
     }
   },
   "defaultLanguage": "en-US"
