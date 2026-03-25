@@ -1,105 +1,237 @@
+/* ============================================================
+   app.css — Zepp Design System
+   Optimized for: SvelteKit + UnoCSS | Lighthouse 90+ | Mobile-first
+   ============================================================ */
+
+/* ── 1. DESIGN TOKENS ─────────────────────────────────────── */
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Lexend', var(--font-sans);
+
   --zepp-blue: #0052ff;
+  --zepp-blue-hover: #003ecc;
   --zepp-dark: #0b0e11;
+
+  /* Fluid type scale — prevents layout shift on resize */
+  --text-xs:   clamp(0.75rem,  1.5vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 2vw,   1rem);
+  --text-base: clamp(1rem,     2.5vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 3vw,   1.25rem);
+  --text-xl:   clamp(1.25rem,  3.5vw, 1.5rem);
+  --text-2xl:  clamp(1.5rem,   4vw,   2rem);
+  --text-3xl:  clamp(1.875rem, 5vw,   2.5rem);
+  --text-4xl:  clamp(2.25rem,  6vw,   3.5rem);
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Surfaces — Light mode */
+  --bg-base:        #ffffff;
+  --bg-subtle:      #f5f5f7;
+  --bg-muted:       #e8e8ed;
+  --text-primary:   #111111;
+  --text-secondary: #555555;
+  --text-muted:     #888888;
+  --border-color:   rgba(0, 0, 0, 0.08);
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+
+  /* Motion */
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   600ms;
+  --ease-out:        cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-* {
+/* Dark mode tokens */
+.dark {
+  --bg-base:        var(--zepp-dark);
+  --bg-subtle:      #13171c;
+  --bg-muted:       #1c2128;
+  --text-primary:   #f5f5f7;
+  --text-secondary: #a0a0ab;
+  --text-muted:     #6b7280;
+  --border-color:   rgba(255, 255, 255, 0.07);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+
+/* ── 2. RESET & BASE ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html,
-body {
+/* Prevent font size inflation on iOS */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-sans);
-  background-color: #ffffff;
-  color: #111111;
+  font-size: var(--text-base);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent CLS caused by scrollbar appearing/disappearing */
+  overflow-y: scroll;
 }
 
-.dark body {
-  background-color: var(--zepp-dark);
-  color: #f5f5f7;
-}
 
-/* Background gradient inspired by Zepp */
+/* ── 3. THEME TRANSITION ──────────────────────────────────── */
+/* Only transition required properties — avoid transition: all (GPU cost) */
+body,
 .bg-zepp {
+  transition:
+    background-color var(--duration-slow) var(--ease-out),
+    color var(--duration-slow) var(--ease-out);
+}
+
+
+/* ── 4. BACKGROUND GRADIENT ──────────────────────────────── */
+.bg-zepp {
+  background-color: var(--bg-base);
   background-image:
-    radial-gradient(at 100% 0%, rgba(0, 82, 255, 0.08) 0, transparent 40%),
-    radial-gradient(at 0% 100%, rgba(0, 82, 255, 0.05) 0, transparent 40%);
+    radial-gradient(ellipse at 100% 0%, rgba(0, 82, 255, 0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 0% 100%, rgba(0, 82, 255, 0.04) 0%, transparent 45%);
 }
 
 .dark .bg-zepp {
   background-image:
-    radial-gradient(at 100% 0%, rgba(0, 82, 255, 0.15) 0, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(0, 82, 255, 0.1) 0, transparent 50%);
+    radial-gradient(ellipse at 100% 0%, rgba(0, 82, 255, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(0, 82, 255, 0.09) 0%, transparent 55%);
 }
 
-/* Smooth transitions for specific properties when theme changes */
-html.dark,
-html.dark body,
-html.dark .bg-zepp {
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-/* Typography refinements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* ── 5. TYPOGRAPHY ───────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  color: var(--text-primary);
+  /* Prevent orphan words on narrow viewports */
+  text-wrap: balance;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+  color: var(--text-secondary);
+  text-wrap: pretty;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+a {
+  color: var(--zepp-blue);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  outline-offset: 3px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  border: 3px solid transparent;
-  background-clip: content-box;
+a:hover {
+  color: var(--zepp-blue-hover);
+  text-decoration: underline;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+a:focus-visible {
+  outline: 2px solid var(--zepp-blue);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 82, 255, 0.5);
-  border: 2px solid transparent;
-  background-clip: content-box;
+
+/* ── 6. ACCESSIBILITY ─────────────────────────────────────── */
+/* Minimum 44x44px tap target — WCAG 2.1 AA */
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
 }
 
-/* Remove default list bullets globally as requested */
-ul {
+/* Show focus ring for keyboard users, hide for mouse users */
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--zepp-blue);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+  /* Always declare width/height attributes on <img> to prevent CLS */
+  display: block;
+}
+
+
+/* ── 7. LIST RESET ───────────────────────────────────────── */
+ul, ol {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Custom bullet for prose if needed, but avoiding standard • */
+
+/* ── 8. PROSE ────────────────────────────────────────────── */
+.prose ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .prose ul li {
   position: relative;
   padding-left: 1.5em;
+  color: var(--text-secondary);
+  font-size: var(--text-base);
 }
 
 .prose ul li::before {
@@ -107,10 +239,91 @@ ul {
   position: absolute;
   left: 0;
   color: var(--zepp-blue);
-  font-weight: bold;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-/* Screen reader only */
+
+/* ── 9. CUSTOM SCROLLBAR ─────────────────────────────────── */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 82, 255, 0.4);
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+
+/* ── 10. LAYOUT UTILITIES ────────────────────────────────── */
+/* Fluid container — no hard breakpoints needed */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-4), 5vw, var(--space-16));
+}
+
+/* Safe area insets for notch/Dynamic Island devices */
+.safe-top    { padding-top:    env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.safe-x {
+  padding-left:  env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+
+/* ── 11. ANIMATIONS ──────────────────────────────────────── */
+/* Wrap all animations in prefers-reduced-motion — Lighthouse best practice */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-up {
+    animation: reveal-up var(--duration-slow) var(--ease-out) both;
+  }
+
+  .reveal-up-delay-1 { animation-delay: 100ms; }
+  .reveal-up-delay-2 { animation-delay: 200ms; }
+  .reveal-up-delay-3 { animation-delay: 300ms; }
+
+  .reveal-fade {
+    animation: reveal-fade var(--duration-slow) var(--ease-out) both;
+  }
+}
+
+/* Fallback: show immediately when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-fade {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ── 12. SCREEN READER ONLY ──────────────────────────────── */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -123,18 +336,26 @@ ul {
   border-width: 0;
 }
 
-/* Animation Utilities */
-.reveal-up {
-  animation: reveal-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
 }
 
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+/* ── 13. PERFORMANCE HINTS ───────────────────────────────── */
+/* Use will-change only on actively animating elements, not globally.
+   Use content-visibility for long lists in Svelte components:
+   .card-list-item { content-visibility: auto; contain-intrinsic-size: 200px; } */
+
+
+/* ── 14. PRINT ───────────────────────────────────────────── */
+@media print {
+  .bg-zepp { background-image: none; }
+  * { color: #000 !important; background: transparent !important; }
 }
