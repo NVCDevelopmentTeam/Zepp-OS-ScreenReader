@@ -96,9 +96,9 @@
 
   <!-- CTA Section -->
   <section class="container">
-    <div class="relative overflow-hidden rounded-[3rem] bg-zeppDark p-10 md:p-20 text-white shadow-2xl reveal-up">
+    <div class="relative overflow-hidden rounded-[3rem] bg-zeppDark p-10 md:p-20 text-white shadow-2xl reveal-up dark">
       <!-- Decoration -->
-      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent blur-[120px]" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent blur-[80px]" aria-hidden="true"></div>
       
       <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -106,7 +106,7 @@
             Start your <br /> 
             <span class="text-blue-500">accessible</span> journey.
           </h2>
-          <p class="text-xl text-gray-400 mb-12 font-medium leading-relaxed">
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-12 font-medium leading-relaxed">
             Download the Zepp OS Screen Reader today and transform your wearable experience. 
             Available on all Zepp OS compatible devices.
           </p>
@@ -122,21 +122,21 @@
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">1</div>
               <div>
                 <p class="font-bold mb-1">Open Zepp App</p>
-                <p class="text-sm text-gray-400">Navigate to the App Store on your smartphone.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Navigate to the App Store on your smartphone.</p>
               </div>
             </li>
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">2</div>
               <div>
                 <p class="font-bold mb-1">Search for ZSR</p>
-                <p class="text-sm text-gray-400">Find our official screen reader in the utility section.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Find our official screen reader in the utility section.</p>
               </div>
             </li>
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">3</div>
               <div>
                 <p class="font-bold mb-1">Install & Enable</p>
-                <p class="text-sm text-gray-400">Sync with your watch and enable it in the accessibility settings.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Sync with your watch and enable it in the accessibility settings.</p>
               </div>
             </li>
           </ul>

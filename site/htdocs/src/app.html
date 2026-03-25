@@ -10,15 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
     <script>
-      (function () {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      ;(function () {
+        const savedTheme = localStorage.getItem('theme')
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark');
+          document.documentElement.classList.add('dark')
         } else {
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove('dark')
         }
-      })();
+      })()
     </script>
     %sveltekit.head%
   </head>

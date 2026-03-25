@@ -55,7 +55,7 @@
           We implement industry-standard measures to protect your data from unauthorized access. However, please note that no digital transmission is 100% secure.
         </p>
 
-        <div class="not-prose mt-16 p-8 bg-zeppDark rounded-[2rem] text-white border border-white/5 relative overflow-hidden">
+        <div class="not-prose mt-16 p-8 bg-zeppDark rounded-[2rem] text-white border border-white/5 relative overflow-hidden dark">
           <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 blur-3xl"></div>
           <p class="text-sm font-medium text-gray-400 m-0 relative z-10 leading-relaxed">
             By accessing the ZSR website, you consent to our <strong>End User License Agreement</strong> and <strong>Terms of Service</strong>.

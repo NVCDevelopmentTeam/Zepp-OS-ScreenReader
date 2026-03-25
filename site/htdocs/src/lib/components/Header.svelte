@@ -77,7 +77,7 @@
       {#each secondaryNav as item (item.href)}
         <a 
           href={item.href} 
-          class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-blue-600 transition-colors"
+          class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"
           aria-current={page.url.pathname === item.href ? 'page' : undefined}
         >
           {item.label}
@@ -140,8 +140,8 @@
               </a>
               <div class="h-px bg-gray-100 dark:bg-white/5 my-2 mx-5" role="separator"></div>
               <a href={zeppOSDev} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors" role="menuitem">
-                <div class="i-lucide-external-link text-gray-400" aria-hidden="true"></div> 
-                <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Developer Portal</span>
+                <div class="i-lucide-external-link text-gray-600 dark:text-gray-400" aria-hidden="true"></div> 
+                <span class="text-[10px] font-black uppercase tracking-widest text-gray-600 dark:text-gray-400">Developer Portal</span>
               </a>
             </div>
           {/if}
@@ -183,7 +183,7 @@
   {#if expanded}
     <div class="lg:hidden fixed inset-x-0 top-16 md:top-20 glass border-b border-gray-100 dark:border-white/5 p-6 space-y-4 animate-in slide-in-from-top-8 duration-500 shadow-2xl max-h-[80vh] overflow-y-auto">
       <nav class="grid grid-cols-1 gap-2">
-        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-4 mb-2">Main Menu</div>
+        <div class="text-[10px] font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mb-2">Main Menu</div>
         {#each primaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
           <a 
@@ -196,7 +196,7 @@
           </a>
         {/each}
         
-        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-4 mt-6 mb-2">Support & Info</div>
+        <div class="text-[10px] font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mt-6 mb-2">Support & Info</div>
         {#each secondaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
           <a 
@@ -213,11 +213,11 @@
       <div class="pt-6 border-t border-gray-100 dark:border-white/5 grid grid-cols-2 gap-3">
         <a href={discordChat} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
           <div class="i-lucide-message-circle text-blue-500" aria-hidden="true"></div>
-          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-400">Discord</span>
+          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">Discord</span>
         </a>
         <a href={githubLink} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
           <div class="i-lucide-github" aria-hidden="true"></div>
-          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-400">GitHub</span>
+          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">GitHub</span>
         </a>
       </div>
     </div>

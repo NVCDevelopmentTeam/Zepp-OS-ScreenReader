@@ -28,7 +28,7 @@ export default defineConfig({
 
       // Glassmorphism
       glass:
-        'bg-white/70 dark:bg-dark-900/70 backdrop-blur-xl border border-white/20 dark:border-white/10',
+        'bg-white/70 dark:bg-dark-900/70 backdrop-blur-md border border-white/20 dark:border-white/10',
 
       'nav-link':
         'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 font-bold transition-colors duration-200 text-sm tracking-wide uppercase',
@@ -54,7 +54,6 @@ export default defineConfig({
     }),
     presetTypography(),
     presetWebFonts({
-      provider: 'none',
       fonts: {
         sans: [
           {

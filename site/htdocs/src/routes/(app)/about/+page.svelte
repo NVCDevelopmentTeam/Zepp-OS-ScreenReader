@@ -41,8 +41,8 @@
         </div>
       </section>
 
-      <section class="card bg-zeppDark text-white p-12 md:p-20 border-none relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[100px]" aria-hidden="true"></div>
+      <section class="card bg-zeppDark text-white p-12 md:p-20 border-none relative overflow-hidden dark">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-3xl" aria-hidden="true"></div>
         <div class="relative z-10 grid md:grid-cols-3 gap-12">
           <div class="md:col-span-2">
             <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Our Mission</h2>

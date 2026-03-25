@@ -33,7 +33,7 @@
     {@const isActive = activeHeadingId === heading.id}
     <a 
       href={`#${heading.id}`}
-      class="block py-2 pr-4 text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-l-2 relative z-10 {isActive ? 'border-blue-600 text-blue-600 pl-4' : 'border-transparent text-gray-400 pl-4 hover:text-gray-900 dark:hover:text-white'}"
+      class="block py-2 pr-4 text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-l-2 relative z-10 {isActive ? 'border-blue-600 text-blue-600 pl-4' : 'border-transparent text-gray-600 dark:text-gray-400 pl-4 hover:text-gray-900 dark:hover:text-white'}"
       style:margin-left={`${(heading.depth - 2) * 1}rem`}
     >
       {heading.value}

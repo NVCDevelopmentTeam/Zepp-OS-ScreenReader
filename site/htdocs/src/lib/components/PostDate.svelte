@@ -16,7 +16,7 @@
 </script>
 
 {#if post}
-  <div class="flex items-center gap-3 text-gray-400 font-black uppercase tracking-widest text-[10px] {_class}">
+  <div class="flex items-center gap-3 text-gray-600 dark:text-gray-400 font-black uppercase tracking-widest text-[10px] {_class}">
     <time datetime={post.date}>
       {format(new Date(parseISO(post.date)), 'MMM d, yyyy')}
     </time>

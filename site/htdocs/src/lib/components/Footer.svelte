@@ -16,7 +16,7 @@
 
 <footer class="mt-auto bg-white dark:bg-zeppDark border-t border-gray-100 dark:border-white/5 pt-24 pb-12 overflow-hidden relative">
   <!-- Subtle decoration -->
-  <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/5 to-transparent blur-[100px] -z-10" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/5 to-transparent blur-3xl -z-10" aria-hidden="true"></div>
   
   <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
@@ -24,7 +24,7 @@
       <!-- Brand & Description -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-8">
-          <img src={logo} alt="" class="w-10 h-10 rounded-xl" aria-hidden="true" />
+          <img src={logo} alt="" class="w-10 h-10 rounded-xl" aria-hidden="true" loading="lazy" />
           <span class="font-display font-black text-2xl tracking-tighter uppercase">
             <span class="text-blue-600">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
           </span>

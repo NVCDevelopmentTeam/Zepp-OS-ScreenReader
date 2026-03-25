@@ -11,7 +11,7 @@
   {#snippet eyebrow()}
     <div class="flex items-center gap-3">
       <div class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 text-[10px] font-black uppercase tracking-widest">Article</div>
-      <PostDate {post} class="text-[10px] font-bold text-gray-400 uppercase tracking-widest" />
+      <PostDate {post} class="text-[10px] font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest" />
       {#if eyebrow_snippet}
         {@render eyebrow_snippet()}
       {/if}
