@@ -16,8 +16,6 @@
 </script>
 
 <svelte:head>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <title>{siteTitle}</title>
   <meta name="description" content={siteDescription} />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />

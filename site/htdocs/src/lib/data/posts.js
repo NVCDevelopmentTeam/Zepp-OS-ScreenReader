@@ -1,6 +1,4 @@
 import { browser } from '$app/environment'
-import { format } from 'date-fns/format'
-import { isAfter } from 'date-fns/isAfter'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
@@ -36,9 +34,9 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
       // Check if file is an index file
       isIndexFile: filepath.endsWith('/index.md'),
 
-      // Format date, applying timezone offset
+      // Format date, applying timezone offset (yyyy-MM-dd)
       date: post.metadata.date
-        ? format(addTimezoneOffset(new Date(post.metadata.date)), 'yyyy-MM-dd')
+        ? addTimezoneOffset(new Date(post.metadata.date)).toISOString().split('T')[0]
         : undefined,
 
       // Include preview text and reading time estimate
@@ -59,7 +57,7 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
   }))
   // Filter out posts that are unpublished or marked as hidden
   .filter((post) => {
-    const isPublished = isAfter(new Date(), new Date(post.date))
+    const isPublished = new Date() >= new Date(post.date)
     const isHidden = !!post.hidden
     return isPublished && !isHidden
   })

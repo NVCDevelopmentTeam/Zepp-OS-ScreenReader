@@ -1,6 +1,8 @@
 <script>
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  import Adsense from '$lib/components/Adsense.svelte';
+  import Analytics from '$lib/components/Analytics.svelte';
 
   let { children } = $props();
 </script>
@@ -14,3 +16,5 @@
 
   <Footer />
 </div>
+  <Adsense />
+  <Analytics />

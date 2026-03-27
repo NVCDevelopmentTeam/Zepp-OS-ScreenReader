@@ -12,8 +12,10 @@ const config = {
   kit: {
     adapter: adapter(),
 
+    inlineStyleThreshold: 10240,
+
     prerender: {
-      entries: ['*', '/sitemap.xml', '/rss.xml']
+      entries: ['*']
     }
   }
 }

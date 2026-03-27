@@ -1,0 +1,14 @@
+# Immutable assets — Vite thêm hash vào tên file nên safe để cache vĩnh viễn
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Versioned assets
+/_app/version.json
+  Cache-Control: no-cache
+
+# HTML — không cache để luôn fresh
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

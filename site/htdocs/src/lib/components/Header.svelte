@@ -4,8 +4,6 @@
   import { browser } from '$app/environment';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
   import logo from '$lib/images/logo.jpg?w=64&format=webp';
-  import Adsense from './Adsense.svelte';
-  import Analytics from './Analytics.svelte';
 
   let expanded = $state(false);
   let expandedDropdown = $state(false);
@@ -223,6 +221,4 @@
     </div>
   {/if}
 
-  <Adsense />
-  <Analytics />
 </header>

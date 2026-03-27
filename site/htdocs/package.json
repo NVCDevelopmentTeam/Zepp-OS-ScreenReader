@@ -15,10 +15,11 @@
 		"prepare": "svelte-kit sync || echo ''"
 	},
 	"devDependencies": {
+    "@fontsource/fira-mono": "^5.2.7",
 		"@antfu/eslint-config": "^7.7.3",
 		"@eslint/compat": "^2.0.3",
 		"@eslint/js": "^10.0.1",
-		"@iconify-json/lucide": "^1.2.98",
+		"@iconify-json/lucide": "^1.2.99",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/kit": "^2.55.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
@@ -28,7 +29,6 @@
 		"@unocss/preset-typography": "^66.6.7",
 		"@unocss/preset-wind": "^66.6.7",
 		"@vcarl/remark-headings": "^0.1.0",
-		"date-fns": "^4.1.0",
 		"eslint": "^10.1.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.16.0",
@@ -46,11 +46,9 @@
 		"svelte-eslint-parser": "^1.6.0",
 		"unist-util-visit": "^5.1.0",
 		"unocss": "^66.6.7",
-		"vite": "^8.0.2",
-		"vite-plugin-compression2": "^2.5.3"
+		"vite": "^8.0.3"
 	},
 	"dependencies": {
-		"@sveltia/cms": "^0.149.1",
-		"astro-sveltia-cms": "^0.1.0"
+		"@sveltia/cms": "^0.150.1"
 	}
 }
