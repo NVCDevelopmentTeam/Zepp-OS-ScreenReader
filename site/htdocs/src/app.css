@@ -209,6 +209,14 @@ h6 {
   animation: reveal-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+
 .reveal-fade {
   opacity: 0;
   animation: reveal-fade 1s ease-out forwards;

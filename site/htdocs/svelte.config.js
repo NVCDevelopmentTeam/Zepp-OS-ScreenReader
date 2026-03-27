@@ -12,10 +12,14 @@ const config = {
   kit: {
     adapter: adapter(),
 
-    inlineStyleThreshold: 10240,
+    inlineStyleThreshold: 4096,
 
     prerender: {
       entries: ['*']
+    },
+
+    alias: {
+      $lib: 'src/lib'
     }
   }
 }

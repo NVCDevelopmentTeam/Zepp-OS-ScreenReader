@@ -3,37 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <!-- Theme color for browser UI tinting (light / dark) -->
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0e11" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0052FF" />
+    
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
 
     <!-- Favicon — place favicon.ico and favicon.svg in static/ -->
     <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
-
-    <!-- PWA manifest — place manifest.webmanifest in static/ -->
-    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
-
-    <!-- Dark mode FOUC prevention.
-         Runs synchronously before first paint so there is no flash of unstyled content.
-         Wrapped in try/catch for environments where localStorage is blocked (private mode, SSR). -->
     <script>
-      ;(function () {
-        try {
-          var s = localStorage.getItem('theme')
-          var d = window.matchMedia('(prefers-color-scheme: dark)').matches
-          document.documentElement.classList.toggle('dark', s === 'dark' || (!s && d))
-        } catch (_) {
-          document.documentElement.classList.toggle(
-            'dark',
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-          )
-        }
-      })()
+      /* Partytown Config */
+      partytown = {
+        forward: ["gtag", "adsbygoogle", "dataLayer.push"],
+      };
+      /* Partytown Snippet */
+      !(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=w[p]||{};c[f]=(c[f]||[])})(window,'partytown','forward');!function(t,r,o,i,a,s,c,d,l,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(l=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(v,999999999),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.10.3":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){delete t[n.split(".")[0]]})),n=0;n<l.length;n++)o=r.createElement("script"),o.innerHTML=l[n].innerHTML,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(d)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){u=t,r.split(".").map((function(e,r,o){u=u[o[r]]=r+1<o.length?u[o[r]]||{}:function(){(t._ptf=t._ptf||[]).push(o,arguments)}}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);
     </script>
-
     %sveltekit.head%
   </head>
 

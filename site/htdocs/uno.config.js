@@ -76,15 +76,12 @@ export default defineConfig({
 
     // Web fonts: system-ui for UI + Fira Mono for code blocks
     presetWebFonts({
-      provider: 'google',
+      provider: 'none',
       fonts: {
         sans: [{ name: 'system-ui', provider: 'none' }],
         mono: [
           {
             name: 'Fira Mono',
-            weights: ['400', '700'],
-            display: 'swap',
-            subsets: ['latin'],
             provider: 'none'
           },
           { name: 'ui-monospace', provider: 'none' }

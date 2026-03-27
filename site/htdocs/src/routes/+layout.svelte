@@ -3,8 +3,21 @@
   import '../app.css';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '$lib/info.js';
   import ogImageURL from '$lib/images/logo.jpg';
+  import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
 
   const { children } = $props();
+
+  let isMobile = $state(false);
+
+  onMount(() => {
+    const checkMobile = () => {
+      isMobile = window.innerWidth < 768;
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  });
 
   // SEO Configuration
   const SEO = {

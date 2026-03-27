@@ -7,7 +7,6 @@
 <svelte:head>
   <title>Home | {siteTitle}</title>
   <meta name="description" content={siteDescription} />
-  <link rel="preload" as="image" href="/background.jpg" fetchpriority="high" />
 </svelte:head>
 
 <div class="space-y-32 pb-32">
@@ -15,12 +14,11 @@
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <!-- Hero Background with Overlay -->
     <div class="absolute inset-0 z-0">
-      <img
-        src="/background.jpg"
+      <enhanced:img
+        src="$lib/images/background.jpg"
         alt=""
         class="w-full h-full object-cover"
         loading="eager"
-        decoding="async"
         fetchpriority="high"
       />
       <div class="absolute inset-0 bg-white/60 dark:bg-zeppDark/80 backdrop-blur-[2px]"></div>

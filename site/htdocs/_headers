@@ -1,0 +1,25 @@
+# Cache static assets
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+/robots.txt
+  Cache-Control: public, max-age=86400
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+/rss.xml
+  Cache-Control: public, max-age=86400
+
+# Immutable build artifacts
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Assets
+/~partytown/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Security Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

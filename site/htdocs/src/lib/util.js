@@ -12,3 +12,12 @@ export function paginate(data, { page = 1, limit } = {}) {
 
   return data
 }
+
+/**
+ * Checks if the user agent is a mobile device.
+ * @param {string} ua 
+ * @returns {boolean}
+ */
+export function isMobile(ua) {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+}
