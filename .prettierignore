@@ -3,3 +3,9 @@ package.json
 package-lock.json
 public
 pnpm-lock.yaml
+# The website lives in its own workspace with its own lint/format setup.
+site/htdocs/**
+# Third-party vendor/generated files that should not be reformatted.
+**/~partytown/**
+dist/**
+node_modules/**
