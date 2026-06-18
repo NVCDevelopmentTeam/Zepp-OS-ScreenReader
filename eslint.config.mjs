@@ -2,6 +2,12 @@ import globals from 'globals'
 import js from '@eslint/js'
 // I hate TS only using js
 export default [
+  {
+    // The website lives in its own workspace with its own ESLint/Prettier setup.
+    // Third-party vendor/generated files (e.g. partytown) must never be linted
+    // here since they are not project sources.
+    ignores: ['site/htdocs/**', '**/~partytown/**', 'dist/**', 'node_modules/**', '.cache/**']
+  },
   js.configs.recommended,
   {
     languageOptions: {
