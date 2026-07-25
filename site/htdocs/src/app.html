@@ -4,20 +4,74 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0052FF" />
-    
+
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-
-    <!-- Favicon — place favicon.ico and favicon.svg in static/ -->
-    <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
     <script>
-      /* Partytown Config */
-      partytown = {
-        forward: ["gtag", "adsbygoogle", "dataLayer.push"],
-      };
-      /* Partytown Snippet */
-      !(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=w[p]||{};c[f]=(c[f]||[])})(window,'partytown','forward');!function(t,r,o,i,a,s,c,d,l,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(l=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(v,999999999),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.10.3":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){delete t[n.split(".")[0]]})),n=0;n<l.length;n++)o=r.createElement("script"),o.innerHTML=l[n].innerHTML,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(d)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){u=t,r.split(".").map((function(e,r,o){u=u[o[r]]=r+1<o.length?u[o[r]]||{}:function(){(t._ptf=t._ptf||[]).push(o,arguments)}}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);
+      ;(function () {
+        try {
+          const STORAGE_KEY = 'theme-preference'
+
+          // 1. Get cached theme (localStorage)
+          let theme = localStorage.getItem(STORAGE_KEY)
+
+          // 2. Fallback to system preference if not set
+          if (!theme || theme === 'auto') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+            theme = prefersDark ? 'dark' : 'light'
+          }
+
+          // 3. Apply immediately to avoid FOUC (Flash of Unstyled Content)
+          const root = document.documentElement
+
+          // UnoCSS: use "dark" class
+          if (theme === 'dark') {
+            root.classList.add('dark')
+          } else {
+            root.classList.remove('dark')
+          }
+
+          // optional: data attribute (if using additional CSS vars)
+          root.setAttribute('data-theme', theme)
+
+          // 4. Cache back (ensure sync)
+          localStorage.setItem(STORAGE_KEY, theme)
+
+          // 5. Sync between tabs (cache layer)
+          window.addEventListener('storage', (e) => {
+            if (e.key === STORAGE_KEY) {
+              const newTheme = e.newValue
+              if (newTheme === 'dark') {
+                root.classList.add('dark')
+              } else {
+                root.classList.remove('dark')
+              }
+              root.setAttribute('data-theme', newTheme)
+            }
+          })
+
+          // 6. Defer non-critical logic
+          setTimeout(() => {
+            // example: fetch theme config from API or analytics
+            // fetch('/api/theme-sync')
+
+            // optional: re-check system change if set to auto
+            const media = window.matchMedia('(prefers-color-scheme: dark)')
+            media.addEventListener('change', (e) => {
+              if (localStorage.getItem(STORAGE_KEY) === 'auto') {
+                const newTheme = e.matches ? 'dark' : 'light'
+                root.classList.toggle('dark', newTheme === 'dark')
+                root.setAttribute('data-theme', newTheme)
+              }
+            })
+          }, 0) // defer after initial paint
+        } catch (e) {
+          console.warn('theme init error', e)
+        }
+      })()
     </script>
+    <!-- Favicon — place favicon.ico in static/ -->
+    <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
     %sveltekit.head%
   </head>
 

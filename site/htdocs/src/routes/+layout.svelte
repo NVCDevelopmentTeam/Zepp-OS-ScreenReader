@@ -2,19 +2,17 @@
   import 'virtual:uno.css';
   import '../app.css';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '$lib/info.js';
-  import ogImageURL from '$lib/images/logo.jpg';
+  import ogImageURL from '$lib/images/logo.svg';
   import { browser } from '$app/environment';
   import { onMount } from 'svelte';
 
-  const { children } = $props();
-
-  let isMobile = $state(false);
-
+const { children, data } = $props();
+let isMobile = $derived(data.isMobile);
   onMount(() => {
+    // Only update if it changes after mount (e.g. resizing)
     const checkMobile = () => {
       isMobile = window.innerWidth < 768;
     };
-    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   });

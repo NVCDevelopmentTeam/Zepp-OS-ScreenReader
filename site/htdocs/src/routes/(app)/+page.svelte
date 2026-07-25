@@ -15,7 +15,7 @@
     <!-- Hero Background with Overlay -->
     <div class="absolute inset-0 z-0">
       <enhanced:img
-        src="$lib/images/background.jpg"
+        src="$lib/images/background.svg"
         alt=""
         class="w-full h-full object-cover"
         loading="eager"

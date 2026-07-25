@@ -12,6 +12,11 @@ import {
 
 export default defineConfig({
   // ─────────────────────────────────────────────────────────
+  // DARK MODE — class-based to match app.html toggle
+  // ─────────────────────────────────────────────────────────
+  darkMode: 'class',
+
+  // ─────────────────────────────────────────────────────────
   // SHORTCUTS
   // ─────────────────────────────────────────────────────────
   shortcuts: [
@@ -61,7 +66,7 @@ export default defineConfig({
   // PRESETS
   // ─────────────────────────────────────────────────────────
   presets: [
-    presetUno(),
+    presetUno({ dark: 'class' }), // class-based dark mode
     presetAttributify(),
 
     presetIcons({
@@ -74,16 +79,12 @@ export default defineConfig({
 
     presetTypography(),
 
-    // Web fonts: system-ui for UI + Fira Mono for code blocks
     presetWebFonts({
       provider: 'none',
       fonts: {
         sans: [{ name: 'system-ui', provider: 'none' }],
         mono: [
-          {
-            name: 'Fira Mono',
-            provider: 'none'
-          },
+          { name: 'Fira Mono', provider: 'none' },
           { name: 'ui-monospace', provider: 'none' }
         ]
       }
@@ -103,7 +104,7 @@ export default defineConfig({
   },
 
   // ─────────────────────────────────────────────────────────
-  // SAFELIST — classes used in app.css or dynamically via JS
+  // SAFELIST
   // ─────────────────────────────────────────────────────────
   safelist: [
     'dark',

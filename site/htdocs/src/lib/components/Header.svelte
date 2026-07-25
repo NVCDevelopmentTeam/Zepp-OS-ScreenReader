@@ -4,6 +4,7 @@
   import { browser } from '$app/environment';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
+  let { isMobile } = $props();
   let expanded = $state(false);
   let expandedDropdown = $state(false);
   let darkMode = $state(false);
@@ -90,7 +91,7 @@
       <!-- Logo & Brand -->
       <a href="/" class="flex items-center gap-3 group" aria-label="Zepp OS Screen Reader Home">
         <div class="relative w-9 h-9 md:w-11 md:h-11 overflow-hidden rounded-xl ring-2 ring-blue-500/10 group-hover:ring-blue-500/30 transition-all duration-500">
-          <enhanced:img src="$lib/images/logo.jpg" alt="" class="w-full h-full object-cover" />
+          <enhanced:img src="$lib/images/logo.svg" alt="" class="w-full h-full object-cover" />
         </div>
         <span class="font-display font-black text-lg md:text-xl tracking-tighter uppercase" aria-hidden="true">
           <span class="text-blue-600">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>

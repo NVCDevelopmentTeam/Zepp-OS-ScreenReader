@@ -1,6 +1,6 @@
 <script>
   import { siteAuthor, siteTitle } from '$lib/info.js';
-  import logo from '$lib/images/logo.jpg?w=48&format=webp';
+  import logo from '$lib/images/logo.svg?w=48&format=webp';
 
   let year = new Date().getFullYear();
 

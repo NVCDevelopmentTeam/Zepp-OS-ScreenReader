@@ -1,5 +1,5 @@
 <script>
-  import logo from '$lib/images/logo.jpg?w=64&format=webp';
+  import logo from '$lib/images/logo.svg?w=64&format=webp';
   import { siteTitle } from '$lib/info.js';
   /**
    * @typedef {Object} Props
