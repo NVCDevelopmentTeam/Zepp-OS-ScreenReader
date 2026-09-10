@@ -9,20 +9,22 @@
     "dev": "zeus dev",
     "build": "zeus build",
     "preview": "zeus preview",
-    "lint": "prettier --check . && eslint -c eslint.config.mjs .",
+    "lint": "prettier --check . && eslint -c eslint.config.js .",
     "format": "prettier --write .",
+    "check": "tsc --noEmit -p jsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NVC development Team",
   "license": "MIT License",
   "devDependencies": {
-    "@eslint/compat": "^2.1.0",
+    "@eslint/compat": "^2.1.1",
     "@eslint/js": "^10.0.1",
     "@zeppos/device-types": "^4.0.0",
-    "eslint": "^10.7.0",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
-    "globals": "^17.7.0",
-    "prettier": "^3.9.6"
+    "globals": "^17.12.0",
+    "prettier": "^3.9.6",
+    "typescript": "^5.7.0"
   },
   "dependencies": {
     "@zeppos/zml": "^0.0.43",

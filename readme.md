@@ -63,16 +63,16 @@ This project is maintained largely by a **blind developer with limited access to
 
 ## Key Features
 
-| Feature | Description |
-|---|---|
-| 🔊 **Dual TTS Engine** | Native Zepp OS TTS + offline eSpeak-NG fallback for wide device coverage |
-| 👆 **Screen Explore Mode** | Touch-to-read interaction, similar to mobile "explore by touch" |
-| ⠿ **Braille Support** | Vibration Braille output and BLE Braille display compatibility |
-| 🎙️ **Voice Control** | Hands-free command recognition for core navigation |
-| ✋ **Gesture Engine** | Fully customizable single- and multi-finger gestures |
-| 🔔 **Notification Reading** | Real-time announcements for SMS, calls, and app notifications |
-| ❤️ **Health Sensor Accessibility** | Verbal readouts for heart rate, SpO2, sleep, steps, and stress |
-| 🔘 **Hardware Button Remapping** | Assign physical buttons to precise navigation actions |
+| Feature                            | Description                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| 🔊 **Dual TTS Engine**             | Native Zepp OS TTS + offline eSpeak-NG fallback for wide device coverage |
+| 👆 **Screen Explore Mode**         | Touch-to-read interaction, similar to mobile "explore by touch"          |
+| ⠿ **Braille Support**              | Vibration Braille output and BLE Braille display compatibility           |
+| 🎙️ **Voice Control**               | Hands-free command recognition for core navigation                       |
+| ✋ **Gesture Engine**              | Fully customizable single- and multi-finger gestures                     |
+| 🔔 **Notification Reading**        | Real-time announcements for SMS, calls, and app notifications            |
+| ❤️ **Health Sensor Accessibility** | Verbal readouts for heart rate, SpO2, sleep, steps, and stress           |
+| 🔘 **Hardware Button Remapping**   | Assign physical buttons to precise navigation actions                    |
 
 ## Supported Devices
 
@@ -89,21 +89,23 @@ ZSR targets **all Zepp OS 2.0+ devices**, with particular focus on:
 
 ## Zepp OS Version Requirements
 
-| Zepp OS Version | TTS Engine | Experience |
-|---|---|---|
+| Zepp OS Version        | TTS Engine                   | Experience                         |
+| ---------------------- | ---------------------------- | ---------------------------------- |
 | **3.5+ (recommended)** | OpenAI GPT-4o via Zepp Flow™ | High-quality, natural voice output |
-| **2.0 – 3.4** | eSpeak-NG (offline) | Functional, lower voice fidelity |
+| **2.0 – 3.4**          | eSpeak-NG (offline)          | Functional, lower voice fidelity   |
 
 Learn more about Zepp Flow™ and GPT-4o integration in [Zepp Health's official announcement](https://www.zepp.com/press-release/zepp-health-introduces-zepp-os-4-redefining-wearable-intelligence-by-integrating-openais-gpt-4o-into-its-amazfit-smartwatches).
 
 ## Checking Your Zepp OS Version
 
 **On the watch:**
+
 1. Open the app menu → **Settings**
 2. Scroll to **System → About / Device Information**
 3. Check **Software Version** / **Zepp OS Version**
 
 **Via the Zepp app:**
+
 1. Open the Zepp app → **Profile** → select your device
 2. Go to **System Update** to view the current Zepp OS version
 
@@ -213,6 +215,7 @@ After installing (from the App Store or by sideloading), turn it on:
 The fastest loop for day-to-day feature work — no physical device needed.
 
 **Prerequisites:**
+
 - **Node.js** ≥ 14 (LTS recommended)
 - **Zeus CLI**, installed globally:
   ```bash
@@ -220,6 +223,7 @@ The fastest loop for day-to-day feature work — no physical device needed.
   ```
 
 **Steps:**
+
 ```bash
 git clone https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git
 cd Zepp-OS-ScreenReader
@@ -234,17 +238,21 @@ This launches the local Zepp OS simulator with hot-reload enabled.
 Essential for validating actual hardware behavior — touch latency, TTS timing, and accessibility APIs don't always match the simulator. This is a **sideload**, so it requires unlocking Developer Mode once.
 
 **Step 1 — Unlock Developer Mode on your phone (one-time setup):**
+
 1. Open the **Zepp App** → `Profile` → `Settings` → `About`
 2. Tap the **Zepp logo 7 times** — a toast notification confirms **Developer Mode** is unlocked
 3. Make sure your **PC and phone are on the same Wi-Fi network** (required for the local sideload connection)
 
 **Step 2 — Compile and generate the QR code on your PC:**
+
 ```bash
 zeus preview
 ```
+
 This compiles the project, verifies target-device compatibility from `app.json`, hosts a temporary local server, and prints a **QR code** in your terminal.
 
 **Step 3 — Scan and install on your watch:**
+
 1. In the Zepp app, open your paired device → scroll down to the **Developer Mode** panel
 2. Tap the **Scan** icon (camera/plus) in the upper-right corner
 3. Scan the QR code shown in your terminal
@@ -278,12 +286,12 @@ Once connected, hardware interrupts, error stacks, and log output from the physi
 
 ## Interaction Shortcuts (Simulator)
 
-| Key | Action |
-|---|---|
-| `Space` | Read the current item |
-| `Tab` | Move to next item |
+| Key           | Action                |
+| ------------- | --------------------- |
+| `Space`       | Read the current item |
+| `Tab`         | Move to next item     |
 | `Shift + Tab` | Move to previous item |
-| `Enter` | Select current item |
+| `Enter`       | Select current item   |
 
 ## Code Style & Quality
 

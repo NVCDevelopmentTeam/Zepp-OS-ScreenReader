@@ -60,10 +60,10 @@ App({
 
       // 4. Handle incoming messages
       messageBuilder.on('request', async (ctx) => {
-        const jsonRpc = messageBuilder.buf2Json(ctx.request.payload)
-        const { method, params } = jsonRpc
-
         try {
+          const jsonRpc = messageBuilder.buf2Json(ctx.request.payload)
+          const { method, params = {} } = jsonRpc || {}
+
           if (method === 'NOTIFICATION_RECEIVE') {
             const { title = '', content = '', appName = 'System', type = 'push' } = params
             let announcement = ''
@@ -81,11 +81,16 @@ App({
             await ScreenReader.speak(announcement, { priority: 'high', secondary: true })
           } else if (method === 'SETTING_UPDATE') {
             const { key, value } = params
-            if (globalThis.ScreenReaderConfig) {
+            if (globalThis.ScreenReaderConfig && key !== undefined) {
               globalThis.ScreenReaderConfig[key] = value
             }
           }
         } catch (error) {
+          // A malformed/corrupted BLE payload (dropped bytes, mid-transfer
+          // disconnect, etc.) would otherwise throw inside JSON.parse and
+          // crash this handler as an unhandled rejection. Parsing now lives
+          // inside the try block so a single bad message can't take down
+          // message handling for the rest of the session.
           log.error('App Message Receive Error:', error)
         }
       })

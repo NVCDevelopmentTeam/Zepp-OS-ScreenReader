@@ -1,6 +1,6 @@
 <script>
   import 'virtual:uno.css';
-  import '../app.css';
+  import './layout.css';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '$lib/info.js';
   import ogImageURL from '$lib/images/logo.svg';
   import { browser } from '$app/environment';

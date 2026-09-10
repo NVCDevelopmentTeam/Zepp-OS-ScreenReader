@@ -10,6 +10,7 @@ Instead:
 2. Contact a maintainer directly through their GitHub profile if advisories aren't available.
 
 Please include:
+
 - A description of the vulnerability and its potential impact
 - Steps to reproduce, if possible
 - Any relevant device/version information

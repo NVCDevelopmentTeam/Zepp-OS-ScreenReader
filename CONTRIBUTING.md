@@ -24,14 +24,14 @@ Be respectful, be patient, and assume good faith. This project is maintained in 
 
 You don't need to write code to make a meaningful contribution:
 
-| Contribution type | Why it matters |
-|---|---|
-| 🐛 Bug reports | Every reproducible bug report saves the maintainer hours of guessing |
-| 📱 Device testing | Confirms real-world behavior on hardware the maintainer may not own |
-| 🧑‍💻 Code / PRs | New features, fixes, performance and battery-life improvements |
-| 🌍 Translations | Makes ZSR usable for non-English speakers |
-| 📝 Documentation | Clearer docs mean more successful first-time contributors |
-| ♿ Usability feedback | Feedback from actual screen-reader users is irreplaceable |
+| Contribution type     | Why it matters                                                       |
+| --------------------- | -------------------------------------------------------------------- |
+| 🐛 Bug reports        | Every reproducible bug report saves the maintainer hours of guessing |
+| 📱 Device testing     | Confirms real-world behavior on hardware the maintainer may not own  |
+| 🧑‍💻 Code / PRs         | New features, fixes, performance and battery-life improvements       |
+| 🌍 Translations       | Makes ZSR usable for non-English speakers                            |
+| 📝 Documentation      | Clearer docs mean more successful first-time contributors            |
+| ♿ Usability feedback | Feedback from actual screen-reader users is irreplaceable            |
 
 ## Development Environment Setup
 
@@ -82,7 +82,7 @@ See the [README](./README.md#getting-started) for the full breakdown of `zeus de
   - Settings screen → `setting/`
 - Prefer small, composable functions over large monolithic handlers — TTS and gesture code in particular tends to get reused across modules.
 - Add or update comments for anything non-obvious about **timing, event ordering, or hardware quirks** — these are the hardest bugs to reproduce later without context.
-- If you touch `app.json` (permissions, target devices, pages), explain *why* in your PR description — manifest changes affect installability across the whole device matrix.
+- If you touch `app.json` (permissions, target devices, pages), explain _why_ in your PR description — manifest changes affect installability across the whole device matrix.
 
 ## Accessibility Testing Expectations
 
