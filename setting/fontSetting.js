@@ -1,119 +1,32 @@
-import { settingsManager } from './utils.js'
-import { createWidget, widget, text } from '@zos/ui'
-import { log } from '@zos/utils'
-import { getDeviceInfo } from '@zos/device'
+import { Section, Row, Text, Select } from '@zeppos/zml'
 
-Page({
-  state: {
-    fontSize: 16,
-    fontFamily: 'default',
-    fontWeight: 'normal',
-    fontScale: 1.0,
-    supported: false
-  },
-
-  onInit() {
-    this.checkFontSupport()
-  },
-
-  async checkFontSupport() {
-    try {
-      const deviceInfo = await getDeviceInfo()
-      this.setState({
-        supported: deviceInfo.capabilities?.text?.fonts || false
-      })
-    } catch (error) {
-      log.error('Font support check failed:', error)
-    }
-  },
-
-  build() {
-    if (!this.state.supported) {
-      return this.showUnsupportedMessage()
-    }
-
-    this.createFontControls()
-  },
-
-  createFontControls() {
-    const container = createWidget(widget.CONTAINER)
-
-    createWidget(widget.SLIDER, {
-      x: 0,
-      y: 0,
-      w: '100%',
-      h: 50,
-      min: 12,
-      max: 32,
-      value: this.state.fontSize,
-      onChange: (value) => this.changeFontSize(value)
-    })
-
-    createWidget(widget.SELECT, {
-      x: 0,
-      y: 60,
-      w: '100%',
-      h: 50,
-      options: ['default', 'system', 'monospace'],
-      value: this.state.fontFamily,
-      onChange: (value) => this.changeFontFamily(value)
-    })
-
-    return container
-  },
-
-  async changeFontSize(value) {
-    try {
-      if (!settingsManager.validateNumericRange(value, 12, 32)) {
-        throw new Error('Invalid font size')
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => text.setFontSize(value),
-        value,
-        'fontSize'
-      )
-
-      if (success) {
-        this.setState({ fontSize: value })
-      }
-    } catch (error) {
-      log.error('Font size change failed:', error)
-    }
-  },
-
-  async changeFontScale(value) {
-    try {
-      if (!settingsManager.validateDisplay.fontScale(value)) {
-        throw new Error('Invalid font scale')
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => text.setFontScale(value),
-        value,
-        'fontScale'
-      )
-
-      if (success) {
-        this.setState({ fontScale: value })
-      }
-    } catch (error) {
-      log.error('Font scale change failed:', error)
-    }
-  },
-
-  async changeFontFamily(value) {
-    try {
-      // Implement font family change logic here
-      log.log('Changing font family to:', value)
-      this.setState({ fontFamily: value })
-    } catch (error) {
-      log.error('Font family change failed:', error)
-    }
-  },
-
-  showUnsupportedMessage() {
-    // Implement unsupported message display here
-    log.warn('Font customization not supported on this device.')
-  }
-})
+// Overall text scale lives in DisplaySetting.js's "ZSR Text Scale" slider.
+// This screen covers typeface style, which is a separate, orthogonal
+// choice from size.
+export default function renderFont(_props) {
+  return [
+    Section({ title: 'Font Style' }, [
+      Row([
+        Text('Font Family'),
+        Select({
+          settingsKey: 'fontFamily',
+          options: [
+            { label: 'Default', value: 'default' },
+            { label: 'Monospace', value: 'monospace' },
+            { label: 'Large Print', value: 'large-print' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Font Weight'),
+        Select({
+          settingsKey: 'fontWeight',
+          options: [
+            { label: 'Normal', value: 'normal' },
+            { label: 'Bold', value: 'bold' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

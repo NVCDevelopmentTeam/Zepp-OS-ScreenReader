@@ -1,85 +1,42 @@
-import { settingsManager } from './utils.js'
-import { OCR } from '@zos/sensor'
-import { log } from '@zos/utils'
+import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
 
-// Define the settings page
-Page({
-  state: {
-    ocrMode: 'auto',
-    ocrLanguage: 'en-US',
-    ocrRegion: 'full'
-  },
-
-  onInit() {
-    this.validateOCRCapability()
-  },
-
-  validateOCRCapability() {
-    const { capabilities } = settingsManager.deviceManager.validate()
-    if (!capabilities.ocr) {
-      throw new Error('OCR not supported on this device')
-    }
-  },
-
-  validateOCR(type, value) {
-    const validations = {
-      mode: ['auto', 'manual'],
-      language: settingsManager.validateLanguage,
-      region: ['full', 'selection']
-    }
-
-    const validator = validations[type]
-    return Array.isArray(validator) ? validator.includes(value) : validator(value)
-  },
-
-  async changeOcrMode(e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!this.validateOCR('mode', newValue)) {
-        throw new Error('Invalid OCR mode')
-      }
-      const success = await settingsManager.handleSettingChange(
-        () => OCR.setMode(newValue),
-        newValue,
-        'ocrMode'
-      )
-      if (success) this.setState({ ocrMode: newValue })
-    } catch (error) {
-      log.error('OCR mode change failed:', error)
-    }
-  },
-
-  async changeOcrLanguage(e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!this.validateOCR('language', newValue)) {
-        throw new Error('Invalid OCR language')
-      }
-      const success = await settingsManager.handleSettingChange(
-        () => OCR.setLanguage(newValue),
-        newValue,
-        'ocrLanguage'
-      )
-      if (success) this.setState({ ocrLanguage: newValue })
-    } catch (error) {
-      log.error('OCR language change failed:', error)
-    }
-  },
-
-  async changeOcrRegion(e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!this.validateOCR('region', newValue)) {
-        throw new Error('Invalid OCR region')
-      }
-      const success = await settingsManager.handleSettingChange(
-        () => OCR.setRegion(newValue),
-        newValue,
-        'ocrRegion'
-      )
-      if (success) this.setState({ ocrRegion: newValue })
-    } catch (error) {
-      log.error('OCR region change failed:', error)
-    }
-  }
-})
+// The 'ocrEnabled' settingsKey here matches the flag AccessibilityService
+// exposes internally (lib/core/accessibility.js) so this toggle is
+// end-to-end wired rather than a value nobody reads.
+export default function renderOCR(_props) {
+  return [
+    Section({ title: 'OCR & Image Recognition' }, [
+      Row([Text('Enable OCR'), Toggle({ settingsKey: 'ocrEnabled' })]),
+      Row([
+        Text('OCR Mode'),
+        Select({
+          settingsKey: 'ocrMode',
+          options: [
+            { label: 'Automatic', value: 'auto' },
+            { label: 'Manual', value: 'manual' }
+          ]
+        })
+      ]),
+      Row([
+        Text('OCR Language'),
+        Select({
+          settingsKey: 'ocrLanguage',
+          options: [
+            { label: 'English', value: 'en-US' },
+            { label: 'Vietnamese', value: 'vi-VN' }
+          ]
+        })
+      ]),
+      Row([
+        Text('OCR Region'),
+        Select({
+          settingsKey: 'ocrRegion',
+          options: [
+            { label: 'Full Screen', value: 'full' },
+            { label: 'Selection', value: 'selection' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

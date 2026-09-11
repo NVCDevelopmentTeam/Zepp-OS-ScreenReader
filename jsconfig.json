@@ -2,8 +2,20 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "checkJs": true
+    "checkJs": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "maxNodeModuleJsDepth": 0
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "files": ["node_modules/@zeppos/device-types/dist/index.d.ts"]
+  "include": ["**/*.js", "**/*.ts", "node_modules/@zeppos/device-types/dist/index.d.ts"],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "site",
+    "site/**/*",
+    "dist",
+    "build",
+    "eslint.config.js",
+    "prettier.config.js"
+  ]
 }

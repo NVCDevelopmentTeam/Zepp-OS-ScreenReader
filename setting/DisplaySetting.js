@@ -1,52 +1,22 @@
-import { settingsManager } from './utils.js'
-import { Display } from '@zos/display'
-import { log } from '@zos/utils'
+import { Section, Row, Text, Toggle, Slider } from '@zeppos/zml'
 
-Page({
-  state: {
-    brightness: 50,
-    contrast: 1.0,
-    fontScale: 1.0
-  },
-
-  onInit() {
-    this.validateDisplayCapabilities()
-  },
-
-  async validateDisplayCapabilities() {
-    const { capabilities } = await settingsManager.deviceManager.validate()
-    if (!capabilities.display) {
-      throw new Error('Display customization not supported')
-    }
-  },
-
-  async changeBrightness(value) {
-    try {
-      const success = await settingsManager.handleSettingChange(
-        () => Display.setBrightness(value),
-        value,
-        'brightness'
-      )
-      if (success) this.setState({ brightness: value })
-    } catch (error) {
-      log.error('Brightness change failed:', error)
-    }
-  },
-
-  async changeContrast(value) {
-    try {
-      if (!settingsManager.validateDisplay.contrast(value)) {
-        throw new Error('Invalid contrast value')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Display.setContrast(value),
-        value,
-        'contrast'
-      )
-      if (success) this.setState({ contrast: value })
-    } catch (error) {
-      log.error('Contrast change failed:', error)
-    }
-  }
-})
+// Note: watch screen brightness/contrast are OS-level settings, not
+// something a Mini Program is permitted to change - so this focuses on
+// what ZSR itself actually renders (widget text scale / contrast for
+// low-vision users), not the device's hardware display driver.
+export default function renderDisplay(_props) {
+  return [
+    Section({ title: 'Display' }, [
+      Row([
+        Text('ZSR Text Scale'),
+        Slider({
+          settingsKey: 'fontScale',
+          min: 0.8,
+          max: 2.0,
+          step: 0.1
+        })
+      ]),
+      Row([Text('High Contrast Mode'), Toggle({ settingsKey: 'highContrastMode' })])
+    ])
+  ]
+}

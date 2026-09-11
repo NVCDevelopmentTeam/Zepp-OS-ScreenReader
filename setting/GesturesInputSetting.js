@@ -1,19 +1,12 @@
 import { Section, Row, Text, Select, Toggle } from '@zeppos/zml'
 
+// Swipe-direction-to-action mapping lives in InputGestureSetting.js
+// ("Gesture Actions"), where the settingsKey names match what
+// lib/interaction/gesture.js actually reads. This file covers the other,
+// non-swipe input remapping options.
 export default function renderGesturesInput(_props) {
   return [
     Section({ title: 'Gestures & Input' }, [
-      Row([
-        Text('Single Finger Swipe Left'),
-        Select({
-          settingsKey: 'gestureSwipeLeft',
-          options: [
-            { label: 'Previous Item', value: 'prev_item' },
-            { label: 'Next Item', value: 'next_item' },
-            { label: 'Back', value: 'back' }
-          ]
-        })
-      ]),
       Row([Text('Button Remapping'), Toggle({ settingsKey: 'buttonRemappingEnabled' })]),
       Row([Text('Fingerprint Actions'), Toggle({ settingsKey: 'fingerprintActions' })]),
       Row([

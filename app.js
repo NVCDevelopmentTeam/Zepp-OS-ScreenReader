@@ -1,6 +1,6 @@
 import './shared/device-polyfill.js'
 import { MessageBuilder } from './shared/message.js'
-import { getPackageInfo, permission } from '@zos/app'
+import { getPackageInfo, requestPermission } from '@zos/app'
 import * as ble from '@zos/ble'
 import { log } from '@zos/utils'
 import WidgetInterceptor from './lib/core/widgetInterceptor.js'
@@ -11,6 +11,7 @@ import GestureHandler from './lib/interaction/gesture.js'
 import VoiceControlService from './lib/core/voiceControlService.js'
 import AccessibilityService from './lib/core/accessibility.js'
 import { loadSettings } from './lib/core/config.js'
+import ErrorMonitor from './lib/utils/errorMonitor.js'
 
 // Initialize interceptors as early as possible
 WidgetInterceptor.init()
@@ -51,7 +52,12 @@ App({
       this.grantPermissions()
 
       // 3. Initialize Services
-      await ScreenReader.init().catch((e) => log.error('ScreenReader init failed:', e))
+      // "Reliability & Diagnostics" settings (settingsKeys
+      // 'autoRecoveryEnabled' / 'maxRecoveryAttempts' from
+      // setting/accessibilitySetting.js) are applied here: on init failure,
+      // retry with backoff instead of leaving the screen reader silently
+      // dead for the rest of the session.
+      await this.initScreenReaderWithRecovery()
 
       ShortcutHandler.init()
       GestureHandler.init()
@@ -113,6 +119,33 @@ App({
     console.log('app on boot invoke')
   },
 
+  async initScreenReaderWithRecovery() {
+    const config = globalThis.ScreenReaderConfig || {}
+    const autoRecoveryEnabled = config.autoRecoveryEnabled !== false
+    const maxAttempts = autoRecoveryEnabled ? Math.max(1, config.maxRecoveryAttempts || 3) : 1
+    let lastErrorEntry = null
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        await ScreenReader.init()
+        if (lastErrorEntry) {
+          ErrorMonitor.markAsRecovered(lastErrorEntry)
+        }
+        return
+      } catch (error) {
+        lastErrorEntry = ErrorMonitor.trackError(error, `ScreenReader.init (attempt ${attempt})`)
+        if (attempt >= maxAttempts) {
+          log.error(`ScreenReader init failed after ${attempt} attempt(s), giving up:`, error)
+          return
+        }
+        log.warn(`ScreenReader init failed (attempt ${attempt}/${maxAttempts}), retrying...`, error)
+        // Simple linear backoff so a fast-failing sensor/service doesn't
+        // spin the retry loop.
+        await new Promise((resolve) => setTimeout(resolve, attempt * 500))
+      }
+    }
+  },
+
   grantPermissions() {
     const permissions = [
       'data:os.device.info',
@@ -128,18 +161,18 @@ App({
       'data:user.hd.stress'
     ]
 
+    // @zos/app has no `permission` object - the real Zepp OS 2.0/3.0 API is
+    // the standalone requestPermission() function, and its result comes
+    // back through a single `callback` (not separate success/fail
+    // handlers). See
+    // https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/requestPermission/
     try {
-      if (permission && permission.request) {
-        permission.request({
-          permissions,
-          success: (res) => {
-            console.log('Permissions granted successfully:', res)
-          },
-          fail: (error) => {
-            console.error('Permission request failed:', error)
-          }
-        })
-      }
+      requestPermission({
+        permissions,
+        callback: (result) => {
+          console.log('Permission request result:', result)
+        }
+      })
     } catch (_e) {
       console.log(
         'Standard permission request not supported or failed, proceeding with system defaults.'

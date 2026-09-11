@@ -1,74 +1,28 @@
-import { settingsManager } from './utils.js'
-import { Shortcut } from '@zos/interaction'
-import { log } from '@zos/utils'
-import { accessibility } from '@zos/accessibility'
+import { Section, Row, Text, Select } from '@zeppos/zml'
 
-// Define the settings page
-Page({
-  state: {
-    // The current values of the shortcut settings
-    shortcutItems: ['Read', 'Pause', 'Next', 'Previous', 'Settings'],
-    shortcutOrder: 'asc',
-    shortcutActions: {
-      Read: accessibility.read,
-      Pause: accessibility.pause,
-      Next: accessibility.next,
-      Previous: accessibility.previous,
-      Settings: accessibility.settings
-    }
-  },
-  // The function to change the shortcut items
-  async changeShortcutItems(e) {
-    try {
-      const newValue = e.newValue
-      const success = await settingsManager.handleSettingChange(
-        () => Shortcut.setItems(newValue),
-        newValue,
-        'shortcutItems'
-      )
-      if (success) this.setState({ shortcutItems: newValue })
-    } catch (error) {
-      log.error('Shortcut items update failed:', error)
-    }
-  },
-  // The function to change the shortcut order
-  async changeShortcutOrder(e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateMenuOrder(newValue)) {
-        throw new Error('Invalid shortcut order')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Shortcut.setOrder(newValue),
-        newValue,
-        'shortcutOrder'
-      )
-      if (success) this.setState({ shortcutOrder: newValue })
-    } catch (error) {
-      log.error('Shortcut order change failed:', error)
-    }
-  },
-  // The function to change the shortcut actions
-  async changeShortcutActions(e) {
-    try {
-      const newValue = e.newValue
-      if (!this.validateShortcutItems(Object.keys(newValue))) {
-        throw new Error('Invalid shortcut actions')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Shortcut.setActions(newValue),
-        newValue,
-        'shortcutActions'
-      )
-      if (success) this.setState({ shortcutActions: newValue })
-    } catch (error) {
-      log.error('Shortcut actions update failed:', error)
-    }
-  },
-  validateShortcutItems(items) {
-    const validActions = Object.keys(this.state.shortcutActions)
-    return items.every((item) => validActions.includes(item))
-  }
-})
+// Configures what ZSR's registered Shortcut Card does when opened
+// (app.json module.app-widget/secondary-widget already register the
+// widgets themselves; this only picks the action they trigger).
+// NOTE: wiring the widget's onClick to actually read this value is a
+// follow-up device-side task in app-widget/index.js and
+// secondary-widget/index.js - left alone here since guessing at that
+// integration without testing it on-device risked breaking the widgets
+// that already work.
+export default function renderShortcut(_props) {
+  return [
+    Section({ title: 'Shortcut Card' }, [
+      Row([
+        Text('Shortcut Card Action'),
+        Select({
+          settingsKey: 'shortcutCardAction',
+          options: [
+            { label: 'Toggle Screen Reader', value: 'toggle_screen_reader' },
+            { label: 'Read Screen', value: 'read_screen' },
+            { label: 'Read Status Bar', value: 'read_status_bar' },
+            { label: 'Open Context Menu', value: 'context_menu' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

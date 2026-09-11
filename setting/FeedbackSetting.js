@@ -1,42 +1,21 @@
-import { settingsManager } from './utils.js'
-import { Vibrator } from '@zos/sensor'
-import { log } from '@zos/utils'
+import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
 
-Page({
-  state: {
-    hapticFeedback: true,
-    soundFeedback: true,
-    feedbackIntensity: 'medium'
-  },
-
-  async toggleHapticFeedback() {
-    try {
-      const currentValue = this.state.hapticFeedback
-      const success = await settingsManager.handleToggleSetting(
-        (value) => Vibrator.setEnabled(value),
-        currentValue,
-        'hapticFeedback'
-      )
-      if (success) this.setState({ hapticFeedback: !currentValue })
-    } catch (error) {
-      log.error('Haptic feedback toggle failed:', error)
-    }
-  },
-
-  async changeFeedbackIntensity(value) {
-    try {
-      if (!settingsManager.validateFeedback.intensity.includes(value)) {
-        throw new Error('Invalid feedback intensity')
-      }
-
-      const success = await settingsManager.handleSettingChange(
-        () => Vibrator.setIntensity(value),
-        value,
-        'feedbackIntensity'
-      )
-      if (success) this.setState({ feedbackIntensity: value })
-    } catch (error) {
-      log.error('Feedback intensity change failed:', error)
-    }
-  }
-})
+export default function renderFeedback(_props) {
+  return [
+    Section({ title: 'Feedback' }, [
+      Row([Text('Haptic Feedback'), Toggle({ settingsKey: 'hapticFeedbackEnabled' })]),
+      Row([Text('Sound Feedback'), Toggle({ settingsKey: 'soundFeedbackEnabled' })]),
+      Row([
+        Text('Feedback Intensity'),
+        Select({
+          settingsKey: 'feedbackIntensity',
+          options: [
+            { label: 'Low', value: 'low' },
+            { label: 'Medium', value: 'medium' },
+            { label: 'High', value: 'high' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

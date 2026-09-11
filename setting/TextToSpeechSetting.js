@@ -1,50 +1,28 @@
-import { accessibility } from '@zos/accessibility'
+import { Section, Row, Text, Select } from '@zeppos/zml'
 
-// Define the settings page
-Page({
-  state: {
-    // The current values of the TTS settings
-    ttsEngine: 'default',
-    ttsVoice: 'en-US',
-    ttsQuality: 'high'
-  },
-  // The function to change the TTS engine
-  changeTtsEngine(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0]
-    // Update the data
-    this.setState({
-      ttsEngine: newValue
-    })
-    // Call the accessibility API to set the TTS engine
-    accessibility.setTtsEngine({
-      engine: newValue
-    })
-  },
-  // The function to change the TTS voice
-  changeTtsVoice(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0]
-    // Update the data
-    this.setState({
-      ttsVoice: newValue
-    })
-    // Call the accessibility API to set the TTS voice
-    accessibility.setTtsVoice({
-      voice: newValue
-    })
-  },
-  // The function to change the TTS quality
-  changeTtsQuality(e) {
-    // Get the new value from the picker
-    let newValue = e.newValue[0]
-    // Update the data
-    this.setState({
-      ttsQuality: newValue
-    })
-    // Call the accessibility API to set the TTS quality
-    accessibility.setTtsQuality({
-      quality: newValue
-    })
-  }
-})
+// Voice gender/character is chosen once, in setting/VoiceSetting.js's
+// "Voice Preset" (settingsKey 'voicePreset') - it's wired to espeak-ng's
+// voice-variant suffixes in lib/TTSSystem/EspeakTTSEngine.js. This screen
+// intentionally doesn't duplicate that control.
+//
+// HONESTY NOTE: "Voice Quality" is persisted but not yet wired to real
+// behavior. The espeak-ng synthesis path used here (lib/TTSSystem/
+// EspeakTTSEngine.js -> side-service SPEAK request) doesn't expose a
+// quality/sample-rate parameter, so this control has no real backing
+// implementation yet rather than something we could safely fake.
+export default function renderTextToSpeech(_props) {
+  return [
+    Section({ title: 'Text-to-Speech Engine' }, [
+      Row([
+        Text('Voice Quality'),
+        Select({
+          settingsKey: 'ttsQuality',
+          options: [
+            { label: 'Standard', value: 'standard' },
+            { label: 'High', value: 'high' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

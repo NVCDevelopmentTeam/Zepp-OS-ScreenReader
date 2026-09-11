@@ -1,93 +1,23 @@
-import { settingsManager } from './utils.js'
-import { Audio } from '@zos/sensor'
-import { log } from '@zos/utils'
-import { logger } from '../utils/logger.js'
-import { accessibility } from '@zos/accessibility'
+import { Section, Row, Text, Select } from '@zeppos/zml'
 
-Page({
-  state: {
-    initialized: false,
-    soundVolume: 50,
-    soundTheme: 'default',
-    soundEffects: true
-  },
-
-  async onInit() {
-    try {
-      const { success } = await settingsManager.validateDeviceFeatures(['audio'])
-      if (!success) {
-        throw new Error('Audio not supported')
-      }
-      await Audio.init()
-      this.setState({ initialized: true })
-    } catch (error) {
-      log.error('Sound initialization failed:', error.message)
-    }
-  },
-
-  async changeSoundVolume(value) {
-    try {
-      if (!settingsManager.validateNumericRange(value, 0, 100)) {
-        throw new Error('Invalid volume level')
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => Audio.setVolume(value),
-        value,
-        'volume'
-      )
-
-      if (success) {
-        this.setState({ soundVolume: value })
-      }
-    } catch (error) {
-      settingsManager.handleError(error, 'sound_volume')
-    }
-  },
-
-  changeSoundTheme: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateInput.sound.themes.includes(newValue)) {
-        logger.error('Invalid sound theme:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setSoundTheme({ theme: newValue }),
-        newValue,
-        'soundTheme'
-      )
-
-      if (success) {
-        this.setState({ soundTheme: newValue })
-      }
-    } catch (error) {
-      logger.error('Sound theme change error:', error)
-    }
-  },
-
-  async toggleSoundEffects() {
-    try {
-      const currentValue = this.state.soundEffects
-      const newValue = !currentValue
-
-      if (!settingsManager.validateBoolean(newValue)) {
-        logger.error('Invalid sound effects value:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setSoundEffects({ enable: newValue }),
-        newValue,
-        'soundEffects'
-      )
-
-      if (success) {
-        this.setState({ soundEffects: newValue })
-      }
-    } catch (error) {
-      logger.error('Sound effects toggle error:', error)
-    }
-  }
-})
+// Master on/off for these sounds lives in Feedback > "Sound Feedback"
+// (settingsKey 'soundFeedbackEnabled'), since that toggle already gates
+// the confirmation/error/click sounds this player produces. This screen
+// only picks which asset pack ("Sound Scheme", Jieshuo's term) is used.
+export default function renderSound(_props) {
+  return [
+    Section({ title: 'Sound Effects' }, [
+      Row([
+        Text('Sound Theme'),
+        Select({
+          settingsKey: 'soundTheme',
+          options: [
+            { label: 'Default', value: 'default' },
+            { label: 'Classic', value: 'classic' },
+            { label: 'Minimal', value: 'minimal' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

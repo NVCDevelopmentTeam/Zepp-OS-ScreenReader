@@ -1,79 +1,51 @@
-import { accessibility } from '@zos/accessibility'
-import { settingsManager } from './utils.js'
-import { logger } from '../utils/logger.js'
+import { Section, Row, Text, Select } from '@zeppos/zml'
 
-// Define the settings page
-Page({
-  state: {
-    // The current values of the braille settings
-    brailleDisplayMode: 'auto',
-    brailleInputMode: 'auto',
-    brailleKeyboardLayout: 'en-US'
-  },
-  // The function to change the braille display mode
-  changeBrailleDisplayMode: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateInput.braille.modes.includes(newValue)) {
-        logger.error('Invalid braille display mode:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setBrailleDisplayMode({ mode: newValue }),
-        newValue,
-        'brailleDisplayMode'
-      )
-
-      if (success) {
-        this.setState({ brailleDisplayMode: newValue })
-      }
-    } catch (error) {
-      logger.error('Braille display mode change error:', error)
-    }
-  },
-  // The function to change the braille input mode
-  changeBrailleInputMode: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateSettings.mode(newValue)) {
-        logger.error('Invalid input mode:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setBrailleInputMode({ mode: newValue }),
-        newValue,
-        'brailleInputMode'
-      )
-
-      if (success) {
-        this.setState({ brailleInputMode: newValue })
-      }
-    } catch (error) {
-      logger.error('Braille input mode change error:', error)
-    }
-  },
-  // The function to change the braille keyboard layout
-  changeBrailleKeyboardLayout: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateInput.braille.layouts.includes(newValue)) {
-        logger.error('Invalid braille keyboard layout:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setBrailleKeyboardLayout({ layout: newValue }),
-        newValue,
-        'brailleKeyboardLayout'
-      )
-
-      if (success) {
-        this.setState({ brailleKeyboardLayout: newValue })
-      }
-    } catch (error) {
-      logger.error('Braille keyboard layout change error:', error)
-    }
-  }
-})
+// AudioBrailleSetting.js covers braille *output* (enable + translation
+// table). This screen covers braille *input*.
+//
+// "Braille Input Mode" is the one control wired to real code: its values
+// match lib/components/BrailleKeyboard.js's actual setMode('6dot'|'8dot')
+// API 1:1, applied whenever the braille keyboard is opened (see
+// lib/components/contextMenu.js's openBrailleKeyboard()).
+//
+// HONESTY NOTE: "Braille Display Mode" and "Braille Keyboard Layout" are
+// persisted but not yet wired - BrailleKeyboard.js has no on-screen
+// display widget yet (it only tracks the dot pattern/state) and no
+// per-language layout concept, so there's no real behavior to attach
+// these to today.
+export default function renderBraille(_props) {
+  return [
+    Section({ title: 'Braille Input' }, [
+      Row([
+        Text('Braille Display Mode'),
+        Select({
+          settingsKey: 'brailleDisplayMode',
+          options: [
+            { label: 'Automatic', value: 'auto' },
+            { label: 'Manual', value: 'manual' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Braille Input Mode'),
+        Select({
+          settingsKey: 'brailleInputMode',
+          options: [
+            { label: '6-dot', value: '6dot' },
+            { label: '8-dot', value: '8dot' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Braille Keyboard Layout'),
+        Select({
+          settingsKey: 'brailleKeyboardLayout',
+          options: [
+            { label: 'English (US)', value: 'en-US' },
+            { label: 'Vietnamese', value: 'vi-VN' }
+          ]
+        })
+      ])
+    ])
+  ]
+}

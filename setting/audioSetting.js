@@ -1,57 +1,29 @@
-class AudioSettings {
-  constructor() {
-    this.soundSplitMode = 'disabled'
-    this.volume = 100
-    this.followsVoiceVolume = false
-    this.duckingMode = 'none'
-    this.deviceId = 'default'
-    this.keepAwakeTime = 30
-  }
+import { Section, Row, Text, Toggle, Select, Slider } from '@zeppos/zml'
 
-  setSoundSplitMode(mode) {
-    const validModes = [
-      'disabled',
-      'bothChannels',
-      'leftRight',
-      'leftBoth',
-      'rightLeft',
-      'rightBoth'
-    ]
-    if (validModes.includes(mode)) {
-      this.soundSplitMode = mode
-    }
-  }
-
-  setVolume(level) {
-    this.volume = Math.min(Math.max(0, level), 100)
-  }
-
-  setDuckingMode(mode) {
-    const validModes = ['none', 'speech', 'always']
-    if (validModes.includes(mode)) {
-      this.duckingMode = mode
-    }
-  }
-
-  setAudioDevice(deviceId) {
-    this.deviceId = deviceId
-  }
-
-  setKeepAwakeTime(seconds) {
-    this.keepAwakeTime = Math.max(0, seconds)
-  }
-
-  getSettings() {
-    return {
-      soundSplitMode: this.soundSplitMode,
-      volume: this.volume,
-      followsVoiceVolume: this.followsVoiceVolume,
-      duckingMode: this.duckingMode,
-      deviceId: this.deviceId,
-      keepAwakeTime: this.keepAwakeTime
-    }
-  }
+export default function renderAudioOutput(_props) {
+  return [
+    Section({ title: 'Audio Output' }, [
+      Row([
+        Text('Sound Split Mode'),
+        Select({
+          settingsKey: 'audioSoundSplitMode',
+          options: [
+            { label: 'Disabled', value: 'disabled' },
+            { label: 'Both Channels', value: 'bothChannels' },
+            { label: 'Left/Right Split', value: 'leftRight' }
+          ]
+        })
+      ]),
+      Row([Text('Follow Voice Volume'), Toggle({ settingsKey: 'audioFollowsVoiceVolume' })]),
+      Row([
+        Text('Keep Awake Time (seconds)'),
+        Slider({
+          settingsKey: 'audioKeepAwakeSeconds',
+          min: 10,
+          max: 120,
+          step: 10
+        })
+      ])
+    ])
+  ]
 }
-
-// Export the settings class
-export default AudioSettings

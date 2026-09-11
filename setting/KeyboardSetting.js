@@ -1,69 +1,33 @@
-import { accessibility } from '@zos/accessibility'
-import { settingsManager } from './utils.js'
-import { logger } from '../utils/logger.js'
+import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
 
-// Define the settings page
-Page({
-  state: {
-    // The current values of the keyboard settings
-    keyboardShortcuts: true,
-    keyboardEcho: 'character',
-    keyboardLayout: 'en-US'
-  },
-  // The function to toggle the keyboard shortcuts
-  async toggleKeyboardShortcuts() {
-    const [success, newValue] = await settingsManager.handleToggleSetting(
-      (value) => accessibility.setKeyboardShortcuts({ enable: value }),
-      this.state.keyboardShortcuts,
-      'keyboardShortcuts'
-    )
-
-    if (success) {
-      this.setState({ keyboardShortcuts: newValue })
-    }
-  },
-  // The function to change the keyboard echo
-  changeKeyboardEcho: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateInput.keyboard.echo.includes(newValue)) {
-        logger.error('Invalid keyboard echo mode:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setKeyboardEcho({ mode: newValue }),
-        newValue,
-        'keyboardEcho'
-      )
-
-      if (success) {
-        this.setState({ keyboardEcho: newValue })
-      }
-    } catch (error) {
-      logger.error('Keyboard echo change error:', error)
-    }
-  },
-  // The function to change the keyboard layout
-  changeKeyboardLayout: async function (e) {
-    try {
-      const newValue = e.newValue[0]
-      if (!settingsManager.validateInput.keyboard.layouts.includes(newValue)) {
-        logger.error('Invalid keyboard layout:', newValue)
-        return
-      }
-
-      const [success] = await settingsManager.handleSettingChange(
-        () => accessibility.setKeyboardLayout({ layout: newValue }),
-        newValue,
-        'keyboardLayout'
-      )
-
-      if (success) {
-        this.setState({ keyboardLayout: newValue })
-      }
-    } catch (error) {
-      logger.error('Keyboard layout change error:', error)
-    }
-  }
-})
+// Distinct from InputCompositionSetting's "Echo Behavior" (which covers
+// how typed text in a field is echoed back). This covers the on-screen /
+// braille keyboard's own key-press feedback and layout.
+export default function renderKeyboard(_props) {
+  return [
+    Section({ title: 'Keyboard' }, [
+      Row([Text('Announce Key Presses'), Toggle({ settingsKey: 'keyboardShortcutsEnabled' })]),
+      Row([
+        Text('Key Press Echo'),
+        Select({
+          settingsKey: 'keyboardEchoMode',
+          options: [
+            { label: 'Character', value: 'character' },
+            { label: 'Word', value: 'word' },
+            { label: 'None', value: 'none' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Keyboard Layout'),
+        Select({
+          settingsKey: 'keyboardLayout',
+          options: [
+            { label: 'English (US)', value: 'en-US' },
+            { label: 'Vietnamese', value: 'vi-VN' }
+          ]
+        })
+      ])
+    ])
+  ]
+}
