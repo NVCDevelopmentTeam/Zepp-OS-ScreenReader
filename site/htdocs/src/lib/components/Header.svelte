@@ -4,7 +4,6 @@
   import { browser } from '$app/environment';
   import { githubLink, discordChat, zeppOSDev } from '$lib/info.js';
 
-  let { isMobile } = $props();
   let expanded = $state(false);
   let expandedDropdown = $state(false);
   let darkMode = $state(false);
@@ -28,8 +27,7 @@
 
   $effect(() => {
     // Close menus on navigation
-    // eslint-disable-next-line no-unused-vars
-    const path = page.url.pathname;
+    void page.url.pathname;
     expanded = false;
     expandedDropdown = false;
   });

@@ -1,4 +1,5 @@
 import { browser } from '$app/environment'
+import { render } from 'svelte/server'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
@@ -15,7 +16,7 @@ function addTimezoneOffset(date) {
 // Main function to import and process all Markdown posts
 export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', { eager: true }))
   .map(([filepath, post]) => {
-    const htmlContent = post.default // Access rendered HTML of the post
+    const htmlContent = typeof post.default === 'string' ? post.default : render(post.default).body
     const html = parse(htmlContent)
 
     // Obtain preview text for each post

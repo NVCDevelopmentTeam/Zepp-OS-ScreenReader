@@ -4,6 +4,33 @@ import { getDeviceInfo } from '@zos/device'
 import { saveSettings, loadSettings } from '../../lib/core/config.js'
 
 const { width, height } = getDeviceInfo()
+
+function createToggle(root, y, label, checked, onChange) {
+  root.createWidget(widget.TEXT, {
+    x: 40,
+    y: y,
+    w: width - 150,
+    h: 60,
+    text: label,
+    color: 0xffffff,
+    text_size: 24,
+    align_v: 2
+  })
+
+  root.createWidget(widget.SLIDE_SWITCH, {
+    x: width - 110,
+    y: y + 10,
+    w: 80,
+    h: 40,
+    checked: checked,
+    select_bg: 0x00aa00,
+    unselect_bg: 0x666666,
+    checked_change_func: (val) => {
+      onChange(val)
+    }
+  })
+}
+
 export default Page({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
@@ -33,52 +60,26 @@ export default Page({
       text_size: 28
     })
 
-    this.createToggle(root, 100, gettext('Read All'), !!config.readNotifications, (val) => {
+    createToggle(root, 100, gettext('Read All'), !!config.readNotifications, (val) => {
       config.readNotifications = val
       saveSettings(config)
     })
 
-    this.createToggle(root, 180, gettext('Read SMS'), !!config.readSMS, (val) => {
+    createToggle(root, 180, gettext('Read SMS'), !!config.readSMS, (val) => {
       config.readSMS = val
       saveSettings(config)
     })
 
-    this.createToggle(root, 260, gettext('Read Calls'), !!config.readCalls, (val) => {
+    createToggle(root, 260, gettext('Read Calls'), !!config.readCalls, (val) => {
       config.readCalls = val
       saveSettings(config)
     })
 
-    this.createToggle(root, 340, gettext('Read Missed'), !!config.readMissedCalls, (val) => {
+    createToggle(root, 340, gettext('Read Missed'), !!config.readMissedCalls, (val) => {
       config.readMissedCalls = val
       saveSettings(config)
     })
 
     return root
-  },
-
-  createToggle(root, y, label, checked, onChange) {
-    root.createWidget(widget.TEXT, {
-      x: 40,
-      y: y,
-      w: width - 150,
-      h: 60,
-      text: label,
-      color: 0xffffff,
-      text_size: 24,
-      align_v: 2
-    })
-
-    root.createWidget(widget.SLIDE_SWITCH, {
-      x: width - 110,
-      y: y + 10,
-      w: 80,
-      h: 40,
-      checked: checked,
-      select_bg: 0x00aa00,
-      unselect_bg: 0x666666,
-      checked_change_func: (val) => {
-        onChange(val)
-      }
-    })
   }
 })

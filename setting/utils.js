@@ -6,20 +6,19 @@ const deviceManager = {
     try {
       getDeviceInfo()
       return {
-        success: true, // getDeviceInfo always returns info object
+        success: true,
         capabilities: this.parseCapabilities()
       }
     } catch (error) {
-      log.error('Device validation failed:', error)
+      log.error('Device validation failed: ' + String(error))
       return { success: false, capabilities: {} }
     }
   },
 
   parseCapabilities() {
-    // Zepp OS doesn't have a direct 'capabilities' object in getDeviceInfo usually
-    // We infer based on device info or assume some defaults
+    // In Zepp OS, audio/haptic/display capabilities are standard on supported models
     return {
-      audio: true, // Most modern watches have at least vibration
+      audio: true,
       speech: true,
       display: true,
       gesture: true
@@ -30,10 +29,13 @@ const deviceManager = {
 export const settingsManager = {
   deviceManager,
 
+  validateDevice() {
+    return this.initializeDevice()
+  },
+
   validateDeviceFeatures(requiredCapabilities = []) {
     try {
       const info = getDeviceInfo()
-
       const validated = settingsManager.validateCapabilities(info)
 
       if (requiredCapabilities.length) {
@@ -45,7 +47,7 @@ export const settingsManager = {
 
       return { success: true, capabilities: validated }
     } catch (error) {
-      log.error('Device validation failed:', error.message)
+      log.error('Device validation failed: ' + String(error))
       return { success: false, capabilities: {} }
     }
   },
@@ -58,13 +60,12 @@ export const settingsManager = {
         capabilities: this.validateCapabilities(info)
       }
     } catch (error) {
-      log.error('Settings initialization failed:', error)
+      log.error('Settings initialization failed: ' + String(error))
       return { isValid: false, capabilities: {} }
     }
   },
 
-  validateCapabilities(_) {
-    // Inference for capabilities if needed
+  validateCapabilities(_info) {
     return {
       audio: true,
       speech: true,
@@ -73,9 +74,8 @@ export const settingsManager = {
     }
   },
 
-  isSupported: (_) => {
-    getDeviceInfo()
-    return true // Assume supported for now or add specific checks
+  isSupported: (_feature) => {
+    return true
   },
 
   validateNumericRange: (value, min, max) => {
@@ -93,7 +93,7 @@ export const settingsManager = {
       log.debug(`${settingName}: ${JSON.stringify(newValue)}`)
       return [true, result]
     } catch (error) {
-      log.error(`${settingName} error: ${error.message}`)
+      log.error(`${settingName} error: ` + String(error))
       return [false, null]
     }
   },
@@ -114,7 +114,7 @@ export const settingsManager = {
       log.info(`${settingName} toggled to: ${newValue}`)
       return [true, newValue]
     } catch (error) {
-      log.error(`Failed to toggle ${settingName}:`, error)
+      log.error(`Failed to toggle ${settingName}: ` + String(error))
       return [false, currentValue]
     }
   },
@@ -160,7 +160,7 @@ export const settingsManager = {
   },
 
   handleError: (error, context) => {
-    log.error(`[${context}] ${error.message}`)
+    log.error(`[${context}] ` + String(error))
     return false
   },
 
@@ -176,22 +176,16 @@ export const settingsManager = {
   },
 
   checkDeviceSupport: async () => {
-    const info = getDeviceInfo()
-    if (!info.success) {
-      throw new Error('Failed to get device info')
-    }
-    return info.capabilities || {}
+    return deviceManager.parseCapabilities()
   },
 
   initializeDevice: async () => {
-    const info = await getDeviceInfo()
-    if (!info.success) {
-      throw new Error('Device initialization failed')
-    }
+    const info = getDeviceInfo()
     return {
-      capabilities: info.capabilities,
-      deviceId: info.deviceId,
-      platform: info.platform
+      success: true,
+      capabilities: deviceManager.parseCapabilities(),
+      deviceId: info.deviceName || 'unknown',
+      platform: 'Zepp OS'
     }
   }
 }

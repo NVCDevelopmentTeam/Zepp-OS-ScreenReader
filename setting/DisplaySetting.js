@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Slider } from '@zeppos/zml'
-
 // Note: watch screen brightness/contrast are OS-level settings, not
 // something a Mini Program is permitted to change - so this focuses on
 // what ZSR itself actually renders (widget text scale / contrast for
@@ -17,6 +15,35 @@ export default function renderDisplay(_props) {
         })
       ]),
       Row([Text('High Contrast Mode'), Toggle({ settingsKey: 'highContrastMode' })])
+    ]),
+    Section({ title: 'Focus Cursor' }, [
+      Row([
+        Text('Cursor Style'),
+        Select({
+          settingsKey: 'cursorStyle',
+          options: [
+            { label: 'Border', value: 'border' },
+            { label: 'Highlight', value: 'highlight' },
+            { label: 'Off / Hidden', value: 'none' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Cursor Color'),
+        Select({
+          settingsKey: 'cursorColor',
+          options: [
+            { label: 'Green', value: '00ff00' },
+            { label: 'Blue', value: '0088ff' },
+            { label: 'Yellow', value: 'ffff00' },
+            { label: 'Cyan', value: '00ffff' },
+            { label: 'Orange', value: 'ff8800' },
+            { label: 'Red', value: 'ff0055' },
+            { label: 'White', value: 'ffffff' }
+          ]
+        })
+      ]),
+      Row([Text('Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })])
     ])
   ]
 }

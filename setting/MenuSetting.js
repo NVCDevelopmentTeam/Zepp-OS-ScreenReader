@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
-
 // Toggle keys match the actual menu items built in
 // lib/components/contextMenu.js's show() method 1:1 (settingsKey
 // 'menuShow<Item>') so this screen can genuinely hide/show entries instead

@@ -3,9 +3,9 @@ import { gettext } from '@zos/i18n'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
 import { log } from '@zos/utils'
-import { loadSettings, saveSettings } from '../lib/core/config.js'
-import SpeechHistory from '../lib/utils/speechHistory.js'
-import ScreenReader from '../lib/core/screenReader.js'
+import { loadSettings, saveSettings } from '../../lib/core/config.js'
+import SpeechHistory from '../../lib/utils/speechHistory.js'
+import ScreenReader from '../../lib/core/screenReader.js'
 
 const { width, height } = getDeviceInfo()
 
@@ -53,7 +53,7 @@ export default Page({
       click_func: () => {
         config.debugLogging = !config.debugLogging
         saveSettings(config)
-        replace({ url: 'setting/AdvancedSettings' })
+        replace({ url: 'page/settings/AdvancedSettings' })
       }
     })
 
@@ -71,7 +71,7 @@ export default Page({
       click_func: () => {
         config.verboseSpeech = !config.verboseSpeech
         saveSettings(config)
-        replace({ url: 'setting/AdvancedSettings' })
+        replace({ url: 'page/settings/AdvancedSettings' })
       }
     })
 

@@ -1,4 +1,3 @@
-/* global px */
 import { createWidget, widget } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { log } from '@zos/utils'

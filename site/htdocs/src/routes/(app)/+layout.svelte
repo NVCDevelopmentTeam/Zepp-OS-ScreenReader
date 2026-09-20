@@ -8,13 +8,13 @@
 </script>
 
 <div class="min-h-screen flex flex-col bg-zepp font-sans selection:bg-blue-500/30">
-  <Header isMobile={data.isMobile} />
+  <Header />
 
   <main id="main" class="flex-grow pt-16 md:pt-20">
     {@render children?.()}
   </main>
 
-  <Footer isMobile={data.isMobile} />
+  <Footer />
 </div>
 
 {#if !data.isMobile}

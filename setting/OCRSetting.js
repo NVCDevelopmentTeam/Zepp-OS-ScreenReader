@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
-
 // The 'ocrEnabled' settingsKey here matches the flag AccessibilityService
 // exposes internally (lib/core/accessibility.js) so this toggle is
 // end-to-end wired rather than a value nobody reads.

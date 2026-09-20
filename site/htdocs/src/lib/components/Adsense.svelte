@@ -56,7 +56,7 @@
 
   // On every SPA navigation: push any new uninitiated ad slots
   $effect(() => {
-    const _path = page.url.pathname; // reactive — re-runs on route change
+    void page.url.pathname; // reactive — re-runs on route change
     if (!browser) return;
     afterLoad(pushUninitiatedAds, 2000);
   });

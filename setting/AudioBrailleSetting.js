@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
-
 export default function renderAudioBraille(_props) {
   return [
     Section({ title: 'Audio & Braille' }, [
@@ -15,7 +13,11 @@ export default function renderAudioBraille(_props) {
         })
       ]),
       Row([
-        Text('Audio Routing'),
+        // HONESTY NOTE: no documented Zepp OS API for choosing TTS audio
+        // output routing (speaker vs Bluetooth) was found - the system
+        // handles audio routing automatically based on what's connected.
+        // Left as a persisted, non-crashing choice rather than removed.
+        Text('Audio Routing (not yet supported by Zepp OS)'),
         Select({
           settingsKey: 'audioRouting',
           options: [

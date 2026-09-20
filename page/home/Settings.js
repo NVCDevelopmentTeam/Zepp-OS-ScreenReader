@@ -27,7 +27,7 @@ export default Page({
         { name: gettext('Remote Access'), url: 'page/settings/RemoteAccess', type_id: 1 },
         { name: gettext('Document Settings'), url: 'page/settings/Document', type_id: 1 },
         { name: gettext('Check for Updates'), url: 'page/about/UpdateChecker', type_id: 1 },
-        { name: gettext('Developer Options'), url: 'setting/AdvancedSettings', type_id: 1 }
+        { name: gettext('Developer Options'), url: 'page/settings/AdvancedSettings', type_id: 1 }
       ]
     }
     if (!globalThis.ScreenReaderConfig) {

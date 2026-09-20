@@ -3,19 +3,7 @@
   import './layout.css';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '$lib/info.js';
   import ogImageURL from '$lib/images/logo.svg';
-  import { browser } from '$app/environment';
-  import { onMount } from 'svelte';
-
-const { children, data } = $props();
-let isMobile = $derived(data.isMobile);
-  onMount(() => {
-    // Only update if it changes after mount (e.g. resizing)
-    const checkMobile = () => {
-      isMobile = window.innerWidth < 768;
-    };
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  });
+const { children } = $props();
 
   // SEO Configuration
   const SEO = {

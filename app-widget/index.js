@@ -1,4 +1,3 @@
-/* global px */
 import { createWidget, widget } from '@zos/ui'
 import { push } from '@zos/router'
 import { getDeviceInfo } from '@zos/device'
@@ -19,7 +18,10 @@ AppWidget({
     if (configStr) {
       try {
         const config = JSON.parse(configStr)
-        isEnabled = !!config.enabled
+        // settingsKey is 'screenReaderEnabled' (setting/GeneralSetting.js),
+        // not 'enabled' - reading the wrong key meant this always showed
+        // DISABLED regardless of the real state.
+        isEnabled = config.screenReaderEnabled !== false
       } catch (_e) {
         // Silently ignore parsing errors
       }

@@ -28,3 +28,15 @@ declare module '@zos/media' {
     stop(): void
   }
 }
+
+declare module '@zos/i18n' {
+  export function getText(key?: string): string
+  export function gettext(key?: string): string
+}
+
+declare module '@zos/ui' {
+  interface PublicHmUIWidget {
+    createWidget(widgetType: any, options?: any): any
+    setProperty(prop: any, value: any): void
+  }
+}

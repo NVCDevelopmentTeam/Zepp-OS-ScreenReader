@@ -8,7 +8,7 @@ router.get('/capabilities', async (req, res) => {
   try {
     const device = await settingsManager.validateDevice()
     res.json(device)
-  } catch (error) {
+  } catch (/** @type {any} */ error) {
     logger.error('Capabilities request failed:', error)
     res.status(500).json({ error: error.message })
   }
@@ -35,7 +35,7 @@ router.post('/update', async (req, res) => {
       setting
     )
     res.json({ success })
-  } catch (error) {
+  } catch (/** @type {any} */ error) {
     logger.error('Settings update failed:', error)
     res.status(500).json({ error: error.message })
   }

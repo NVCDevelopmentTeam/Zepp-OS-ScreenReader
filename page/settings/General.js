@@ -7,6 +7,32 @@ import { saveSettings } from '../../lib/core/config.js'
 
 const { width, height } = getDeviceInfo()
 
+function createToggle(root, y, label, checked, onChange) {
+  root.createWidget(widget.TEXT, {
+    x: 40,
+    y: y,
+    w: width - 150,
+    h: 60,
+    text: label,
+    color: 0xffffff,
+    text_size: 24,
+    align_v: 2
+  })
+
+  root.createWidget(widget.SLIDE_SWITCH, {
+    x: width - 110,
+    y: y + 10,
+    w: 80,
+    h: 40,
+    checked: checked,
+    select_bg: 0x00aa00,
+    unselect_bg: 0x666666,
+    checked_change_func: (val) => {
+      onChange(val)
+    }
+  })
+}
+
 export default Page({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
@@ -35,13 +61,13 @@ export default Page({
     })
 
     // Enable/Disable ZSR
-    this.createToggle(root, 100, gettext('ZSR Status'), ScreenReader.enabled, (val) => {
+    createToggle(root, 100, gettext('ZSR Status'), ScreenReader.enabled, (val) => {
       ScreenReader.toggleEnabled(val === ScreenReader.enabled)
       replace({ url: 'page/settings/General' })
     })
 
     // Confirm before disable
-    this.createToggle(
+    createToggle(
       root,
       180,
       gettext('Confirm Disable'),
@@ -53,7 +79,7 @@ export default Page({
     )
 
     // Auto-start
-    this.createToggle(
+    createToggle(
       root,
       260,
       gettext('Auto-start'),
@@ -81,31 +107,5 @@ export default Page({
     })
 
     return root
-  },
-
-  createToggle(root, y, label, checked, onChange) {
-    root.createWidget(widget.TEXT, {
-      x: 40,
-      y: y,
-      w: width - 150,
-      h: 60,
-      text: label,
-      color: 0xffffff,
-      text_size: 24,
-      align_v: 2
-    })
-
-    root.createWidget(widget.SLIDE_SWITCH, {
-      x: width - 110,
-      y: y + 10,
-      w: 80,
-      h: 40,
-      checked: checked,
-      select_bg: 0x00aa00,
-      unselect_bg: 0x666666,
-      checked_change_func: (val) => {
-        onChange(val)
-      }
-    })
   }
 })

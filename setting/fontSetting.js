@@ -1,5 +1,3 @@
-import { Section, Row, Text, Select } from '@zeppos/zml'
-
 // Overall text scale lives in DisplaySetting.js's "ZSR Text Scale" slider.
 // This screen covers typeface style, which is a separate, orthogonal
 // choice from size.

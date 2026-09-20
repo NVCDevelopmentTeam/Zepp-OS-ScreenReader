@@ -1,12 +1,20 @@
 import globals from 'globals'
 import js from '@eslint/js'
-// I hate TS only using js
+
 export default [
   {
     // The website lives in its own workspace with its own ESLint/Prettier setup.
     // Third-party vendor/generated files (e.g. partytown) must never be linted
     // here since they are not project sources.
-    ignores: ['site/htdocs/**', '**/~partytown/**', 'dist/**', 'node_modules/**', '.cache/**']
+    ignores: [
+      'site/**',
+      'site',
+      '**/~partytown/**',
+      'dist/**',
+      'node_modules/**',
+      '.cache/**',
+      '.site/**'
+    ]
   },
   js.configs.recommended,
   {
@@ -38,12 +46,24 @@ export default [
         messaging: 'readonly',
         globalThis: 'readonly',
         Buffer: 'readonly',
-        ES6Promise: 'readonly'
+        ES6Promise: 'readonly',
+        px: 'readonly',
+        AppSettingsPage: 'readonly',
+        Section: 'readonly',
+        Row: 'readonly',
+        Text: 'readonly',
+        Toggle: 'readonly',
+        Select: 'readonly',
+        Slider: 'readonly',
+        Button: 'readonly',
+        TextInput: 'readonly',
+        Link: 'readonly',
+        View: 'readonly'
       }
     }
   },
   {
-    files: ['**/*.js', '**/*.jsx'],
+    files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
     languageOptions: {
       parser: js.parser,
       parserOptions: {

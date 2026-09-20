@@ -1,5 +1,3 @@
-import { Section, Row, Text, Select } from '@zeppos/zml'
-
 // AudioBrailleSetting.js covers braille *output* (enable + translation
 // table). This screen covers braille *input*.
 //

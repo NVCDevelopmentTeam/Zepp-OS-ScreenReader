@@ -1,5 +1,3 @@
-import { Section, Row, Text, Select, Toggle } from '@zeppos/zml'
-
 // Swipe-direction-to-action mapping lives in InputGestureSetting.js
 // ("Gesture Actions"), where the settingsKey names match what
 // lib/interaction/gesture.js actually reads. This file covers the other,
@@ -18,6 +16,10 @@ export default function renderGesturesInput(_props) {
             { label: 'Accessibility', value: 'accessibility' }
           ]
         })
+      ]),
+      Row([
+        Text('Invert Swipes (Vertical/Horizontal)'),
+        Toggle({ settingsKey: 'invertSwipeGestures' })
       ]),
       Row([Text('Braille Keyboard'), Toggle({ settingsKey: 'brailleKeyboardEnabled' })])
     ])

@@ -1,5 +1,3 @@
-import { Section, Row, Text } from '@zeppos/zml'
-
 // Settings App (phone webview) cannot navigate to device-side pages via
 // @zos/router - that API only exists in the Device App runtime. The
 // device-side About pages (page/about/*) are reached from the watch UI

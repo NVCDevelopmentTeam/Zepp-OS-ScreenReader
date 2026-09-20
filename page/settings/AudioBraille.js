@@ -7,6 +7,32 @@ import BrailleService from '../../lib/core/braille.js'
 
 const { width, height } = getDeviceInfo()
 
+function createToggle(root, y, label, checked, onChange) {
+  root.createWidget(widget.TEXT, {
+    x: 40,
+    y: y,
+    w: width - 150,
+    h: 60,
+    text: label,
+    color: 0xffffff,
+    text_size: 24,
+    align_v: 2
+  })
+
+  root.createWidget(widget.SLIDE_SWITCH, {
+    x: width - 110,
+    y: y + 10,
+    w: 80,
+    h: 40,
+    checked: checked,
+    select_bg: 0x00aa00,
+    unselect_bg: 0x666666,
+    checked_change_func: (val) => {
+      onChange(val)
+    }
+  })
+}
+
 export default Page({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
@@ -34,7 +60,7 @@ export default Page({
       text_size: 28
     })
 
-    this.createToggle(root, 100, gettext('Braille Output'), !!config.brailleOutput, (val) => {
+    createToggle(root, 100, gettext('Braille Output'), !!config.brailleOutput, (val) => {
       config.brailleOutput = val
       saveSettings(config)
     })
@@ -88,31 +114,5 @@ export default Page({
     })
 
     return root
-  },
-
-  createToggle(root, y, label, checked, onChange) {
-    root.createWidget(widget.TEXT, {
-      x: 40,
-      y: y,
-      w: width - 150,
-      h: 60,
-      text: label,
-      color: 0xffffff,
-      text_size: 24,
-      align_v: 2
-    })
-
-    root.createWidget(widget.SLIDE_SWITCH, {
-      x: width - 110,
-      y: y + 10,
-      w: 80,
-      h: 40,
-      checked: checked,
-      select_bg: 0x00aa00,
-      unselect_bg: 0x666666,
-      checked_change_func: (val) => {
-        onChange(val)
-      }
-    })
   }
 })

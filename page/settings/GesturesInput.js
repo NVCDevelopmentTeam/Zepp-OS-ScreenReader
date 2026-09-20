@@ -6,17 +6,18 @@ import { loadSettings, saveSettings } from '../../lib/core/config.js'
 
 const { width, height } = getDeviceInfo()
 
+const gesturesList = [
+  { name: gettext('Swipe Up'), key: 'gesture_up', value: 'previous' },
+  { name: gettext('Swipe Down'), key: 'gesture_down', value: 'next' },
+  { name: gettext('Swipe Left'), key: 'gesture_left', value: 'context_menu' },
+  { name: gettext('Swipe Right'), key: 'gesture_right', value: 'select' },
+  { name: gettext('Double Tap'), key: 'gesture_double_tap', value: 'cycle_mode' },
+  { name: gettext('Long Press'), key: 'gesture_long_press', value: 'toggle_mute' }
+]
+
 export default Page({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
-    this.gestures = [
-      { name: gettext('Swipe Up'), key: 'gesture_up', value: 'previous' },
-      { name: gettext('Swipe Down'), key: 'gesture_down', value: 'next' },
-      { name: gettext('Swipe Left'), key: 'gesture_left', value: 'context_menu' },
-      { name: gettext('Swipe Right'), key: 'gesture_right', value: 'select' },
-      { name: gettext('Double Tap'), key: 'gesture_double_tap', value: 'cycle_mode' },
-      { name: gettext('Long Press'), key: 'gesture_long_press', value: 'toggle_mute' }
-    ]
   },
 
   build() {
@@ -77,14 +78,14 @@ export default Page({
           ]
         }
       ],
-      data_array: this.gestures.map((g) => ({
+      data_array: gesturesList.map((g) => ({
         ...g,
         displayValue: config[g.key] || g.value,
         type_id: 1
       })),
-      data_count: this.gestures.length,
-      item_click_func: (list, index) => {
-        const item = this.gestures[index]
+      data_count: gesturesList.length,
+      item_click_func: (_list, index) => {
+        const item = gesturesList[index]
         const actions = [
           'next',
           'previous',

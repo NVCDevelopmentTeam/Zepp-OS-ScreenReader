@@ -1,0 +1,5 @@
+msgid "appName"
+msgstr "Zepp OS Screen Reader"
+
+msgid "description"
+msgstr "Mission-critical screen reader for visually impaired users on Amazfit devices"

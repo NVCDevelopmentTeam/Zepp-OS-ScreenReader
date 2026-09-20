@@ -1,0 +1,5 @@
+msgid "appName"
+msgstr "ZSR - Zepp OS Screen Reader"
+
+msgid "description"
+msgstr "Screen reader for visually impaired"

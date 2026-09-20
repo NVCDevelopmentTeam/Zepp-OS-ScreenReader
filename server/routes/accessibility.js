@@ -9,7 +9,7 @@ router.post('/speak', async (req, res) => {
     const { text, options } = req.body
     await AccessibilityManager.speak(text, options)
     res.json({ success: true })
-  } catch (error) {
+  } catch (/** @type {any} */ error) {
     logger.error('Speak request failed:', error)
     res.status(500).json({ error: error.message })
   }
@@ -20,7 +20,7 @@ router.post('/feedback', async (req, res) => {
     const { type } = req.body
     await AccessibilityManager.provideFeedback(type)
     res.json({ success: true })
-  } catch (error) {
+  } catch (/** @type {any} */ error) {
     logger.error('Feedback request failed:', error)
     res.status(500).json({ error: error.message })
   }

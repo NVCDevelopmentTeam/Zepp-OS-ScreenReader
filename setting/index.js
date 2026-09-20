@@ -1,4 +1,3 @@
-import { AppSettingsPage, Section, Select, Text } from '@zeppos/zml'
 import renderGeneral from './GeneralSetting.js'
 import renderSpeech from './SpeechSetting.js'
 import renderVision from './VisionSetting.js'

@@ -13,3 +13,7 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+site/htdocs/node_modules/**
+site/htdocs/.svelte-kit/**
+site/htdocs/.pnpm-store/**
+.site/**

@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Select } from '@zeppos/zml'
-
 export default function renderFeedback(_props) {
   return [
     Section({ title: 'Feedback' }, [

@@ -1,5 +1,3 @@
-import { Section, Row, Text, Select } from '@zeppos/zml'
-
 // These settingsKeys are read directly by lib/interaction/gesture.js on
 // init (`gesture_${GESTURE_NAME.toLowerCase()}`) to remap what each
 // gesture does - this is fully working end-to-end, not just persisted:
@@ -22,8 +20,22 @@ const ACTIONS = [
   { label: 'Previous Page', value: 'previous_page' },
   { label: 'Next Page', value: 'next_page' },
   { label: 'Spell Out', value: 'spell_out' },
-  { label: 'Toggle Mute', value: 'toggle_mute' },
-  { label: 'Toggle Screen Curtain', value: 'toggle_screen_curtain' }
+  { label: 'Toggle Mute (pause/resume speech)', value: 'toggle_mute' },
+  { label: 'Toggle Screen Curtain', value: 'toggle_screen_curtain' },
+  { label: 'Review Cursor: Next', value: 'review_next' },
+  { label: 'Review Cursor: Previous', value: 'review_prev' },
+  { label: 'Speak Review Cursor Item', value: 'review_speak' },
+  { label: 'Jump to First Item', value: 'go_to_first' },
+  { label: 'Jump to Last Item', value: 'go_to_last' },
+  // Not assigned to any gesture by default - deliberately opt-in only, so
+  // turning ZSR off can't happen by accident from a pre-set default.
+  // Recommended: assign this to a Swipe gesture (Swipe Up/Down/Left/
+  // Right), not a Tap/Hold one - swipes go through @zos/interaction's
+  // system-level onGesture(), which keeps working even while ZSR is
+  // disabled. Taps go through ScreenReaderUI's own touch layer, which is
+  // hidden while disabled and may not reliably capture touches then -
+  // risking a state a user can't gesture their way back out of.
+  { label: 'Turn ZSR On/Off (assign to a Swipe, not a Tap)', value: 'toggleZSR' }
 ]
 
 export default function renderGestureActions(_props) {

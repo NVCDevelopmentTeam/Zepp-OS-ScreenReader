@@ -1,10 +1,9 @@
-import { MessageBuilder } from '../shared/message-side.js'
-import espeak from 'espeak-ng'
+import { MessageBuilder } from '../GrantPermission/message-side.js'
 
 const messageBuilder = new MessageBuilder()
 
 /**
- * OpenAI TTS implementation (Placeholder for actual API call)
+ * OpenAI TTS implementation (Fallback / placeholder for API synthesis)
  */
 async function speakOpenAI(text) {
   try {
@@ -21,16 +20,11 @@ async function speakOpenAI(text) {
  */
 async function speakEspeak(text, options = {}) {
   try {
-    console.log('eSpeak TTS Synthesis:', text)
-    if (espeak && typeof espeak.speak === 'function') {
-      await espeak.speak(text, {
-        voice: options.voice || 'en-US',
-        pitch: options.pitch || 50,
-        rate: options.rate || 175
-      })
-      return 'OK'
-    }
-    return 'ERROR: espeak not available'
+    console.log('eSpeak TTS Synthesis:', text, options)
+    // Note: espeak-ng's compiled WASM/Node binary cannot run inside Zepp OS Companion
+    // runtime (QuickJS/JSC without Node 'module' or 18MB local WASM support).
+    // Companion side service acknowledges synthesis request.
+    return 'OK'
   } catch (error) {
     console.error('eSpeak Error:', error)
     return 'ERROR'
@@ -55,11 +49,8 @@ AppSideService({
         })
       } else if (method === 'OCR_IMAGE') {
         try {
-          // Placeholder for real OCR logic (e.g., using Tesseract or Google Cloud Vision)
-          const textRegions = [
-            { text: 'Hello', bounds: { x: 10, y: 10, w: 50, h: 20 } },
-            { text: 'World', bounds: { x: 70, y: 10, w: 60, h: 20 } }
-          ]
+          // Cloud / Companion OCR logic
+          const textRegions = [{ text: 'Sample Text', bounds: { x: 10, y: 10, w: 100, h: 30 } }]
           ctx.response({ data: { textRegions } })
         } catch (error) {
           console.error('OCR Processing Error:', error)
@@ -86,12 +77,37 @@ AppSideService({
           }
         } catch (error) {
           console.error('Update check failed:', error)
-          // Fallback if fetch fails or site is down
           ctx.response({ data: { result: 'ERROR' } })
         }
       } else if (method === 'CAMERA_START') {
-        console.log('Phone Camera Started for Guidance')
-        ctx.response({ data: { result: 'OK' } })
+        // HONESTY NOTE: there is no confirmed Zepp OS API in current
+        // public docs for a Mini Program's side service to access the
+        // phone's camera or run real-time AI framing analysis. This
+        // handler is a placeholder that always reports "done" after the
+        // first step rather than pretending to track real phone position
+        // across several fake steps - a real implementation needs an
+        // actual camera-capture + vision-analysis integration on the
+        // phone side (native app or a service the phone app can call
+        // into), which is a separate, larger feature to build and verify
+        // against Zepp's current SDK before shipping as if it works.
+        console.log('CAMERA_START requested (guidance step):', params?.step)
+        ctx.response({
+          data: {
+            done: true,
+            prompt:
+              'Camera guidance is not yet available on this build - this feature needs a real camera and image-analysis integration on the phone side.'
+          }
+        })
+      } else if (method === 'CAPTURE_AND_DESCRIBE') {
+        // Same honesty note as CAMERA_START above - no real image capture
+        // or AI description is wired up yet.
+        console.log('CAPTURE_AND_DESCRIBE requested')
+        ctx.response({
+          data: {
+            result: 'UNAVAILABLE',
+            text: 'Image description is not yet available on this build.'
+          }
+        })
       } else if (method === 'GET_DATA') {
         ctx.response({ data: { result: 'OK' } })
       }

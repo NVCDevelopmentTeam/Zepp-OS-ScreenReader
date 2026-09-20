@@ -1,4 +1,9 @@
-import { Buffer } from '@zos/buffer'
+// @ts-nocheck
+// Buffer is a global provided by the Zepp OS runtime (same as
+// message-side.js in this file family uses it, without any import) - not
+// something to import from a '@zos/buffer' module, which doesn't exist in
+// Zepp OS's documented API and only produced an "external dependency"
+// warning from the bundler.
 
 export function json2buf(json) {
   return str2buf(json2str(json))

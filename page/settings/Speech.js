@@ -1,4 +1,4 @@
-import { createWidget, widget } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 import { gettext } from '@zos/i18n'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
@@ -6,6 +6,85 @@ import ScreenReader from '../../lib/core/screenReader.js'
 import { saveSettings } from '../../lib/core/config.js'
 
 const { width, height } = getDeviceInfo()
+
+function createToggle(root, y, label, checked, onChange) {
+  root.createWidget(widget.TEXT, {
+    x: 40,
+    y: y,
+    w: width - 150,
+    h: 60,
+    text: label,
+    color: 0xffffff,
+    text_size: 24,
+    align_v: 2
+  })
+
+  root.createWidget(widget.SLIDE_SWITCH, {
+    x: width - 110,
+    y: y + 10,
+    w: 80,
+    h: 40,
+    checked: checked,
+    select_bg: 0x00aa00,
+    unselect_bg: 0x666666,
+    checked_change_func: (val) => {
+      onChange(val)
+    }
+  })
+}
+
+function createStepper(root, y, label, value, min, max, onChange) {
+  let currentVal = value
+
+  const textWidget = root.createWidget(widget.TEXT, {
+    x: 40,
+    y: y,
+    w: width - 80,
+    h: 40,
+    text: `${label}: ${currentVal.toFixed(1)}`,
+    color: 0xffffff,
+    text_size: 20,
+    align_v: 2
+  })
+
+  root.createWidget(widget.BUTTON, {
+    x: 40,
+    y: y + 45,
+    w: (width - 100) / 2,
+    h: 50,
+    text: '-',
+    color: 0xffffff,
+    normal_color: 0x333333,
+    press_color: 0x666666,
+    radius: 25,
+    click_func: () => {
+      if (currentVal > min) {
+        currentVal = Math.max(min, Math.round((currentVal - 0.1) * 10) / 10)
+        textWidget.setProperty(prop.TEXT, `${label}: ${currentVal.toFixed(1)}`)
+        onChange(currentVal)
+      }
+    }
+  })
+
+  root.createWidget(widget.BUTTON, {
+    x: 40 + (width - 100) / 2 + 20,
+    y: y + 45,
+    w: (width - 100) / 2,
+    h: 50,
+    text: '+',
+    color: 0xffffff,
+    normal_color: 0x333333,
+    press_color: 0x666666,
+    radius: 25,
+    click_func: () => {
+      if (currentVal < max) {
+        currentVal = Math.min(max, Math.round((currentVal + 0.1) * 10) / 10)
+        textWidget.setProperty(prop.TEXT, `${label}: ${currentVal.toFixed(1)}`)
+        onChange(currentVal)
+      }
+    }
+  })
+}
 
 export default Page({
   onInit() {
@@ -37,24 +116,16 @@ export default Page({
     })
 
     // Speech Rate
-    this.createSlider(
-      root,
-      100,
-      gettext('Speech Rate'),
-      config.speechRate ?? 1.0,
-      0.5,
-      3.0,
-      (val) => {
-        config.speechRate = val
-        ScreenReader.tts.setRate(val)
-        saveSettings(config)
-      }
-    )
+    createStepper(root, 80, gettext('Speech Rate'), config.speechRate ?? 1.0, 0.5, 3.0, (val) => {
+      config.speechRate = val
+      ScreenReader.tts.setRate(val)
+      saveSettings(config)
+    })
 
     // Speech Pitch
-    this.createSlider(
+    createStepper(
       root,
-      200,
+      185,
       gettext('Speech Pitch'),
       config.speechPitch ?? 1.0,
       0.5,
@@ -67,17 +138,17 @@ export default Page({
     )
 
     // Toggles
-    this.createToggle(root, 300, gettext('Read Status Bar'), !!config.readStatusBar, (val) => {
+    createToggle(root, 290, gettext('Read Status Bar'), !!config.readStatusBar, (val) => {
       config.readStatusBar = val
       saveSettings(config)
     })
 
-    this.createToggle(root, 380, gettext('Read Progress'), !!config.readProgressBars, (val) => {
+    createToggle(root, 360, gettext('Read Progress'), !!config.readProgressBars, (val) => {
       config.readProgressBars = val
       saveSettings(config)
     })
 
-    this.createToggle(root, 460, gettext('Read Hints'), !!config.readUsageHints, (val) => {
+    createToggle(root, 430, gettext('Read Hints'), !!config.readUsageHints, (val) => {
       config.readUsageHints = val
       saveSettings(config)
     })
@@ -86,7 +157,7 @@ export default Page({
     const engine = config.primaryTTSEngine || 'espeak'
     root.createWidget(widget.BUTTON, {
       x: 40,
-      y: 550,
+      y: 510,
       w: width - 80,
       h: 60,
       text: `${gettext('Engine')}: ${engine.toUpperCase()}`,
@@ -104,58 +175,5 @@ export default Page({
     })
 
     return root
-  },
-
-  createToggle(root, y, label, checked, onChange) {
-    root.createWidget(widget.TEXT, {
-      x: 40,
-      y: y,
-      w: width - 150,
-      h: 60,
-      text: label,
-      color: 0xffffff,
-      text_size: 24,
-      align_v: 2
-    })
-
-    root.createWidget(widget.SLIDE_SWITCH, {
-      x: width - 110,
-      y: y + 10,
-      w: 80,
-      h: 40,
-      checked: checked,
-      select_bg: 0x00aa00,
-      unselect_bg: 0x666666,
-      checked_change_func: (val) => {
-        onChange(val)
-      }
-    })
-  },
-
-  createSlider(root, y, label, value, min, max, onChange) {
-    root.createWidget(widget.TEXT, {
-      x: 40,
-      y: y,
-      w: width - 80,
-      h: 40,
-      text: `${label}: ${value.toFixed(1)}`,
-      color: 0xffffff,
-      text_size: 20,
-      align_v: 2
-    })
-
-    root.createWidget(widget.SLIDER, {
-      x: 40,
-      y: y + 40,
-      w: width - 80,
-      h: 40,
-      min: min * 10,
-      max: max * 10,
-      value: value * 10,
-      onChange: (val) => {
-        const realVal = val / 10
-        onChange(realVal)
-      }
-    })
   }
 })

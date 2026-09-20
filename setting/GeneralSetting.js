@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle, Link, Select } from '@zeppos/zml'
-
 export default function renderGeneral(_props) {
   return [
     Section({ title: 'General' }, [

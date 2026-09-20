@@ -1,5 +1,3 @@
-import { Section, Row, Text, Select } from '@zeppos/zml'
-
 // Configures what ZSR's registered Shortcut Card does when opened
 // (app.json module.app-widget/secondary-widget already register the
 // widgets themselves; this only picks the action they trigger).

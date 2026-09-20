@@ -1,7 +1,7 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 23022,
+    "appId": 29069,
     "appName": "ZSR",
     "appType": "app",
     "version": {
@@ -9,35 +9,29 @@
       "name": "1.0.1"
     },
     "icon": "icon.png",
-    "vender": "NVCDevelopmentTeam",
-    "description": "description",
-    "i18n": true
+    "vender": "zepp",
+    "description": "This is screen reader for zepp OS with visually impaired"
   },
   "permissions": [
     "data:os.device.info",
     "device:os.local_storage",
-    "data:user.hd.calorie",
     "device:os.vibration",
     "device:os.sound",
+    "device:os.camera",
+    "device:os.ble",
+    "data:user.hd.step",
+    "data:user.hd.stress",
+    "data:user.hd.calorie",
     "data:user.hd.heart_rate",
     "data:user.hd.sleep",
     "data:user.hd.spo2",
-    "data:user.hd.step",
-    "data:user.hd.stress",
-    "device:os.camera",
-    "device:os.ble"
+    "data:user.hd.distance"
   ],
   "runtime": {
     "apiVersion": {
-      "compatible": "2.0.0",
-      "target": "2.0",
+      "compatible": "4.0.0",
+      "target": "2.0.0",
       "minVersion": "2.0.0"
-    },
-    "accessibility": {
-      "type": "screen_reader"
-    },
-    "boot": {
-      "enable": true
     }
   },
   "targets": {
@@ -62,6 +56,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -73,8 +68,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -131,6 +125,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -142,8 +137,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -204,6 +198,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -215,8 +210,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -277,6 +271,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -288,8 +283,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -350,6 +344,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -361,8 +356,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -419,6 +413,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -430,8 +425,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -492,6 +486,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -503,8 +498,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -565,6 +559,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -576,8 +571,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -638,6 +632,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -649,8 +644,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -707,6 +701,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -718,8 +713,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -780,6 +774,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -791,8 +786,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -849,6 +843,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -860,8 +855,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -922,6 +916,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -933,8 +928,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -995,6 +989,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1006,8 +1001,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1068,6 +1062,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1079,8 +1074,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1145,6 +1139,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1156,8 +1151,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1222,6 +1216,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1233,8 +1228,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1295,6 +1289,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1306,8 +1301,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1364,6 +1358,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1375,8 +1370,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1445,6 +1439,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1456,8 +1451,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1530,6 +1524,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1541,8 +1536,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1607,6 +1601,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1618,8 +1613,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1684,6 +1678,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1695,8 +1690,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1736,6 +1730,79 @@
       ],
       "designWidth": 390
     },
+    "480x480-amazfit-cheetah-2-ultra": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Munich3S",
+          "deviceSource": 9978112
+        },
+        {
+          "name": "MunichWN3S",
+          "deviceSource": 9978113
+        }
+      ],
+      "designWidth": 480
+    },
     "390x450-amazfit-active-2-square": {
       "module": {
         "page": {
@@ -1757,6 +1824,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1768,8 +1836,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1826,6 +1893,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1837,8 +1905,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1903,6 +1970,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1914,8 +1982,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -1980,6 +2047,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -1991,8 +2059,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -2057,6 +2124,7 @@
             "page/settings/SpeechHistory",
             "page/settings/RemoteAccess",
             "page/settings/Document",
+            "page/settings/AdvancedSettings",
             "page/about/Introduction",
             "page/about/AppInfo",
             "page/about/WhatsNew",
@@ -2068,8 +2136,7 @@
             "page/about/License",
             "page/about/UpdateChecker",
             "page/userGuide/userGuide",
-            "page/home/Sensors",
-            "setting/AdvancedSettings"
+            "page/home/Sensors"
           ]
         },
         "app-side": {
@@ -2108,20 +2175,550 @@
         }
       ],
       "designWidth": 480
+    },
+    "480x480-amazfit-t-rex-ultra-2": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Makalu",
+          "deviceSource": 10879232
+        },
+        {
+          "name": "MakaluWN",
+          "deviceSource": 10879233
+        },
+        {
+          "name": "MakaluW",
+          "deviceSource": 10879235
+        }
+      ],
+      "designWidth": 480
+    },
+    "466x466-amazfit-active-3-premium": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Cologne",
+          "deviceSource": 10944768
+        },
+        {
+          "name": "CologneWN",
+          "deviceSource": 10944769
+        },
+        {
+          "name": "CologneW",
+          "deviceSource": 10944771
+        },
+        {
+          "name": "CologneSW",
+          "deviceSource": 10948867
+        }
+      ],
+      "designWidth": 466
+    },
+    "466x466-amazfit-cheetah-2-pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Windermere",
+          "deviceSource": 11010304
+        },
+        {
+          "name": "WindermereWN",
+          "deviceSource": 11010305
+        },
+        {
+          "name": "WindermereW",
+          "deviceSource": 11010307
+        }
+      ],
+      "designWidth": 466
+    },
+    "480x480-amazfit-balance-ultra": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Oslo",
+          "deviceSource": 11075840
+        },
+        {
+          "name": "OsloWN",
+          "deviceSource": 11075841
+        },
+        {
+          "name": "Oslo3S",
+          "deviceSource": 11092224
+        },
+        {
+          "name": "OsloWN3S",
+          "deviceSource": 11092225
+        }
+      ],
+      "designWidth": 480
+    },
+    "480x480-amazfit-balance-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "Dublin",
+          "deviceSource": 11141376
+        },
+        {
+          "name": "DublinWN",
+          "deviceSource": 11141377
+        },
+        {
+          "name": "DublinW",
+          "deviceSource": 11141379
+        }
+      ],
+      "designWidth": 480
+    },
+    "480x480-amazfit-balance-3-ti": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "DublinTi",
+          "deviceSource": 11145472
+        },
+        {
+          "name": "DublinTiWN",
+          "deviceSource": 11145473
+        },
+        {
+          "name": "DublinTiW",
+          "deviceSource": 11145475
+        }
+      ],
+      "designWidth": 480
+    },
+    "432x514-amazfit-bip-max": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/index",
+            "page/home/Welcome",
+            "page/home/Settings",
+            "page/home/History",
+            "page/settings/General",
+            "page/settings/Speech",
+            "page/settings/Vision",
+            "page/settings/Notifications",
+            "page/settings/GesturesInput",
+            "page/settings/ObjectPresentation",
+            "page/settings/Navigation",
+            "page/settings/AudioBraille",
+            "page/settings/BraillePairing",
+            "page/settings/InputComposition",
+            "page/settings/SpeechHistory",
+            "page/settings/RemoteAccess",
+            "page/settings/Document",
+            "page/settings/AdvancedSettings",
+            "page/about/Introduction",
+            "page/about/AppInfo",
+            "page/about/WhatsNew",
+            "page/about/Privacy",
+            "page/about/Terms",
+            "page/about/Copyright",
+            "page/about/AccessibilityStatement",
+            "page/about/Contact",
+            "page/about/License",
+            "page/about/UpdateChecker",
+            "page/userGuide/userGuide",
+            "page/home/Sensors"
+          ]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        },
+        "setting": {
+          "path": "setting/index"
+        },
+        "app-widget": {
+          "widgets": [
+            {
+              "path": "app-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        },
+        "secondary-widget": {
+          "widgets": [
+            {
+              "path": "secondary-widget/index",
+              "icon": "icon.png",
+              "name": "ZSR"
+            }
+          ]
+        }
+      },
+      "platforms": [
+        {
+          "name": "PikeW",
+          "deviceSource": 11206915
+        }
+      ],
+      "designWidth": 432
     }
   },
   "i18n": {
     "en-US": {
-      "appName": "ZSR - Zepp OS Screen Reader",
-      "description": "The professional screen reader for Zepp OS, enabling full accessibility for blind and low-vision users."
-    },
-    "vi-VN": {
-      "appName": "ZSR - Trình đọc màn hình Zepp OS",
-      "description": "Trình đọc màn hình chuyên nghiệp cho Zepp OS, mang lại khả năng truy cập đầy đủ cho người khiếm thị."
-    },
-    "zh-CN": {
-      "appName": "ZSR - Zepp OS 屏幕阅读器",
-      "description": "Zepp OS 专业屏幕阅读器，为视障人士提供全面的无障碍支持。"
+      "appName": "ZSr"
     }
   },
   "defaultLanguage": "en-US"

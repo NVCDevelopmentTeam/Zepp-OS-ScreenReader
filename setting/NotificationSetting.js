@@ -1,5 +1,3 @@
-import { Section, Row, Text, Toggle } from '@zeppos/zml'
-
 export default function renderNotification(_props) {
   return [
     Section({ title: 'Notifications' }, [

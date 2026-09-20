@@ -1,3 +1,4 @@
+// @ts-nocheck
 export class EventBus {
   constructor() {
     this.map = new Map()

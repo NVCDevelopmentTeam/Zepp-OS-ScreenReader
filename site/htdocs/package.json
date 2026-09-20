@@ -15,26 +15,26 @@
 		"prepare": "svelte-kit sync || echo ''"
 	},
 	"devDependencies": {
-		"@eslint/compat": "^2.1.0",
+		"@eslint/compat": "^2.1.1",
 		"@eslint/js": "^10.0.1",
 		"@fontsource/fira-mono": "^5.3.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
-		"@unocss/eslint-plugin": "^66.9.2",
-		"@unocss/inspector": "^66.9.2",
-		"@unocss/preset-icons": "^66.9.2",
-		"@unocss/preset-typography": "^66.9.2",
-		"@unocss/preset-wind": "^66.9.2",
+		"@unocss/eslint-plugin": "^66.10.5",
+		"@unocss/inspector": "^66.10.5",
+		"@unocss/preset-icons": "^66.10.5",
+		"@unocss/preset-typography": "^66.10.5",
+		"@unocss/preset-wind": "^66.10.5",
 		"@vcarl/remark-headings": "^0.1.0",
-		"eslint": "^10.9.1",
+		"eslint": "^10.10.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.23.0",
 		"globals": "^17.12.0",
 		"mdsvex": "^0.12.8",
 		"mdsvex-relative-images": "^2.0.0",
-		"node-html-parser": "^9.0.3",
-		"prettier": "^3.9.6",
+		"node-html-parser": "^9.0.4",
+		"prettier": "^3.9.7",
 		"prettier-plugin-svelte": "^4.1.1",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
@@ -43,11 +43,11 @@
 		"svelte-check": "^4.7.6",
 		"svelte-eslint-parser": "^1.8.1",
 		"unist-util-visit": "^5.1.0",
-		"unocss": "^66.9.2",
-		"vite": "^8.2.2",
+		"unocss": "^66.10.5",
+		"vite": "^8.3.0",
 		"vite-plugin-compression2": "^2.5.3"
 	},
 	"dependencies": {
-		"@sveltia/cms": "^0.205.2"
+		"@sveltia/cms": "^0.213.2"
 	}
 }
