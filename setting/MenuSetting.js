@@ -8,6 +8,10 @@ export default function renderMenu(_props) {
   return [
     Section({ title: 'Context Menu' }, [
       Row([Text('Read from Top'), Toggle({ settingsKey: 'menuShowReadFromTop' })]),
+      Row([
+        Text('Voice Command (experimental, needs internet)'),
+        Toggle({ settingsKey: 'menuShowVoiceCommand' })
+      ]),
       Row([Text('Read from Bottom'), Toggle({ settingsKey: 'menuShowReadFromBottom' })]),
       Row([Text('Cycle Navigation Mode'), Toggle({ settingsKey: 'menuShowCycleNavigationMode' })]),
       Row([Text('Object Details'), Toggle({ settingsKey: 'menuShowObjectDetails' })]),

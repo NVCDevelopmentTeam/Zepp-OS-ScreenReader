@@ -1,14 +1,16 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace, push } from '@zos/router'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 import BrailleService from '../../lib/core/braille.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
-  root.createWidget(widget.TEXT, {
+  createChild(root, widget.TEXT, {
     x: 40,
     y: y,
     w: width - 150,
@@ -19,7 +21,7 @@ function createToggle(root, y, label, checked, onChange) {
     align_v: 2
   })
 
-  root.createWidget(widget.SLIDE_SWITCH, {
+  createChild(root, widget.SLIDE_SWITCH, {
     x: width - 110,
     y: y + 10,
     w: 80,
@@ -33,7 +35,7 @@ function createToggle(root, y, label, checked, onChange) {
   })
 }
 
-export default Page({
+export default ZSRPage({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
   },
@@ -48,7 +50,7 @@ export default Page({
 
     const config = globalThis.ScreenReaderConfig
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -67,7 +69,7 @@ export default Page({
 
     // Braille Table Selection
     const brailleTable = config.brailleTable || 'en-US'
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 40,
       y: 180,
       w: width - 80,
@@ -78,7 +80,7 @@ export default Page({
       align_v: 2
     })
 
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: 230,
       w: width - 80,
@@ -98,7 +100,7 @@ export default Page({
       }
     })
 
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: 310,
       w: width - 80,

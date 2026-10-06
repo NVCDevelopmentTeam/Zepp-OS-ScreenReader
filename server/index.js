@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { logger } from '../lib/utils/logger.js'
+import { logger } from './utils/logger.js'
 import { errorHandler } from './middleware/error.js'
 import { routes } from './routes.js'
 

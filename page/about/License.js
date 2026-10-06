@@ -1,10 +1,12 @@
-import { createWidget, widget } from '@zos/ui'
+import { widget, text_style } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -18,7 +20,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -30,7 +32,7 @@ export default Page({
       text_size: 28
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 20,
       y: 80,
       w: width - 40,
@@ -38,7 +40,7 @@ export default Page({
       text: 'MIT License\n\nCopyright (c) 2026 NVCDevelopmentTeam\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.',
       color: 0xaaaaaa,
       text_size: 18,
-      text_style: widget.TEXT_STYLE_WRAP
+      text_style: text_style.WRAP
     })
 
     return root

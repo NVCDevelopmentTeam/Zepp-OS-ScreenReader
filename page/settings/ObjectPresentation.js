@@ -1,12 +1,14 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
   },
@@ -21,7 +23,7 @@ export default Page({
 
     const config = globalThis.ScreenReaderConfig
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -38,18 +40,26 @@ export default Page({
       saveSettings(config)
     })
 
-    this.createToggle(root, 180, gettext('Read Symbols'), !!config.readSymbols, (val) => {
-      config.readSymbols = val
-      saveSettings(config)
-    })
+    this.createToggle(
+      root,
+      180,
+      gettext('Read Symbols'),
+      !!config.readSymbols && config.readSymbols !== 'none',
+      (val) => {
+        // The core expects a tier ('full' | 'most' | 'some' | 'none'), not a boolean.
+        config.readSymbols = val ? 'some' : 'none'
+        saveSettings(config)
+      }
+    )
 
     this.createToggle(
       root,
       260,
       gettext('Report Passwords'),
-      config.reportPasswords === 'spell',
+      config.readPasswords === true,
       (val) => {
-        config.reportPasswords = val ? 'spell' : 'mask'
+        // Same key the reader consults (navigationManager.getElementText).
+        config.readPasswords = !!val
         saveSettings(config)
         replace({ url: 'page/settings/ObjectPresentation' })
       }
@@ -61,12 +71,12 @@ export default Page({
     })
 
     // Password Reporting Mode Status
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 40,
       y: 420,
       w: width - 80,
       h: 40,
-      text: `${gettext('Passwords')}: ${config.reportPasswords === 'spell' ? gettext('Spell') : gettext('Mask')}`,
+      text: `${gettext('Passwords')}: ${config.readPasswords === true ? gettext('Spell') : gettext('Mask')}`,
       color: 0xaaaaaa,
       text_size: 22,
       align_v: 2
@@ -76,7 +86,7 @@ export default Page({
   },
 
   createToggle(root, y, label, checked, onChange) {
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 40,
       y: y,
       w: width - 150,
@@ -87,7 +97,7 @@ export default Page({
       align_v: 2
     })
 
-    root.createWidget(widget.SLIDE_SWITCH, {
+    createChild(root, widget.SLIDE_SWITCH, {
       x: width - 110,
       y: y + 10,
       w: 80,

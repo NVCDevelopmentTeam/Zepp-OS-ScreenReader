@@ -5,7 +5,9 @@ import eslintPluginSvelte from 'eslint-plugin-svelte'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
 import svelteParser from 'svelte-eslint-parser'
-import svelteConfig from './svelte.config.js'
+import { loadConfig } from '@sveltejs/load-config'
+
+const svelteConfig = (await loadConfig('./', { traverse: false }))?.config
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 

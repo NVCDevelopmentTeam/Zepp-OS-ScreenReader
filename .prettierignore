@@ -12,3 +12,4 @@ site
 **/~partytown/**
 dist/**
 node_modules/**
+app-side/tts/vendor/**

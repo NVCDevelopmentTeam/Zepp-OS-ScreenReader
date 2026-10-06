@@ -5,7 +5,7 @@ export default function renderFont(_props) {
   return [
     Section({ title: 'Font Style' }, [
       Row([
-        Text('Font Family'),
+        Text('Font Family (experimental, not active yet)'),
         Select({
           settingsKey: 'fontFamily',
           options: [
@@ -16,7 +16,7 @@ export default function renderFont(_props) {
         })
       ]),
       Row([
-        Text('Font Weight'),
+        Text('Font Weight (experimental, not active yet)'),
         Select({
           settingsKey: 'fontWeight',
           options: [

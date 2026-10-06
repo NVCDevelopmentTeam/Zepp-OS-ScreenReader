@@ -4,7 +4,7 @@
    * @description Handles Google Analytics tracking with performance optimization.
    * Logic: Loads after DOM is fully ready using setTimeout to avoid blocking initial paint.
    */
-  import { browser } from '$app/environment';
+  import { browser } from '$app/env';
   import { onMount } from 'svelte';
 
   onMount(() => {

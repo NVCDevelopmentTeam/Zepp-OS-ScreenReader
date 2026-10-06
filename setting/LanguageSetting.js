@@ -5,7 +5,7 @@ export default function renderLanguage(_props) {
   return [
     Section({ title: 'Language & Region' }, [
       Row([
-        Text('Fallback Language'),
+        Text('Fallback Language (experimental, not active yet)'),
         Select({
           settingsKey: 'fallbackLanguage',
           options: [

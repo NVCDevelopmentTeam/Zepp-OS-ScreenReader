@@ -15,7 +15,7 @@ export default function renderBraille(_props) {
   return [
     Section({ title: 'Braille Input' }, [
       Row([
-        Text('Braille Display Mode'),
+        Text('Braille Display Mode (experimental, not active yet)'),
         Select({
           settingsKey: 'brailleDisplayMode',
           options: [
@@ -35,7 +35,7 @@ export default function renderBraille(_props) {
         })
       ]),
       Row([
-        Text('Braille Keyboard Layout'),
+        Text('Braille Keyboard Layout (experimental, not active yet)'),
         Select({
           settingsKey: 'brailleKeyboardLayout',
           options: [

@@ -10,7 +10,9 @@ export default function renderDeveloperOptions(props) {
         // retroactively change which @zos/* capabilities are compiled
         // in, so this can't actually do anything real. Kept as a
         // persisted, non-crashing value only.
-        Text('API Version Override (not possible at runtime)'),
+        Text(
+          'Simulate older Zepp OS (testing only; can only lower) (experimental, not active yet)'
+        ),
         Select({
           settingsKey: 'apiVersionOverride',
           options: [
@@ -50,11 +52,13 @@ export default function renderDeveloperOptions(props) {
         Toggle({ settingsKey: 'audioDucking' })
       ]),
       Row([
-        Text('Read when screen off - Mini Program lifecycle has no onPause/onResume/screen event'),
+        Text(
+          'Read when screen off - Mini Program lifecycle has no onPause/onResume/screen event (experimental, not active yet)'
+        ),
         Toggle({ settingsKey: 'readScreenOff' })
       ]),
       Row([
-        Text('Audio Routing - no output-device-selection API found'),
+        Text('Audio Routing - no output-device-selection API found (experimental, not active yet)'),
         Select({
           settingsKey: 'audioRouting',
           options: [
@@ -64,7 +68,9 @@ export default function renderDeveloperOptions(props) {
         })
       ]),
       Row([
-        Text('Document Navigation Mode - document/rich-text reader not yet built'),
+        Text(
+          'Document Navigation Mode - document/rich-text reader not yet built (experimental, not active yet)'
+        ),
         Select({
           settingsKey: 'docNavMode',
           options: [
@@ -78,7 +84,9 @@ export default function renderDeveloperOptions(props) {
         Toggle({ settingsKey: 'announceFormatting' })
       ]),
       Row([
-        Text('Browse Mode Behavior - document/rich-text reader not yet built'),
+        Text(
+          'Browse Mode Behavior - document/rich-text reader not yet built (experimental, not active yet)'
+        ),
         Select({
           settingsKey: 'browseBehavior',
           options: [
@@ -88,7 +96,9 @@ export default function renderDeveloperOptions(props) {
         })
       ]),
       Row([
-        Text('Echo Behavior - on-screen/braille keyboard input pipeline not yet built'),
+        Text(
+          'Echo Behavior - on-screen/braille keyboard input pipeline not yet built (experimental, not active yet)'
+        ),
         Select({
           settingsKey: 'echoBehavior',
           options: [
@@ -104,7 +114,9 @@ export default function renderDeveloperOptions(props) {
         Toggle({ settingsKey: 'announceAutocomplete' })
       ]),
       Row([
-        Text('Selection Changes - text-input pipeline not yet built'),
+        Text(
+          'Selection Changes - text-input pipeline not yet built (experimental, not active yet)'
+        ),
         Toggle({ settingsKey: 'announceSelection' })
       ])
     ])

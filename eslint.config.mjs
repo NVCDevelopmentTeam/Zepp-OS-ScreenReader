@@ -13,7 +13,8 @@ export default [
       'dist/**',
       'node_modules/**',
       '.cache/**',
-      '.site/**'
+      '.site/**',
+      'app-side/tts/vendor/**'
     ]
   },
   js.configs.recommended,

@@ -1,10 +1,12 @@
-import { createWidget, widget } from '@zos/ui'
+import { widget, text_style } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -18,7 +20,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -39,7 +41,7 @@ export default Page({
       '• Performance optimizations'
     ]
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 20,
       y: 80,
       w: width - 40,
@@ -47,7 +49,7 @@ export default Page({
       text: news.join('\n\n'),
       color: 0xaaaaaa,
       text_size: 20,
-      text_style: widget.TEXT_STYLE_WRAP
+      text_style: text_style.WRAP
     })
 
     return root

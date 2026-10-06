@@ -4,9 +4,12 @@
 export default function renderKeyboard(_props) {
   return [
     Section({ title: 'Keyboard' }, [
-      Row([Text('Announce Key Presses'), Toggle({ settingsKey: 'keyboardShortcutsEnabled' })]),
       Row([
-        Text('Key Press Echo'),
+        Text('Announce Key Presses (experimental, not active yet)'),
+        Toggle({ settingsKey: 'keyboardShortcutsEnabled' })
+      ]),
+      Row([
+        Text('Key Press Echo (experimental, not active yet)'),
         Select({
           settingsKey: 'keyboardEchoMode',
           options: [
@@ -17,7 +20,7 @@ export default function renderKeyboard(_props) {
         })
       ]),
       Row([
-        Text('Keyboard Layout'),
+        Text('Keyboard Layout (experimental, not active yet)'),
         Select({
           settingsKey: 'keyboardLayout',
           options: [

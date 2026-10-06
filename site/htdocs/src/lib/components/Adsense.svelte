@@ -6,7 +6,7 @@
    * to prevent duplicate injection on SPA navigation. No Partytown needed.
    */
   import { page } from '$app/state';
-  import { browser } from '$app/environment';
+  import { browser } from '$app/env';
   import { onMount } from 'svelte';
 
   const ADSENSE_CLIENT = 'ca-pub-3602487920405886';

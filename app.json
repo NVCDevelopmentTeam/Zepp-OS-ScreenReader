@@ -10,15 +10,11 @@
     },
     "icon": "icon.png",
     "vender": "zepp",
-    "description": "This is screen reader for zepp OS with visually impaired"
+    "description": "ZSR (Zepp OS Screen Reader) is an accessibility tool that reads screen content aloud for blind and low-vision users. Do not uninstall or disable it without checking with the person who uses this watch - they may rely on it to operate the device independently."
   },
   "permissions": [
     "data:os.device.info",
     "device:os.local_storage",
-    "device:os.vibration",
-    "device:os.sound",
-    "device:os.camera",
-    "device:os.ble",
     "data:user.hd.step",
     "data:user.hd.stress",
     "data:user.hd.calorie",
@@ -29,8 +25,8 @@
   ],
   "runtime": {
     "apiVersion": {
-      "compatible": "4.0.0",
-      "target": "2.0.0",
+      "compatible": "2.0.0",
+      "target": "3.0.0",
       "minVersion": "2.0.0"
     }
   },
@@ -40,6 +36,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -61,6 +58,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -109,6 +108,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -130,6 +130,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -182,6 +184,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -203,6 +206,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -255,6 +260,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -276,6 +282,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -328,6 +336,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -349,6 +358,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -397,6 +408,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -418,6 +430,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -470,6 +484,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -491,6 +506,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -543,6 +560,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -564,6 +582,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -616,6 +636,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -637,6 +658,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -685,6 +708,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -706,6 +730,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -758,6 +784,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -779,6 +806,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -827,6 +856,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -848,6 +878,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -900,6 +932,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -921,6 +954,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -973,6 +1008,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -994,6 +1030,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1046,6 +1084,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1067,6 +1106,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1123,6 +1164,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1144,6 +1186,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1200,6 +1244,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1221,6 +1266,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1273,6 +1320,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1294,6 +1342,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1342,6 +1392,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1363,6 +1414,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1423,6 +1476,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1444,6 +1498,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1508,6 +1564,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1529,6 +1586,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1585,6 +1644,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1606,6 +1666,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1662,6 +1724,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1683,6 +1746,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1735,6 +1800,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1756,6 +1822,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1808,6 +1876,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1829,6 +1898,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1877,6 +1948,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1898,6 +1970,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -1954,6 +2028,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -1975,6 +2050,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2031,6 +2108,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2052,6 +2130,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2108,6 +2188,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2129,6 +2210,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2181,6 +2264,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2202,6 +2286,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2258,6 +2344,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2279,6 +2366,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2339,6 +2428,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2360,6 +2450,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2416,6 +2508,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2437,6 +2530,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2497,6 +2592,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2518,6 +2614,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2574,6 +2672,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2595,6 +2694,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2651,6 +2752,7 @@
         "page": {
           "pages": [
             "page/index",
+            "page/home/index",
             "page/home/Welcome",
             "page/home/Settings",
             "page/home/History",
@@ -2672,6 +2774,8 @@
             "page/about/AppInfo",
             "page/about/WhatsNew",
             "page/about/Privacy",
+            "page/about/PermissionsNotice",
+            "page/about/DeviceSupport",
             "page/about/Terms",
             "page/about/Copyright",
             "page/about/AccessibilityStatement",
@@ -2718,7 +2822,13 @@
   },
   "i18n": {
     "en-US": {
-      "appName": "ZSr"
+      "appName": "Zepp OS Screen Reader"
+    },
+    "vi-VN": {
+      "appName": "Trình đọc màn hình Zepp OS"
+    },
+    "zh-CN": {
+      "appName": "Zepp OS 屏幕朗读器"
     }
   },
   "defaultLanguage": "en-US"

@@ -1,7 +1,7 @@
 <script>
-  import { siteTitle, githubLink, accessKey, discordChat } from '$lib/info.js';
-  import Dialog from '$lib/components/Dialog.svelte';
-  import CollapsibleSection from '$lib/components/CollapsibleSection.svelte';
+  import { siteTitle, githubLink, accessKey, discordChat } from '#lib/info.js';
+  import Dialog from '#lib/components/Dialog.svelte';
+  import CollapsibleSection from '#lib/components/CollapsibleSection.svelte';
 
   let dialog = $state();
   let status = $state("");

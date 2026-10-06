@@ -8,7 +8,7 @@ export default function renderDocument(_props) {
   return [
     Section({ title: 'Document Settings' }, [
       Row([
-        Text('Navigation mode (feature not yet built)'),
+        Text('Navigation mode (feature not yet built) (experimental, not active yet)'),
         Select({
           settingsKey: 'docNavMode',
           options: [
@@ -22,7 +22,7 @@ export default function renderDocument(_props) {
         Toggle({ settingsKey: 'announceFormatting' })
       ]),
       Row([
-        Text('Browse mode behavior (feature not yet built)'),
+        Text('Browse mode behavior (feature not yet built) (experimental, not active yet)'),
         Select({
           settingsKey: 'browseBehavior',
           options: [

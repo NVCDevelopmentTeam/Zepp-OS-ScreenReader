@@ -1,6 +1,6 @@
 <script>
-  import PostsList from '$lib/components/PostsList.svelte';
-  import { siteTitle, siteDescription } from '$lib/info.js';
+  import PostsList from '#lib/components/PostsList.svelte';
+  import { siteTitle, siteDescription } from '#lib/info.js';
   let { data } = $props();
 </script>
 
@@ -15,7 +15,7 @@
     <!-- Hero Background with Overlay -->
     <div class="absolute inset-0 z-0">
       <enhanced:img
-        src="$lib/images/background.svg"
+        src="#lib/images/background.svg"
         alt=""
         class="w-full h-full object-cover"
         loading="eager"

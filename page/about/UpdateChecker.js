@@ -1,13 +1,15 @@
-import { createWidget, widget, showToast } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget, text_style, prop } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import AddonUpdater from '../../lib/utils/addonUpdater.js'
-import ScreenReader from '../../lib/core/screenReader.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 import { loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -23,7 +25,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 40,
       w: width,
@@ -35,7 +37,7 @@ export default Page({
       text_size: 28
     })
 
-    this.statusWidget = root.createWidget(widget.TEXT, {
+    this.statusWidget = createChild(root, widget.TEXT, {
       x: 20,
       y: 120,
       w: width - 40,
@@ -44,10 +46,10 @@ export default Page({
       color: 0xaaaaaa,
       text_size: 20,
       align_h: 2,
-      text_style: widget.TEXT_STYLE_WRAP
+      text_style: text_style.WRAP
     })
 
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: height - 120,
       w: width - 80,
@@ -67,7 +69,7 @@ export default Page({
     if (this.isChecking) return
     this.isChecking = true
 
-    this.statusWidget.setProperty(widget.prop.TEXT, gettext('Scanning...'))
+    this.statusWidget.setProperty(prop.TEXT, gettext('Scanning...'))
     ScreenReader.speak(gettext('Scanning...'), { priority: 'high' })
 
     try {
@@ -76,21 +78,21 @@ export default Page({
 
       if (result.updated) {
         const msg = `${gettext('New version available')}: ${result.version}`
-        this.statusWidget.setProperty(widget.prop.TEXT, msg)
+        this.statusWidget.setProperty(prop.TEXT, msg)
         ScreenReader.speak(msg, { priority: 'high' })
         showToast({ content: msg })
       } else if (result.error) {
         const msg = `Error: ${result.error}`
-        this.statusWidget.setProperty(widget.prop.TEXT, msg)
+        this.statusWidget.setProperty(prop.TEXT, msg)
         ScreenReader.speak(msg, { priority: 'high' })
       } else {
         const msg = 'ZSR is up to date'
-        this.statusWidget.setProperty(widget.prop.TEXT, msg)
+        this.statusWidget.setProperty(prop.TEXT, msg)
         ScreenReader.speak(msg, { priority: 'high' })
       }
     } catch (_error) {
       this.isChecking = false
-      this.statusWidget.setProperty(widget.prop.TEXT, 'Update check failed')
+      this.statusWidget.setProperty(prop.TEXT, 'Update check failed')
     }
   }
 })

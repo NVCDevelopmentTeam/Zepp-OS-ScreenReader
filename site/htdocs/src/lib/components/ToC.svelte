@@ -1,5 +1,5 @@
 <script>
-  import { browser } from '$app/environment';
+  import { browser } from '$app/env';
   import { onMount } from 'svelte';
   
   let { post } = $props();
@@ -8,8 +8,8 @@
   
   function handleScroll() {
     if (!browser) return;
-    
-    const headingElements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
+
+    const headingElements = headings.map((h) => document.getElementById(h.id)).filter(Boolean);
     const scrollPosition = window.scrollY + 100;
 
     for (let i = headingElements.length - 1; i >= 0; i--) {

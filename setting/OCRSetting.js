@@ -6,7 +6,7 @@ export default function renderOCR(_props) {
     Section({ title: 'OCR & Image Recognition' }, [
       Row([Text('Enable OCR'), Toggle({ settingsKey: 'ocrEnabled' })]),
       Row([
-        Text('OCR Mode'),
+        Text('OCR Mode (experimental, not active yet)'),
         Select({
           settingsKey: 'ocrMode',
           options: [
@@ -16,7 +16,7 @@ export default function renderOCR(_props) {
         })
       ]),
       Row([
-        Text('OCR Language'),
+        Text('OCR Language (experimental, not active yet)'),
         Select({
           settingsKey: 'ocrLanguage',
           options: [
@@ -26,7 +26,7 @@ export default function renderOCR(_props) {
         })
       ]),
       Row([
-        Text('OCR Region'),
+        Text('OCR Region (experimental, not active yet)'),
         Select({
           settingsKey: 'ocrRegion',
           options: [

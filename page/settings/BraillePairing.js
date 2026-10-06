@@ -1,14 +1,16 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext, format } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace, back } from '@zos/router'
 import { loadSettings } from '../../lib/core/config.js'
 import BrailleService from '../../lib/core/braille.js'
-import ScreenReader from '../../lib/core/screenReader.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
     this.devices = []
@@ -23,7 +25,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 10,
       w: width,
@@ -36,7 +38,7 @@ export default Page({
     })
 
     const statusText = this.isScanning ? gettext('Scanning...') : gettext('Ready to scan')
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 20,
       y: 60,
       w: width - 40,
@@ -48,7 +50,7 @@ export default Page({
     })
 
     if (this.devices.length === 0) {
-      root.createWidget(widget.TEXT, {
+      createChild(root, widget.TEXT, {
         x: 20,
         y: 150,
         w: width - 40,
@@ -60,7 +62,7 @@ export default Page({
         text_size: 22
       })
     } else {
-      root.createWidget(widget.SCROLL_LIST, {
+      createChild(root, widget.SCROLL_LIST, {
         x: 0,
         y: 110,
         w: width,
@@ -95,7 +97,7 @@ export default Page({
       })
     }
 
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: height - 80,
       w: width - 80,
@@ -135,9 +137,9 @@ export default Page({
   },
 
   async connect(device) {
-    ScreenReader.speak(`${gettext('Connecting to')} ${device.name}`, { priority: 'high' })
+    ScreenReader.speak(format(gettext('Connecting to {0}'), device.name), { priority: 'high' })
     await BrailleService.connectToDisplay(device.id)
-    ScreenReader.speak(`${gettext('Connected to')} ${device.name}`, { priority: 'high' })
+    ScreenReader.speak(format(gettext('Connected to {0}'), device.name), { priority: 'high' })
     back()
   }
 })

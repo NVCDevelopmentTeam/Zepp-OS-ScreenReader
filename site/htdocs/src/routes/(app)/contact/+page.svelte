@@ -1,6 +1,6 @@
 <script>
-  import { siteTitle } from '$lib/info.js';
-  import Contact from '$lib/components/Contact.svelte';
+  import { siteTitle } from '#lib/info.js';
+  import Contact from '#lib/components/Contact.svelte';
 </script>
 
 <svelte:head>

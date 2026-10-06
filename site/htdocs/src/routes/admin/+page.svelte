@@ -1,7 +1,7 @@
 <script>
-  import { siteTitle } from '$lib/info.js';
+  import { siteTitle } from '#lib/info.js';
   import { onMount } from 'svelte';
-  import { browser } from '$app/environment';
+  import { browser } from '$app/env';
 
   let { data } = $props();
   let config = $derived(data.config);

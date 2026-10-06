@@ -6,7 +6,7 @@ export default function renderDisplay(_props) {
   return [
     Section({ title: 'Display' }, [
       Row([
-        Text('ZSR Text Scale'),
+        Text('ZSR Text Scale (experimental, not active yet)'),
         Slider({
           settingsKey: 'fontScale',
           min: 0.8,
@@ -14,7 +14,10 @@ export default function renderDisplay(_props) {
           step: 0.1
         })
       ]),
-      Row([Text('High Contrast Mode'), Toggle({ settingsKey: 'highContrastMode' })])
+      Row([
+        Text('High Contrast Mode (experimental, not active yet)'),
+        Toggle({ settingsKey: 'highContrastMode' })
+      ])
     ]),
     Section({ title: 'Focus Cursor' }, [
       Row([
@@ -44,6 +47,32 @@ export default function renderDisplay(_props) {
         })
       ]),
       Row([Text('Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })])
+    ]),
+    // Tells a sighted person that ZSR is on (so it is not left on by accident)
+    // without forcing the focus cursor.
+    Section({ title: 'Active Indicator' }, [
+      Row([
+        Text('ZSR active indicator'),
+        Select({
+          settingsKey: 'activeIndicator',
+          options: [
+            { label: 'Minimal dot', value: 'minimal' },
+            { label: 'Hidden', value: 'off' }
+          ]
+        })
+      ]),
+      Row([
+        Text('Indicator Color'),
+        Select({
+          settingsKey: 'indicatorColor',
+          options: [
+            { label: 'Orange', value: 'ffaa00' },
+            { label: 'Green', value: '00ff00' },
+            { label: 'Blue', value: '0088ff' },
+            { label: 'White', value: 'ffffff' }
+          ]
+        })
+      ])
     ])
   ]
 }

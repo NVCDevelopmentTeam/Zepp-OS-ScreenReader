@@ -1,6 +1,6 @@
 // hooks.server.js
 
-/** @type {import('@sveltejs/kit').Handle} */
+/** @type {import('@sveltejs/kit/hooks').Handle} */
 export async function handle({ event, resolve }) {
   const response = await resolve(event, {
     // Inject UnoCSS-friendly class attributes without transform overhead
@@ -13,38 +13,34 @@ export async function handle({ event, resolve }) {
   // ================================
   // 1. STATIC ASSETS (hashed by Vite — safe to cache 1 year)
   // ================================
-  if (
-    url.pathname.startsWith('/_app/immutable/') // Vite hashed chunks
-  ) {
+  if (url.pathname.startsWith('/_app/immutable/')) // Vite hashed chunks
+  {
     headers.set('Cache-Control', 'public, max-age=31536000, immutable')
     headers.set('CDN-Cache-Control', 'public, max-age=31536000, immutable')
     headers.set('Cloudflare-CDN-Cache-Control', 'public, max-age=31536000, immutable')
-  }
-  // ================================
+  } else // ================================
   // 2. NON-HASHED STATIC FILES (favicon, fonts, images in /static)
   // ================================
-  else if (
+  if (
     url.pathname.startsWith('/_app/') ||
     /\.(png|jpg|jpeg|gif|svg|webp|ico|avif|woff2?)$/.test(url.pathname)
   ) {
     headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
     headers.set('CDN-Cache-Control', 'public, max-age=604800')
-  }
-  // ================================
+  } else // ================================
   // 3. HTML (SSR pages) — short browser cache, long CDN + SWR
   // ================================
-  else if (response.headers.get('content-type')?.includes('text/html')) {
+  if (response.headers.get('content-type')?.includes('text/html')) {
     headers.set('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400')
     headers.set('CDN-Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
     headers.set(
       'Cloudflare-CDN-Cache-Control',
       'public, s-maxage=3600, stale-while-revalidate=86400'
     )
-  }
-  // ================================
+  } else // ================================
   // 4. API — never cache
   // ================================
-  else if (url.pathname.startsWith('/api/')) {
+  if (url.pathname.startsWith('/api/')) {
     headers.set('Cache-Control', 'no-store')
   }
 
@@ -52,6 +48,7 @@ export async function handle({ event, resolve }) {
   // 5. Security Headers (Lighthouse-friendly)
   // ================================
   headers.set('X-Content-Type-Options', 'nosniff')
+
   headers.set('X-Frame-Options', 'DENY')
   headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   headers.set('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), payment=()')

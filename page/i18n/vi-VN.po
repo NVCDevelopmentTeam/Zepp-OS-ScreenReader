@@ -1,0 +1,1085 @@
+msgid "readFromTop"
+msgstr "Đọc từ đầu"
+
+msgid "screenRecognition"
+msgstr "Nhận dạng màn hình"
+
+msgid "describeCamera"
+msgstr "Mô tả camera"
+
+msgid "imageDescription"
+msgstr "Mô tả hình ảnh"
+
+msgid "brailleKeyboard"
+msgstr "Bàn phím chữ nổi"
+
+msgid "repeatLast"
+msgstr "Nhắc lại lần cuối"
+
+msgid "cancel"
+msgstr "Hủy"
+
+msgid "contextMenuOpened"
+msgstr "Đã mở menu ngữ cảnh"
+
+msgid "contextMenuClosed"
+msgstr "Đã đóng menu ngữ cảnh"
+
+msgid "noImageFocused"
+msgstr "Không có hình ảnh nào được chọn"
+
+msgid "nothingToRepeat"
+msgstr "Không có gì để nhắc lại"
+
+msgid "Advanced Settings"
+msgstr "Cài đặt nâng cao"
+
+msgid "Debug Log"
+msgstr "Nhật ký gỡ lỗi"
+
+msgid "Verbose"
+msgstr "Chi tiết"
+
+msgid "Export Logs"
+msgstr "Xuất nhật ký"
+
+msgid "Exporting logs"
+msgstr "Đang xuất nhật ký"
+
+msgid "Clear Speech History"
+msgstr "Xóa lịch sử giọng nói"
+
+msgid "Speech history cleared"
+msgstr "Đã xóa lịch sử giọng nói"
+
+msgid "Contact & Feedback"
+msgstr "Liên hệ & Phản hồi"
+
+msgid "Introduction"
+msgstr "Giới thiệu"
+
+msgid "App Information"
+msgstr "Thông tin ứng dụng"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Version"
+msgstr "Phiên bản"
+
+msgid "Build Date"
+msgstr "Ngày tạo"
+
+msgid "Developer"
+msgstr "Nhà phát triển"
+
+msgid "Supported"
+msgstr "Được hỗ trợ"
+
+msgid "Optimized"
+msgstr "Được tối ưu hóa"
+
+msgid "Developer options unlocked!"
+msgstr "Tùy chọn nhà phát triển đã được mở khóa!"
+
+msgid "Tap"
+msgstr "Chạm"
+
+msgid "more times to unlock."
+msgstr "lần nữa để mở khóa."
+
+msgid "Accessibility"
+msgstr "Hỗ trợ tiếp cận"
+
+msgid "Gestures"
+msgstr "Cử chỉ"
+
+msgid "Shortcuts"
+msgstr "Phím tắt"
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Sensors"
+msgstr "Cảm biến"
+
+msgid "Voice Control"
+msgstr "Điều khiển bằng giọng nói"
+
+msgid "User Guide"
+msgstr "Hướng dẫn sử dụng"
+
+msgid "Section"
+msgstr "Phần"
+
+msgid "of"
+msgstr "của"
+
+msgid "Swipe right for next."
+msgstr "Vuốt sang phải để tiếp tục."
+
+msgid "Previous"
+msgstr "Trước"
+
+msgid "Next"
+msgstr "Tiếp theo"
+
+msgid "Braille Pairing"
+msgstr "Ghép nối chữ nổi"
+
+msgid "Scanning..."
+msgstr "Đang quét..."
+
+msgid "Ready to scan"
+msgstr "Sẵn sàng quét"
+
+msgid "No displays found"
+msgstr "Không tìm thấy màn hình"
+
+msgid "Stop Scan"
+msgstr "Dừng quét"
+
+msgid "Start Scan"
+msgstr "Bắt đầu quét"
+
+msgid "Scanning for Braille displays"
+msgstr "Đang quét các màn hình chữ nổi"
+
+msgid "Connecting to"
+msgstr "Đang kết nối với"
+
+msgid "Connected to"
+msgstr "Đã kết nối với"
+
+msgid "Audio & Braille"
+msgstr "Âm thanh & Chữ nổi"
+
+msgid "Braille Output"
+msgstr "Đầu ra chữ nổi"
+
+msgid "Table"
+msgstr "Bảng"
+
+msgid "Change Table"
+msgstr "Thay đổi bảng"
+
+msgid "Pair Display"
+msgstr "Ghép nối màn hình"
+
+msgid "Swipe Up"
+msgstr "Vuốt lên"
+
+msgid "Swipe Down"
+msgstr "Vuốt xuống"
+
+msgid "Swipe Left"
+msgstr "Vuốt sang trái"
+
+msgid "Swipe Right"
+msgstr "Vuốt sang phải"
+
+msgid "Double Tap"
+msgstr "Chạm hai lần"
+
+msgid "Long Press"
+msgstr "Nhấn giữ"
+
+msgid "Gestures & Input"
+msgstr "Cử chỉ & Nhập liệu"
+
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+msgid "ZSR Status"
+msgstr "Trạng thái ZSR"
+
+msgid "Confirm Disable"
+msgstr "Xác nhận tắt"
+
+msgid "Auto-start"
+msgstr "Tự động khởi động"
+
+msgid "Check for Updates"
+msgstr "Kiểm tra cập nhật"
+
+msgid "Remote Access"
+msgstr "Truy cập từ xa"
+
+msgid "Allow Access"
+msgstr "Cho phép truy cập"
+
+msgid "Start Session"
+msgstr "Bắt đầu phiên"
+
+msgid "Remote session started"
+msgstr "Phiên từ xa đã bắt đầu"
+
+msgid "Object Presentation"
+msgstr "Trình bày đối tượng"
+
+msgid "Read Emoji"
+msgstr "Đọc biểu tượng cảm xúc"
+
+msgid "Read Symbols"
+msgstr "Đọc ký hiệu"
+
+msgid "Report Passwords"
+msgstr "Đọc mật khẩu"
+
+msgid "Announce Day"
+msgstr "Thông báo ngày"
+
+msgid "Passwords"
+msgstr "Mật khẩu"
+
+msgid "Spell"
+msgstr "Đánh vần"
+
+msgid "Mask"
+msgstr "Mặt nạ"
+
+msgid "Log History"
+msgstr "Lịch sử nhật ký"
+
+msgid "Limit"
+msgstr "Giới hạn"
+
+msgid "items"
+msgstr "mục"
+
+msgid "View History"
+msgstr "Xem lịch sử"
+
+msgid "Clear History"
+msgstr "Xóa lịch sử"
+
+msgid "Speech Settings"
+msgstr "Cài đặt giọng nói"
+
+msgid "Speech Rate"
+msgstr "Tốc độ giọng nói"
+
+msgid "Speech Pitch"
+msgstr "Cao độ giọng nói"
+
+msgid "Read Status Bar"
+msgstr "Đọc thanh trạng thái"
+
+msgid "Read Progress"
+msgstr "Đọc tiến trình"
+
+msgid "Read Hints"
+msgstr "Đọc gợi ý"
+
+msgid "Engine"
+msgstr "Công cụ"
+
+msgid "TTS engine set to"
+msgstr "Công cụ TTS được đặt thành"
+
+msgid "Vision Settings"
+msgstr "Cài đặt thị giác"
+
+msgid "Screen Curtain"
+msgstr "Màn rèm màn hình"
+
+msgid "Explore Mode"
+msgstr "Chế độ khám phá"
+
+msgid "Magnification"
+msgstr "Phóng đại"
+
+msgid "Navigation Settings"
+msgstr "Cài đặt điều hướng"
+
+msgid "Review Cursor"
+msgstr "Con trỏ xem lại"
+
+msgid "Browse by"
+msgstr "Duyệt theo"
+
+msgid "Change Type"
+msgstr "Thay đổi loại"
+
+msgid "Notification Settings"
+msgstr "Cài đặt thông báo"
+
+msgid "Read All"
+msgstr "Đọc tất cả"
+
+msgid "Read SMS"
+msgstr "Đọc tin nhắn"
+
+msgid "Read Calls"
+msgstr "Đọc cuộc gọi"
+
+msgid "Read Missed"
+msgstr "Đọc cuộc gọi lỡ"
+
+msgid "Document Settings"
+msgstr "Cài đặt tài liệu"
+
+msgid "Formatting"
+msgstr "Định dạng"
+
+msgid "Tables"
+msgstr "Bảng"
+
+msgid "Input Composition"
+msgstr "Thành phần nhập liệu"
+
+msgid "Echo"
+msgstr "Tiếng vang"
+
+msgid "Change Echo"
+msgstr "Thay đổi tiếng vang"
+
+msgid "Autocomplete"
+msgstr "Tự động hoàn thành"
+
+msgid "Sensor Information"
+msgstr "Thông tin cảm biến"
+
+msgid "Read Heart Rate"
+msgstr "Đọc nhịp tim"
+
+msgid "Read SpO2"
+msgstr "Đọc SpO2"
+
+msgid "Read Sleep Data"
+msgstr "Đọc dữ liệu giấc ngủ"
+
+msgid "Read Steps"
+msgstr "Đọc số bước"
+
+msgid "Read Stress"
+msgstr "Đọc mức độ căng thẳng"
+
+msgid "ZSR Dashboard"
+msgstr "Bảng điều khiển ZSR"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Battery"
+msgstr "Pin"
+
+msgid "Turn OFF ZSR"
+msgstr "Tắt ZSR"
+
+msgid "Turn ON ZSR"
+msgstr "Bật ZSR"
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "All settings have been reset to defaults."
+msgstr "Đã đặt lại tất cả cài đặt về mặc định."
+
+msgid "Blank password"
+msgstr "Mật khẩu trống"
+
+msgid "Blood oxygen sensor not available"
+msgstr "Cảm biến oxy máu không khả dụng"
+
+msgid "Blood oxygen: {0} percent."
+msgstr "Oxy máu: {0} phần trăm."
+
+msgid "Braille keyboard input is not yet available on this screen."
+msgstr "Chưa thể nhập bằng bàn phím chữ nổi trên màn hình này."
+
+msgid "Button"
+msgstr "Nút"
+
+msgid "Calorie data not available"
+msgstr "Không có dữ liệu calo"
+
+msgid "Camera guidance active. Point camera steadily."
+msgstr "Đang hướng dẫn camera. Hãy giữ camera ổn định."
+
+msgid "Camera guidance requires phone companion connection."
+msgstr "Hướng dẫn camera cần kết nối với điện thoại."
+
+msgid "Camera guidance stopped."
+msgstr "Đã dừng hướng dẫn camera."
+
+msgid "Capturing image for scene analysis, please hold still..."
+msgstr "Đang chụp ảnh để phân tích cảnh, vui lòng giữ yên..."
+
+msgid "Characters"
+msgstr "Ký tự"
+
+msgid "Charger disconnected."
+msgstr "Đã rút sạc."
+
+msgid "Charging. Battery at {0} percent."
+msgstr "Đang sạc. Pin {0} phần trăm."
+
+msgid "Checkbox"
+msgstr "Hộp kiểm"
+
+msgid "Checking for updates at zeppreader.com"
+msgstr "Đang kiểm tra bản cập nhật tại zeppreader.com"
+
+msgid "Connected to {0}"
+msgstr "Đã kết nối với {0}"
+
+msgid "Connecting to {0}"
+msgstr "Đang kết nối với {0}"
+
+msgid "Container"
+msgstr "Vùng chứa"
+
+msgid "Context Menu"
+msgstr "Trình đơn ngữ cảnh"
+
+msgid "Controls"
+msgstr "Điều khiển"
+
+msgid "Cursor & Navigation"
+msgstr "Con trỏ và điều hướng"
+
+msgid "Cycle List"
+msgstr "Danh sách vòng"
+
+msgid "Debug log summary: {0} errors recorded, {1} recovered."
+msgstr "Tóm tắt nhật ký gỡ lỗi: ghi nhận {0} lỗi, đã khôi phục {1}."
+
+msgid "Default navigation"
+msgstr "Điều hướng mặc định"
+
+msgid "Detected: {0}"
+msgstr "Đã nhận diện: {0}"
+
+msgid "Developer Options"
+msgstr "Tùy chọn nhà phát triển"
+
+msgid "Dialog"
+msgstr "Hộp thoại"
+
+msgid "Distance data not available"
+msgstr "Không có dữ liệu quãng đường"
+
+msgid "Do you want to turn off ZSR? Press OK to stop immediately."
+msgstr "Bạn có muốn tắt ZSR không? Nhấn OK để dừng ngay."
+
+msgid "Double tap to activate"
+msgstr "Chạm đúp để kích hoạt"
+
+msgid "Double tap to toggle"
+msgstr "Chạm đúp để bật hoặc tắt"
+
+msgid "Entering page"
+msgstr "Đang vào trang"
+
+msgid "Error reading QR code"
+msgstr "Lỗi khi đọc mã QR"
+
+msgid "Failed to analyze scene."
+msgstr "Không thể phân tích cảnh."
+
+msgid "Failed to open camera on phone."
+msgstr "Không thể mở camera trên điện thoại."
+
+msgid "General"
+msgstr "Chung"
+
+msgid "Headings"
+msgstr "Tiêu đề"
+
+msgid "Heart rate sensor not available"
+msgstr "Cảm biến nhịp tim không khả dụng"
+
+msgid "Heart rate: {0} beats per minute"
+msgstr "Nhịp tim: {0} nhịp mỗi phút"
+
+msgid "Image"
+msgstr "Hình ảnh"
+
+msgid "Incoming call from {0}"
+msgstr "Cuộc gọi đến từ {0}"
+
+msgid "Incoming call from {0}, number {1}"
+msgstr "Cuộc gọi đến từ {0}, số {1}"
+
+msgid "Links"
+msgstr "Liên kết"
+
+msgid "List"
+msgstr "Danh sách"
+
+msgid "Listening..."
+msgstr "Đang nghe..."
+
+msgid "Long-press anywhere on the screen to open the context menu, with quick actions like reading sensors, spelling out text, opening the braille keyboard, and repeating the last thing spoken."
+msgstr "Nhấn giữ bất kỳ đâu trên màn hình để mở trình đơn ngữ cảnh với các thao tác nhanh như đọc cảm biến, đánh vần văn bản, mở bàn phím chữ nổi và nhắc lại câu vừa đọc."
+
+msgid "Missed call from {0}"
+msgstr "Cuộc gọi nhỡ từ {0}"
+
+msgid "New SMS from {0}: {1}"
+msgstr "Tin nhắn mới từ {0}: {1}"
+
+msgid "New version available"
+msgstr "Có phiên bản mới"
+
+msgid "No element focused"
+msgstr "Chưa chọn phần tử nào"
+
+msgid "No element found at center of screen"
+msgstr "Không có phần tử nào ở giữa màn hình"
+
+msgid "No focusable elements on screen"
+msgstr "Không có phần tử nào để chọn trên màn hình"
+
+msgid "No headings found"
+msgstr "Không tìm thấy tiêu đề"
+
+msgid "No history available"
+msgstr "Chưa có lịch sử"
+
+msgid "No more {0}s found"
+msgstr "Không còn {0} nào nữa"
+
+msgid "No new notifications"
+msgstr "Không có thông báo mới"
+
+msgid "No next page available"
+msgstr "Không có trang tiếp theo"
+
+msgid "No sleep data available for today."
+msgstr "Hôm nay chưa có dữ liệu giấc ngủ."
+
+msgid "No text to navigate"
+msgstr "Không có văn bản để điều hướng"
+
+msgid "No valid QR code detected"
+msgstr "Không phát hiện mã QR hợp lệ"
+
+msgid "Notification from {0}: {1}. {2}"
+msgstr "Thông báo từ {0}: {1}. {2}"
+
+msgid "Notifications"
+msgstr "Thông báo"
+
+msgid "Off"
+msgstr "Tắt"
+
+msgid "On"
+msgstr "Bật"
+
+msgid "Open Settings on your phone to manage speech rate and voice, gestures, notifications, braille, and privacy features like Screen Curtain."
+msgstr "Mở Cài đặt trên điện thoại để quản lý tốc độ và giọng đọc, cử chỉ, thông báo, chữ nổi và các tính năng riêng tư như Màn hình che."
+
+msgid "Opening camera guidance. This feature is experimental and depends on your phone connection - hold your phone steady and pointed where you want to photograph."
+msgstr "Đang mở hướng dẫn camera. Tính năng này còn thử nghiệm và phụ thuộc vào kết nối điện thoại. Hãy giữ điện thoại ổn định và hướng về nơi bạn muốn chụp."
+
+msgid "Paragraphs"
+msgstr "Đoạn văn"
+
+msgid "Password field, blank"
+msgstr "Ô mật khẩu, trống"
+
+msgid "Password field, {0} bullets"
+msgstr "Ô mật khẩu, {0} ký tự"
+
+msgid "Picker"
+msgstr "Bộ chọn"
+
+msgid "Practicing Gestures"
+msgstr "Luyện tập cử chỉ"
+
+msgid "Progress"
+msgstr "Tiến trình"
+
+msgid "Progress bar"
+msgstr "Thanh tiến trình"
+
+msgid "QR code detected. Content: "
+msgstr "Đã phát hiện mã QR. Nội dung: "
+
+msgid "QR code generated successfully"
+msgstr "Đã tạo mã QR thành công"
+
+msgid "Radio"
+msgstr "Nút chọn"
+
+msgid "Rate {0}"
+msgstr "Tốc độ {0}"
+
+msgid "Rate {0}%"
+msgstr "Tốc độ {0}%"
+
+msgid "Read Calories"
+msgstr "Đọc lượng calo"
+
+msgid "Read Distance"
+msgstr "Đọc quãng đường"
+
+msgid "Reading screen"
+msgstr "Đang đọc màn hình"
+
+msgid "Review: {0}"
+msgstr "Xem lại: {0}"
+
+msgid "Scene description requires phone companion connection."
+msgstr "Mô tả cảnh cần kết nối với điện thoại."
+
+msgid "Scene description: {0}"
+msgstr "Mô tả cảnh: {0}"
+
+msgid "Screen curtain disabled"
+msgstr "Đã tắt màn hình che"
+
+msgid "Screen curtain enabled"
+msgstr "Đã bật màn hình che"
+
+msgid "Screen reader disabled"
+msgstr "Đã tắt trình đọc màn hình"
+
+msgid "Screen reader enabled"
+msgstr "Đã bật trình đọc màn hình"
+
+msgid "Sentences"
+msgstr "Câu"
+
+msgid "Sleep data not available"
+msgstr "Không có dữ liệu giấc ngủ"
+
+msgid "Sleep summary: {0} hours and {1} minutes total sleep."
+msgstr "Tóm tắt giấc ngủ: tổng cộng {0} giờ {1} phút."
+
+msgid "Slider"
+msgstr "Thanh trượt"
+
+msgid "Speech"
+msgstr "Giọng nói"
+
+msgid "Speech History"
+msgstr "Lịch sử giọng nói"
+
+msgid "Speech rate"
+msgstr "Tốc độ đọc"
+
+msgid "Speech unmuted"
+msgstr "Đã bật lại tiếng"
+
+msgid "Starting screen recognition..."
+msgstr "Đang bắt đầu nhận dạng màn hình..."
+
+msgid "Step counter not available"
+msgstr "Bộ đếm bước không khả dụng"
+
+msgid "Steps: {0}. Target: {1}. {2} percent of daily goal reached."
+msgstr "Số bước: {0}. Mục tiêu: {1}. Đã đạt {2} phần trăm mục tiêu ngày."
+
+msgid "Stress level: {0} out of 100."
+msgstr "Mức căng thẳng: {0} trên 100."
+
+msgid "Stress sensor not available"
+msgstr "Cảm biến căng thẳng không khả dụng"
+
+msgid "Swipe Right: Next item. Swipe Left: Previous item. Swipe Up/Down: Cycle reading mode by default, but you can reassign any swipe, tap, double-tap, long-press, or multi-finger gesture in Settings > Gestures & Input > Gesture Actions."
+msgstr "Vuốt phải: mục tiếp theo. Vuốt trái: mục trước. Vuốt lên hoặc xuống: mặc định là đổi chế độ đọc. Bạn có thể gán lại mọi thao tác vuốt, chạm, chạm đúp, nhấn giữ hoặc nhiều ngón trong Cài đặt > Cử chỉ và nhập liệu > Hành động cử chỉ."
+
+msgid "Switch"
+msgstr "Công tắc"
+
+msgid "System"
+msgstr "Hệ thống"
+
+msgid "TTS engine set to {0}"
+msgstr "Đã đặt công cụ đọc là {0}"
+
+msgid "Text"
+msgstr "Văn bản"
+
+msgid "Toast: {0}"
+msgstr "Thông báo nổi: {0}"
+
+msgid "Toggle Gesture Practice Mode"
+msgstr "Bật hoặc tắt chế độ luyện tập cử chỉ"
+
+msgid "Turn on Gesture Practice Mode from this guide or Settings to safely try gestures - ZSR will announce which gesture it detected instead of performing the action, so you can learn safely before using them for real."
+msgstr "Bật Chế độ luyện tập cử chỉ từ hướng dẫn này hoặc Cài đặt để thử cử chỉ an toàn. ZSR sẽ đọc tên cử chỉ đã nhận diện thay vì thực hiện thao tác, giúp bạn học trước khi dùng thật."
+
+msgid "Turning ZSR On or Off"
+msgstr "Bật hoặc tắt ZSR"
+
+msgid "Unknown"
+msgstr "Không rõ"
+
+msgid "Unlabeled {0}"
+msgstr "{0} chưa có nhãn"
+
+msgid "Unlabeled {0} {1}"
+msgstr "{0} số {1} chưa có nhãn"
+
+msgid "Unlabelled"
+msgstr "Chưa có nhãn"
+
+msgid "Vision"
+msgstr "Thị giác"
+
+msgid "We value your feedback to make ZSR better.\n\nPlease visit our website to report bugs or request features:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com"
+msgstr "Chúng tôi trân trọng phản hồi của bạn để ZSR tốt hơn.\n\nVui lòng truy cập trang web để báo lỗi hoặc đề xuất tính năng:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com"
+
+msgid "Words"
+msgstr "Từ"
+
+msgid "You can enable or disable ZSR three ways: double or triple-click the physical Home button (set your preference in Settings > General > Accessibility Shortcut), assign a gesture to \"Turn ZSR On/Off\" in Gesture Actions, or tap the large ZSR shortcut card next to your watch faces."
+msgstr "Bạn có thể bật hoặc tắt ZSR theo ba cách: nhấn đúp hoặc nhấn ba lần nút Home vật lý (chọn trong Cài đặt > Chung > Phím tắt trợ năng), gán một cử chỉ cho \"Bật/Tắt ZSR\" trong Hành động cử chỉ, hoặc chạm vào thẻ lối tắt ZSR lớn cạnh mặt đồng hồ."
+
+msgid "ZSR (Zepp OS Screen Reader) is a mission-critical accessibility service for blind and low-vision users on Amazfit devices.\n\nOur mission is to enable independent use of 100% of smartwatch features without sighted assistance.\n\nDeveloped by NVCDevelopmentTeam."
+msgstr "ZSR (Zepp OS Screen Reader) là dịch vụ trợ năng thiết yếu dành cho người khiếm thị và nhìn kém trên thiết bị Amazfit.\n\nSứ mệnh của chúng tôi là giúp bạn tự sử dụng 100% tính năng của đồng hồ thông minh mà không cần người nhìn hỗ trợ.\n\nPhát triển bởi NVCDevelopmentTeam."
+
+msgid "ZSR Settings"
+msgstr "Cài đặt ZSR"
+
+msgid "ZSR Started"
+msgstr "ZSR đã khởi động"
+
+msgid "ZSR has been turned on"
+msgstr "ZSR đã được bật"
+
+msgid "ZSR is committed to WCAG 2.1 Level AA compliance.\n\nOur goal is to make every interface element on Zepp OS fully accessible to blind and low-vision users.\n\nStatement: https://zeppreader.com/accessibility-statement"
+msgstr "ZSR cam kết tuân thủ WCAG 2.1 mức AA.\n\nMục tiêu của chúng tôi là làm cho mọi thành phần giao diện trên Zepp OS đều truy cập được với người khiếm thị và nhìn kém.\n\nTuyên bố: https://zeppreader.com/accessibility-statement"
+
+msgid "disabled"
+msgstr "bị vô hiệu hóa"
+
+msgid "{0} items"
+msgstr "{0} mục"
+
+msgid "{0}. Range {1} to {2}"
+msgstr "{0}. Phạm vi từ {1} đến {2}"
+
+msgid "{0}. {1}"
+msgstr "{0}. {1}"
+
+msgid "cycleNavigationMode"
+msgstr "Đổi chế độ điều hướng"
+
+msgid "objectDetails"
+msgstr "Chi tiết đối tượng"
+
+msgid "photoGuidance"
+msgstr "Hướng dẫn chụp ảnh"
+
+msgid "readCenter"
+msgstr "Đọc giữa màn hình"
+
+msgid "readFromBottom"
+msgstr "Đọc từ cuối"
+
+msgid "readSensors"
+msgstr "Đọc cảm biến"
+
+msgid "readStatusBar"
+msgstr "Đọc thanh trạng thái"
+
+msgid "screenCurtain"
+msgstr "Màn hình che"
+
+msgid "Voice control needs an online speech service. Add your key in the phone settings."
+msgstr "Điều khiển bằng giọng nói cần dịch vụ nhận dạng giọng nói trực tuyến. Hãy nhập khóa của bạn trong cài đặt trên điện thoại."
+
+msgid "I didn't hear anything. Please try again."
+msgstr "Tôi không nghe thấy gì. Vui lòng thử lại."
+
+msgid "The online speech service rejected the request. Check your key and connection."
+msgstr "Dịch vụ giọng nói trực tuyến đã từ chối yêu cầu. Hãy kiểm tra khóa và kết nối."
+
+msgid "Voice control is unavailable right now. Check your phone connection and internet."
+msgstr "Hiện không thể dùng điều khiển bằng giọng nói. Hãy kiểm tra kết nối điện thoại và internet."
+
+msgid "Voice control is not supported on this watch."
+msgstr "Đồng hồ này không hỗ trợ điều khiển bằng giọng nói."
+
+msgid "Sorry, I didn't catch that command: {0}"
+msgstr "Xin lỗi, tôi chưa hiểu lệnh này: {0}"
+
+msgid "No readable content was found on this screen"
+msgstr "Không tìm thấy nội dung nào để đọc trên màn hình này"
+
+msgid "Analog clock showing {0}. {1}. Steps: {2}. Heart rate: {3} beats per minute."
+msgstr "Đồng hồ kim chỉ {0}. {1}. Số bước: {2}. Nhịp tim: {3} nhịp mỗi phút."
+
+msgid "Digital clock. {0}. {1}. Steps: {2}. Heart rate: {3}."
+msgstr "Đồng hồ số. {0}. {1}. Số bước: {2}. Nhịp tim: {3}."
+
+msgid "Image: {0}"
+msgstr "Hình ảnh: {0}"
+
+msgid "Could not describe image"
+msgstr "Không thể mô tả hình ảnh"
+
+msgid "Speech muted"
+msgstr "Đã tắt tiếng"
+
+msgid "ZSR has been turned off"
+msgstr "ZSR đã được tắt"
+
+msgid "Sidebar opened"
+msgstr "Đã mở thanh bên"
+
+msgid "Sidebar closed"
+msgstr "Đã đóng thanh bên"
+
+msgid "Disable ZSR?"
+msgstr "Tắt ZSR?"
+
+msgid "QR code, empty"
+msgstr "Mã QR, trống"
+
+msgid "QR code, web link to {0}"
+msgstr "Mã QR, liên kết web tới {0}"
+
+msgid "QR code, Wi-Fi network {0}"
+msgstr "Mã QR, mạng Wi-Fi {0}"
+
+msgid "Password {0}"
+msgstr "Mật khẩu {0}"
+
+msgid "QR code, phone number {0}"
+msgstr "Mã QR, số điện thoại {0}"
+
+msgid "QR code, email address {0}"
+msgstr "Mã QR, địa chỉ email {0}"
+
+msgid "QR code: {0}"
+msgstr "Mã QR: {0}"
+
+msgid "Battery: {0}%"
+msgstr "Pin: {0}%"
+
+msgid "Continue to Home"
+msgstr "Tiếp tục tới Màn hình chính"
+
+msgid "Gesture practice mode off. Gestures will now perform their normal actions again."
+msgstr "Đã tắt chế độ luyện tập cử chỉ. Các cử chỉ sẽ thực hiện thao tác bình thường trở lại."
+
+msgid "Gesture practice mode on. Try any gesture - ZSR will tell you what it detected instead of performing it."
+msgstr "Đã bật chế độ luyện tập cử chỉ. Hãy thử bất kỳ cử chỉ nào, ZSR sẽ đọc tên cử chỉ đã nhận diện thay vì thực hiện."
+
+msgid "Initializing..."
+msgstr "Đang khởi tạo..."
+
+msgid "Open User Guide"
+msgstr "Mở Hướng dẫn sử dụng"
+
+msgid "Status: {0} | Speech engine: {1}"
+msgstr "Trạng thái: {0} | Công cụ đọc: {1}"
+
+msgid "User Guide. Section {0} of {1}: {2}. Use the Next button for the next section."
+msgstr "Hướng dẫn sử dụng. Phần {0} trên {1}: {2}. Dùng nút Tiếp theo để sang phần kế tiếp."
+
+msgid "Welcome to Zepp OS Screen Reader"
+msgstr "Chào mừng đến với Trình đọc màn hình Zepp OS"
+
+msgid "ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items."
+msgstr "ZSR đọc và rung khi bạn chạm vào màn hình. Chạm để khám phá, chạm đúp để kích hoạt, vuốt để chuyển giữa các mục."
+
+msgid "Touch exploration and gestures"
+msgstr "Khám phá bằng cảm ứng và cử chỉ"
+
+msgid "Vibration feedback"
+msgstr "Phản hồi bằng rung"
+
+msgid "Speech output"
+msgstr "Đầu ra giọng nói"
+
+msgid "Offline voice"
+msgstr "Giọng đọc ngoại tuyến"
+
+msgid "Touch sounds"
+msgstr "Âm thanh khi chạm"
+
+msgid "Voice commands (needs phone and internet)"
+msgstr "Lệnh thoại (cần điện thoại và internet)"
+
+msgid "System keyboard integration"
+msgstr "Tích hợp bàn phím hệ thống"
+
+msgid "available"
+msgstr "khả dụng"
+
+msgid "not available on this watch"
+msgstr "không khả dụng trên đồng hồ này"
+
+msgid "{0}: {1}"
+msgstr "{0}: {1}"
+
+msgid "This watch has no audio player, so ZSR answers with vibration instead of speech."
+msgstr "Đồng hồ này không có trình phát âm thanh, nên ZSR phản hồi bằng rung thay cho giọng nói."
+
+msgid "Device Support"
+msgstr "Hỗ trợ thiết bị"
+
+msgid "Permissions Notice"
+msgstr "Thông báo quyền"
+
+msgid "Privacy Policy"
+msgstr "Chính sách quyền riêng tư"
+
+msgid "ZSR works with the permissions below. You can decline an optional permission: that feature will not work, but the others keep working.\n\nWatch:\n- Device information: to fit your watch model and screen.\n- Local storage: to keep your settings and the offline voice.\n- Vibration and sound: for touch feedback and speech.\n- Bluetooth: to talk to the Zepp app on your phone for speech, settings and voice features.\n- Health data (steps, heart rate, calories, distance, sleep, blood oxygen, stress): only read aloud when you ask for it.\n\nPhone and internet:\nZSR does not read your calls, messages or phone state. Speech is created by the Zepp app on your phone. Voice commands and image reading are optional, need the internet, and send audio or images only to the online service you set up yourself, and only when you use them.\n\nZSR runs as a Zepp OS Mini Program, so it can read only its own screens, not other apps."
+msgstr "ZSR hoạt động với các quyền dưới đây. Bạn có thể từ chối một quyền tùy chọn: tính năng đó sẽ không hoạt động, còn các tính năng khác vẫn chạy bình thường.\n\nĐồng hồ:\n- Thông tin thiết bị: để phù hợp với mẫu đồng hồ và màn hình của bạn.\n- Bộ nhớ cục bộ: để lưu cài đặt và giọng đọc ngoại tuyến.\n- Rung và âm thanh: cho phản hồi khi chạm và giọng nói.\n- Bluetooth: để trao đổi với ứng dụng Zepp trên điện thoại cho giọng nói, cài đặt và các tính năng giọng nói.\n- Dữ liệu sức khỏe (số bước, nhịp tim, calo, quãng đường, giấc ngủ, oxy máu, căng thẳng): chỉ được đọc to khi bạn yêu cầu.\n\nĐiện thoại và internet:\nZSR không đọc cuộc gọi, tin nhắn hay trạng thái điện thoại của bạn. Giọng nói được tạo bởi ứng dụng Zepp trên điện thoại. Lệnh thoại và đọc hình ảnh là tùy chọn, cần internet, và chỉ gửi âm thanh hoặc hình ảnh tới dịch vụ trực tuyến do chính bạn thiết lập, và chỉ khi bạn sử dụng chúng.\n\nZSR chạy như một Mini Program của Zepp OS, nên chỉ đọc được màn hình của chính nó, không đọc được các ứng dụng khác."
+
+msgid "ZSR respects your privacy and does not collect your personal data.\n\nThe text ZSR speaks is turned into speech by the Zepp app on your phone and kept on your watch; it is not sent to ZSR servers. The speech engine is downloaded once from a public package host.\n\nVoice commands and image reading are optional. When you use them, the audio or image is sent through your phone to the online service you configured yourself, and only then.\n\nFull policy: https://zeppreader.com/privacy-policy"
+msgstr "ZSR tôn trọng quyền riêng tư của bạn và không thu thập dữ liệu cá nhân.\n\nVăn bản mà ZSR đọc được chuyển thành giọng nói bởi ứng dụng Zepp trên điện thoại và lưu trên đồng hồ của bạn; nó không được gửi tới máy chủ của ZSR. Công cụ giọng nói được tải một lần từ một kho gói công khai.\n\nLệnh thoại và đọc hình ảnh là tùy chọn. Khi bạn dùng chúng, âm thanh hoặc hình ảnh được gửi qua điện thoại tới dịch vụ trực tuyến do chính bạn cấu hình, và chỉ khi đó.\n\nChính sách đầy đủ: https://zeppreader.com/privacy-policy"
+
+msgid "spellOut"
+msgstr "Đánh vần"
+
+msgid "toggleSpeech"
+msgstr "Bật hoặc tắt giọng nói"
+
+msgid "Audio ducking"
+msgstr "Giảm âm lượng âm thanh khác"
+
+msgid "Automatic updates"
+msgstr "Cập nhật tự động"
+
+msgid "Available from Zepp OS 4.2; ZSR only reads its own screens."
+msgstr "Có từ Zepp OS 4.2; ZSR chỉ đọc được màn hình của chính nó."
+
+msgid "Braille keyboard"
+msgstr "Bàn phím chữ nổi"
+
+msgid "Device {0}, screen {1}, buttons {2}"
+msgstr "Thiết bị {0}, màn hình {1}, số nút {2}"
+
+msgid "Experimental"
+msgstr "Thử nghiệm"
+
+msgid "Health and fitness reading"
+msgstr "Đọc dữ liệu sức khỏe và thể dục"
+
+msgid "Image reading, OCR and CAPTCHA (needs internet)"
+msgstr "Đọc ảnh, OCR và CAPTCHA (cần internet)"
+
+msgid "Item {0} of {1}"
+msgstr "Mục {0} trên {1}"
+
+msgid "Language {0}, speech engine {1}"
+msgstr "Ngôn ngữ {0}, công cụ đọc {1}"
+
+msgid "List position"
+msgstr "Vị trí trong danh sách"
+
+msgid "Listing in the system accessibility settings"
+msgstr "Hiển thị trong cài đặt trợ năng của hệ thống"
+
+msgid "Main content"
+msgstr "Nội dung chính"
+
+msgid "Mini Programs are sandboxed and can only read their own screens."
+msgstr "Mini Program chạy trong môi trường riêng nên chỉ đọc được màn hình của chính nó."
+
+msgid "Multilingual speech"
+msgstr "Giọng nói đa ngôn ngữ"
+
+msgid "Navigation area"
+msgstr "Khu vực điều hướng"
+
+msgid "Needs Zepp OS 4.2 or newer."
+msgstr "Cần Zepp OS 4.2 trở lên."
+
+msgid "Needs audio recording, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "Cần ghi âm, có từ Zepp OS 3.0 (API 3.0)."
+
+msgid "Needs several fingers at once, but Zepp OS touch events report one finger."
+msgstr "Cần nhiều ngón tay cùng lúc, nhưng sự kiện chạm của Zepp OS chỉ báo một ngón."
+
+msgid "Needs the audio player, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "Cần trình phát âm thanh, có từ Zepp OS 3.0 (API 3.0)."
+
+msgid "Needs your own online speech service, set in the phone settings."
+msgstr "Cần dịch vụ giọng nói trực tuyến của riêng bạn, thiết lập trong cài đặt điện thoại."
+
+msgid "No match for {0}"
+msgstr "Không tìm thấy {0}"
+
+msgid "No public Zepp OS API lets an app register as an accessibility service."
+msgstr "Zepp OS không có API công khai để ứng dụng đăng ký làm dịch vụ trợ năng."
+
+msgid "Pause, resume and speech mode"
+msgstr "Tạm dừng, tiếp tục và chế độ giọng nói"
+
+msgid "Punctuation, capitals and progress announcements"
+msgstr "Dấu câu, chữ hoa và thông báo tiến trình"
+
+msgid "Read diagnostics"
+msgstr "Đọc thông tin chẩn đoán"
+
+msgid "Reading modes and navigation"
+msgstr "Chế độ đọc và điều hướng"
+
+msgid "Reading other apps, unlocking and system screens"
+msgstr "Đọc ứng dụng khác, mở khóa và màn hình hệ thống"
+
+msgid "Reading phone notifications, messages and calls"
+msgstr "Đọc thông báo, tin nhắn và cuộc gọi từ điện thoại"
+
+msgid "Screen regions"
+msgstr "Vùng màn hình"
+
+msgid "Screen search"
+msgstr "Tìm kiếm trên màn hình"
+
+msgid "Sentences that are not in the offline voice need the phone and an internet connection the first time."
+msgstr "Câu không có trong giọng ngoại tuyến cần điện thoại và kết nối internet ở lần đầu."
+
+msgid "Separate speech volume"
+msgstr "Âm lượng giọng nói riêng"
+
+msgid "Sets the volume of the ZSR player. Zepp OS may share it with the system volume."
+msgstr "Đặt âm lượng của trình phát ZSR. Zepp OS có thể dùng chung với âm lượng hệ thống."
+
+msgid "Status bar"
+msgstr "Thanh trạng thái"
+
+msgid "Supported with limitations"
+msgstr "Hỗ trợ có giới hạn"
+
+msgid "Two and three finger gestures"
+msgstr "Cử chỉ hai và ba ngón"
+
+msgid "Unavailable on this OS"
+msgstr "Không khả dụng trên OS này"
+
+msgid "Unavailable on this watch"
+msgstr "Không khả dụng trên đồng hồ này"
+
+msgid "Works by voice command. Typing a search is not possible without a keyboard."
+msgstr "Hoạt động bằng lệnh thoại. Không thể gõ tìm kiếm khi không có bàn phím."
+
+msgid "ZSR can check for a new version; Zepp OS installs updates only through the Zepp app."
+msgstr "ZSR có thể kiểm tra phiên bản mới; Zepp OS chỉ cài cập nhật qua ứng dụng Zepp."
+
+msgid "ZSR version {0}"
+msgstr "Phiên bản ZSR {0}"
+
+msgid "Zepp OS API level {0}"
+msgstr "Mức API Zepp OS {0}"
+
+msgid "Zepp OS gives apps no camera or screenshot access, so an image must be supplied."
+msgstr "Zepp OS không cho ứng dụng truy cập camera hay chụp màn hình, nên phải cung cấp ảnh từ bên ngoài."
+
+msgid "Zepp OS gives apps no way to receive phone notifications or calls."
+msgstr "Zepp OS không có cách nào để ứng dụng nhận thông báo hay cuộc gọi từ điện thoại."
+
+msgid "Zepp OS has no audio-focus API, so other audio cannot be lowered."
+msgstr "Zepp OS không có API audio focus, nên không thể giảm âm thanh khác."
+
+msgid "Zepp OS touch events report one finger, so these gestures cannot be detected."
+msgstr "Sự kiện chạm của Zepp OS chỉ báo một ngón, nên không phát hiện được các cử chỉ này."
+
+msgid "voiceCommand"
+msgstr "Lệnh thoại"

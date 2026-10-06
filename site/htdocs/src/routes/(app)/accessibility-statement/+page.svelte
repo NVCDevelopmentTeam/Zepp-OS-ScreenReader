@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle } from '$lib/info.js';
+  import { siteTitle } from '#lib/info.js';
 </script>
 
 <svelte:head>

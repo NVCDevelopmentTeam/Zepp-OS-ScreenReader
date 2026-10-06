@@ -1,12 +1,14 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { push } from '@zos/router'
 import { loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     this.state = {
       categories: [
@@ -43,7 +45,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 10,
       w: width,
@@ -55,7 +57,7 @@ export default Page({
       text_size: 28
     })
 
-    root.createWidget(widget.SCROLL_LIST, {
+    createChild(root, widget.SCROLL_LIST, {
       x: 0,
       y: 70,
       w: width,

@@ -1,7 +1,7 @@
 <script>
-  import { siteTitle, siteAuthor } from '$lib/info.js';
-  import ToC from '$lib/components/ToC.svelte';
-  import PostDate from '$lib/components/PostDate.svelte';
+  import { siteTitle, siteAuthor } from '#lib/info.js';
+  import ToC from '#lib/components/ToC.svelte';
+  import PostDate from '#lib/components/PostDate.svelte';
 
   /**
    * @typedef {Object} Props

@@ -345,3 +345,741 @@ msgstr "Turn ON ZSR"
 
 msgid "About"
 msgstr "About"
+
+msgid "All settings have been reset to defaults."
+msgstr "All settings have been reset to defaults."
+
+msgid "Blank password"
+msgstr "Blank password"
+
+msgid "Blood oxygen sensor not available"
+msgstr "Blood oxygen sensor not available"
+
+msgid "Blood oxygen: {0} percent."
+msgstr "Blood oxygen: {0} percent."
+
+msgid "Braille keyboard input is not yet available on this screen."
+msgstr "Braille keyboard input is not yet available on this screen."
+
+msgid "Button"
+msgstr "Button"
+
+msgid "Calorie data not available"
+msgstr "Calorie data not available"
+
+msgid "Camera guidance active. Point camera steadily."
+msgstr "Camera guidance active. Point camera steadily."
+
+msgid "Camera guidance requires phone companion connection."
+msgstr "Camera guidance requires phone companion connection."
+
+msgid "Camera guidance stopped."
+msgstr "Camera guidance stopped."
+
+msgid "Capturing image for scene analysis, please hold still..."
+msgstr "Capturing image for scene analysis, please hold still..."
+
+msgid "Characters"
+msgstr "Characters"
+
+msgid "Charger disconnected."
+msgstr "Charger disconnected."
+
+msgid "Charging. Battery at {0} percent."
+msgstr "Charging. Battery at {0} percent."
+
+msgid "Checkbox"
+msgstr "Checkbox"
+
+msgid "Checking for updates at zeppreader.com"
+msgstr "Checking for updates at zeppreader.com"
+
+msgid "Connected to {0}"
+msgstr "Connected to {0}"
+
+msgid "Connecting to {0}"
+msgstr "Connecting to {0}"
+
+msgid "Container"
+msgstr "Container"
+
+msgid "Context Menu"
+msgstr "Context Menu"
+
+msgid "Controls"
+msgstr "Controls"
+
+msgid "Cursor & Navigation"
+msgstr "Cursor & Navigation"
+
+msgid "Cycle List"
+msgstr "Cycle List"
+
+msgid "Debug log summary: {0} errors recorded, {1} recovered."
+msgstr "Debug log summary: {0} errors recorded, {1} recovered."
+
+msgid "Default navigation"
+msgstr "Default navigation"
+
+msgid "Detected: {0}"
+msgstr "Detected: {0}"
+
+msgid "Developer Options"
+msgstr "Developer Options"
+
+msgid "Dialog"
+msgstr "Dialog"
+
+msgid "Distance data not available"
+msgstr "Distance data not available"
+
+msgid "Do you want to turn off ZSR? Press OK to stop immediately."
+msgstr "Do you want to turn off ZSR? Press OK to stop immediately."
+
+msgid "Double tap to activate"
+msgstr "Double tap to activate"
+
+msgid "Double tap to toggle"
+msgstr "Double tap to toggle"
+
+msgid "Entering page"
+msgstr "Entering page"
+
+msgid "Error reading QR code"
+msgstr "Error reading QR code"
+
+msgid "Failed to analyze scene."
+msgstr "Failed to analyze scene."
+
+msgid "Failed to open camera on phone."
+msgstr "Failed to open camera on phone."
+
+msgid "General"
+msgstr "General"
+
+msgid "Headings"
+msgstr "Headings"
+
+msgid "Heart rate sensor not available"
+msgstr "Heart rate sensor not available"
+
+msgid "Heart rate: {0} beats per minute"
+msgstr "Heart rate: {0} beats per minute"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Incoming call from {0}"
+msgstr "Incoming call from {0}"
+
+msgid "Incoming call from {0}, number {1}"
+msgstr "Incoming call from {0}, number {1}"
+
+msgid "Links"
+msgstr "Links"
+
+msgid "List"
+msgstr "List"
+
+msgid "Listening..."
+msgstr "Listening..."
+
+msgid "Long-press anywhere on the screen to open the context menu, with quick actions like reading sensors, spelling out text, opening the braille keyboard, and repeating the last thing spoken."
+msgstr "Long-press anywhere on the screen to open the context menu, with quick actions like reading sensors, spelling out text, opening the braille keyboard, and repeating the last thing spoken."
+
+msgid "Missed call from {0}"
+msgstr "Missed call from {0}"
+
+msgid "New SMS from {0}: {1}"
+msgstr "New SMS from {0}: {1}"
+
+msgid "New version available"
+msgstr "New version available"
+
+msgid "No element focused"
+msgstr "No element focused"
+
+msgid "No element found at center of screen"
+msgstr "No element found at center of screen"
+
+msgid "No focusable elements on screen"
+msgstr "No focusable elements on screen"
+
+msgid "No headings found"
+msgstr "No headings found"
+
+msgid "No history available"
+msgstr "No history available"
+
+msgid "No more {0}s found"
+msgstr "No more {0}s found"
+
+msgid "No new notifications"
+msgstr "No new notifications"
+
+msgid "No next page available"
+msgstr "No next page available"
+
+msgid "No sleep data available for today."
+msgstr "No sleep data available for today."
+
+msgid "No text to navigate"
+msgstr "No text to navigate"
+
+msgid "No valid QR code detected"
+msgstr "No valid QR code detected"
+
+msgid "Notification from {0}: {1}. {2}"
+msgstr "Notification from {0}: {1}. {2}"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Off"
+msgstr "Off"
+
+msgid "On"
+msgstr "On"
+
+msgid "Open Settings on your phone to manage speech rate and voice, gestures, notifications, braille, and privacy features like Screen Curtain."
+msgstr "Open Settings on your phone to manage speech rate and voice, gestures, notifications, braille, and privacy features like Screen Curtain."
+
+msgid "Opening camera guidance. This feature is experimental and depends on your phone connection - hold your phone steady and pointed where you want to photograph."
+msgstr "Opening camera guidance. This feature is experimental and depends on your phone connection - hold your phone steady and pointed where you want to photograph."
+
+msgid "Paragraphs"
+msgstr "Paragraphs"
+
+msgid "Password field, blank"
+msgstr "Password field, blank"
+
+msgid "Password field, {0} bullets"
+msgstr "Password field, {0} bullets"
+
+msgid "Picker"
+msgstr "Picker"
+
+msgid "Practicing Gestures"
+msgstr "Practicing Gestures"
+
+msgid "Progress"
+msgstr "Progress"
+
+msgid "Progress bar"
+msgstr "Progress bar"
+
+msgid "QR code detected. Content: "
+msgstr "QR code detected. Content: "
+
+msgid "QR code generated successfully"
+msgstr "QR code generated successfully"
+
+msgid "Radio"
+msgstr "Radio"
+
+msgid "Rate {0}"
+msgstr "Rate {0}"
+
+msgid "Rate {0}%"
+msgstr "Rate {0}%"
+
+msgid "Read Calories"
+msgstr "Read Calories"
+
+msgid "Read Distance"
+msgstr "Read Distance"
+
+msgid "Reading screen"
+msgstr "Reading screen"
+
+msgid "Review: {0}"
+msgstr "Review: {0}"
+
+msgid "Scene description requires phone companion connection."
+msgstr "Scene description requires phone companion connection."
+
+msgid "Scene description: {0}"
+msgstr "Scene description: {0}"
+
+msgid "Screen curtain disabled"
+msgstr "Screen curtain disabled"
+
+msgid "Screen curtain enabled"
+msgstr "Screen curtain enabled"
+
+msgid "Screen reader disabled"
+msgstr "Screen reader disabled"
+
+msgid "Screen reader enabled"
+msgstr "Screen reader enabled"
+
+msgid "Sentences"
+msgstr "Sentences"
+
+msgid "Sleep data not available"
+msgstr "Sleep data not available"
+
+msgid "Sleep summary: {0} hours and {1} minutes total sleep."
+msgstr "Sleep summary: {0} hours and {1} minutes total sleep."
+
+msgid "Slider"
+msgstr "Slider"
+
+msgid "Speech"
+msgstr "Speech"
+
+msgid "Speech History"
+msgstr "Speech History"
+
+msgid "Speech rate"
+msgstr "Speech rate"
+
+msgid "Speech unmuted"
+msgstr "Speech unmuted"
+
+msgid "Starting screen recognition..."
+msgstr "Starting screen recognition..."
+
+msgid "Step counter not available"
+msgstr "Step counter not available"
+
+msgid "Steps: {0}. Target: {1}. {2} percent of daily goal reached."
+msgstr "Steps: {0}. Target: {1}. {2} percent of daily goal reached."
+
+msgid "Stress level: {0} out of 100."
+msgstr "Stress level: {0} out of 100."
+
+msgid "Stress sensor not available"
+msgstr "Stress sensor not available"
+
+msgid "Swipe Right: Next item. Swipe Left: Previous item. Swipe Up/Down: Cycle reading mode by default, but you can reassign any swipe, tap, double-tap, long-press, or multi-finger gesture in Settings > Gestures & Input > Gesture Actions."
+msgstr "Swipe Right: Next item. Swipe Left: Previous item. Swipe Up/Down: Cycle reading mode by default, but you can reassign any swipe, tap, double-tap, long-press, or multi-finger gesture in Settings > Gestures & Input > Gesture Actions."
+
+msgid "Switch"
+msgstr "Switch"
+
+msgid "System"
+msgstr "System"
+
+msgid "TTS engine set to {0}"
+msgstr "TTS engine set to {0}"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Toast: {0}"
+msgstr "Toast: {0}"
+
+msgid "Toggle Gesture Practice Mode"
+msgstr "Toggle Gesture Practice Mode"
+
+msgid "Turn on Gesture Practice Mode from this guide or Settings to safely try gestures - ZSR will announce which gesture it detected instead of performing the action, so you can learn safely before using them for real."
+msgstr "Turn on Gesture Practice Mode from this guide or Settings to safely try gestures - ZSR will announce which gesture it detected instead of performing the action, so you can learn safely before using them for real."
+
+msgid "Turning ZSR On or Off"
+msgstr "Turning ZSR On or Off"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Unlabeled {0}"
+msgstr "Unlabeled {0}"
+
+msgid "Unlabeled {0} {1}"
+msgstr "Unlabeled {0} {1}"
+
+msgid "Unlabelled"
+msgstr "Unlabelled"
+
+msgid "Vision"
+msgstr "Vision"
+
+msgid "We value your feedback to make ZSR better.\n\nPlease visit our website to report bugs or request features:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com"
+msgstr "We value your feedback to make ZSR better.\n\nPlease visit our website to report bugs or request features:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com"
+
+msgid "Words"
+msgstr "Words"
+
+msgid "You can enable or disable ZSR three ways: double or triple-click the physical Home button (set your preference in Settings > General > Accessibility Shortcut), assign a gesture to \"Turn ZSR On/Off\" in Gesture Actions, or tap the large ZSR shortcut card next to your watch faces."
+msgstr "You can enable or disable ZSR three ways: double or triple-click the physical Home button (set your preference in Settings > General > Accessibility Shortcut), assign a gesture to \"Turn ZSR On/Off\" in Gesture Actions, or tap the large ZSR shortcut card next to your watch faces."
+
+msgid "ZSR (Zepp OS Screen Reader) is a mission-critical accessibility service for blind and low-vision users on Amazfit devices.\n\nOur mission is to enable independent use of 100% of smartwatch features without sighted assistance.\n\nDeveloped by NVCDevelopmentTeam."
+msgstr "ZSR (Zepp OS Screen Reader) is a mission-critical accessibility service for blind and low-vision users on Amazfit devices.\n\nOur mission is to enable independent use of 100% of smartwatch features without sighted assistance.\n\nDeveloped by NVCDevelopmentTeam."
+
+msgid "ZSR Settings"
+msgstr "ZSR Settings"
+
+msgid "ZSR Started"
+msgstr "ZSR Started"
+
+msgid "ZSR has been turned on"
+msgstr "ZSR has been turned on"
+
+msgid "ZSR is committed to WCAG 2.1 Level AA compliance.\n\nOur goal is to make every interface element on Zepp OS fully accessible to blind and low-vision users.\n\nStatement: https://zeppreader.com/accessibility-statement"
+msgstr "ZSR is committed to WCAG 2.1 Level AA compliance.\n\nOur goal is to make every interface element on Zepp OS fully accessible to blind and low-vision users.\n\nStatement: https://zeppreader.com/accessibility-statement"
+
+msgid "brailleKeyboard"
+msgstr "Braille keyboard"
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "contextMenuClosed"
+msgstr "Context menu closed"
+
+msgid "contextMenuOpened"
+msgstr "Context menu opened"
+
+msgid "cycleNavigationMode"
+msgstr "Cycle navigation mode"
+
+msgid "disabled"
+msgstr "disabled"
+
+msgid "imageDescription"
+msgstr "Image description"
+
+msgid "noImageFocused"
+msgstr "No image focused"
+
+msgid "nothingToRepeat"
+msgstr "Nothing to repeat"
+
+msgid "objectDetails"
+msgstr "Object details"
+
+msgid "photoGuidance"
+msgstr "Photo guidance"
+
+msgid "readCenter"
+msgstr "Read center"
+
+msgid "readFromBottom"
+msgstr "Read from bottom"
+
+msgid "readFromTop"
+msgstr "Read from top"
+
+msgid "readSensors"
+msgstr "Read sensors"
+
+msgid "readStatusBar"
+msgstr "Read status bar"
+
+msgid "repeatLast"
+msgstr "Repeat last"
+
+msgid "screenCurtain"
+msgstr "Screen curtain"
+
+msgid "screenRecognition"
+msgstr "Screen recognition"
+
+msgid "spellOut"
+msgstr "Spell out"
+
+msgid "toggleSpeech"
+msgstr "Toggle speech"
+
+msgid "{0} items"
+msgstr "{0} items"
+
+msgid "{0}. Range {1} to {2}"
+msgstr "{0}. Range {1} to {2}"
+
+msgid "{0}. {1}"
+msgstr "{0}. {1}"
+
+msgid "describeCamera"
+msgstr "Describe camera"
+
+msgid "Voice control needs an online speech service. Add your key in the phone settings."
+msgstr "Voice control needs an online speech service. Add your key in the phone settings."
+
+msgid "I didn't hear anything. Please try again."
+msgstr "I didn't hear anything. Please try again."
+
+msgid "The online speech service rejected the request. Check your key and connection."
+msgstr "The online speech service rejected the request. Check your key and connection."
+
+msgid "Voice control is unavailable right now. Check your phone connection and internet."
+msgstr "Voice control is unavailable right now. Check your phone connection and internet."
+
+msgid "Voice control is not supported on this watch."
+msgstr "Voice control is not supported on this watch."
+
+msgid "Sorry, I didn't catch that command: {0}"
+msgstr "Sorry, I didn't catch that command: {0}"
+
+msgid "No readable content was found on this screen"
+msgstr "No readable content was found on this screen"
+
+msgid "Analog clock showing {0}. {1}. Steps: {2}. Heart rate: {3} beats per minute."
+msgstr "Analog clock showing {0}. {1}. Steps: {2}. Heart rate: {3} beats per minute."
+
+msgid "Digital clock. {0}. {1}. Steps: {2}. Heart rate: {3}."
+msgstr "Digital clock. {0}. {1}. Steps: {2}. Heart rate: {3}."
+
+msgid "Image: {0}"
+msgstr "Image: {0}"
+
+msgid "Could not describe image"
+msgstr "Could not describe image"
+
+msgid "Speech muted"
+msgstr "Speech muted"
+
+msgid "ZSR has been turned off"
+msgstr "ZSR has been turned off"
+
+msgid "Sidebar opened"
+msgstr "Sidebar opened"
+
+msgid "Sidebar closed"
+msgstr "Sidebar closed"
+
+msgid "Disable ZSR?"
+msgstr "Disable ZSR?"
+
+msgid "QR code, empty"
+msgstr "QR code, empty"
+
+msgid "QR code, web link to {0}"
+msgstr "QR code, web link to {0}"
+
+msgid "QR code, Wi-Fi network {0}"
+msgstr "QR code, Wi-Fi network {0}"
+
+msgid "Password {0}"
+msgstr "Password {0}"
+
+msgid "QR code, phone number {0}"
+msgstr "QR code, phone number {0}"
+
+msgid "QR code, email address {0}"
+msgstr "QR code, email address {0}"
+
+msgid "QR code: {0}"
+msgstr "QR code: {0}"
+
+msgid "Battery: {0}%"
+msgstr "Battery: {0}%"
+
+msgid "Continue to Home"
+msgstr "Continue to Home"
+
+msgid "Gesture practice mode off. Gestures will now perform their normal actions again."
+msgstr "Gesture practice mode off. Gestures will now perform their normal actions again."
+
+msgid "Gesture practice mode on. Try any gesture - ZSR will tell you what it detected instead of performing it."
+msgstr "Gesture practice mode on. Try any gesture - ZSR will tell you what it detected instead of performing it."
+
+msgid "Initializing..."
+msgstr "Initializing..."
+
+msgid "Open User Guide"
+msgstr "Open User Guide"
+
+msgid "Status: {0} | Speech engine: {1}"
+msgstr "Status: {0} | Speech engine: {1}"
+
+msgid "User Guide. Section {0} of {1}: {2}. Use the Next button for the next section."
+msgstr "User Guide. Section {0} of {1}: {2}. Use the Next button for the next section."
+
+msgid "Welcome to Zepp OS Screen Reader"
+msgstr "Welcome to Zepp OS Screen Reader"
+
+msgid "ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items."
+msgstr "ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items."
+
+msgid "Touch exploration and gestures"
+msgstr "Touch exploration and gestures"
+
+msgid "Vibration feedback"
+msgstr "Vibration feedback"
+
+msgid "Speech output"
+msgstr "Speech output"
+
+msgid "Offline voice"
+msgstr "Offline voice"
+
+msgid "Touch sounds"
+msgstr "Touch sounds"
+
+msgid "Voice commands (needs phone and internet)"
+msgstr "Voice commands (needs phone and internet)"
+
+msgid "System keyboard integration"
+msgstr "System keyboard integration"
+
+msgid "available"
+msgstr "available"
+
+msgid "not available on this watch"
+msgstr "not available on this watch"
+
+msgid "{0}: {1}"
+msgstr "{0}: {1}"
+
+msgid "This watch has no audio player, so ZSR answers with vibration instead of speech."
+msgstr "This watch has no audio player, so ZSR answers with vibration instead of speech."
+
+msgid "Device Support"
+msgstr "Device Support"
+
+msgid "Permissions Notice"
+msgstr "Permissions Notice"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "ZSR works with the permissions below. You can decline an optional permission: that feature will not work, but the others keep working.\n\nWatch:\n- Device information: to fit your watch model and screen.\n- Local storage: to keep your settings and the offline voice.\n- Vibration and sound: for touch feedback and speech.\n- Bluetooth: to talk to the Zepp app on your phone for speech, settings and voice features.\n- Health data (steps, heart rate, calories, distance, sleep, blood oxygen, stress): only read aloud when you ask for it.\n\nPhone and internet:\nZSR does not read your calls, messages or phone state. Speech is created by the Zepp app on your phone. Voice commands and image reading are optional, need the internet, and send audio or images only to the online service you set up yourself, and only when you use them.\n\nZSR runs as a Zepp OS Mini Program, so it can read only its own screens, not other apps."
+msgstr "ZSR works with the permissions below. You can decline an optional permission: that feature will not work, but the others keep working.\n\nWatch:\n- Device information: to fit your watch model and screen.\n- Local storage: to keep your settings and the offline voice.\n- Vibration and sound: for touch feedback and speech.\n- Bluetooth: to talk to the Zepp app on your phone for speech, settings and voice features.\n- Health data (steps, heart rate, calories, distance, sleep, blood oxygen, stress): only read aloud when you ask for it.\n\nPhone and internet:\nZSR does not read your calls, messages or phone state. Speech is created by the Zepp app on your phone. Voice commands and image reading are optional, need the internet, and send audio or images only to the online service you set up yourself, and only when you use them.\n\nZSR runs as a Zepp OS Mini Program, so it can read only its own screens, not other apps."
+
+msgid "ZSR respects your privacy and does not collect your personal data.\n\nThe text ZSR speaks is turned into speech by the Zepp app on your phone and kept on your watch; it is not sent to ZSR servers. The speech engine is downloaded once from a public package host.\n\nVoice commands and image reading are optional. When you use them, the audio or image is sent through your phone to the online service you configured yourself, and only then.\n\nFull policy: https://zeppreader.com/privacy-policy"
+msgstr "ZSR respects your privacy and does not collect your personal data.\n\nThe text ZSR speaks is turned into speech by the Zepp app on your phone and kept on your watch; it is not sent to ZSR servers. The speech engine is downloaded once from a public package host.\n\nVoice commands and image reading are optional. When you use them, the audio or image is sent through your phone to the online service you configured yourself, and only then.\n\nFull policy: https://zeppreader.com/privacy-policy"
+
+msgid "Audio ducking"
+msgstr "Audio ducking"
+
+msgid "Automatic updates"
+msgstr "Automatic updates"
+
+msgid "Available from Zepp OS 4.2; ZSR only reads its own screens."
+msgstr "Available from Zepp OS 4.2; ZSR only reads its own screens."
+
+msgid "Braille keyboard"
+msgstr "Braille keyboard"
+
+msgid "Device {0}, screen {1}, buttons {2}"
+msgstr "Device {0}, screen {1}, buttons {2}"
+
+msgid "Experimental"
+msgstr "Experimental"
+
+msgid "Health and fitness reading"
+msgstr "Health and fitness reading"
+
+msgid "Image reading, OCR and CAPTCHA (needs internet)"
+msgstr "Image reading, OCR and CAPTCHA (needs internet)"
+
+msgid "Item {0} of {1}"
+msgstr "Item {0} of {1}"
+
+msgid "Language {0}, speech engine {1}"
+msgstr "Language {0}, speech engine {1}"
+
+msgid "List position"
+msgstr "List position"
+
+msgid "Listing in the system accessibility settings"
+msgstr "Listing in the system accessibility settings"
+
+msgid "Main content"
+msgstr "Main content"
+
+msgid "Mini Programs are sandboxed and can only read their own screens."
+msgstr "Mini Programs are sandboxed and can only read their own screens."
+
+msgid "Multilingual speech"
+msgstr "Multilingual speech"
+
+msgid "Navigation area"
+msgstr "Navigation area"
+
+msgid "Needs Zepp OS 4.2 or newer."
+msgstr "Needs Zepp OS 4.2 or newer."
+
+msgid "Needs audio recording, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "Needs audio recording, available from Zepp OS 3.0 (API level 3.0)."
+
+msgid "Needs several fingers at once, but Zepp OS touch events report one finger."
+msgstr "Needs several fingers at once, but Zepp OS touch events report one finger."
+
+msgid "Needs the audio player, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "Needs the audio player, available from Zepp OS 3.0 (API level 3.0)."
+
+msgid "Needs your own online speech service, set in the phone settings."
+msgstr "Needs your own online speech service, set in the phone settings."
+
+msgid "No match for {0}"
+msgstr "No match for {0}"
+
+msgid "No public Zepp OS API lets an app register as an accessibility service."
+msgstr "No public Zepp OS API lets an app register as an accessibility service."
+
+msgid "Pause, resume and speech mode"
+msgstr "Pause, resume and speech mode"
+
+msgid "Punctuation, capitals and progress announcements"
+msgstr "Punctuation, capitals and progress announcements"
+
+msgid "Read diagnostics"
+msgstr "Read diagnostics"
+
+msgid "Reading modes and navigation"
+msgstr "Reading modes and navigation"
+
+msgid "Reading other apps, unlocking and system screens"
+msgstr "Reading other apps, unlocking and system screens"
+
+msgid "Reading phone notifications, messages and calls"
+msgstr "Reading phone notifications, messages and calls"
+
+msgid "Screen regions"
+msgstr "Screen regions"
+
+msgid "Screen search"
+msgstr "Screen search"
+
+msgid "Sentences that are not in the offline voice need the phone and an internet connection the first time."
+msgstr "Sentences that are not in the offline voice need the phone and an internet connection the first time."
+
+msgid "Separate speech volume"
+msgstr "Separate speech volume"
+
+msgid "Sets the volume of the ZSR player. Zepp OS may share it with the system volume."
+msgstr "Sets the volume of the ZSR player. Zepp OS may share it with the system volume."
+
+msgid "Status bar"
+msgstr "Status bar"
+
+msgid "Supported with limitations"
+msgstr "Supported with limitations"
+
+msgid "Two and three finger gestures"
+msgstr "Two and three finger gestures"
+
+msgid "Unavailable on this OS"
+msgstr "Unavailable on this OS"
+
+msgid "Unavailable on this watch"
+msgstr "Unavailable on this watch"
+
+msgid "Works by voice command. Typing a search is not possible without a keyboard."
+msgstr "Works by voice command. Typing a search is not possible without a keyboard."
+
+msgid "ZSR can check for a new version; Zepp OS installs updates only through the Zepp app."
+msgstr "ZSR can check for a new version; Zepp OS installs updates only through the Zepp app."
+
+msgid "ZSR version {0}"
+msgstr "ZSR version {0}"
+
+msgid "Zepp OS API level {0}"
+msgstr "Zepp OS API level {0}"
+
+msgid "Zepp OS gives apps no camera or screenshot access, so an image must be supplied."
+msgstr "Zepp OS gives apps no camera or screenshot access, so an image must be supplied."
+
+msgid "Zepp OS gives apps no way to receive phone notifications or calls."
+msgstr "Zepp OS gives apps no way to receive phone notifications or calls."
+
+msgid "Zepp OS has no audio-focus API, so other audio cannot be lowered."
+msgstr "Zepp OS has no audio-focus API, so other audio cannot be lowered."
+
+msgid "Zepp OS touch events report one finger, so these gestures cannot be detected."
+msgstr "Zepp OS touch events report one finger, so these gestures cannot be detected."
+
+msgid "voiceCommand"
+msgstr "Voice command"

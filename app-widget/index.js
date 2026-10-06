@@ -2,6 +2,7 @@ import { createWidget, widget } from '@zos/ui'
 import { push } from '@zos/router'
 import { getDeviceInfo } from '@zos/device'
 
+import { px } from '../lib/utils/px.js'
 const { width } = getDeviceInfo()
 const storage =
   typeof globalThis.hmStorage !== 'undefined'

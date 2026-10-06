@@ -1,11 +1,15 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget, text_style } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { loadSettings } from '../../lib/core/config.js'
+import { describeDiagnostics } from '../../lib/utils/featureSupport.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -19,7 +23,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -31,7 +35,7 @@ export default Page({
       text_size: 28
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 20,
       y: 80,
       w: width - 40,
@@ -41,7 +45,22 @@ export default Page({
       ),
       color: 0xaaaaaa,
       text_size: 20,
-      text_style: widget.TEXT_STYLE_WRAP
+      text_style: text_style.WRAP
+    })
+
+    // Diagnostics to attach to a bug report: ZSR version, Zepp OS API level,
+    // device model and which features this watch supports. No personal data.
+    createChild(root, widget.BUTTON, {
+      x: 40,
+      y: height - 110,
+      w: width - 80,
+      h: 60,
+      text: gettext('Read diagnostics'),
+      color: 0xffffff,
+      normal_color: 0x333333,
+      press_color: 0x666666,
+      radius: 30,
+      click_func: () => ScreenReader.speak(describeDiagnostics(), { priority: 'high' })
     })
 
     return root

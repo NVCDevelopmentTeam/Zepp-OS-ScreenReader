@@ -1,14 +1,16 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
 import { saveSettings, loadSettings } from '../../lib/core/config.js'
 import VisionService from '../../lib/core/visionService.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
-  root.createWidget(widget.TEXT, {
+  createChild(root, widget.TEXT, {
     x: 40,
     y: y,
     w: width - 150,
@@ -19,7 +21,7 @@ function createToggle(root, y, label, checked, onChange) {
     align_v: 2
   })
 
-  root.createWidget(widget.SLIDE_SWITCH, {
+  createChild(root, widget.SLIDE_SWITCH, {
     x: width - 110,
     y: y + 10,
     w: 80,
@@ -33,7 +35,7 @@ function createToggle(root, y, label, checked, onChange) {
   })
 }
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -50,7 +52,7 @@ export default Page({
 
     const config = globalThis.ScreenReaderConfig
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,

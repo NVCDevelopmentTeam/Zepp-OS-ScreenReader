@@ -10,7 +10,7 @@ export default function renderShortcut(_props) {
   return [
     Section({ title: 'Shortcut Card' }, [
       Row([
-        Text('Shortcut Card Action'),
+        Text('Shortcut Card Action (experimental, not active yet)'),
         Select({
           settingsKey: 'shortcutCardAction',
           options: [

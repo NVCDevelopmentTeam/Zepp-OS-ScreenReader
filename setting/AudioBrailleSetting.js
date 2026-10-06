@@ -17,7 +17,7 @@ export default function renderAudioBraille(_props) {
         // output routing (speaker vs Bluetooth) was found - the system
         // handles audio routing automatically based on what's connected.
         // Left as a persisted, non-crashing choice rather than removed.
-        Text('Audio Routing (not yet supported by Zepp OS)'),
+        Text('Audio Routing (not yet supported by Zepp OS) (experimental, not active yet)'),
         Select({
           settingsKey: 'audioRouting',
           options: [

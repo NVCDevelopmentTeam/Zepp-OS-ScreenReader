@@ -1,5 +1,5 @@
-import { posts } from '$lib/data/posts'
-import { siteTitle, siteDescription, siteURL } from '$lib/info'
+import { posts } from '#lib/data/posts.js'
+import { siteTitle, siteDescription, siteURL } from '#lib/info.js'
 
 export const prerender = true
 

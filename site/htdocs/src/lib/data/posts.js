@@ -1,4 +1,4 @@
-import { browser } from '$app/environment'
+import { browser } from '$app/env'
 import { render } from 'svelte/server'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
@@ -21,6 +21,7 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
 
     // Obtain preview text for each post
     const previewElement = post.metadata.preview || html.querySelector('p')
+
     const preview = previewElement ? previewElement.innerText || previewElement.textContent : ''
 
     return {
@@ -47,18 +48,16 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
       },
       readingTime: readingTime(html.textContent || '').text
     }
-  })
-  // Sort posts by date (most recent first)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  // Add links to next and previous posts for navigation
+  }) // Sort posts by date (most recent first)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Add links to next and previous posts for navigation
   .map((post, index, allPosts) => ({
     ...post,
     next: allPosts[index - 1] || null,
     previous: allPosts[index + 1] || null
-  }))
-  // Filter out posts that are unpublished or marked as hidden
+  })) // Filter out posts that are unpublished or marked as hidden
   .filter((post) => {
     const isPublished = new Date() >= new Date(post.date)
     const isHidden = !!post.hidden
+
     return isPublished && !isHidden
   })

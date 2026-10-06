@@ -1,5 +1,5 @@
 <script>
-  import { accessKey } from '$lib/info.js';
+  import { accessKey } from '#lib/info.js';
   let status = $state('');
   let success = $state(false);
 

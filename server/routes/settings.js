@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { logger } from '../../lib/utils/logger.js'
-import { settingsManager } from '../../setting/utils.js'
+import { logger } from '../utils/logger.js'
+import { settingsManager } from '../utils/settingsManager.js'
 
 const router = Router()
 

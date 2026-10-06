@@ -12,7 +12,7 @@ export default function renderTextToSpeech(_props) {
   return [
     Section({ title: 'Text-to-Speech Engine' }, [
       Row([
-        Text('Voice Quality'),
+        Text('Voice Quality (experimental, not active yet)'),
         Select({
           settingsKey: 'ttsQuality',
           options: [

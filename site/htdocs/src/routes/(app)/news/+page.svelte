@@ -1,6 +1,6 @@
 <script>
-  import { siteTitle } from '$lib/info.js';
-  import PostsList from '$lib/components/PostsList.svelte';
+  import { siteTitle } from '#lib/info.js';
+  import PostsList from '#lib/components/PostsList.svelte';
 
   /**
    * @typedef {Object} Props

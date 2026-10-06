@@ -7,7 +7,7 @@ export default function renderInputComposition(_props) {
   return [
     Section({ title: 'Input Composition' }, [
       Row([
-        Text('Echo Behavior (feature not yet built)'),
+        Text('Echo Behavior (feature not yet built) (experimental, not active yet)'),
         Select({
           settingsKey: 'echoBehavior',
           options: [
@@ -23,7 +23,7 @@ export default function renderInputComposition(_props) {
         Toggle({ settingsKey: 'announceAutocomplete' })
       ]),
       Row([
-        Text('Selection changes (feature not yet built)'),
+        Text('Selection changes (feature not yet built) (experimental, not active yet)'),
         Toggle({ settingsKey: 'announceSelection' })
       ])
     ])

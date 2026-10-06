@@ -1,9 +1,11 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
 const gesturesList = [
@@ -15,7 +17,7 @@ const gesturesList = [
   { name: gettext('Long Press'), key: 'gesture_long_press', value: 'toggle_mute' }
 ]
 
-export default Page({
+export default ZSRPage({
   onInit() {
     globalThis.ScreenReaderConfig = loadSettings()
   },
@@ -28,7 +30,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 10,
       w: width,
@@ -42,7 +44,7 @@ export default Page({
 
     const config = globalThis.ScreenReaderConfig || {}
 
-    root.createWidget(widget.SCROLL_LIST, {
+    createChild(root, widget.SCROLL_LIST, {
       x: 0,
       y: 70,
       w: width,

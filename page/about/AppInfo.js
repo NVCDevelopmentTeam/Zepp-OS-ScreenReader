@@ -1,12 +1,14 @@
-import { createWidget, widget, showToast } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget, text_style, event } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { push } from '@zos/router'
 import { saveSettings, loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     this.tapCount = 0
     this.lastTapTime = 0
@@ -23,7 +25,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -42,7 +44,7 @@ export default Page({
       `${gettext('Developer')}: NVCDevelopmentTeam`
     ]
 
-    const infoWidget = root.createWidget(widget.TEXT, {
+    const infoWidget = createChild(root, widget.TEXT, {
       x: 20,
       y: 80,
       w: width - 40,
@@ -50,12 +52,12 @@ export default Page({
       text: info.join('\n'),
       color: 0xaaaaaa,
       text_size: 18,
-      text_style: widget.TEXT_STYLE_WRAP,
+      text_style: text_style.WRAP,
       align_h: 2
     })
 
     // Unlock developer options with 5 taps
-    infoWidget.addEventListener(widget.event.CLICK, () => {
+    infoWidget.addEventListener(event.CLICK_UP, () => {
       const now = Date.now()
       if (now - this.lastTapTime < 500) {
         this.tapCount++
@@ -81,6 +83,8 @@ export default Page({
       { name: "What's New", url: 'page/about/WhatsNew', type_id: 1 },
       { name: 'License Agreement', url: 'page/about/License', type_id: 1 },
       { name: 'Copyright Notice', url: 'page/about/Copyright', type_id: 1 },
+      { name: gettext('Device Support'), url: 'page/about/DeviceSupport', type_id: 1 },
+      { name: gettext('Permissions Notice'), url: 'page/about/PermissionsNotice', type_id: 1 },
       { name: 'Privacy Policy', url: 'page/about/Privacy', type_id: 1 },
       { name: 'Terms of Service', url: 'page/about/Terms', type_id: 1 },
       { name: 'Accessibility Statement', url: 'page/about/AccessibilityStatement', type_id: 1 },
@@ -93,7 +97,7 @@ export default Page({
       }
     ]
 
-    root.createWidget(widget.SCROLL_LIST, {
+    createChild(root, widget.SCROLL_LIST, {
       x: 20,
       y: 210,
       w: width - 40,

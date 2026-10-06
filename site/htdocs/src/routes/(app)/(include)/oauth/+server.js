@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit'
-import { OAUTH_GITHUB_CLIENT_ID } from '$env/static/private'
+import { OAUTH_GITHUB_CLIENT_ID } from '$app/env/private'
 
 export const prerender = false
 
@@ -11,5 +11,5 @@ export const GET = async () => {
   })
 
   // Redirect to GitHub's OAuth authorization page
-  redirect(302, `https://github.com/login/oauth/authorize?${params.toString()}`)
+  redirect(302, `https://github.com/login/oauth/authorize?${params.toString()}`, { external: true })
 }

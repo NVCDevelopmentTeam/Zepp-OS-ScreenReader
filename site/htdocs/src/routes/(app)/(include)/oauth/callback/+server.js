@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit'
-import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET } from '$env/static/private'
+import { OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET } from '$app/env/private'
 
 export const prerender = false
 
@@ -25,11 +25,7 @@ export const GET = async ({ url }) => {
     }
 
     const body = await response.json()
-
-    const content = {
-      token: body.access_token,
-      provider: 'github'
-    }
+    const content = { token: body.access_token, provider: 'github' }
 
     const script = `
       <script>

@@ -1,14 +1,16 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
-import ScreenReader from '../../lib/core/screenReader.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 import { saveSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
-  root.createWidget(widget.TEXT, {
+  createChild(root, widget.TEXT, {
     x: 40,
     y: y,
     w: width - 150,
@@ -19,7 +21,7 @@ function createToggle(root, y, label, checked, onChange) {
     align_v: 2
   })
 
-  root.createWidget(widget.SLIDE_SWITCH, {
+  createChild(root, widget.SLIDE_SWITCH, {
     x: width - 110,
     y: y + 10,
     w: 80,
@@ -33,7 +35,7 @@ function createToggle(root, y, label, checked, onChange) {
   })
 }
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = {}
@@ -48,7 +50,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -91,7 +93,7 @@ export default Page({
     )
 
     // Check for updates
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: 340,
       w: width - 80,
@@ -102,7 +104,7 @@ export default Page({
       press_color: 0x555555,
       radius: 30,
       click_func: () => {
-        ScreenReader.speak('Checking for updates at zeppreader.com', { priority: 'high' })
+        ScreenReader.speak(gettext('Checking for updates at zeppreader.com'), { priority: 'high' })
       }
     })
 

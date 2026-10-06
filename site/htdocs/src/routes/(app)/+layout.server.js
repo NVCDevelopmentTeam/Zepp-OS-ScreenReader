@@ -1,4 +1,4 @@
-import { isMobile } from '$lib/util'
+import { isMobile } from '#lib/util.js'
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ setHeaders, request }) {

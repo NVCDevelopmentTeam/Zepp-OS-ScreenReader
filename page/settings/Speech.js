@@ -1,14 +1,16 @@
-import { createWidget, widget, prop } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget, prop } from '@zos/ui'
+import { gettext, format } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
-import ScreenReader from '../../lib/core/screenReader.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 import { saveSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
-  root.createWidget(widget.TEXT, {
+  createChild(root, widget.TEXT, {
     x: 40,
     y: y,
     w: width - 150,
@@ -19,7 +21,7 @@ function createToggle(root, y, label, checked, onChange) {
     align_v: 2
   })
 
-  root.createWidget(widget.SLIDE_SWITCH, {
+  createChild(root, widget.SLIDE_SWITCH, {
     x: width - 110,
     y: y + 10,
     w: 80,
@@ -36,7 +38,7 @@ function createToggle(root, y, label, checked, onChange) {
 function createStepper(root, y, label, value, min, max, onChange) {
   let currentVal = value
 
-  const textWidget = root.createWidget(widget.TEXT, {
+  const textWidget = createChild(root, widget.TEXT, {
     x: 40,
     y: y,
     w: width - 80,
@@ -47,7 +49,7 @@ function createStepper(root, y, label, value, min, max, onChange) {
     align_v: 2
   })
 
-  root.createWidget(widget.BUTTON, {
+  createChild(root, widget.BUTTON, {
     x: 40,
     y: y + 45,
     w: (width - 100) / 2,
@@ -66,7 +68,7 @@ function createStepper(root, y, label, value, min, max, onChange) {
     }
   })
 
-  root.createWidget(widget.BUTTON, {
+  createChild(root, widget.BUTTON, {
     x: 40 + (width - 100) / 2 + 20,
     y: y + 45,
     w: (width - 100) / 2,
@@ -86,7 +88,7 @@ function createStepper(root, y, label, value, min, max, onChange) {
   })
 }
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = {}
@@ -103,7 +105,7 @@ export default Page({
 
     const config = globalThis.ScreenReaderConfig
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 20,
       w: width,
@@ -155,7 +157,7 @@ export default Page({
 
     // TTS Engine Selector
     const engine = config.primaryTTSEngine || 'espeak'
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: 510,
       w: width - 80,
@@ -169,7 +171,7 @@ export default Page({
         const next = engine === 'native' ? 'espeak' : 'native'
         config.primaryTTSEngine = next
         saveSettings(config)
-        ScreenReader.speak(`${gettext('TTS engine set to')} ${next}`, { priority: 'high' })
+        ScreenReader.speak(format(gettext('TTS engine set to {0}'), next), { priority: 'high' })
         replace({ url: 'page/settings/Speech' })
       }
     })

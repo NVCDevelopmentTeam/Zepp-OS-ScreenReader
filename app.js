@@ -15,6 +15,11 @@ import ErrorMonitor from './lib/utils/errorMonitor.js'
 import { ServerConfig, saveSettings } from './lib/core/config.js'
 import BrailleService from './lib/core/braille.js'
 import SpeechHistory from './lib/utils/speechHistory.js'
+import { registerApiCapabilityProbes } from './lib/utils/apiCapability.js'
+import { gettext, format } from './lib/utils/i18n.js'
+import { loadMedia, getMediaModule as getMediaModuleSafe } from './lib/equipment/mediaSupport.js'
+import SpeechPlayer from './lib/equipment/speechPlayer.js'
+import { getApiCapabilityLevel } from './lib/utils/apiCapability.js'
 // Side-effect import: ContextMenu (and, transitively, BrailleKeyboard) is a
 // self-registering singleton (sets globalThis.ContextMenuInstance at
 // module scope) - but nothing was ever importing this file, so that
@@ -40,6 +45,58 @@ App({
     // Initialize globalData if it doesn't exist (some versions of Zepp OS)
     if (!this.globalData) {
       this.globalData = {}
+    }
+
+    // Dynamic, try/catch-wrapped probes for APIs newer than this app's
+    // declared baseline (apiVersion.minVersion 2.0.0). A STATIC
+    // `import { x } from '@zos/y'` of a name that doesn't exist on a
+    // given device's actual firmware can fail to resolve entirely - real
+    // beta-testing feedback confirms this happens in practice: ZSR
+    // installed but wouldn't run on Zepp OS 2.0, and wouldn't even
+    // install on Zepp OS 5.0. Dynamic import() inside try/catch lets a
+    // missing/renamed API on either an older or a newer device degrade
+    // to "capability not detected" instead of crashing app startup or
+    // failing installation validation.
+    try {
+      const probes = {}
+      try {
+        const settingsModule = await import('@zos/settings')
+        probes.getSystemInfo = settingsModule.getSystemInfo
+      } catch (_e) {
+        // Not present on this firmware - fine, level stays at baseline.
+      }
+      try {
+        const sensorModule = await import('@zos/sensor')
+        probes.checkSensor = sensorModule.checkSensor
+      } catch (_e) {
+        // Not present on this firmware - fine.
+      }
+      try {
+        const interactionModule = await import('@zos/interaction')
+        probes.SYSTEM_KEYBOARD = interactionModule.SYSTEM_KEYBOARD
+      } catch (_e) {
+        // Not present on this firmware - fine.
+      }
+      registerApiCapabilityProbes(probes)
+    } catch (e) {
+      log.warn('API capability probing failed (non-fatal):', String(e))
+    }
+
+    // Audio playback ('@zos/media') exists from API_LEVEL 3.0 only; resolve it
+    // before any service tries to create a player.
+    const hasAudio = await loadMedia()
+    // One line that tells, per watch/OS, which features are available. It is
+    // meant to be copied from the console into a bug report.
+    try {
+      const media = getMediaModuleSafe()
+      const diag = {
+        apiLevel: getApiCapabilityLevel(),
+        audioPlayback: hasAudio,
+        recorder: !!(media && media.id && media.id.RECORDER && media.codec)
+      }
+      console.log('[ZSR diag] device ' + JSON.stringify(diag))
+    } catch (_e) {
+      console.log('[ZSR diag] device probe failed')
     }
 
     // Load configuration
@@ -79,17 +136,28 @@ App({
       VoiceControlService.init()
       AccessibilityService.init()
 
+      // Ask the phone to download the speech engine now, in the background,
+      // so the user's first sentence is not delayed. Best effort only.
+      Promise.resolve()
+        .then(() =>
+          messageBuilder.request({ method: 'TTS_WARMUP', params: {} }, { timeout: 120000 })
+        )
+        // Then download the offline voice in the background (resumable) so
+        // interface labels are spoken instantly with no phone round trip.
+        .then(() => ScreenReader.syncOfflineVoice(messageBuilder))
+        .catch((e) => log.info('Speech engine warm-up skipped: ' + String(e)))
+
       // 4. Handle incoming messages
-      messageBuilder.on('request', async (ctx) => {
+      const handleIncoming = async (payloadBuf) => {
         try {
-          const jsonRpc = messageBuilder.buf2Json(ctx.request.payload)
+          const jsonRpc = messageBuilder.buf2Json(payloadBuf)
           const { method, params = {} } = jsonRpc || {}
 
           if (method === 'NOTIFICATION_RECEIVE') {
             const {
               title = '',
               content = '',
-              appName = 'System',
+              appName = gettext('System'),
               type = 'push',
               isPriority
             } = params
@@ -118,7 +186,7 @@ App({
               let announcement = ''
 
               if (type === 'sms') {
-                announcement = `New SMS from ${title}: ${content}`
+                announcement = format(gettext('New SMS from {0}: {1}'), title, content)
               } else if (type === 'call') {
                 const callerName = params.callerName || title || ''
                 const phoneNumber =
@@ -126,14 +194,26 @@ App({
                   params.callerNumber ||
                   (content !== callerName ? content : '')
                 if (callerName && phoneNumber && callerName !== phoneNumber) {
-                  announcement = `Incoming call from ${callerName}, number ${phoneNumber}`
+                  announcement = format(
+                    gettext('Incoming call from {0}, number {1}'),
+                    callerName,
+                    phoneNumber
+                  )
                 } else {
-                  announcement = `Incoming call from ${callerName || phoneNumber || 'Unknown'}`
+                  announcement = format(
+                    gettext('Incoming call from {0}'),
+                    callerName || phoneNumber || gettext('Unknown')
+                  )
                 }
               } else if (type === 'missed_call') {
-                announcement = `Missed call from ${title || 'Unknown'}`
+                announcement = format(gettext('Missed call from {0}'), title || gettext('Unknown'))
               } else {
-                announcement = `Notification from ${appName}: ${title}. ${content}`
+                announcement = format(
+                  gettext('Notification from {0}: {1}. {2}'),
+                  appName,
+                  title,
+                  content
+                )
               }
 
               await ScreenReader.speak(announcement, { priority: 'high', secondary: true })
@@ -149,14 +229,17 @@ App({
               // BrailleService's own internal `currentTable` (what
               // translation actually uses) never synced with it.
               BrailleService.setTable(value)
-              if (globalThis.ScreenReaderConfig) globalThis.ScreenReaderConfig[key] = value
+              if (globalThis.ScreenReaderConfig) {
+                globalThis.ScreenReaderConfig[key] = value
+                saveSettings(globalThis.ScreenReaderConfig)
+              }
             } else if (key === 'resetSettingsSignal') {
               // "Reset All Settings" button (setting/DeveloperSettings.js)
               // previously just stored a timestamp nobody read.
               const defaults = JSON.parse(JSON.stringify(ServerConfig))
               globalThis.ScreenReaderConfig = defaults
               saveSettings(defaults)
-              await ScreenReader.speak('All settings have been reset to defaults.', {
+              await ScreenReader.speak(gettext('All settings have been reset to defaults.'), {
                 priority: 'high',
                 force: true
               })
@@ -167,11 +250,25 @@ App({
               // instead of silently doing nothing.
               const stats = ErrorMonitor.getErrorStats()
               await ScreenReader.speak(
-                `Debug log summary: ${stats.total} errors recorded, ${stats.recovered} recovered.`,
+                format(
+                  gettext('Debug log summary: {0} errors recorded, {1} recovered.'),
+                  stats.total,
+                  stats.recovered
+                ),
                 { priority: 'high', force: true }
               )
             } else if (globalThis.ScreenReaderConfig && key !== undefined) {
               globalThis.ScreenReaderConfig[key] = value
+              // CRITICAL FIX: every setting changed from the phone's
+              // Settings App was only ever updated in-memory here - never
+              // persisted to device storage. That meant every single
+              // preference silently reverted to defaults the moment ZSR
+              // restarted on the watch (app relaunch, device reboot),
+              // regardless of how many settings screens correctly wrote
+              // to config.js's schema. saveSettings() must run on every
+              // update, not just the special-cased reset/braille-table
+              // paths above.
+              saveSettings(globalThis.ScreenReaderConfig)
             }
           }
         } catch (error) {
@@ -182,6 +279,24 @@ App({
           // message handling for the rest of the session.
           log.error('App Message Receive Error:', String(error))
         }
+      }
+
+      // Phone -> watch delivery has two shapes, and BOTH must be handled:
+      //  - side service `messageBuilder.call(...)` (fire-and-forget) is emitted
+      //    on the device as a 'call' event whose argument IS the payload
+      //    (payload bytes in `.payload`);
+      //  - side service `messageBuilder.request(...)` is emitted as 'request'
+      //    with `ctx.request.payload` and expects a response.
+      // Only 'request' was handled before, so every setting change and
+      // notification sent with call() was silently dropped.
+      messageBuilder.on('call', (fullPayload) => handleIncoming(fullPayload && fullPayload.payload))
+      messageBuilder.on('request', async (ctx) => {
+        await handleIncoming(ctx.request.payload)
+        try {
+          ctx.response({ data: { result: 'OK' } })
+        } catch (_e) {
+          /* requester may have gone away */
+        }
       })
 
       // Restore state and re-enable if it was on
@@ -190,7 +305,7 @@ App({
         // Delay greeting to ensure TTS is ready
         setTimeout(() => {
           ScreenReader.vibration.vibrate('success')
-          ScreenReader.speak('ZSR Started', { priority: 'high' })
+          ScreenReader.speak(gettext('ZSR Started'), { priority: 'high' })
         }, 1500)
       }
     } catch (error) {
@@ -241,13 +356,14 @@ App({
   },
 
   grantPermissions() {
+    // Must match the "permissions" array in app.json, and only lists codes that
+    // the official documentation / typings publish: getDeviceInfo, localStorage
+    // and the health sensors ZSR reads aloud on request. Audio playback and
+    // recording ('@zos/media'), @zos/ble and the Vibrator document no
+    // permission code, and ZSR uses no camera API, so none is requested.
     const permissions = [
       'data:os.device.info',
       'device:os.local_storage',
-      'device:os.vibration',
-      'device:os.sound',
-      'device:os.camera',
-      'device:os.ble',
       'data:user.hd.heart_rate',
       'data:user.hd.sleep',
       'data:user.hd.spo2',
@@ -278,12 +394,18 @@ App({
 
   onDestroy() {
     console.log('app on destroy invoke')
+    // Free the audio player: the media docs call release() when playback is over.
+    try {
+      SpeechPlayer.dispose()
+    } catch (_e) {
+      /* nothing to release */
+    }
     // Use getApp() to access globalData — avoids the 'this' type mismatch
     // in the @zeppos/device-types App Option definition which does not expose
     // globalData on the lifecycle context.
     const app = getApp()
-    if (app.globalData && app.globalData.messageBuilder) {
-      app.globalData.messageBuilder.disConnect()
+    if (app._options.globalData && app._options.globalData.messageBuilder) {
+      app._options.globalData.messageBuilder.disConnect()
     }
   }
 })

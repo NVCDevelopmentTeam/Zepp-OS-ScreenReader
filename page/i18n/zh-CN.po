@@ -378,3 +378,708 @@ msgstr "开启 ZSR"
 
 msgid "About"
 msgstr "关于"
+
+msgid "All settings have been reset to defaults."
+msgstr "所有设置已恢复为默认值。"
+
+msgid "Blank password"
+msgstr "密码为空"
+
+msgid "Blood oxygen sensor not available"
+msgstr "血氧传感器不可用"
+
+msgid "Blood oxygen: {0} percent."
+msgstr "血氧：百分之{0}。"
+
+msgid "Braille keyboard input is not yet available on this screen."
+msgstr "此屏幕暂不支持盲文键盘输入。"
+
+msgid "Button"
+msgstr "按钮"
+
+msgid "Calorie data not available"
+msgstr "没有卡路里数据"
+
+msgid "Camera guidance active. Point camera steadily."
+msgstr "相机引导已开启，请保持相机稳定。"
+
+msgid "Camera guidance requires phone companion connection."
+msgstr "相机引导需要连接手机。"
+
+msgid "Camera guidance stopped."
+msgstr "相机引导已停止。"
+
+msgid "Capturing image for scene analysis, please hold still..."
+msgstr "正在拍摄图像以分析场景，请保持不动……"
+
+msgid "Characters"
+msgstr "字符"
+
+msgid "Charger disconnected."
+msgstr "已断开充电器。"
+
+msgid "Charging. Battery at {0} percent."
+msgstr "正在充电，电量百分之{0}。"
+
+msgid "Checkbox"
+msgstr "复选框"
+
+msgid "Checking for updates at zeppreader.com"
+msgstr "正在 zeppreader.com 检查更新"
+
+msgid "Connected to {0}"
+msgstr "已连接到{0}"
+
+msgid "Connecting to {0}"
+msgstr "正在连接到{0}"
+
+msgid "Container"
+msgstr "容器"
+
+msgid "Context Menu"
+msgstr "上下文菜单"
+
+msgid "Controls"
+msgstr "控件"
+
+msgid "Cursor & Navigation"
+msgstr "光标与导航"
+
+msgid "Cycle List"
+msgstr "循环列表"
+
+msgid "Debug log summary: {0} errors recorded, {1} recovered."
+msgstr "调试日志摘要：共记录{0}个错误，已恢复{1}个。"
+
+msgid "Default navigation"
+msgstr "默认导航"
+
+msgid "Detected: {0}"
+msgstr "检测到：{0}"
+
+msgid "Developer Options"
+msgstr "开发者选项"
+
+msgid "Dialog"
+msgstr "对话框"
+
+msgid "Distance data not available"
+msgstr "没有距离数据"
+
+msgid "Do you want to turn off ZSR? Press OK to stop immediately."
+msgstr "要关闭 ZSR 吗？按“确定”立即停止。"
+
+msgid "Double tap to activate"
+msgstr "双击以激活"
+
+msgid "Double tap to toggle"
+msgstr "双击以切换"
+
+msgid "Entering page"
+msgstr "进入页面"
+
+msgid "Error reading QR code"
+msgstr "读取二维码出错"
+
+msgid "Failed to analyze scene."
+msgstr "无法分析场景。"
+
+msgid "Failed to open camera on phone."
+msgstr "无法打开手机相机。"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Headings"
+msgstr "标题"
+
+msgid "Heart rate sensor not available"
+msgstr "心率传感器不可用"
+
+msgid "Heart rate: {0} beats per minute"
+msgstr "心率：每分钟{0}次"
+
+msgid "Image"
+msgstr "图像"
+
+msgid "Incoming call from {0}"
+msgstr "来电：{0}"
+
+msgid "Incoming call from {0}, number {1}"
+msgstr "来电：{0}，号码{1}"
+
+msgid "Links"
+msgstr "链接"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Listening..."
+msgstr "正在聆听……"
+
+msgid "Long-press anywhere on the screen to open the context menu, with quick actions like reading sensors, spelling out text, opening the braille keyboard, and repeating the last thing spoken."
+msgstr "在屏幕任意位置长按可打开上下文菜单，其中包含读取传感器、逐字拼读、打开盲文键盘和重复上一句语音等快捷操作。"
+
+msgid "Missed call from {0}"
+msgstr "未接来电：{0}"
+
+msgid "New SMS from {0}: {1}"
+msgstr "来自{0}的新短信：{1}"
+
+msgid "New version available"
+msgstr "有新版本可用"
+
+msgid "No element focused"
+msgstr "没有聚焦的元素"
+
+msgid "No element found at center of screen"
+msgstr "屏幕中央没有元素"
+
+msgid "No focusable elements on screen"
+msgstr "屏幕上没有可聚焦的元素"
+
+msgid "No headings found"
+msgstr "未找到标题"
+
+msgid "No history available"
+msgstr "暂无历史记录"
+
+msgid "No more {0}s found"
+msgstr "没有更多{0}了"
+
+msgid "No new notifications"
+msgstr "没有新通知"
+
+msgid "No next page available"
+msgstr "没有下一页"
+
+msgid "No sleep data available for today."
+msgstr "今天没有睡眠数据。"
+
+msgid "No text to navigate"
+msgstr "没有可导航的文本"
+
+msgid "No valid QR code detected"
+msgstr "未检测到有效的二维码"
+
+msgid "Notification from {0}: {1}. {2}"
+msgstr "来自{0}的通知：{1}。{2}"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Off"
+msgstr "关"
+
+msgid "On"
+msgstr "开"
+
+msgid "Open Settings on your phone to manage speech rate and voice, gestures, notifications, braille, and privacy features like Screen Curtain."
+msgstr "在手机上打开设置，可管理语速与声音、手势、通知、盲文以及“屏幕遮蔽”等隐私功能。"
+
+msgid "Opening camera guidance. This feature is experimental and depends on your phone connection - hold your phone steady and pointed where you want to photograph."
+msgstr "正在打开相机引导。此功能为实验性功能，依赖手机连接。请稳住手机并对准要拍摄的位置。"
+
+msgid "Paragraphs"
+msgstr "段落"
+
+msgid "Password field, blank"
+msgstr "密码框，为空"
+
+msgid "Password field, {0} bullets"
+msgstr "密码框，{0}个字符"
+
+msgid "Picker"
+msgstr "选择器"
+
+msgid "Practicing Gestures"
+msgstr "练习手势"
+
+msgid "Progress"
+msgstr "进度"
+
+msgid "Progress bar"
+msgstr "进度条"
+
+msgid "QR code detected. Content: "
+msgstr "检测到二维码。内容："
+
+msgid "QR code generated successfully"
+msgstr "二维码生成成功"
+
+msgid "Radio"
+msgstr "单选按钮"
+
+msgid "Rate {0}"
+msgstr "语速{0}"
+
+msgid "Rate {0}%"
+msgstr "语速{0}%"
+
+msgid "Read Calories"
+msgstr "读取卡路里"
+
+msgid "Read Distance"
+msgstr "读取距离"
+
+msgid "Reading screen"
+msgstr "正在朗读屏幕"
+
+msgid "Review: {0}"
+msgstr "回顾：{0}"
+
+msgid "Scene description requires phone companion connection."
+msgstr "场景描述需要连接手机。"
+
+msgid "Scene description: {0}"
+msgstr "场景描述：{0}"
+
+msgid "Screen curtain disabled"
+msgstr "屏幕遮蔽已关闭"
+
+msgid "Screen curtain enabled"
+msgstr "屏幕遮蔽已开启"
+
+msgid "Screen reader disabled"
+msgstr "屏幕朗读已关闭"
+
+msgid "Screen reader enabled"
+msgstr "屏幕朗读已开启"
+
+msgid "Sentences"
+msgstr "句子"
+
+msgid "Sleep data not available"
+msgstr "没有睡眠数据"
+
+msgid "Sleep summary: {0} hours and {1} minutes total sleep."
+msgstr "睡眠摘要：共睡{0}小时{1}分钟。"
+
+msgid "Slider"
+msgstr "滑块"
+
+msgid "Speech"
+msgstr "语音"
+
+msgid "Speech History"
+msgstr "语音历史"
+
+msgid "Speech rate"
+msgstr "语速"
+
+msgid "Speech unmuted"
+msgstr "已取消静音"
+
+msgid "Starting screen recognition..."
+msgstr "正在开始屏幕识别……"
+
+msgid "Step counter not available"
+msgstr "计步器不可用"
+
+msgid "Steps: {0}. Target: {1}. {2} percent of daily goal reached."
+msgstr "步数：{0}。目标：{1}。已完成每日目标的百分之{2}。"
+
+msgid "Stress level: {0} out of 100."
+msgstr "压力水平：{0}（满分100）。"
+
+msgid "Stress sensor not available"
+msgstr "压力传感器不可用"
+
+msgid "Swipe Right: Next item. Swipe Left: Previous item. Swipe Up/Down: Cycle reading mode by default, but you can reassign any swipe, tap, double-tap, long-press, or multi-finger gesture in Settings > Gestures & Input > Gesture Actions."
+msgstr "右滑：下一项。左滑：上一项。上滑或下滑：默认切换阅读模式。您可以在“设置 > 手势与输入 > 手势操作”中重新分配任何滑动、点按、双击、长按或多指手势。"
+
+msgid "Switch"
+msgstr "开关"
+
+msgid "System"
+msgstr "系统"
+
+msgid "TTS engine set to {0}"
+msgstr "语音引擎已设置为{0}"
+
+msgid "Text"
+msgstr "文本"
+
+msgid "Toast: {0}"
+msgstr "提示：{0}"
+
+msgid "Toggle Gesture Practice Mode"
+msgstr "切换手势练习模式"
+
+msgid "Turn on Gesture Practice Mode from this guide or Settings to safely try gestures - ZSR will announce which gesture it detected instead of performing the action, so you can learn safely before using them for real."
+msgstr "在本指南或设置中开启“手势练习模式”即可安全地尝试手势：ZSR 只会播报检测到的手势而不执行操作，让您先学习再实际使用。"
+
+msgid "Turning ZSR On or Off"
+msgstr "开启或关闭 ZSR"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Unlabeled {0}"
+msgstr "未标注的{0}"
+
+msgid "Unlabeled {0} {1}"
+msgstr "未标注的{0} {1}"
+
+msgid "Unlabelled"
+msgstr "未标注"
+
+msgid "Vision"
+msgstr "视觉"
+
+msgid "We value your feedback to make ZSR better.\n\nPlease visit our website to report bugs or request features:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com"
+msgstr "我们重视您的反馈，以便让 ZSR 更好。\n\n请访问我们的网站报告错误或提出功能建议：\n\nhttps://zeppreader.com/contact\n\n电子邮件：support@zeppreader.com"
+
+msgid "Words"
+msgstr "单词"
+
+msgid "You can enable or disable ZSR three ways: double or triple-click the physical Home button (set your preference in Settings > General > Accessibility Shortcut), assign a gesture to \"Turn ZSR On/Off\" in Gesture Actions, or tap the large ZSR shortcut card next to your watch faces."
+msgstr "您可以通过三种方式开启或关闭 ZSR：双击或三击实体主页键（在“设置 > 常规 > 无障碍快捷方式”中选择）、在“手势操作”中为“开启/关闭 ZSR”分配手势，或点击表盘旁边的 ZSR 大快捷卡片。"
+
+msgid "ZSR (Zepp OS Screen Reader) is a mission-critical accessibility service for blind and low-vision users on Amazfit devices.\n\nOur mission is to enable independent use of 100% of smartwatch features without sighted assistance.\n\nDeveloped by NVCDevelopmentTeam."
+msgstr "ZSR（Zepp OS 屏幕朗读器）是面向 Amazfit 设备盲人和低视力用户的关键无障碍服务。\n\n我们的使命是让您无需明眼人协助，即可独立使用智能手表 100% 的功能。\n\n由 NVCDevelopmentTeam 开发。"
+
+msgid "ZSR Settings"
+msgstr "ZSR 设置"
+
+msgid "ZSR Started"
+msgstr "ZSR 已启动"
+
+msgid "ZSR has been turned on"
+msgstr "ZSR 已开启"
+
+msgid "ZSR is committed to WCAG 2.1 Level AA compliance.\n\nOur goal is to make every interface element on Zepp OS fully accessible to blind and low-vision users.\n\nStatement: https://zeppreader.com/accessibility-statement"
+msgstr "ZSR 致力于符合 WCAG 2.1 AA 级标准。\n\n我们的目标是让 Zepp OS 上的每个界面元素都能被盲人和低视力用户完全访问。\n\n声明：https://zeppreader.com/accessibility-statement"
+
+msgid "disabled"
+msgstr "已禁用"
+
+msgid "{0} items"
+msgstr "{0}项"
+
+msgid "{0}. Range {1} to {2}"
+msgstr "{0}。范围{1}至{2}"
+
+msgid "{0}. {1}"
+msgstr "{0}。{1}"
+
+msgid "cycleNavigationMode"
+msgstr "切换导航模式"
+
+msgid "objectDetails"
+msgstr "对象详情"
+
+msgid "photoGuidance"
+msgstr "拍照引导"
+
+msgid "readCenter"
+msgstr "朗读屏幕中央"
+
+msgid "readFromBottom"
+msgstr "从底部朗读"
+
+msgid "readSensors"
+msgstr "读取传感器"
+
+msgid "readStatusBar"
+msgstr "朗读状态栏"
+
+msgid "screenCurtain"
+msgstr "屏幕遮蔽"
+
+msgid "Voice control needs an online speech service. Add your key in the phone settings."
+msgstr "语音控制需要在线语音服务。请在手机设置中添加您的密钥。"
+
+msgid "I didn't hear anything. Please try again."
+msgstr "我没有听到任何声音，请重试。"
+
+msgid "The online speech service rejected the request. Check your key and connection."
+msgstr "在线语音服务拒绝了请求。请检查密钥和网络连接。"
+
+msgid "Voice control is unavailable right now. Check your phone connection and internet."
+msgstr "语音控制暂时不可用。请检查手机连接和网络。"
+
+msgid "Voice control is not supported on this watch."
+msgstr "此手表不支持语音控制。"
+
+msgid "Sorry, I didn't catch that command: {0}"
+msgstr "抱歉，我没听懂这个指令：{0}"
+
+msgid "No readable content was found on this screen"
+msgstr "此屏幕上没有可朗读的内容"
+
+msgid "Analog clock showing {0}. {1}. Steps: {2}. Heart rate: {3} beats per minute."
+msgstr "指针表显示{0}。{1}。步数：{2}。心率：每分钟{3}次。"
+
+msgid "Digital clock. {0}. {1}. Steps: {2}. Heart rate: {3}."
+msgstr "数字表。{0}。{1}。步数：{2}。心率：{3}。"
+
+msgid "Image: {0}"
+msgstr "图像：{0}"
+
+msgid "Could not describe image"
+msgstr "无法描述图像"
+
+msgid "Speech muted"
+msgstr "已静音"
+
+msgid "ZSR has been turned off"
+msgstr "ZSR 已关闭"
+
+msgid "Sidebar opened"
+msgstr "侧边栏已打开"
+
+msgid "Sidebar closed"
+msgstr "侧边栏已关闭"
+
+msgid "Disable ZSR?"
+msgstr "关闭 ZSR？"
+
+msgid "QR code, empty"
+msgstr "二维码，空"
+
+msgid "QR code, web link to {0}"
+msgstr "二维码，网页链接：{0}"
+
+msgid "QR code, Wi-Fi network {0}"
+msgstr "二维码，Wi-Fi 网络：{0}"
+
+msgid "Password {0}"
+msgstr "密码{0}"
+
+msgid "QR code, phone number {0}"
+msgstr "二维码，电话号码：{0}"
+
+msgid "QR code, email address {0}"
+msgstr "二维码，电子邮件地址：{0}"
+
+msgid "QR code: {0}"
+msgstr "二维码：{0}"
+
+msgid "Battery: {0}%"
+msgstr "电量：{0}%"
+
+msgid "Continue to Home"
+msgstr "继续前往主屏幕"
+
+msgid "Gesture practice mode off. Gestures will now perform their normal actions again."
+msgstr "手势练习模式已关闭。手势将恢复执行正常操作。"
+
+msgid "Gesture practice mode on. Try any gesture - ZSR will tell you what it detected instead of performing it."
+msgstr "手势练习模式已开启。请尝试任意手势，ZSR 会播报检测到的手势而不执行。"
+
+msgid "Initializing..."
+msgstr "正在初始化……"
+
+msgid "Open User Guide"
+msgstr "打开使用指南"
+
+msgid "Status: {0} | Speech engine: {1}"
+msgstr "状态：{0} | 语音引擎：{1}"
+
+msgid "User Guide. Section {0} of {1}: {2}. Use the Next button for the next section."
+msgstr "使用指南。第{0}节，共{1}节：{2}。使用“下一步”按钮进入下一节。"
+
+msgid "Welcome to Zepp OS Screen Reader"
+msgstr "欢迎使用 Zepp OS 屏幕朗读器"
+
+msgid "ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items."
+msgstr "触摸屏幕时 ZSR 会朗读并振动。触摸探索，双击激活，滑动切换项目。"
+
+msgid "Touch exploration and gestures"
+msgstr "触摸探索与手势"
+
+msgid "Vibration feedback"
+msgstr "振动反馈"
+
+msgid "Speech output"
+msgstr "语音输出"
+
+msgid "Offline voice"
+msgstr "离线语音"
+
+msgid "Touch sounds"
+msgstr "触摸音效"
+
+msgid "Voice commands (needs phone and internet)"
+msgstr "语音指令（需要手机和网络）"
+
+msgid "System keyboard integration"
+msgstr "系统键盘集成"
+
+msgid "available"
+msgstr "可用"
+
+msgid "not available on this watch"
+msgstr "此手表不可用"
+
+msgid "{0}: {1}"
+msgstr "{0}：{1}"
+
+msgid "This watch has no audio player, so ZSR answers with vibration instead of speech."
+msgstr "此手表没有音频播放器，因此 ZSR 使用振动代替语音。"
+
+msgid "Device Support"
+msgstr "设备支持"
+
+msgid "Permissions Notice"
+msgstr "权限说明"
+
+msgid "Privacy Policy"
+msgstr "隐私政策"
+
+msgid "ZSR works with the permissions below. You can decline an optional permission: that feature will not work, but the others keep working.\n\nWatch:\n- Device information: to fit your watch model and screen.\n- Local storage: to keep your settings and the offline voice.\n- Vibration and sound: for touch feedback and speech.\n- Bluetooth: to talk to the Zepp app on your phone for speech, settings and voice features.\n- Health data (steps, heart rate, calories, distance, sleep, blood oxygen, stress): only read aloud when you ask for it.\n\nPhone and internet:\nZSR does not read your calls, messages or phone state. Speech is created by the Zepp app on your phone. Voice commands and image reading are optional, need the internet, and send audio or images only to the online service you set up yourself, and only when you use them.\n\nZSR runs as a Zepp OS Mini Program, so it can read only its own screens, not other apps."
+msgstr "ZSR 使用以下权限。您可以拒绝可选权限：对应功能将无法使用，其他功能仍可正常运行。\n\n手表：\n- 设备信息：以适配您的手表型号和屏幕。\n- 本地存储：用于保存设置和离线语音。\n- 振动和声音：用于触摸反馈和语音。\n- 蓝牙：与手机上的 Zepp 应用通信，以提供语音、设置和语音功能。\n- 健康数据（步数、心率、卡路里、距离、睡眠、血氧、压力）：仅在您要求时朗读。\n\n手机和网络：\nZSR 不会读取您的通话、短信或手机状态。语音由手机上的 Zepp 应用生成。语音指令和图像朗读是可选功能，需要联网，并且仅在您使用时，才会把音频或图像发送到您自行设置的在线服务。\n\nZSR 作为 Zepp OS 小程序运行，只能读取自身的界面，无法读取其他应用。"
+
+msgid "ZSR respects your privacy and does not collect your personal data.\n\nThe text ZSR speaks is turned into speech by the Zepp app on your phone and kept on your watch; it is not sent to ZSR servers. The speech engine is downloaded once from a public package host.\n\nVoice commands and image reading are optional. When you use them, the audio or image is sent through your phone to the online service you configured yourself, and only then.\n\nFull policy: https://zeppreader.com/privacy-policy"
+msgstr "ZSR 尊重您的隐私，不会收集您的个人数据。\n\nZSR 朗读的文字由手机上的 Zepp 应用转换为语音并保存在您的手表上，不会发送到 ZSR 服务器。语音引擎仅从公共软件包托管站点下载一次。\n\n语音指令和图像朗读是可选功能。使用时，音频或图像会通过手机发送到您自行配置的在线服务，且仅在此时发送。\n\n完整政策：https://zeppreader.com/privacy-policy"
+
+msgid "spellOut"
+msgstr "逐字拼读"
+
+msgid "toggleSpeech"
+msgstr "切换语音"
+
+msgid "Audio ducking"
+msgstr "降低其他音频音量"
+
+msgid "Automatic updates"
+msgstr "自动更新"
+
+msgid "Available from Zepp OS 4.2; ZSR only reads its own screens."
+msgstr "自 Zepp OS 4.2 起可用；ZSR 只能读取自身的界面。"
+
+msgid "Braille keyboard"
+msgstr "盲文键盘"
+
+msgid "Device {0}, screen {1}, buttons {2}"
+msgstr "设备 {0}，屏幕 {1}，按键数 {2}"
+
+msgid "Experimental"
+msgstr "实验性"
+
+msgid "Health and fitness reading"
+msgstr "健康与健身数据朗读"
+
+msgid "Image reading, OCR and CAPTCHA (needs internet)"
+msgstr "图像朗读、OCR 和验证码（需要联网）"
+
+msgid "Item {0} of {1}"
+msgstr "第 {0} 项，共 {1} 项"
+
+msgid "Language {0}, speech engine {1}"
+msgstr "语言 {0}，语音引擎 {1}"
+
+msgid "List position"
+msgstr "列表位置"
+
+msgid "Listing in the system accessibility settings"
+msgstr "在系统无障碍设置中列出"
+
+msgid "Main content"
+msgstr "主要内容"
+
+msgid "Mini Programs are sandboxed and can only read their own screens."
+msgstr "小程序运行在沙盒中，只能读取自身的界面。"
+
+msgid "Multilingual speech"
+msgstr "多语言语音"
+
+msgid "Navigation area"
+msgstr "导航区域"
+
+msgid "Needs Zepp OS 4.2 or newer."
+msgstr "需要 Zepp OS 4.2 或更高版本。"
+
+msgid "Needs audio recording, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "需要录音功能，自 Zepp OS 3.0（API 3.0）起提供。"
+
+msgid "Needs several fingers at once, but Zepp OS touch events report one finger."
+msgstr "需要多指同时操作，但 Zepp OS 触摸事件只报告一根手指。"
+
+msgid "Needs the audio player, available from Zepp OS 3.0 (API level 3.0)."
+msgstr "需要音频播放器，自 Zepp OS 3.0（API 3.0）起提供。"
+
+msgid "Needs your own online speech service, set in the phone settings."
+msgstr "需要您自己的在线语音服务，请在手机设置中配置。"
+
+msgid "No match for {0}"
+msgstr "未找到 {0}"
+
+msgid "No public Zepp OS API lets an app register as an accessibility service."
+msgstr "Zepp OS 没有公开 API 可让应用注册为无障碍服务。"
+
+msgid "Pause, resume and speech mode"
+msgstr "暂停、继续与语音模式"
+
+msgid "Punctuation, capitals and progress announcements"
+msgstr "标点、大写字母与进度播报"
+
+msgid "Read diagnostics"
+msgstr "朗读诊断信息"
+
+msgid "Reading modes and navigation"
+msgstr "朗读模式与导航"
+
+msgid "Reading other apps, unlocking and system screens"
+msgstr "读取其他应用、解锁和系统界面"
+
+msgid "Reading phone notifications, messages and calls"
+msgstr "读取手机通知、短信和来电"
+
+msgid "Screen regions"
+msgstr "屏幕区域"
+
+msgid "Screen search"
+msgstr "屏幕搜索"
+
+msgid "Sentences that are not in the offline voice need the phone and an internet connection the first time."
+msgstr "不在离线语音中的句子首次需要手机和网络连接。"
+
+msgid "Separate speech volume"
+msgstr "独立的语音音量"
+
+msgid "Sets the volume of the ZSR player. Zepp OS may share it with the system volume."
+msgstr "设置 ZSR 播放器的音量。Zepp OS 可能与系统音量共用。"
+
+msgid "Status bar"
+msgstr "状态栏"
+
+msgid "Supported with limitations"
+msgstr "部分支持（有限制）"
+
+msgid "Two and three finger gestures"
+msgstr "双指和三指手势"
+
+msgid "Unavailable on this OS"
+msgstr "此系统不可用"
+
+msgid "Unavailable on this watch"
+msgstr "此手表不可用"
+
+msgid "Works by voice command. Typing a search is not possible without a keyboard."
+msgstr "通过语音指令使用。没有键盘时无法输入搜索内容。"
+
+msgid "ZSR can check for a new version; Zepp OS installs updates only through the Zepp app."
+msgstr "ZSR 可以检查新版本；Zepp OS 只能通过 Zepp 应用安装更新。"
+
+msgid "ZSR version {0}"
+msgstr "ZSR 版本 {0}"
+
+msgid "Zepp OS API level {0}"
+msgstr "Zepp OS API 级别 {0}"
+
+msgid "Zepp OS gives apps no camera or screenshot access, so an image must be supplied."
+msgstr "Zepp OS 不允许应用访问相机或截屏，因此必须另行提供图像。"
+
+msgid "Zepp OS gives apps no way to receive phone notifications or calls."
+msgstr "Zepp OS 没有让应用接收手机通知或来电的途径。"
+
+msgid "Zepp OS has no audio-focus API, so other audio cannot be lowered."
+msgstr "Zepp OS 没有音频焦点 API，因此无法降低其他音频的音量。"
+
+msgid "Zepp OS touch events report one finger, so these gestures cannot be detected."
+msgstr "Zepp OS 触摸事件只报告一根手指，因此无法检测这些手势。"
+
+msgid "voiceCommand"
+msgstr "语音指令"

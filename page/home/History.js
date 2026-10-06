@@ -1,14 +1,16 @@
-import { createWidget, widget } from '@zos/ui'
-import { gettext } from '@zos/i18n'
+import { widget, text_style } from '@zos/ui'
+import { gettext } from '../../lib/utils/i18n.js'
 import { getDeviceInfo } from '@zos/device'
 import { replace } from '@zos/router'
 import SpeechHistory from '../../lib/utils/speechHistory.js'
-import ScreenReader from '../../lib/core/screenReader.js'
+import ScreenReader from '../../lib/core/readerProxy.js'
 import { loadSettings } from '../../lib/core/config.js'
 
+import { ZSRPage } from '../../lib/core/zsrPage.js'
+import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 const { width, height } = getDeviceInfo()
 
-export default Page({
+export default ZSRPage({
   onInit() {
     if (!globalThis.ScreenReaderConfig) {
       globalThis.ScreenReaderConfig = loadSettings()
@@ -23,7 +25,7 @@ export default Page({
       h: height
     })
 
-    root.createWidget(widget.TEXT, {
+    createChild(root, widget.TEXT, {
       x: 0,
       y: 10,
       w: width,
@@ -38,7 +40,7 @@ export default Page({
     const history = SpeechHistory.getHistory().map((item) => ({ ...item, type_id: 1 }))
 
     if (history.length === 0) {
-      root.createWidget(widget.TEXT, {
+      createChild(root, widget.TEXT, {
         x: 20,
         y: 100,
         w: width - 40,
@@ -52,7 +54,7 @@ export default Page({
       return root
     }
 
-    root.createWidget(widget.SCROLL_LIST, {
+    createChild(root, widget.SCROLL_LIST, {
       x: 0,
       y: 70,
       w: width,
@@ -73,7 +75,7 @@ export default Page({
               key: 'text',
               color: 0xffffff,
               text_size: 18,
-              text_style: widget.TEXT_STYLE_WRAP,
+              text_style: text_style.WRAP,
               align_v: 2
             }
           ]
@@ -87,7 +89,7 @@ export default Page({
       }
     })
 
-    root.createWidget(widget.BUTTON, {
+    createChild(root, widget.BUTTON, {
       x: 40,
       y: height - 70,
       w: width - 80,

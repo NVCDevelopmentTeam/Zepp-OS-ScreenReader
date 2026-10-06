@@ -1,6 +1,7 @@
 export default function renderNavigation(_props) {
   return [
     Section({ title: 'Cursor & Navigation' }, [
+      Row([Text('Announce screen regions'), Toggle({ settingsKey: 'announceRegions' })]),
       Row([Text('Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })]),
       Row([
         Text('Cursor Style'),

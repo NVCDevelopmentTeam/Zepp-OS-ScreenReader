@@ -2,6 +2,7 @@ import { createWidget, widget, prop } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { localStorage } from '@zos/storage'
 
+import { px } from '../lib/utils/px.js'
 const { width } = getDeviceInfo()
 // `hmStorage` is a Zepp OS 1.0-era global, not part of the 2.0 API this
 // project targets - using the real `localStorage` from `@zos/storage`

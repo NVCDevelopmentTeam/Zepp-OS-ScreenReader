@@ -1,5 +1,5 @@
-import { posts } from '$lib/data/posts'
-import { paginate } from '$lib/util'
+import { posts } from '#lib/data/posts.js'
+import { paginate } from '#lib/util.js'
 import { error } from '@sveltejs/kit'
 
 /** @type {import('./$types').PageServerLoad} */

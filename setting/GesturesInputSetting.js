@@ -5,10 +5,16 @@
 export default function renderGesturesInput(_props) {
   return [
     Section({ title: 'Gestures & Input' }, [
-      Row([Text('Button Remapping'), Toggle({ settingsKey: 'buttonRemappingEnabled' })]),
-      Row([Text('Fingerprint Actions'), Toggle({ settingsKey: 'fingerprintActions' })]),
       Row([
-        Text('Keyboard Mode'),
+        Text('Button Remapping (experimental, not active yet)'),
+        Toggle({ settingsKey: 'buttonRemappingEnabled' })
+      ]),
+      Row([
+        Text('Fingerprint Actions (experimental, not active yet)'),
+        Toggle({ settingsKey: 'fingerprintActions' })
+      ]),
+      Row([
+        Text('Keyboard Mode (experimental, not active yet)'),
         Select({
           settingsKey: 'keyboardMode',
           options: [
@@ -21,7 +27,10 @@ export default function renderGesturesInput(_props) {
         Text('Invert Swipes (Vertical/Horizontal)'),
         Toggle({ settingsKey: 'invertSwipeGestures' })
       ]),
-      Row([Text('Braille Keyboard'), Toggle({ settingsKey: 'brailleKeyboardEnabled' })])
+      Row([
+        Text('Braille Keyboard (experimental, not active yet)'),
+        Toggle({ settingsKey: 'brailleKeyboardEnabled' })
+      ])
     ])
   ]
 }

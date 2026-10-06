@@ -21,6 +21,24 @@ export default function renderVoice(_props) {
           ]
         })
       ])
+    ]),
+    // Online services (voice commands, image description). Needs internet.
+    // ZSR ships no key: enter an OpenAI-compatible provider of your choice.
+    Section({ title: 'Online services (voice commands)' }, [
+      Row([
+        Text('API base URL'),
+        TextInput({
+          placeholder: 'https://api.openai.com/v1',
+          settingsKey: 'aiBaseUrl'
+        })
+      ]),
+      Row([
+        Text('API key'),
+        TextInput({
+          placeholder: 'sk-...',
+          settingsKey: 'aiApiKey'
+        })
+      ])
     ])
   ]
 }

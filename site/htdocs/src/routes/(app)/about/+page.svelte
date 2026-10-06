@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, githubLink, zeppOSDocs, zeppOSScreen } from '$lib/info.js';
+  import { siteTitle, githubLink, zeppOSDocs, zeppOSScreen } from '#lib/info.js';
 </script>
 
 <svelte:head>

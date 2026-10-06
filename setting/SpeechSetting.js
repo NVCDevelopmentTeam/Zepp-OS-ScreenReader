@@ -62,7 +62,9 @@ export default function renderSpeech(_props) {
         Toggle({ settingsKey: 'audioDucking' })
       ]),
       Row([
-        Text('Read when screen off (Experimental / Developer setting)'),
+        Text(
+          'Read when screen off (Experimental / Developer setting) (experimental, not active yet)'
+        ),
         Toggle({ settingsKey: 'readScreenOff' })
       ]),
       Row([Text('Read time on screen wake-up'), Toggle({ settingsKey: 'readScreenOnTime' })]),
@@ -118,7 +120,7 @@ export default function renderSpeech(_props) {
       Row([Text('Spell out mode'), Toggle({ settingsKey: 'spellOutMode' })]),
       Row([Text('Read Passwords'), Toggle({ settingsKey: 'readPasswords' })]),
       Row([
-        Text('Typing Echo'),
+        Text('Typing Echo (experimental, not active yet)'),
         Select({
           settingsKey: 'echoBehavior',
           options: [
@@ -131,6 +133,16 @@ export default function renderSpeech(_props) {
       Row([Text('Read status bar'), Toggle({ settingsKey: 'readStatusBar' })]),
       Row([Text('Read progress bars'), Toggle({ settingsKey: 'readProgressBars' })]),
       Row([Text('Read usage hints'), Toggle({ settingsKey: 'readUsageHints' })])
+    ]),
+    // Offline voice: the watch downloads word clips from the phone once and
+    // then speaks interface labels with no phone round trip (like the offline
+    // voices TalkBack downloads). Uses roughly 1 MB of watch storage.
+    Section({ title: 'Offline voice (works without the phone)' }, [
+      Row([Text('Download and use offline voice'), Toggle({ settingsKey: 'offlineVoiceEnabled' })]),
+      Row([
+        Text('Speak labels from offline voice first'),
+        Toggle({ settingsKey: 'offlineVoicePreferred' })
+      ])
     ])
   ]
 }
