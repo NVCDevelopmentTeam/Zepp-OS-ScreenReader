@@ -1,0 +1,5 @@
+msgid "appName"
+msgstr "Trình đọc màn hình Zepp OS"
+
+msgid "description"
+msgstr "Trình đọc màn hình thiết yếu dành cho người khiếm thị trên thiết bị Amazfit"

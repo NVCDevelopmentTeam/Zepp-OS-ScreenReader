@@ -17,6 +17,7 @@ import BrailleService from './lib/core/braille.js'
 import SpeechHistory from './lib/utils/speechHistory.js'
 import { registerApiCapabilityProbes } from './lib/utils/apiCapability.js'
 import { gettext, format } from './lib/utils/i18n.js'
+import { recordBootError } from './lib/utils/bootErrors.js'
 import { loadMedia, getMediaModule as getMediaModuleSafe } from './lib/equipment/mediaSupport.js'
 import SpeechPlayer from './lib/equipment/speechPlayer.js'
 import { getApiCapabilityLevel } from './lib/utils/apiCapability.js'
@@ -80,6 +81,7 @@ App({
       registerApiCapabilityProbes(probes)
     } catch (e) {
       log.warn('API capability probing failed (non-fatal):', String(e))
+      recordBootError('api probes', e)
     }
 
     // Audio playback ('@zos/media') exists from API_LEVEL 3.0 only; resolve it
@@ -104,6 +106,7 @@ App({
       globalThis.ScreenReaderConfig = loadSettings()
     } catch (e) {
       log.error('Failed to load settings:', String(e))
+      recordBootError('settings', e)
       globalThis.ScreenReaderConfig = {}
     }
 
@@ -310,6 +313,7 @@ App({
       }
     } catch (error) {
       log.error('App onCreate fatal error:', String(error))
+      recordBootError('app start', error)
     }
   },
 
@@ -342,6 +346,7 @@ App({
             `ScreenReader init failed after ${attempt} attempt(s), giving up:`,
             String(error)
           )
+          recordBootError('screen reader init', error)
           return
         }
         log.warn(

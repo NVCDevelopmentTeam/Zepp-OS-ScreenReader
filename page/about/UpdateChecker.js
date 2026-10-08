@@ -1,13 +1,13 @@
 import { widget, text_style, prop } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import AddonUpdater from '../../lib/utils/addonUpdater.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
 import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
-const { width, height } = getDeviceInfo()
+const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
   onInit() {

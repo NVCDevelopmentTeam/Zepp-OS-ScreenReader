@@ -1,16 +1,15 @@
 import { createWidget, widget } from '@zos/ui'
 import { push } from '@zos/router'
-import { getDeviceInfo } from '@zos/device'
+import { localStorage } from '@zos/storage'
+import { gettext } from '../lib/utils/i18n.js'
+import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
 
 import { px } from '../lib/utils/px.js'
-const { width } = getDeviceInfo()
-const storage =
-  typeof globalThis.hmStorage !== 'undefined'
-    ? globalThis.hmStorage
-    : {
-        setItem: () => {},
-        getItem: () => null
-      }
+const { width } = safeDeviceInfo()
+// `hmStorage` is a Zepp OS 1.0 global and does not exist on API 2.0+, so the old
+// code always fell back to a no-op store and the card always showed DISABLED.
+// Same persistence API as lib/core/config.js (`localStorage`), no-op if unavailable.
+const storage = localStorage || { setItem: () => {}, getItem: () => null }
 
 AppWidget({
   build() {
@@ -33,7 +32,7 @@ AppWidget({
       y: px(10),
       w: width,
       h: px(40),
-      text: 'ZSR Status',
+      text: gettext('ZSR Status'),
       color: 0xffffff,
       align_h: 2
     })
@@ -43,7 +42,7 @@ AppWidget({
       y: px(50),
       w: width,
       h: px(60),
-      text: isEnabled ? 'ENABLED' : 'DISABLED',
+      text: isEnabled ? gettext('ENABLED') : gettext('DISABLED'),
       color: isEnabled ? 0x00ff00 : 0xff0000,
       align_h: 2,
       text_size: px(30)
@@ -54,7 +53,7 @@ AppWidget({
       y: px(120),
       w: px(200),
       h: px(60),
-      text: 'Open ZSR',
+      text: gettext('Open ZSR'),
       color: 0xffffff,
       normal_color: 0x333333,
       press_color: 0x666666,

@@ -1,12 +1,12 @@
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { replace } from '@zos/router'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-const { width, height } = getDeviceInfo()
+const { width, height } = safeDeviceInfo()
 
 const gesturesList = [
   { name: gettext('Swipe Up'), key: 'gesture_up', value: 'previous' },

@@ -1,6 +1,6 @@
 import { widget, text_style } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { replace } from '@zos/router'
 import SpeechHistory from '../../lib/utils/speechHistory.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
@@ -8,7 +8,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-const { width, height } = getDeviceInfo()
+const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
   onInit() {

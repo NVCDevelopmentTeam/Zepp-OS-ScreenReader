@@ -3,3 +3,33 @@ msgstr "Zepp OS Screen Reader"
 
 msgid "description"
 msgstr "Mission-critical screen reader for visually impaired users on Amazfit devices"
+
+msgid "ZSR Status"
+msgstr "ZSR Status"
+
+msgid "ENABLED"
+msgstr "ENABLED"
+
+msgid "DISABLED"
+msgstr "DISABLED"
+
+msgid "Open ZSR"
+msgstr "Open ZSR"
+
+msgid "ZSR: ON"
+msgstr "ZSR: ON"
+
+msgid "ZSR: OFF"
+msgstr "ZSR: OFF"
+
+msgid "ZSR Quick Actions"
+msgstr "ZSR Quick Actions"
+
+msgid "Unmute"
+msgstr "Unmute"
+
+msgid "Mute"
+msgstr "Mute"
+
+msgid "Settings"
+msgstr "Settings"

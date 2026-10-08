@@ -1,6 +1,9 @@
 import { EventBus } from '@zos/utils'
 import { log as Logger } from '@zos/utils'
-import { Buffer } from '@zos/buffer'
+// `Buffer` is a global of the Zepp OS runtime (the official ZML library, data.js and
+// message-side.js in this folder all use it without importing). There is no
+// '@zos/buffer' module: importing it throws when app.js loads on the watch, so the
+// app never starts and the screen stays blank.
 import { Deferred, timeout } from './defer.js'
 import { json2buf, buf2json, bin2hex, str2buf, buf2str } from './data.js'
 

@@ -1,6 +1,6 @@
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { push } from '@zos/router'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 import SpeechHistory from '../../lib/utils/speechHistory.js'
@@ -8,7 +8,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-const { width, height } = getDeviceInfo()
+const { width, height } = safeDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
   createChild(root, widget.TEXT, {

@@ -35,7 +35,6 @@ const { children } = $props();
   <meta name="twitter:image" content={ogImageURL.startsWith('data:') ? ogImageURL : siteURL + ogImageURL} />
   
   <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
-  <link href="/sveltiaconfig.json" type="application/json" rel="cms-config-url" />
   <link rel="sitemap" type="application/xml" href="{siteURL}/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" href="{siteURL}/rss.xml" />
 

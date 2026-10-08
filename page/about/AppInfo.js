@@ -1,12 +1,12 @@
 import { widget, text_style, event } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { push } from '@zos/router'
 import { saveSettings, loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
-const { width, height } = getDeviceInfo()
+const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
   onInit() {

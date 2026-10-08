@@ -1,9 +1,11 @@
+import { push } from '@zos/router'
 import { createWidget, widget, prop } from '@zos/ui'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
 import { localStorage } from '@zos/storage'
 
 import { px } from '../lib/utils/px.js'
-const { width } = getDeviceInfo()
+import { gettext } from '../lib/utils/i18n.js'
+const { width } = safeDeviceInfo()
 // `hmStorage` is a Zepp OS 1.0-era global, not part of the 2.0 API this
 // project targets - using the real `localStorage` from `@zos/storage`
 // instead (same persistence API lib/core/config.js writes settings with,
@@ -18,7 +20,7 @@ SecondaryWidget({
     if (configStr) {
       try {
         const config = JSON.parse(configStr)
-        isMuted = !!config.muted
+        isMuted = config.speechMuted === true || config.muted === true
         isEnabled = config.screenReaderEnabled !== false
       } catch (_e) {
         // Ignore JSON parse errors
@@ -33,7 +35,7 @@ SecondaryWidget({
       y: px(10),
       w: width,
       h: px(30),
-      text: isEnabled ? 'ZSR: ON' : 'ZSR: OFF',
+      text: isEnabled ? gettext('ZSR: ON') : gettext('ZSR: OFF'),
       text_size: px(28),
       color: isEnabled ? 0x00ff00 : 0xff4444,
       align_h: 2
@@ -44,7 +46,7 @@ SecondaryWidget({
       y: px(42),
       w: width,
       h: px(30),
-      text: 'ZSR Quick Actions',
+      text: gettext('ZSR Quick Actions'),
       color: 0xffffff,
       align_h: 2
     })
@@ -54,7 +56,7 @@ SecondaryWidget({
       y: px(80),
       w: width - px(80),
       h: px(60),
-      text: isMuted ? 'Unmute' : 'Mute',
+      text: isMuted ? gettext('Unmute') : gettext('Mute'),
       color: 0xffffff,
       normal_color: isMuted ? 0x00aa00 : 0xaa0000,
       radius: px(30),
@@ -64,14 +66,14 @@ SecondaryWidget({
         if (currentConfig) {
           try {
             const config = JSON.parse(currentConfig)
-            config.muted = isMuted
+            config.speechMuted = isMuted
             storage.setItem('screenReaderConfig', JSON.stringify(config))
           } catch (_e) {
             // Ignore parse errors
           }
         }
 
-        muteBtn.setProperty(prop.TEXT, isMuted ? 'Unmute' : 'Mute')
+        muteBtn.setProperty(prop.TEXT, isMuted ? gettext('Unmute') : gettext('Mute'))
         muteBtn.setProperty(prop.MORE, {
           normal_color: isMuted ? 0x00aa00 : 0xaa0000
         })
@@ -83,12 +85,12 @@ SecondaryWidget({
       y: px(150),
       w: width - px(80),
       h: px(60),
-      text: 'Settings',
+      text: gettext('Settings'),
       color: 0xffffff,
       normal_color: 0x333333,
       radius: px(30),
       click_func: () => {
-        // Quick access to settings
+        push({ url: 'page/home/Settings' })
       }
     })
   }

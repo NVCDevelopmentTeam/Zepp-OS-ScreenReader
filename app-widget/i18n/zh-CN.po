@@ -1,5 +1,35 @@
 msgid "appName"
-msgstr "ZSR - Zepp OS Screen Reader"
+msgstr "Zepp OS 屏幕朗读器"
 
 msgid "description"
-msgstr "Screen reader for visually impaired"
+msgstr "面向 Amazfit 设备盲人和低视力用户的关键屏幕朗读器"
+
+msgid "ZSR Status"
+msgstr "ZSR 状态"
+
+msgid "ENABLED"
+msgstr "已开启"
+
+msgid "DISABLED"
+msgstr "已关闭"
+
+msgid "Open ZSR"
+msgstr "打开 ZSR"
+
+msgid "ZSR: ON"
+msgstr "ZSR：开"
+
+msgid "ZSR: OFF"
+msgstr "ZSR：关"
+
+msgid "ZSR Quick Actions"
+msgstr "ZSR 快捷操作"
+
+msgid "Unmute"
+msgstr "取消静音"
+
+msgid "Mute"
+msgstr "静音"
+
+msgid "Settings"
+msgstr "设置"

@@ -1,0 +1,35 @@
+msgid "appName"
+msgstr "Trình đọc màn hình Zepp OS"
+
+msgid "description"
+msgstr "Trình đọc màn hình thiết yếu dành cho người khiếm thị trên thiết bị Amazfit"
+
+msgid "ZSR Status"
+msgstr "Trạng thái ZSR"
+
+msgid "ENABLED"
+msgstr "ĐANG BẬT"
+
+msgid "DISABLED"
+msgstr "ĐANG TẮT"
+
+msgid "Open ZSR"
+msgstr "Mở ZSR"
+
+msgid "ZSR: ON"
+msgstr "ZSR: BẬT"
+
+msgid "ZSR: OFF"
+msgstr "ZSR: TẮT"
+
+msgid "ZSR Quick Actions"
+msgstr "Thao tác nhanh ZSR"
+
+msgid "Unmute"
+msgstr "Bật tiếng"
+
+msgid "Mute"
+msgstr "Tắt tiếng"
+
+msgid "Settings"
+msgstr "Cài đặt"

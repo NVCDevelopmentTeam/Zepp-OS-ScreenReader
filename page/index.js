@@ -1,5 +1,6 @@
 import { widget } from '@zos/ui'
-import { getDeviceInfo } from '@zos/device'
+import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
+import { bootSummary, getBootErrors, drawErrorPanel } from '../lib/utils/bootErrors.js'
 import { log } from '@zos/utils'
 import { replace } from '@zos/router'
 import ScreenReader from '../lib/core/readerProxy.js'
@@ -32,6 +33,15 @@ export default ZSRPage({
   },
 
   navigateToWelcome() {
+    // If anything failed while starting, keep the problem on screen for a while so a
+    // sighted helper can read or photograph it, THEN carry on. (A silent blank or
+    // vanishing screen gives nobody anything to report.)
+    if (getBootErrors().length > 0 && !this.errorsShown) {
+      this.errorsShown = true
+      drawErrorPanel('ZSR started with problems')
+      setTimeout(() => this.navigateToWelcome(), 20000)
+      return
+    }
     // First launch shows the welcome page once; afterwards go straight Home.
     const seen = !!(globalThis.ScreenReaderConfig && globalThis.ScreenReaderConfig.welcomeSeen)
     replace({
@@ -41,7 +51,7 @@ export default ZSRPage({
   },
 
   build() {
-    const { width, height } = getDeviceInfo()
+    const { width, height } = safeDeviceInfo()
     const style = {
       x: 0,
       y: 0,
@@ -70,6 +80,18 @@ export default ZSRPage({
       color: 0xaaaaaa,
       align_h: 2,
       text_size: px(20)
+    })
+
+    // Build + capability line, so a photo of this screen identifies the setup.
+    createChild(group, widget.TEXT, {
+      x: 0,
+      y: height - px(70),
+      w: width,
+      h: px(30),
+      text: bootSummary(),
+      color: 0x777777,
+      align_h: 2,
+      text_size: px(14)
     })
 
     return group
