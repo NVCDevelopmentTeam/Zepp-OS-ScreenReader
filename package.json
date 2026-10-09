@@ -1,5 +1,5 @@
 {
-  "name": "ZSR",
+  "name": "zsr",
   "private": true,
   "version": "1.0.1",
   "description": "this is screen reader for Zepp OS",
@@ -14,7 +14,7 @@
     "check": "tsc --noEmit -p jsconfig.json"
   },
   "author": "NVC development Team",
-  "license": "MIT License",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@zeppos/device-types": "^4.0.0",
@@ -23,5 +23,5 @@
     "globals": "^17.13.0",
     "prettier": "^3.9.9",
     "typescript": "^7.0.2"
-  },
+  }
 }
