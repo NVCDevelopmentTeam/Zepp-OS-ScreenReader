@@ -19,7 +19,7 @@
 		"@eslint/js": "^10.0.1",
 		"@fontsource/fira-mono": "^5.3.0",
 		"@sveltejs/adapter-cloudflare": "^8.0.0",
-		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/kit": "^3.0.1",
 		"@sveltejs/load-config": "^0.2.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@unocss/eslint-plugin": "^66.10.5",
@@ -40,16 +40,16 @@
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-slug": "^6.0.0",
-		"svelte": "^5.57.1",
+		"svelte": "^5.57.2",
 		"svelte-check": "^4.7.6",
 		"svelte-eslint-parser": "^1.8.1",
 		"unist-util-visit": "^5.1.0",
 		"unocss": "^66.10.5",
-		"vite": "^8.3.2",
+		"vite": "^8.3.4",
 		"vite-plugin-compression2": "^2.5.3"
 	},
 	"dependencies": {
-		"@sveltia/cms": "^0.229.0"
+		"@sveltia/cms": "^0.233.0"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",

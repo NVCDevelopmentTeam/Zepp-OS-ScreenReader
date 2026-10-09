@@ -2,7 +2,7 @@ allowBuilds:
   esbuild: true
   workerd: true
 minimumReleaseAgeExclude:
-  - '@sveltia/cms@0.205.2 || 0.213.2 || 0.221.8 || 0.227.4 || 0.229.0'
+  - '@sveltia/cms@0.205.2 || 0.213.2 || 0.221.8 || 0.227.4 || 0.229.0 || 0.233.0'
   - '@unocss/cli@66.9.2 || 66.10.5'
   - '@unocss/config@66.9.2 || 66.10.5'
   - '@unocss/core@66.9.2 || 66.10.5'
@@ -30,3 +30,4 @@ minimumReleaseAgeExclude:
   - '@unocss/rollup@66.10.5'
   - devframe@1.0.0
   - prettier@3.9.7
+  - vite@8.3.4
