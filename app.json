@@ -5,8 +5,8 @@
     "appName": "ZSR",
     "appType": "app",
     "version": {
-      "code": 2,
-      "name": "1.0.2"
+      "code": 1,
+      "name": "1.0.1"
     },
     "icon": "icon.png",
     "vender": "zepp",
