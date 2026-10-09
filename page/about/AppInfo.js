@@ -6,6 +6,7 @@ import { saveSettings, loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
+import { ZSR_VERSION } from '../../lib/utils/version.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -39,7 +40,7 @@ export default ZSRPage({
 
     const info = [
       `${gettext('Name')}: Zepp OS Screen Reader`,
-      `${gettext('Version')}: 1.0.1`,
+      `${gettext('Version')}: ${ZSR_VERSION}`,
       `${gettext('Build Date')}: 2026-03-08`,
       `${gettext('Developer')}: NVCDevelopmentTeam`
     ]

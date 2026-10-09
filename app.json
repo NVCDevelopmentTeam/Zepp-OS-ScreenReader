@@ -5,8 +5,8 @@
     "appName": "ZSR",
     "appType": "app",
     "version": {
-      "code": 1,
-      "name": "1.0.1"
+      "code": 2,
+      "name": "1.0.2"
     },
     "icon": "icon.png",
     "vender": "zepp",
@@ -25,8 +25,8 @@
   ],
   "runtime": {
     "apiVersion": {
-      "compatible": "2.0.0",
-      "target": "3.0.0",
+      "compatible": "4.0.0",
+      "target": "2.0.0",
       "minVersion": "2.0.0"
     }
   },

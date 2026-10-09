@@ -28,6 +28,7 @@ import renderBraille from './brailleSetting.js'
 import renderFont from './fontSetting.js'
 import renderShortcut from './shortcutSetting.js'
 import renderVolume from './volumeSetting.js'
+import { ZSR_VERSION } from '../lib/utils/version.js'
 
 AppSettingsPage({
   build(props) {
@@ -178,7 +179,7 @@ AppSettingsPage({
       ...content,
       Section({ title: 'About' }, [
         Text('ZSR — Zepp OS Screen Reader'),
-        Text('Version: 1.0.1', {
+        Text(`Version: ${ZSR_VERSION}`, {
           onClick: () => {
             const taps = (props.settingsStorage.getItem('devTaps') || 0) + 1
             if (taps >= 7) {

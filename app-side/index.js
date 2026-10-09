@@ -3,6 +3,7 @@ import { MessageBuilder } from '../GrantPermission/message-side.js'
 import { textToSpeechMp3, textToSpeechClip, isEngineReady } from './tts/index.js'
 import { transcribe, describeImage, readImageText, readCaptcha } from './online/aiClient.js'
 import { decodeBase64 } from '../lib/utils/base64.js'
+import { ZSR_VERSION } from '../lib/utils/version.js'
 
 const messageBuilder = new MessageBuilder()
 
@@ -185,7 +186,7 @@ AppSideService({
           const res = await fetch('https://zeppreader.com/api/version')
           const data = await res.json()
 
-          const currentVersion = '1.0.1'
+          const currentVersion = ZSR_VERSION
           const latestVersion = data.version || currentVersion
 
           if (latestVersion !== currentVersion) {
