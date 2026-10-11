@@ -1083,3 +1083,9 @@ msgstr "Zepp OS 触摸事件只报告一根手指，因此无法检测这些手�
 
 msgid "voiceCommand"
 msgstr "语音指令"
+
+msgid "Opening ZSR without looking"
+msgstr "无需看屏幕即可打开 ZSR"
+
+msgid "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
+msgstr "只需设置一次。在手表上：设置、偏好设置、快捷按键，为侧边按键选择 ZSR。之后长按侧边按键即可打开 ZSR。或者在手机的 Zepp 应用中：设备、您的手表、快捷卡片，添加 ZSR 卡片并移到最前面。然后唤醒手表，在表盘上向右滑动并点击最上方的卡片。"

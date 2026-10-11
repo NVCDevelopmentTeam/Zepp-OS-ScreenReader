@@ -1083,3 +1083,9 @@ msgstr "Zepp OS touch events report one finger, so these gestures cannot be dete
 
 msgid "voiceCommand"
 msgstr "Voice command"
+
+msgid "Opening ZSR without looking"
+msgstr "Opening ZSR without looking"
+
+msgid "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
+msgstr "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."

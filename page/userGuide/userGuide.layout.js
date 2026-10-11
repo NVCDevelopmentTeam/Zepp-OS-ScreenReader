@@ -31,6 +31,12 @@ export function getGuideSections() {
       )
     },
     {
+      title: gettext('Opening ZSR without looking'),
+      content: gettext(
+        'Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card.'
+      )
+    },
+    {
       title: gettext('Context Menu'),
       content: gettext(
         'Long-press anywhere on the screen to open the context menu, with quick actions like reading sensors, spelling out text, opening the braille keyboard, and repeating the last thing spoken.'

@@ -1083,3 +1083,9 @@ msgstr "Sự kiện chạm của Zepp OS chỉ báo một ngón, nên không ph�
 
 msgid "voiceCommand"
 msgstr "Lệnh thoại"
+
+msgid "Opening ZSR without looking"
+msgstr "Mở ZSR mà không cần nhìn"
+
+msgid "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
+msgstr "Chỉ cần thiết lập một lần. Trên đồng hồ: Cài đặt, Tùy chọn, Phím tắt, chọn ZSR cho nút bên. Sau đó nhấn giữ nút bên để mở ZSR. Hoặc trong ứng dụng Zepp trên điện thoại: Thiết bị, đồng hồ của bạn, Thẻ lối tắt, thêm thẻ ZSR và đưa lên đầu. Rồi đánh thức đồng hồ, vuốt phải từ mặt đồng hồ và chạm thẻ trên cùng."

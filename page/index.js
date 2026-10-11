@@ -1,6 +1,11 @@
 import { widget } from '@zos/ui'
 import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
-import { bootSummary, getBootErrors, drawErrorPanel } from '../lib/utils/bootErrors.js'
+import {
+  bootSummary,
+  getBootErrors,
+  drawErrorPanel,
+  signalBootStatus
+} from '../lib/utils/bootErrors.js'
 import { log } from '@zos/utils'
 import { replace } from '@zos/router'
 import ScreenReader from '../lib/core/readerProxy.js'
@@ -13,6 +18,8 @@ import { gettext } from '../lib/utils/i18n.js'
 export default ZSRPage({
   onInit() {
     log.info('Page index onInit')
+    // One pulse: ZSR has opened (felt, not seen or heard - speech needs the phone).
+    signalBootStatus('started')
     const timeout = setTimeout(() => {
       log.warn('Initialization timeout, forcing navigation')
       this.navigateToWelcome()
