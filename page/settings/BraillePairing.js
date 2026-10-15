@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext, format } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -8,6 +9,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard, safeTimeout } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -107,10 +109,10 @@ export default ZSRPage({
       normal_color: this.isScanning ? 0xaa0000 : 0x00aa00,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         if (this.isScanning) this.stopScan()
         else this.startScan()
-      }
+      }, 'click_func')
     })
 
     return root
@@ -125,7 +127,7 @@ export default ZSRPage({
     replace({ url: 'page/settings/BraillePairing' })
 
     // Simulating finding a device
-    setTimeout(() => {
+    safeTimeout(() => {
       this.devices = [{ name: 'Braille Focus 40', id: '12:34:56:78' }]
       replace({ url: 'page/settings/BraillePairing' })
     }, 2000)

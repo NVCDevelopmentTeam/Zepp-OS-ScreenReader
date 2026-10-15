@@ -1,9 +1,11 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { replace } from '@zos/router'
 import { saveSettings, loadSettings } from '../../lib/core/config.js'
 import VisionService from '../../lib/core/visionService.js'
+import { setTouchExploration } from '../../lib/core/TouchExploration.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
@@ -70,10 +72,9 @@ export default ZSRPage({
       replace({ url: 'page/settings/Vision' })
     })
 
-    // Explore Mode
-    createToggle(root, 180, gettext('Explore Mode'), !!config.exploreMode, (val) => {
-      config.exploreMode = val
-      saveSettings(config)
+    // Touch exploration (like TalkBack's "Explore by touch"): off lets touches reach the app
+    createToggle(root, 180, gettext('Touch Exploration'), config.exploreMode !== false, (val) => {
+      setTouchExploration(val, true)
     })
 
     // Magnification

@@ -12,6 +12,7 @@ import renderRemoteAccess from './RemoteAccessSetting.js'
 import renderDocument from './DocumentSetting.js'
 import renderDeveloperOptions from './DeveloperSettings.js'
 import renderAbout from './AboutSetting.js'
+import renderReport from './ReportSetting.js'
 import renderDisplay from './DisplaySetting.js'
 import renderFeedback from './FeedbackSetting.js'
 import renderGestureActions from './InputGestureSetting.js'
@@ -29,12 +30,16 @@ import renderFont from './fontSetting.js'
 import renderShortcut from './shortcutSetting.js'
 import renderVolume from './volumeSetting.js'
 import { ZSR_VERSION } from '../lib/utils/version.js'
+import { unwrapSelection } from '../lib/utils/settingValue.js'
+import { SelectField } from './ui.js'
 
 AppSettingsPage({
   build(props) {
-    const activeTab = props.settingsStorage.getItem('activeTab') || 'general'
+    const activeTab = String(
+      unwrapSelection(props.settingsStorage.getItem('activeTab')) || 'general'
+    )
 
-    const isDevMode = props.settingsStorage.getItem('devMode') === true
+    const isDevMode = props.settingsStorage.getItem('devMode') === 'true'
 
     const categories = [
       { label: 'General', value: 'general' },
@@ -170,28 +175,32 @@ AppSettingsPage({
 
     return [
       Section({ title: 'ZSR Settings' }, [
-        Select({
+        SelectField({
           label: 'Category',
           settingsKey: 'activeTab',
           options: categories
         })
       ]),
       ...content,
+      ...renderReport(props),
       Section({ title: 'About' }, [
-        Text('ZSR — Zepp OS Screen Reader'),
-        Text(`Version: ${ZSR_VERSION}`, {
-          onClick: () => {
-            const taps = (props.settingsStorage.getItem('devTaps') || 0) + 1
-            if (taps >= 7) {
-              const currentDevMode = props.settingsStorage.getItem('devMode')
-              props.settingsStorage.setItem('devMode', !currentDevMode)
-              props.settingsStorage.setItem('devTaps', 0)
-            } else {
-              props.settingsStorage.setItem('devTaps', taps)
+        Text({}, 'ZSR — Zepp OS Screen Reader'),
+        Text(
+          {
+            onClick: () => {
+              const taps = (Number(props.settingsStorage.getItem('devTaps')) || 0) + 1
+              if (taps >= 7) {
+                const currentDevMode = props.settingsStorage.getItem('devMode') === 'true'
+                props.settingsStorage.setItem('devMode', String(!currentDevMode))
+                props.settingsStorage.setItem('devTaps', '0')
+              } else {
+                props.settingsStorage.setItem('devTaps', String(taps))
+              }
             }
-          }
-        }),
-        Text('Developer: NVCDevelopmentTeam')
+          },
+          `Version: ${ZSR_VERSION}`
+        ),
+        Text({}, 'Developer: NVCDevelopmentTeam')
       ])
     ]
   }

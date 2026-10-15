@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Master on/off for these sounds lives in Feedback > "Sound Feedback"
 // (settingsKey 'soundFeedbackEnabled'), since that toggle already gates
 // the confirmation/error/click sounds this player produces. This screen
@@ -6,8 +8,8 @@ export default function renderSound(_props) {
   return [
     Section({ title: 'Sound Effects' }, [
       Row([
-        Text('Sound Theme'),
-        Select({
+        Text({}, 'Sound Theme'),
+        SelectField({
           settingsKey: 'soundTheme',
           options: [
             { label: 'Default', value: 'default' },

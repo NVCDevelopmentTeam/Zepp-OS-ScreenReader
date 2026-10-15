@@ -1,9 +1,11 @@
+import { Row } from './ui.js'
+
 export default function renderSpeechHistory(props) {
   return [
     Section({ title: 'Speech History' }, [
-      Row([Text('Enable History'), Toggle({ settingsKey: 'speechHistoryEnabled' })]),
+      Row([Text({}, 'Enable History'), Toggle({ settingsKey: 'speechHistoryEnabled' })]),
       Row([
-        Text('History Limit'),
+        Text({}, 'History Limit'),
         Slider({
           settingsKey: 'speechHistoryLimit',
           min: 10,
@@ -14,9 +16,9 @@ export default function renderSpeechHistory(props) {
       Row([
         Button({
           label: 'Clear History',
-          onPress: () => {
+          onClick: () => {
             // Logic to clear history
-            props.settingsStorage.setItem('clearHistorySignal', Date.now())
+            props.settingsStorage.setItem('clearHistorySignal', String(Date.now()))
           }
         })
       ])

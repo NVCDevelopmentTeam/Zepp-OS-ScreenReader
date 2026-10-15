@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Toggle keys match the actual menu items built in
 // lib/components/contextMenu.js's show() method 1:1 (settingsKey
 // 'menuShow<Item>') so this screen can genuinely hide/show entries instead
@@ -7,26 +9,40 @@
 export default function renderMenu(_props) {
   return [
     Section({ title: 'Context Menu' }, [
-      Row([Text('Read from Top'), Toggle({ settingsKey: 'menuShowReadFromTop' })]),
+      Row([Text({}, 'Read from Top'), Toggle({ settingsKey: 'menuShowReadFromTop' })]),
       Row([
-        Text('Voice Command (experimental, needs internet)'),
+        Text({}, 'Voice Command (experimental, needs internet)'),
         Toggle({ settingsKey: 'menuShowVoiceCommand' })
       ]),
-      Row([Text('Read from Bottom'), Toggle({ settingsKey: 'menuShowReadFromBottom' })]),
-      Row([Text('Cycle Navigation Mode'), Toggle({ settingsKey: 'menuShowCycleNavigationMode' })]),
-      Row([Text('Object Details'), Toggle({ settingsKey: 'menuShowObjectDetails' })]),
-      Row([Text('Screen Curtain'), Toggle({ settingsKey: 'menuShowScreenCurtain' })]),
-      Row([Text('Read Sensors'), Toggle({ settingsKey: 'menuShowReadSensors' })]),
-      Row([Text('Read Status Bar'), Toggle({ settingsKey: 'menuShowReadStatusBar' })]),
-      Row([Text('Screen Recognition (OCR)'), Toggle({ settingsKey: 'menuShowScreenRecognition' })]),
-      Row([Text('Photo Guidance'), Toggle({ settingsKey: 'menuShowPhotoGuidance' })]),
-      Row([Text('Image Description'), Toggle({ settingsKey: 'menuShowImageDescription' })]),
-      Row([Text('Spell Out'), Toggle({ settingsKey: 'menuShowSpellOut' })]),
-      Row([Text('Braille Keyboard'), Toggle({ settingsKey: 'menuShowBrailleKeyboard' })]),
-      Row([Text('Repeat Last'), Toggle({ settingsKey: 'menuShowRepeatLast' })]),
+      Row([Text({}, 'Read from Bottom'), Toggle({ settingsKey: 'menuShowReadFromBottom' })]),
       Row([
-        Text('Menu Order'),
-        Select({
+        Text({}, 'Cycle Navigation Mode'),
+        Toggle({ settingsKey: 'menuShowCycleNavigationMode' })
+      ]),
+      Row([Text({}, 'Object Details'), Toggle({ settingsKey: 'menuShowObjectDetails' })]),
+      Row([Text({}, 'Screen Curtain'), Toggle({ settingsKey: 'menuShowScreenCurtain' })]),
+      Row([Text({}, 'Read Sensors'), Toggle({ settingsKey: 'menuShowReadSensors' })]),
+      Row([Text({}, 'Read Status Bar'), Toggle({ settingsKey: 'menuShowReadStatusBar' })]),
+      Row([
+        Text({}, 'Screen Recognition (OCR)'),
+        Toggle({ settingsKey: 'menuShowScreenRecognition' })
+      ]),
+      Row([Text({}, 'Photo Guidance'), Toggle({ settingsKey: 'menuShowPhotoGuidance' })]),
+      Row([Text({}, 'Touch Exploration'), Toggle({ settingsKey: 'menuShowTouchExploration' })]),
+      Row([Text({}, 'QR Scan Help'), Toggle({ settingsKey: 'menuShowQrScanHelp' })]),
+      Row([Text({}, 'Read Text in Image'), Toggle({ settingsKey: 'menuShowReadImageText' })]),
+      Row([Text({}, 'Scene Description'), Toggle({ settingsKey: 'menuShowSceneDescription' })]),
+      Row([Text({}, 'Read CAPTCHA'), Toggle({ settingsKey: 'menuShowReadCaptcha' })]),
+      Row([Text({}, 'Custom Label'), Toggle({ settingsKey: 'menuShowCustomLabel' })]),
+      Row([Text({}, 'Gamer Mode'), Toggle({ settingsKey: 'menuShowGamerMode' })]),
+      Row([Text({}, 'Brightness'), Toggle({ settingsKey: 'menuShowBrightness' })]),
+      Row([Text({}, 'Image Description'), Toggle({ settingsKey: 'menuShowImageDescription' })]),
+      Row([Text({}, 'Spell Out'), Toggle({ settingsKey: 'menuShowSpellOut' })]),
+      Row([Text({}, 'Braille Keyboard'), Toggle({ settingsKey: 'menuShowBrailleKeyboard' })]),
+      Row([Text({}, 'Repeat Last'), Toggle({ settingsKey: 'menuShowRepeatLast' })]),
+      Row([
+        Text({}, 'Menu Order'),
+        SelectField({
           settingsKey: 'menuOrder',
           options: [
             { label: 'Default', value: 'default' },

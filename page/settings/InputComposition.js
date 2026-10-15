@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -6,6 +7,7 @@ import { loadSettings, saveSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -57,13 +59,13 @@ export default ZSRPage({
       normal_color: 0x333333,
       press_color: 0x555555,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         const modes = ['none', 'character', 'word', 'sentence']
         let nextIndex = (modes.indexOf(inputEcho) + 1) % modes.length
         config.inputEcho = modes[nextIndex]
         saveSettings(config)
         replace({ url: 'page/settings/InputComposition' })
-      }
+      }, 'click_func')
     })
 
     this.createToggle(root, 240, gettext('Autocomplete'), !!config.announceAutocomplete, (val) => {

@@ -8,14 +8,14 @@ const app = express()
 
 app.use(
   cors({
-    origin: '*',
+    origin: process.env.ZSR_SERVER_ORIGIN || 'http://localhost',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
   })
 )
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ limit: '100kb' }))
+app.use(express.urlencoded({ extended: true, limit: '100kb' }))
 
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.path}`)

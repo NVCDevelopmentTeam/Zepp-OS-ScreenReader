@@ -14,7 +14,8 @@ export default [
       'node_modules/**',
       '.cache/**',
       '.site/**',
-      'app-side/tts/vendor/**'
+      'app-side/tts/vendor/**',
+      '.scripts/simulate/.generated/**'
     ]
   },
   js.configs.recommended,
@@ -51,7 +52,6 @@ export default [
         px: 'readonly',
         AppSettingsPage: 'readonly',
         Section: 'readonly',
-        Row: 'readonly',
         Text: 'readonly',
         Toggle: 'readonly',
         Select: 'readonly',
@@ -77,6 +77,14 @@ export default [
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }
       ]
+    }
+  },
+  {
+    // The simulator runs on Node (not on the watch), so it may use newer syntax.
+    files: ['.scripts/**/*.mjs'],
+    languageOptions: {
+      parserOptions: { ecmaVersion: 2022 },
+      globals: { ...globals.node }
     }
   }
 ]

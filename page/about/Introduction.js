@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'

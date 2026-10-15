@@ -1089,3 +1089,171 @@ msgstr "Opening ZSR without looking"
 
 msgid "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
 msgstr "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
+
+msgid "Start-up problems: {0}"
+msgstr "Start-up problems: {0}"
+
+msgid "ZSR started with a problem. Open About, then Contact, then Read diagnostics."
+msgstr "ZSR started with a problem. Open About, then Contact, then Read diagnostics."
+
+msgid "Send report to phone"
+msgstr "Send report to phone"
+
+msgid "Report sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+msgstr "Report sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+
+msgid "The report could not be sent. Keep the watch connected to the phone and try again."
+msgstr "The report could not be sent. Keep the watch connected to the phone and try again."
+
+msgid "A problem report was sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+msgstr "A problem report was sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+
+msgid "ZSR closed unexpectedly before, so it started in safe mode. Some extra features are off until it runs steadily."
+msgstr "ZSR closed unexpectedly before, so it started in safe mode. Some extra features are off until it runs steadily."
+
+msgid "sceneDescription"
+msgstr "Scene Description"
+
+msgid "readCaptcha"
+msgstr "Read CAPTCHA"
+
+msgid "customLabel"
+msgstr "Custom Label"
+
+msgid "gamerMode"
+msgstr "Gamer Mode"
+
+msgid "brightness"
+msgstr "Brightness"
+
+msgid "Number {0}"
+msgstr "Number {0}"
+
+msgid "Capital {0}"
+msgstr "Capital {0}"
+
+msgid "Letter {0}"
+msgstr "Letter {0}"
+
+msgid "Symbol {0}"
+msgstr "Symbol {0}"
+
+msgid "Failed to process CAPTCHA"
+msgstr "Failed to process CAPTCHA"
+
+msgid "No readable text to read as a CAPTCHA"
+msgstr "No readable text to read as a CAPTCHA"
+
+msgid "No element is focused"
+msgstr "No element is focused"
+
+msgid "Custom label removed"
+msgstr "Custom label removed"
+
+msgid "Custom label saved: {0}"
+msgstr "Custom label saved: {0}"
+
+msgid "The label could not be saved"
+msgstr "The label could not be saved"
+
+msgid "Gamer mode on. Speech is off; ZSR answers with vibration."
+msgstr "Gamer mode on. Speech is off; ZSR answers with vibration."
+
+msgid "Gamer mode off"
+msgstr "Gamer mode off"
+
+msgid "Brightness {0} percent"
+msgstr "Brightness {0} percent"
+
+msgid "Brightness cannot be changed"
+msgstr "Brightness cannot be changed"
+
+msgid "No description returned."
+msgstr "No description returned."
+
+msgid "ZSR accessibility button"
+msgstr "ZSR accessibility button"
+
+msgid "touchExploration"
+msgstr "Touch Exploration"
+
+msgid "Crown: press the crown three times quickly."
+msgstr "Crown: press the crown three times quickly."
+
+msgid "Crown: press the crown twice quickly."
+msgstr "Crown: press the crown twice quickly."
+
+msgid "Crown: press and hold the crown."
+msgstr "Crown: press and hold the crown."
+
+msgid "Accessibility button: the ZSR button in the bottom corner of the screen. Double tap it, or press and hold it for the menu."
+msgstr "Accessibility button: the ZSR button in the bottom corner of the screen. Double tap it, or press and hold it for the menu."
+
+msgid "Gesture: swipe up, then down, then up."
+msgstr "Gesture: swipe up, then down, then up."
+
+msgid "No shortcut is switched on. Turn one on in Settings, Activation."
+msgstr "No shortcut is switched on. Turn one on in Settings, Activation."
+
+msgid "To open ZSR, press the crown to open the app list and choose ZSR."
+msgstr "To open ZSR, press the crown to open the app list and choose ZSR."
+
+msgid "You can also add the ZSR shortcut card to your watch from the Zepp app on your phone, then open it by swiping."
+msgstr "You can also add the ZSR shortcut card to your watch from the Zepp app on your phone, then open it by swiping."
+
+msgid "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
+msgstr "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
+
+msgid "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
+msgstr "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
+
+msgid "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
+msgstr "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
+
+msgid "Touch exploration on"
+msgstr "Touch exploration on"
+
+msgid "Touch exploration off"
+msgstr "Touch exploration off"
+
+msgid "You can turn ZSR on or off three ways: press the crown three times quickly, tap the ZSR accessibility button in the bottom corner of the screen, or swipe up, then down, then up. Change them in Settings, Activation."
+msgstr "You can turn ZSR on or off three ways: press the crown three times quickly, tap the ZSR accessibility button in the bottom corner of the screen, or swipe up, then down, then up. Change them in Settings, Activation."
+
+msgid "Activation"
+msgstr "Activation"
+
+msgid "Crown, three presses"
+msgstr "Crown, three presses"
+
+msgid "Accessibility button"
+msgstr "Accessibility button"
+
+msgid "Gesture, swipe up down up"
+msgstr "Gesture, swipe up down up"
+
+msgid "How to open ZSR"
+msgstr "How to open ZSR"
+
+msgid "Touch Exploration"
+msgstr "Touch Exploration"
+
+msgid "qrScanHelp"
+msgstr "QR Scan Help"
+
+msgid "readImageText"
+msgstr "Read Text in Image"
+
+msgid "The screen is at full brightness for one minute. Hold your phone with its camera facing the watch screen, about 20 centimeters away, and keep both still. Ask someone to help if it does not scan."
+msgstr "The screen is at full brightness for one minute. Hold your phone with its camera facing the watch screen, about 20 centimeters away, and keep both still. Ask someone to help if it does not scan."
+
+msgid "The focused element is not a picture"
+msgstr "The focused element is not a picture"
+
+msgid "Reading the text in the picture..."
+msgstr "Reading the text in the picture..."
+
+msgid "No text was found in the picture"
+msgstr "No text was found in the picture"
+
+msgid "The text in this picture could not be read"
+msgstr "The text in this picture could not be read"

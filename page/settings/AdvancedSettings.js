@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -9,6 +10,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -52,11 +54,11 @@ export default ZSRPage({
       normal_color: config.debugLogging ? 0x00aa00 : 0x333333,
       press_color: 0x666666,
       radius: 35,
-      click_func: () => {
+      click_func: guard(() => {
         config.debugLogging = !config.debugLogging
         saveSettings(config)
         replace({ url: 'page/settings/AdvancedSettings' })
-      }
+      }, 'click_func')
     })
 
     // Verbose Speech Toggle
@@ -70,11 +72,11 @@ export default ZSRPage({
       normal_color: config.verboseSpeech ? 0x00aa00 : 0x333333,
       press_color: 0x666666,
       radius: 35,
-      click_func: () => {
+      click_func: guard(() => {
         config.verboseSpeech = !config.verboseSpeech
         saveSettings(config)
         replace({ url: 'page/settings/AdvancedSettings' })
-      }
+      }, 'click_func')
     })
 
     // Export Log Button
@@ -88,10 +90,10 @@ export default ZSRPage({
       normal_color: 0x555555,
       press_color: 0x666666,
       radius: 35,
-      click_func: () => {
+      click_func: guard(() => {
         log.info('Exporting logs to phone side...')
         ScreenReader.speak(gettext('Exporting logs'), { priority: 'high' })
-      }
+      }, 'click_func')
     })
 
     // Clear History Button
@@ -105,10 +107,10 @@ export default ZSRPage({
       normal_color: 0xaa5500,
       press_color: 0x666666,
       radius: 35,
-      click_func: () => {
+      click_func: guard(() => {
         SpeechHistory.clear()
         ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' })
-      }
+      }, 'click_func')
     })
 
     return root

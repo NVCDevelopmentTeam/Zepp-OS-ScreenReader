@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Voice gender/character is chosen once, in setting/VoiceSetting.js's
 // "Voice Preset" (settingsKey 'voicePreset') - it's wired to espeak-ng's
 // voice-variant suffixes in lib/TTSSystem/EspeakTTSEngine.js. This screen
@@ -12,8 +14,8 @@ export default function renderTextToSpeech(_props) {
   return [
     Section({ title: 'Text-to-Speech Engine' }, [
       Row([
-        Text('Voice Quality (experimental, not active yet)'),
-        Select({
+        Text({}, 'Voice Quality (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'ttsQuality',
           options: [
             { label: 'Standard', value: 'standard' },

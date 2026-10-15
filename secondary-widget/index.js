@@ -1,10 +1,13 @@
+import '../lib/utils/polyfills.js'
 import { push } from '@zos/router'
 import { createWidget, widget, prop } from '@zos/ui'
 import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
 import { localStorage } from '@zos/storage'
+import { getStored } from '../lib/utils/storage.js'
 
 import { px } from '../lib/utils/px.js'
 import { gettext } from '../lib/utils/i18n.js'
+import { guard } from '../lib/utils/safeCall.js'
 const { width } = safeDeviceInfo()
 // `hmStorage` is a Zepp OS 1.0-era global, not part of the 2.0 API this
 // project targets - using the real `localStorage` from `@zos/storage`
@@ -14,7 +17,7 @@ const { width } = safeDeviceInfo()
 const storage = localStorage
 SecondaryWidget({
   build() {
-    const configStr = storage.getItem('screenReaderConfig')
+    const configStr = getStored('screenReaderConfig')
     let isMuted = false
     let isEnabled = true
     if (configStr) {
@@ -60,9 +63,9 @@ SecondaryWidget({
       color: 0xffffff,
       normal_color: isMuted ? 0x00aa00 : 0xaa0000,
       radius: px(30),
-      click_func: () => {
+      click_func: guard(() => {
         isMuted = !isMuted
-        const currentConfig = storage.getItem('screenReaderConfig')
+        const currentConfig = getStored('screenReaderConfig')
         if (currentConfig) {
           try {
             const config = JSON.parse(currentConfig)
@@ -73,11 +76,11 @@ SecondaryWidget({
           }
         }
 
-        muteBtn.setProperty(prop.TEXT, isMuted ? gettext('Unmute') : gettext('Mute'))
         muteBtn.setProperty(prop.MORE, {
+          text: isMuted ? gettext('Unmute') : gettext('Mute'),
           normal_color: isMuted ? 0x00aa00 : 0xaa0000
         })
-      }
+      }, 'click_func')
     })
 
     createWidget(widget.BUTTON, {
@@ -89,9 +92,9 @@ SecondaryWidget({
       color: 0xffffff,
       normal_color: 0x333333,
       radius: px(30),
-      click_func: () => {
+      click_func: guard(() => {
         push({ url: 'page/home/Settings' })
-      }
+      }, 'click_func')
     })
   }
 })

@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -8,6 +9,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
@@ -90,9 +92,9 @@ export default ZSRPage({
       normal_color: 0x333333,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         push({ url: 'page/home/History' })
-      }
+      }, 'click_func')
     })
 
     createChild(root, widget.BUTTON, {
@@ -105,10 +107,10 @@ export default ZSRPage({
       normal_color: 0xaa0000,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         SpeechHistory.clear()
         ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' })
-      }
+      }, 'click_func')
     })
 
     return root

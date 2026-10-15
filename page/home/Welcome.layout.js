@@ -2,11 +2,13 @@
  * Layout for the first-run Welcome page (page/home/Welcome.js).
  * Home (dashboard) layout lives in page/home/index.js.
  */
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { gettext } from '../../lib/utils/i18n.js'
 import { px } from '../../lib/utils/px.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 
 /**
  * @param {{ onOpenGuide: () => void, onContinue: () => void }} handlers
@@ -53,7 +55,7 @@ export function buildWelcomeLayout({ onOpenGuide, onContinue }) {
     normal_color: 0x333333,
     press_color: 0x666666,
     radius: px(32),
-    click_func: onOpenGuide
+    click_func: guard(onOpenGuide, 'click_func')
   })
 
   createChild(root, widget.BUTTON, {
@@ -66,7 +68,7 @@ export function buildWelcomeLayout({ onOpenGuide, onContinue }) {
     normal_color: 0x00aa00,
     press_color: 0x009900,
     radius: px(32),
-    click_func: onContinue
+    click_func: guard(onContinue, 'click_func')
   })
 
   return root

@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // GeneralSetting.js already has the primary UI/speech "Language" picker.
 // This screen covers the finer-grained fallback/detection behavior that
 // sits on top of that primary choice.
@@ -5,8 +7,8 @@ export default function renderLanguage(_props) {
   return [
     Section({ title: 'Language & Region' }, [
       Row([
-        Text('Fallback Language (experimental, not active yet)'),
-        Select({
+        Text({}, 'Fallback Language (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'fallbackLanguage',
           options: [
             { label: 'English', value: 'en-US' },
@@ -15,7 +17,10 @@ export default function renderLanguage(_props) {
           ]
         })
       ]),
-      Row([Text('Automatic Language Detection'), Toggle({ settingsKey: 'languageDetectionAuto' })])
+      Row([
+        Text({}, 'Automatic Language Detection'),
+        Toggle({ settingsKey: 'languageDetectionAuto' })
+      ])
     ])
   ]
 }

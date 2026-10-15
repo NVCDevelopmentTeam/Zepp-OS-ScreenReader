@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { prop } from '@zos/ui'
 import { gettext, format } from '../../lib/utils/i18n.js'
 import { loadSettings } from '../../lib/core/config.js'

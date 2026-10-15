@@ -1,9 +1,11 @@
+import { Row } from './ui.js'
+
 export default function renderRemoteAccess(_props) {
   return [
     Section({ title: 'Remote Access' }, [
-      Row([Text('Enable Remote Assistance'), Toggle({ settingsKey: 'remoteAccessEnabled' })]),
+      Row([Text({}, 'Enable Remote Assistance'), Toggle({ settingsKey: 'remoteAccessEnabled' })]),
       Row([
-        Text('Helper ID'),
+        Text({}, 'Helper ID'),
         TextInput({
           settingsKey: 'remoteHelperId',
           placeholder: 'Enter ID'

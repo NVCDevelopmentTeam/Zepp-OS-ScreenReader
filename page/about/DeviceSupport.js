@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { gettext } from '../../lib/utils/i18n.js'
 import { loadSettings } from '../../lib/core/config.js'
 import { describeSupport } from '../../lib/utils/featureSupport.js'

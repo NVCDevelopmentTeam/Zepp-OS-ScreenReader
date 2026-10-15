@@ -1,12 +1,15 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { loadSettings } from '../../lib/core/config.js'
 import { describeDiagnostics } from '../../lib/utils/featureSupport.js'
+import { sendReportAndSpeakResult } from '../../lib/utils/diagnosticReport.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -60,7 +63,25 @@ export default ZSRPage({
       normal_color: 0x333333,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => ScreenReader.speak(describeDiagnostics(), { priority: 'high' })
+      click_func: guard(
+        () => ScreenReader.speak(describeDiagnostics(), { priority: 'high' }),
+        'click_func'
+      )
+    })
+
+    // Hands the same report to the phone, where the Zepp app offers it as a
+    // ready-made e-mail. This is how a blind user reports a problem alone.
+    createChild(root, widget.BUTTON, {
+      x: 40,
+      y: height - 180,
+      w: width - 80,
+      h: 60,
+      text: gettext('Send report to phone'),
+      color: 0xffffff,
+      normal_color: 0x333333,
+      press_color: 0x666666,
+      radius: 30,
+      click_func: guard(() => sendReportAndSpeakResult(), 'click_func')
     })
 
     return root

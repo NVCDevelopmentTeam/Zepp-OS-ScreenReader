@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -7,6 +8,7 @@ import BrailleService from '../../lib/core/braille.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
@@ -90,14 +92,14 @@ export default ZSRPage({
       normal_color: 0x333333,
       press_color: 0x555555,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         const tables = ['en-US', 'zh-CN', 'ja-JP', 'ko-KR']
         let nextIndex = (tables.indexOf(brailleTable) + 1) % tables.length
         config.brailleTable = tables[nextIndex]
         saveSettings(config)
         BrailleService.setTable(config.brailleTable)
         replace({ url: 'page/settings/AudioBraille' })
-      }
+      }, 'click_func')
     })
 
     createChild(root, widget.BUTTON, {
@@ -110,9 +112,9 @@ export default ZSRPage({
       normal_color: 0x333333,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         push({ url: 'page/settings/BraillePairing' })
-      }
+      }, 'click_func')
     })
 
     return root

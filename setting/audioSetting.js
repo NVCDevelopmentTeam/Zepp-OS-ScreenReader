@@ -1,9 +1,11 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderAudioOutput(_props) {
   return [
     Section({ title: 'Audio Output' }, [
       Row([
-        Text('Sound Split Mode (experimental, not active yet)'),
-        Select({
+        Text({}, 'Sound Split Mode (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'audioSoundSplitMode',
           options: [
             { label: 'Disabled', value: 'disabled' },
@@ -13,11 +15,11 @@ export default function renderAudioOutput(_props) {
         })
       ]),
       Row([
-        Text('Follow Voice Volume (experimental, not active yet)'),
+        Text({}, 'Follow Voice Volume (experimental, not active yet)'),
         Toggle({ settingsKey: 'audioFollowsVoiceVolume' })
       ]),
       Row([
-        Text('Keep Awake Time (seconds) (experimental, not active yet)'),
+        Text({}, 'Keep Awake Time (seconds) (experimental, not active yet)'),
         Slider({
           settingsKey: 'audioKeepAwakeSeconds',
           min: 10,

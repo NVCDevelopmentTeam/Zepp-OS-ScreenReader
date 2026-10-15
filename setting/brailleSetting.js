@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // AudioBrailleSetting.js covers braille *output* (enable + translation
 // table). This screen covers braille *input*.
 //
@@ -15,8 +17,8 @@ export default function renderBraille(_props) {
   return [
     Section({ title: 'Braille Input' }, [
       Row([
-        Text('Braille Display Mode (experimental, not active yet)'),
-        Select({
+        Text({}, 'Braille Display Mode (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'brailleDisplayMode',
           options: [
             { label: 'Automatic', value: 'auto' },
@@ -25,8 +27,8 @@ export default function renderBraille(_props) {
         })
       ]),
       Row([
-        Text('Braille Input Mode'),
-        Select({
+        Text({}, 'Braille Input Mode'),
+        SelectField({
           settingsKey: 'brailleInputMode',
           options: [
             { label: '6-dot', value: '6dot' },
@@ -35,8 +37,8 @@ export default function renderBraille(_props) {
         })
       ]),
       Row([
-        Text('Braille Keyboard Layout (experimental, not active yet)'),
-        Select({
+        Text({}, 'Braille Keyboard Layout (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'brailleKeyboardLayout',
           options: [
             { label: 'English (US)', value: 'en-US' },

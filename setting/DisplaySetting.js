@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Note: watch screen brightness/contrast are OS-level settings, not
 // something a Mini Program is permitted to change - so this focuses on
 // what ZSR itself actually renders (widget text scale / contrast for
@@ -6,7 +8,7 @@ export default function renderDisplay(_props) {
   return [
     Section({ title: 'Display' }, [
       Row([
-        Text('ZSR Text Scale (experimental, not active yet)'),
+        Text({}, 'ZSR Text Scale (experimental, not active yet)'),
         Slider({
           settingsKey: 'fontScale',
           min: 0.8,
@@ -15,14 +17,14 @@ export default function renderDisplay(_props) {
         })
       ]),
       Row([
-        Text('High Contrast Mode (experimental, not active yet)'),
+        Text({}, 'High Contrast Mode (experimental, not active yet)'),
         Toggle({ settingsKey: 'highContrastMode' })
       ])
     ]),
     Section({ title: 'Focus Cursor' }, [
       Row([
-        Text('Cursor Style'),
-        Select({
+        Text({}, 'Cursor Style'),
+        SelectField({
           settingsKey: 'cursorStyle',
           options: [
             { label: 'Border', value: 'border' },
@@ -32,8 +34,8 @@ export default function renderDisplay(_props) {
         })
       ]),
       Row([
-        Text('Cursor Color'),
-        Select({
+        Text({}, 'Cursor Color'),
+        SelectField({
           settingsKey: 'cursorColor',
           options: [
             { label: 'Green', value: '00ff00' },
@@ -46,14 +48,14 @@ export default function renderDisplay(_props) {
           ]
         })
       ]),
-      Row([Text('Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })])
+      Row([Text({}, 'Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })])
     ]),
     // Tells a sighted person that ZSR is on (so it is not left on by accident)
     // without forcing the focus cursor.
     Section({ title: 'Active Indicator' }, [
       Row([
-        Text('ZSR active indicator'),
-        Select({
+        Text({}, 'ZSR active indicator'),
+        SelectField({
           settingsKey: 'activeIndicator',
           options: [
             { label: 'Minimal dot', value: 'minimal' },
@@ -62,8 +64,8 @@ export default function renderDisplay(_props) {
         })
       ]),
       Row([
-        Text('Indicator Color'),
-        Select({
+        Text({}, 'Indicator Color'),
+        SelectField({
           settingsKey: 'indicatorColor',
           options: [
             { label: 'Orange', value: 'ffaa00' },

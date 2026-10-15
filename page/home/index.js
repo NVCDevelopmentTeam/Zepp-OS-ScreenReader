@@ -2,6 +2,7 @@
  * Home (dashboard): on/off toggle, status and the main menu.
  * The first-run welcome screen is page/home/Welcome.js.
  */
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { Battery } from '@zos/sensor'
@@ -13,6 +14,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 import { loadSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 
 const ENGINE_LABELS = { espeak: 'eSpeak', native: 'Native TTS', none: 'None' }
 
@@ -48,7 +50,9 @@ export default ZSRPage({
       y: 0,
       w: width,
       h: px(80),
-      color: 0x111111
+      color: 0x111111,
+      radius: 0,
+      angle: 0
     })
     createChild(root, widget.TEXT, {
       x: 0,
@@ -90,10 +94,10 @@ export default ZSRPage({
       normal_color: enabled ? 0xaa0000 : 0x00aa00,
       press_color: 0x666666,
       radius: px(32),
-      click_func: () => {
+      click_func: guard(() => {
         ScreenReader.toggleEnabled()
         replace({ url: 'page/home/index' })
-      }
+      }, 'click_func')
     })
 
     const navItems = [

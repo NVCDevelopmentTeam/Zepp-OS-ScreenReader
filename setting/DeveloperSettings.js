@@ -1,8 +1,10 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderDeveloperOptions(props) {
   return [
     Section({ title: 'Developer Options' }, [
-      Row([Text('Debug Logging'), Toggle({ settingsKey: 'debugLogging' })]),
-      Row([Text('Verbose Speech'), Toggle({ settingsKey: 'verboseSpeech' })]),
+      Row([Text({}, 'Debug Logging'), Toggle({ settingsKey: 'debugLogging' })]),
+      Row([Text({}, 'Verbose Speech'), Toggle({ settingsKey: 'verboseSpeech' })]),
       Row([
         // HONESTY NOTE: the Zepp OS API level available to a Mini
         // Program is fixed at build time by `zeus build` (from
@@ -11,9 +13,10 @@ export default function renderDeveloperOptions(props) {
         // in, so this can't actually do anything real. Kept as a
         // persisted, non-crashing value only.
         Text(
+          {},
           'Simulate older Zepp OS (testing only; can only lower) (experimental, not active yet)'
         ),
-        Select({
+        SelectField({
           settingsKey: 'apiVersionOverride',
           options: [
             { label: 'Default', value: 'default' },
@@ -25,16 +28,16 @@ export default function renderDeveloperOptions(props) {
       Row([
         Button({
           label: 'Export Debug Log',
-          onPress: () => {
-            props.settingsStorage.setItem('exportLogSignal', Date.now())
+          onClick: () => {
+            props.settingsStorage.setItem('exportLogSignal', String(Date.now()))
           }
         })
       ]),
       Row([
         Button({
           label: 'Reset All Settings',
-          onPress: () => {
-            props.settingsStorage.setItem('resetSettingsSignal', Date.now())
+          onClick: () => {
+            props.settingsStorage.setItem('resetSettingsSignal', String(Date.now()))
           }
         })
       ])
@@ -48,18 +51,22 @@ export default function renderDeveloperOptions(props) {
     // fix (or a newer Zepp OS API) knows precisely what to unblock.
     Section({ title: 'Experimental / Unsupported by current Zepp OS' }, [
       Row([
-        Text('Audio Ducking - no audio focus API exists in Zepp OS'),
+        Text({}, 'Audio Ducking - no audio focus API exists in Zepp OS'),
         Toggle({ settingsKey: 'audioDucking' })
       ]),
       Row([
         Text(
+          {},
           'Read when screen off - Mini Program lifecycle has no onPause/onResume/screen event (experimental, not active yet)'
         ),
         Toggle({ settingsKey: 'readScreenOff' })
       ]),
       Row([
-        Text('Audio Routing - no output-device-selection API found (experimental, not active yet)'),
-        Select({
+        Text(
+          {},
+          'Audio Routing - no output-device-selection API found (experimental, not active yet)'
+        ),
+        SelectField({
           settingsKey: 'audioRouting',
           options: [
             { label: 'System Default', value: 'default' },
@@ -69,9 +76,10 @@ export default function renderDeveloperOptions(props) {
       ]),
       Row([
         Text(
+          {},
           'Document Navigation Mode - document/rich-text reader not yet built (experimental, not active yet)'
         ),
-        Select({
+        SelectField({
           settingsKey: 'docNavMode',
           options: [
             { label: 'Standard', value: 'standard' },
@@ -80,14 +88,15 @@ export default function renderDeveloperOptions(props) {
         })
       ]),
       Row([
-        Text('Announce Formatting - document/rich-text reader not yet built'),
+        Text({}, 'Announce Formatting - document/rich-text reader not yet built'),
         Toggle({ settingsKey: 'announceFormatting' })
       ]),
       Row([
         Text(
+          {},
           'Browse Mode Behavior - document/rich-text reader not yet built (experimental, not active yet)'
         ),
-        Select({
+        SelectField({
           settingsKey: 'browseBehavior',
           options: [
             { label: 'Automatic', value: 'auto' },
@@ -97,9 +106,10 @@ export default function renderDeveloperOptions(props) {
       ]),
       Row([
         Text(
+          {},
           'Echo Behavior - on-screen/braille keyboard input pipeline not yet built (experimental, not active yet)'
         ),
-        Select({
+        SelectField({
           settingsKey: 'echoBehavior',
           options: [
             { label: 'Characters', value: 'chars' },
@@ -110,11 +120,12 @@ export default function renderDeveloperOptions(props) {
         })
       ]),
       Row([
-        Text('Autocomplete Suggestions - text-input pipeline not yet built'),
+        Text({}, 'Autocomplete Suggestions - text-input pipeline not yet built'),
         Toggle({ settingsKey: 'announceAutocomplete' })
       ]),
       Row([
         Text(
+          {},
           'Selection Changes - text-input pipeline not yet built (experimental, not active yet)'
         ),
         Toggle({ settingsKey: 'announceSelection' })

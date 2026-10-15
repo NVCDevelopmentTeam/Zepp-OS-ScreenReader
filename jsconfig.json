@@ -1,9 +1,24 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "checkJs": true
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2020",
+    "lib": ["es2020"],
+    "types": [],
+    "checkJs": true,
+    "allowJs": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": false
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
+  "include": [
+    "app.js",
+    "lib/**/*.js",
+    "page/**/*.js",
+    "app-widget/**/*.js",
+    "secondary-widget/**/*.js",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules", "server", "app-side", "setting"],
   "files": ["node_modules/@zeppos/device-types/dist/index.d.ts"]
 }

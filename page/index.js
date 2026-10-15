@@ -1,11 +1,8 @@
+import '../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
-import {
-  bootSummary,
-  getBootErrors,
-  drawErrorPanel,
-  signalBootStatus
-} from '../lib/utils/bootErrors.js'
+import { getBootErrors, signalBootStatus } from '../lib/utils/bootErrors.js'
+import { announceAndReportBootProblems } from '../lib/utils/diagnosticReport.js'
 import { log } from '@zos/utils'
 import { replace } from '@zos/router'
 import ScreenReader from '../lib/core/readerProxy.js'
@@ -15,12 +12,13 @@ import { ZSRPage } from '../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../lib/core/zsrWidgets.js'
 import { px } from '../lib/utils/px.js'
 import { gettext } from '../lib/utils/i18n.js'
+import { safeTimeout } from '../lib/utils/safeCall.js'
 export default ZSRPage({
   onInit() {
     log.info('Page index onInit')
     // One pulse: ZSR has opened (felt, not seen or heard - speech needs the phone).
     signalBootStatus('started')
-    const timeout = setTimeout(() => {
+    const timeout = safeTimeout(() => {
       log.warn('Initialization timeout, forcing navigation')
       this.navigateToWelcome()
     }, 5000)
@@ -40,15 +38,12 @@ export default ZSRPage({
   },
 
   navigateToWelcome() {
-    // If anything failed while starting, keep the problem on screen for a while so a
-    // sighted helper can read or photograph it, THEN carry on. (A silent blank or
-    // vanishing screen gives nobody anything to report.)
-    if (getBootErrors().length > 0 && !this.errorsShown) {
-      this.errorsShown = true
-      drawErrorPanel('ZSR started with problems')
-      setTimeout(() => this.navigateToWelcome(), 20000)
-      return
-    }
+    // The 5 s timeout and a late init() result can both arrive; navigate only once.
+    if (this.navigated) return
+    this.navigated = true
+    // A problem while starting is reported by vibration and speech (never drawn on
+    // screen: the user cannot read it). Navigation continues so ZSR stays usable.
+    if (getBootErrors().length > 0) announceAndReportBootProblems()
     // First launch shows the welcome page once; afterwards go straight Home.
     const seen = !!(globalThis.ScreenReaderConfig && globalThis.ScreenReaderConfig.welcomeSeen)
     replace({
@@ -87,18 +82,6 @@ export default ZSRPage({
       color: 0xaaaaaa,
       align_h: 2,
       text_size: px(20)
-    })
-
-    // Build + capability line, so a photo of this screen identifies the setup.
-    createChild(group, widget.TEXT, {
-      x: 0,
-      y: height - px(70),
-      w: width,
-      h: px(30),
-      text: bootSummary(),
-      color: 0x777777,
-      align_h: 2,
-      text_size: px(14)
     })
 
     return group

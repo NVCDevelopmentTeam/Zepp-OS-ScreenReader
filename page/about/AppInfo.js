@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style, event } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -7,6 +8,7 @@ import { saveSettings, loadSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
 import { ZSR_VERSION } from '../../lib/utils/version.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -58,26 +60,29 @@ export default ZSRPage({
     })
 
     // Unlock developer options with 5 taps
-    infoWidget.addEventListener(event.CLICK_UP, () => {
-      const now = Date.now()
-      if (now - this.lastTapTime < 500) {
-        this.tapCount++
-      } else {
-        this.tapCount = 1
-      }
-      this.lastTapTime = now
+    infoWidget.addEventListener(
+      event.CLICK_UP,
+      guard(() => {
+        const now = Date.now()
+        if (now - this.lastTapTime < 500) {
+          this.tapCount++
+        } else {
+          this.tapCount = 1
+        }
+        this.lastTapTime = now
 
-      if (this.tapCount === 5) {
-        const config = globalThis.ScreenReaderConfig || {}
-        config.devMode = true
-        saveSettings(config)
-        showToast({ content: gettext('Developer options unlocked!') })
-      } else if (this.tapCount > 0 && this.tapCount < 5) {
-        showToast({
-          content: `${gettext('Tap')} ${5 - this.tapCount} ${gettext('more times to unlock.')}`
-        })
-      }
-    })
+        if (this.tapCount === 5) {
+          const config = globalThis.ScreenReaderConfig || {}
+          config.devMode = true
+          saveSettings(config)
+          showToast({ content: gettext('Developer options unlocked!') })
+        } else if (this.tapCount > 0 && this.tapCount < 5) {
+          showToast({
+            content: `${gettext('Tap')} ${5 - this.tapCount} ${gettext('more times to unlock.')}`
+          })
+        }
+      }, 'event')
+    )
 
     const links = [
       { name: 'Introduction', url: 'page/about/Introduction', type_id: 1 },

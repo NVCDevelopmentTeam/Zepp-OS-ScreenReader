@@ -1,19 +1,20 @@
+import '../lib/utils/polyfills.js'
 import { createWidget, widget } from '@zos/ui'
 import { push } from '@zos/router'
-import { localStorage } from '@zos/storage'
+import { getStored } from '../lib/utils/storage.js'
 import { gettext } from '../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../lib/utils/deviceInfo.js'
 
 import { px } from '../lib/utils/px.js'
+import { guard } from '../lib/utils/safeCall.js'
 const { width } = safeDeviceInfo()
 // `hmStorage` is a Zepp OS 1.0 global and does not exist on API 2.0+, so the old
 // code always fell back to a no-op store and the card always showed DISABLED.
-// Same persistence API as lib/core/config.js (`localStorage`), no-op if unavailable.
-const storage = localStorage || { setItem: () => {}, getItem: () => null }
+// Reads the same saved settings as lib/core/config.js (through lib/utils/storage.js).
 
 AppWidget({
   build() {
-    const configStr = storage.getItem('screenReaderConfig')
+    const configStr = getStored('screenReaderConfig')
     let isEnabled = false
     if (configStr) {
       try {
@@ -58,12 +59,12 @@ AppWidget({
       normal_color: 0x333333,
       press_color: 0x666666,
       radius: px(30),
-      click_func: () => {
+      click_func: guard(() => {
         push({
           url: 'page/index',
           params: { from: 'widget' }
         })
-      }
+      }, 'click_func')
     })
   }
 })

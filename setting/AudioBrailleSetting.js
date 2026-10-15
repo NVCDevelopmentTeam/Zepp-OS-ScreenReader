@@ -1,10 +1,12 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderAudioBraille(_props) {
   return [
     Section({ title: 'Audio & Braille' }, [
-      Row([Text('Braille Output'), Toggle({ settingsKey: 'brailleEnabled' })]),
+      Row([Text({}, 'Braille Output'), Toggle({ settingsKey: 'brailleEnabled' })]),
       Row([
-        Text('Braille Table'),
-        Select({
+        Text({}, 'Braille Table'),
+        SelectField({
           settingsKey: 'brailleTable',
           options: [
             { label: 'English (US)', value: 'en-US' },
@@ -17,8 +19,8 @@ export default function renderAudioBraille(_props) {
         // output routing (speaker vs Bluetooth) was found - the system
         // handles audio routing automatically based on what's connected.
         // Left as a persisted, non-crashing choice rather than removed.
-        Text('Audio Routing (not yet supported by Zepp OS) (experimental, not active yet)'),
-        Select({
+        Text({}, 'Audio Routing (not yet supported by Zepp OS) (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'audioRouting',
           options: [
             { label: 'System Default', value: 'default' },

@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -13,6 +14,7 @@ export default ZSRPage({
     this.state = {
       categories: [
         { name: gettext('General'), url: 'page/settings/General', type_id: 1 },
+        { name: gettext('Activation'), url: 'page/settings/Activation', type_id: 1 },
         { name: gettext('Speech'), url: 'page/settings/Speech', type_id: 1 },
         { name: gettext('Vision'), url: 'page/settings/Vision', type_id: 1 },
         { name: gettext('Gestures & Input'), url: 'page/settings/GesturesInput', type_id: 1 },

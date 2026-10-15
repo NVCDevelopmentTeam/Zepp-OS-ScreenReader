@@ -77,7 +77,7 @@ See the [README](./README.md#getting-started) for the full breakdown of `zeus de
 - Match the existing module structure — see [Project Structure](./README.md#project-structure) in the README:
   - Watch-side UI logic → `page/`, `app-widget/`, `secondary-widget/`
   - Shared logic (TTS, gestures, braille) → `lib/`
-  - Code shared across app-side and device-side → `shared/`
+  - Messaging between watch and phone, and permission handling → `GrantPermission/` (formerly `shared/`)
   - Companion/phone-side logic → `app-side/`
   - Settings screen → `setting/`
 - Prefer small, composable functions over large monolithic handlers — TTS and gesture code in particular tends to get reused across modules.
@@ -131,7 +131,7 @@ This helps avoid duplicate work and keeps the [Roadmap](./README.md#roadmap) gro
 
 To add or improve a language:
 
-1. Check existing locale files (see `shared/` or `setting/` for current i18n structure)
+1. Check existing locale files (see `page/i18n/` for the watch and `setting/` for the phone settings)
 2. Keep terminology consistent with how screen readers are typically described in that language
 3. Test spoken output where possible — translated strings can behave differently in TTS than in visual UI
 
@@ -144,3 +144,12 @@ To add or improve a language:
 ---
 
 Thank you again for contributing — every improvement here makes wearable technology a little more accessible for someone who needs it. 💜
+
+## Checks before a pull request
+
+```
+npm run lint        # Prettier + ESLint
+npm run check       # TypeScript against the official typings (watch code)
+npm run check:api   # no static import newer than app.json minVersion
+npm run simulate    # starts the app and builds every page on a simulated Zepp OS (ZSR_API=2.0|3.0|4.2)
+```

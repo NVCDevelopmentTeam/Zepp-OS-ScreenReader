@@ -5,11 +5,13 @@
  * can change without touching navigation/speech code, and so it is never
  * confused with the app's Home layout (page/home/).
  */
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { getDeviceInfo } from '@zos/device'
 import { gettext } from '../../lib/utils/i18n.js'
 import { px } from '../../lib/utils/px.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 
 /**
  * Sections are built on demand so every string is resolved with the language
@@ -27,7 +29,7 @@ export function getGuideSections() {
     {
       title: gettext('Turning ZSR On or Off'),
       content: gettext(
-        'You can enable or disable ZSR three ways: double or triple-click the physical Home button (set your preference in Settings > General > Accessibility Shortcut), assign a gesture to "Turn ZSR On/Off" in Gesture Actions, or tap the large ZSR shortcut card next to your watch faces.'
+        'You can turn ZSR on or off three ways: press the crown three times quickly, tap the ZSR accessibility button in the bottom corner of the screen, or swipe up, then down, then up. Change them in Settings, Activation.'
       )
     },
     {
@@ -105,7 +107,7 @@ export function buildGuideLayout({ first, onPrevious, onNext, onTogglePractice }
     normal_color: 0x006600,
     press_color: 0x009900,
     radius: px(27),
-    click_func: onTogglePractice
+    click_func: guard(onTogglePractice, 'click_func')
   })
 
   const half = (width - px(100)) / 2
@@ -119,7 +121,7 @@ export function buildGuideLayout({ first, onPrevious, onNext, onTogglePractice }
     normal_color: 0x333333,
     press_color: 0x666666,
     radius: px(30),
-    click_func: onPrevious
+    click_func: guard(onPrevious, 'click_func')
   })
   createChild(root, widget.BUTTON, {
     x: width / 2 + px(10),
@@ -131,7 +133,7 @@ export function buildGuideLayout({ first, onPrevious, onNext, onTogglePractice }
     normal_color: 0x333333,
     press_color: 0x666666,
     radius: px(30),
-    click_func: onNext
+    click_func: guard(onNext, 'click_func')
   })
 
   return { titleWidget, contentWidget }

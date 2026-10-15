@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // HONESTY NOTE: there is no document/rich-text reading module anywhere
 // in lib/ yet (no parser for headings/lists/formatting, no "browse mode"
 // concept like NVDA's for long documents) - these three settings are
@@ -8,8 +10,8 @@ export default function renderDocument(_props) {
   return [
     Section({ title: 'Document Settings' }, [
       Row([
-        Text('Navigation mode (feature not yet built) (experimental, not active yet)'),
-        Select({
+        Text({}, 'Navigation mode (feature not yet built) (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'docNavMode',
           options: [
             { label: 'Standard', value: 'standard' },
@@ -18,12 +20,12 @@ export default function renderDocument(_props) {
         })
       ]),
       Row([
-        Text('Announce formatting (feature not yet built)'),
+        Text({}, 'Announce formatting (feature not yet built)'),
         Toggle({ settingsKey: 'announceFormatting' })
       ]),
       Row([
-        Text('Browse mode behavior (feature not yet built) (experimental, not active yet)'),
-        Select({
+        Text({}, 'Browse mode behavior (feature not yet built) (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'browseBehavior',
           options: [
             { label: 'Automatic', value: 'auto' },

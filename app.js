@@ -1,6 +1,7 @@
+import './lib/utils/polyfills.js'
 import './GrantPermission/device-polyfill.js'
 import { MessageBuilder } from './GrantPermission/message.js'
-import { getPackageInfo, requestPermission } from '@zos/app'
+import { getPackageInfo } from '@zos/app'
 import * as ble from '@zos/ble'
 import { log } from '@zos/utils'
 import WidgetInterceptor from './lib/core/widgetInterceptor.js'
@@ -13,6 +14,12 @@ import AccessibilityService from './lib/core/accessibility.js'
 import { loadSettings } from './lib/core/config.js'
 import ErrorMonitor from './lib/utils/errorMonitor.js'
 import { ServerConfig, saveSettings } from './lib/core/config.js'
+import { coerceSettingValue } from './lib/utils/settingValue.js'
+import { beginRun, markStage, endRun, isSafeMode } from './lib/utils/crashGuard.js'
+import ZSRCore from './lib/core/index.js'
+import ZSRComponents from './lib/components/index.js'
+import ZSRExtensions from './lib/extensions/index.js'
+import { sendReportAndSpeakResult } from './lib/utils/diagnosticReport.js'
 import BrailleService from './lib/core/braille.js'
 import SpeechHistory from './lib/utils/speechHistory.js'
 import { registerApiCapabilityProbes } from './lib/utils/apiCapability.js'
@@ -21,6 +28,7 @@ import { recordBootError } from './lib/utils/bootErrors.js'
 import { loadMedia, getMediaModule as getMediaModuleSafe } from './lib/equipment/mediaSupport.js'
 import SpeechPlayer from './lib/equipment/speechPlayer.js'
 import { getApiCapabilityLevel } from './lib/utils/apiCapability.js'
+import { guard, safeTimeout } from './lib/utils/safeCall.js'
 // Side-effect import: ContextMenu (and, transitively, BrailleKeyboard) is a
 // self-registering singleton (sets globalThis.ContextMenuInstance at
 // module scope) - but nothing was ever importing this file, so that
@@ -31,6 +39,19 @@ import { getApiCapabilityLevel } from './lib/utils/apiCapability.js'
 // isn't loaded, so the entire context menu feature was unreachable dead
 // code despite the menu logic itself being correct.
 import './lib/components/contextMenu.js'
+
+// Everything ZSR is made of, reachable by plugins as `globalThis.ZSR`: the programming
+// interface (General, Activation, Speech, Touch, Keys, Peripherals ...) plus `core`,
+// `components` and `extensions`.
+globalThis.ZSR = Object.assign(globalThis.ZSR || {}, ZSRCore.plugin, {
+  core: ZSRCore,
+  components: ZSRComponents,
+  extensions: ZSRExtensions
+})
+
+/** Background handshake retries when the phone is not connected, and the gap between them. */
+const PHONE_CONNECT_RETRIES = 3
+const PHONE_RETRY_MS = 10000
 
 // Initialize interceptors as early as possible
 WidgetInterceptor.init()
@@ -46,6 +67,13 @@ App({
     // Initialize globalData if it doesn't exist (some versions of Zepp OS)
     if (!this.globalData) {
       this.globalData = {}
+    }
+
+    // Did the previous run end without closing normally? If so ZSR announces it and,
+    // after repeated crashes, starts in safe mode (core reader only).
+    const run = beginRun()
+    if (run.crashes > 0) {
+      recordBootError('previous run', `ended unexpectedly at "${run.stage}"`)
     }
 
     // Dynamic, try/catch-wrapped probes for APIs newer than this app's
@@ -74,11 +102,12 @@ App({
       }
       try {
         const interactionModule = await import('@zos/interaction')
-        probes.SYSTEM_KEYBOARD = interactionModule.SYSTEM_KEYBOARD
+        probes.SYSTEM_KEYBOARD = interactionModule['SYSTEM_KEYBOARD']
       } catch (_e) {
         // Not present on this firmware - fine.
       }
       registerApiCapabilityProbes(probes)
+      markStage('probes')
     } catch (e) {
       log.warn('API capability probing failed (non-fatal):', String(e))
       recordBootError('api probes', e)
@@ -96,9 +125,9 @@ App({
         audioPlayback: hasAudio,
         recorder: !!(media && media.id && media.id.RECORDER && media.codec)
       }
-      console.log('[ZSR diag] device ' + JSON.stringify(diag))
+      log.info('[ZSR diag] device ' + JSON.stringify(diag))
     } catch (_e) {
-      console.log('[ZSR diag] device probe failed')
+      log.info('[ZSR diag] device probe failed')
     }
 
     // Load configuration
@@ -112,7 +141,9 @@ App({
 
     try {
       // 1. Initialize core communications
-      const { appId } = getPackageInfo()
+      // The typings describe the package info as an empty object; `appId` is documented.
+      const packageInfo = getPackageInfo()
+      const appId = 'appId' in packageInfo ? packageInfo.appId : undefined
       const messageBuilder = new MessageBuilder(
         /** @type {any} */ ({
           appId,
@@ -121,7 +152,7 @@ App({
       )
 
       this.globalData.messageBuilder = messageBuilder
-      messageBuilder.connect()
+      this.connectToPhone(messageBuilder, 0)
 
       // 2. Grant permissions
       this.grantPermissions()
@@ -134,21 +165,37 @@ App({
       // dead for the rest of the session.
       await this.initScreenReaderWithRecovery()
 
-      ShortcutHandler.init()
-      GestureHandler.init()
-      VoiceControlService.init()
-      AccessibilityService.init()
+      // Each part starts on its own: one failing part must not stop the others.
+      // In safe mode (the previous runs ended unexpectedly) only the core parts start.
+      markStage('services')
+      const startPart = (name, init) => {
+        try {
+          init()
+        } catch (e) {
+          log.warn(`[ZSR] ${name} failed to start: ${String(e)}`)
+          recordBootError(name, e)
+        }
+      }
+      startPart('shortcuts', () => ShortcutHandler.init())
+      startPart('gestures', () => GestureHandler.init())
+      if (!isSafeMode()) {
+        startPart('voice control', () => VoiceControlService.init())
+        startPart('accessibility service', () => AccessibilityService.init())
 
-      // Ask the phone to download the speech engine now, in the background,
-      // so the user's first sentence is not delayed. Best effort only.
-      Promise.resolve()
-        .then(() =>
-          messageBuilder.request({ method: 'TTS_WARMUP', params: {} }, { timeout: 120000 })
-        )
-        // Then download the offline voice in the background (resumable) so
-        // interface labels are spoken instantly with no phone round trip.
-        .then(() => ScreenReader.syncOfflineVoice(messageBuilder))
-        .catch((e) => log.info('Speech engine warm-up skipped: ' + String(e)))
+        // Ask the phone to download the speech engine now, in the background,
+        // so the user's first sentence is not delayed. Best effort only.
+        Promise.resolve()
+          .then(() =>
+            messageBuilder.request({ method: 'TTS_WARMUP', params: {} }, { timeout: 120000 })
+          )
+          // Then download the offline voice in the background (resumable) so
+          // interface labels are spoken instantly with no phone round trip.
+          .then(() => ScreenReader.syncOfflineVoice(messageBuilder))
+          .catch((e) => log.info('Speech engine warm-up skipped: ' + String(e)))
+      } else {
+        log.info('Safe mode: voice control, accessibility extras and warm-up are off')
+      }
+      markStage('ready')
 
       // 4. Handle incoming messages
       const handleIncoming = async (payloadBuf) => {
@@ -231,9 +278,10 @@ App({
               // Previously the raw config value updated, but
               // BrailleService's own internal `currentTable` (what
               // translation actually uses) never synced with it.
-              BrailleService.setTable(value)
+              const table = coerceSettingValue(value, ServerConfig.brailleTable)
+              BrailleService.setTable(table)
               if (globalThis.ScreenReaderConfig) {
-                globalThis.ScreenReaderConfig[key] = value
+                globalThis.ScreenReaderConfig[key] = table
                 saveSettings(globalThis.ScreenReaderConfig)
               }
             } else if (key === 'resetSettingsSignal') {
@@ -247,21 +295,14 @@ App({
                 force: true
               })
             } else if (key === 'exportLogSignal') {
-              // "Export Debug Log" button - there's no file-sharing API
-              // exposed to a Mini Program's device-side code to actually
-              // write a shareable file, so this speaks a summary via TTS
-              // instead of silently doing nothing.
-              const stats = ErrorMonitor.getErrorStats()
-              await ScreenReader.speak(
-                format(
-                  gettext('Debug log summary: {0} errors recorded, {1} recovered.'),
-                  stats.total,
-                  stats.recovered
-                ),
-                { priority: 'high', force: true }
-              )
+              // "Prepare report" on the phone: build the problem report and hand it
+              // back to the Side Service, which stores it for the Settings App's
+              // ready-made e-mail link. The outcome is spoken.
+              await sendReportAndSpeakResult()
             } else if (globalThis.ScreenReaderConfig && key !== undefined) {
-              globalThis.ScreenReaderConfig[key] = value
+              // Settings Storage holds strings only ('false' is truthy), so convert to
+              // the type of the setting's default before using it.
+              globalThis.ScreenReaderConfig[key] = coerceSettingValue(value, ServerConfig[key])
               // CRITICAL FIX: every setting changed from the phone's
               // Settings App was only ever updated in-memory here - never
               // persisted to device storage. That meant every single
@@ -306,7 +347,7 @@ App({
       if (globalThis.ScreenReaderConfig?.autoStart !== false) {
         ScreenReader.enabled = true
         // Delay greeting to ensure TTS is ready
-        setTimeout(() => {
+        safeTimeout(() => {
           ScreenReader.vibration.vibrate('success')
           ScreenReader.speak(gettext('ZSR Started'), { priority: 'high' })
         }, 1500)
@@ -322,7 +363,28 @@ App({
   // removing it would break runtime behavior on devices that call onBoot.
   // @ts-ignore - onBoot is a valid Zepp OS lifecycle hook not in the type package
   onBoot() {
-    console.log('app on boot invoke')
+    log.debug('app on boot invoke')
+  },
+
+  /**
+   * Handshake with the phone's Side Service. A watch that is not connected to
+   * its phone is a normal situation (speech needs the phone, ZSR still starts and
+   * answers with vibration), so a failed handshake is retried a few times in the
+   * background and is never a start-up error.
+   * @param {any} messageBuilder
+   * @param {number} attempt
+   */
+  connectToPhone(messageBuilder, attempt) {
+    try {
+      messageBuilder.connect()
+    } catch (e) {
+      if (attempt < PHONE_CONNECT_RETRIES) {
+        log.debug('Phone not reachable yet, will retry: ' + String(e))
+        safeTimeout(() => this.connectToPhone(messageBuilder, attempt + 1), PHONE_RETRY_MS)
+      } else {
+        log.debug('Phone link unavailable; continuing without phone features: ' + String(e))
+      }
+    }
   },
 
   async initScreenReaderWithRecovery() {
@@ -355,12 +417,12 @@ App({
         )
         // Simple linear backoff so a fast-failing sensor/service doesn't
         // spin the retry loop.
-        await new Promise((resolve) => setTimeout(resolve, attempt * 500))
+        await new Promise((resolve) => safeTimeout(resolve, attempt * 500))
       }
     }
   },
 
-  grantPermissions() {
+  async grantPermissions() {
     // Must match the "permissions" array in app.json, and only lists codes that
     // the official documentation / typings publish: getDeviceInfo, localStorage
     // and the health sensors ZSR reads aloud on request. Audio playback and
@@ -384,21 +446,27 @@ App({
     // handlers). See
     // https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/requestPermission/
     try {
-      requestPermission({
+      // requestPermission() exists from API_LEVEL 3.0. Importing it by name would stop
+      // app.js from loading at all on Zepp OS 2.x, so it is resolved at run time.
+      const appModule = await import('@zos/app')
+      if (typeof appModule.requestPermission !== 'function') {
+        log.debug('requestPermission is not available on this firmware; using system defaults.')
+        return
+      }
+      appModule.requestPermission({
         permissions,
-        callback: (...args) => {
-          console.log('Permission request result:', args)
-        }
+        callback: guard((...args) => {
+          log.debug('Permission request result: ' + JSON.stringify(args))
+        }, 'callback')
       })
     } catch (_e) {
-      console.log(
-        'Standard permission request not supported or failed, proceeding with system defaults.'
-      )
+      log.debug('Permission request not supported on this firmware; using system defaults.')
     }
   },
 
   onDestroy() {
-    console.log('app on destroy invoke')
+    log.debug('app on destroy invoke')
+    endRun()
     // Free the audio player: the media docs call release() when playback is over.
     try {
       SpeechPlayer.dispose()
@@ -410,7 +478,11 @@ App({
     // globalData on the lifecycle context.
     const app = getApp()
     if (app._options.globalData && app._options.globalData.messageBuilder) {
-      app._options.globalData.messageBuilder.disConnect()
+      try {
+        app._options.globalData.messageBuilder.disConnect()
+      } catch (_e) {
+        /* no phone link to close */
+      }
     }
   }
 })

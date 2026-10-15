@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Configures what ZSR's registered Shortcut Card does when opened
 // (app.json module.app-widget/secondary-widget already register the
 // widgets themselves; this only picks the action they trigger).
@@ -10,8 +12,8 @@ export default function renderShortcut(_props) {
   return [
     Section({ title: 'Shortcut Card' }, [
       Row([
-        Text('Shortcut Card Action (experimental, not active yet)'),
-        Select({
+        Text({}, 'Shortcut Card Action (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'shortcutCardAction',
           options: [
             { label: 'Toggle Screen Reader', value: 'toggle_screen_reader' },

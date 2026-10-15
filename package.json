@@ -11,7 +11,14 @@
     "preview": "node .scripts/runner.mjs preview",
     "lint": "prettier --check . && eslint -c eslint.config.mjs .",
     "format": "prettier --write .",
-    "check": "tsc --noEmit -p jsconfig.json"
+    "check": "tsc --noEmit -p jsconfig.json",
+    "simulate": "node .scripts/simulate/gen.mjs && node --import ./.scripts/simulate/register.mjs .scripts/simulate/run.mjs",
+    "check:api": "node .scripts/check-api-levels.mjs",
+    "server": "node server/start.js",
+    "test:polyfills": "node .scripts/test-polyfills.mjs",
+    "check:i18n": "node .scripts/check-i18n.mjs",
+    "check:targets": "node .scripts/check-targets.mjs",
+    "verify": "npm run lint && npm run check && npm run check:api && npm run check:i18n && npm run check:targets && npm run test:polyfills && npm run simulate"
   },
   "author": "NVC development Team",
   "license": "MIT",
@@ -23,5 +30,9 @@
     "globals": "^17.13.0",
     "prettier": "^3.9.9",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
   }
 }

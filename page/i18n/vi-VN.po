@@ -1089,3 +1089,171 @@ msgstr "Mở ZSR mà không cần nhìn"
 
 msgid "Set this up once. On the watch: Settings, Preferences, Shortcut Buttons, choose ZSR for the side button. After that, press and hold the side button to open ZSR. Or in the Zepp app on your phone: Device, your watch, Shortcut Cards, add the ZSR card and move it to the top. Then wake the watch, swipe right on the watch face and tap the top card."
 msgstr "Chỉ cần thiết lập một lần. Trên đồng hồ: Cài đặt, Tùy chọn, Phím tắt, chọn ZSR cho nút bên. Sau đó nhấn giữ nút bên để mở ZSR. Hoặc trong ứng dụng Zepp trên điện thoại: Thiết bị, đồng hồ của bạn, Thẻ lối tắt, thêm thẻ ZSR và đưa lên đầu. Rồi đánh thức đồng hồ, vuốt phải từ mặt đồng hồ và chạm thẻ trên cùng."
+
+msgid "Start-up problems: {0}"
+msgstr "Sự cố khi khởi động: {0}"
+
+msgid "ZSR started with a problem. Open About, then Contact, then Read diagnostics."
+msgstr "ZSR khởi động gặp sự cố. Mở Giới thiệu, rồi Liên hệ và Phản hồi, rồi Đọc thông tin chẩn đoán."
+
+msgid "Send report to phone"
+msgstr "Gửi báo cáo tới điện thoại"
+
+msgid "Report sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+msgstr "Đã gửi báo cáo tới điện thoại. Trong ứng dụng Zepp, mở cài đặt ZSR, rồi Báo cáo sự cố, để gửi email."
+
+msgid "The report could not be sent. Keep the watch connected to the phone and try again."
+msgstr "Không gửi được báo cáo. Hãy giữ đồng hồ kết nối với điện thoại và thử lại."
+
+msgid "A problem report was sent to your phone. In the Zepp app, open ZSR settings, then Report a problem, to email it."
+msgstr "Đã gửi báo cáo sự cố tới điện thoại. Trong ứng dụng Zepp, mở cài đặt ZSR, rồi Báo cáo sự cố, để gửi email."
+
+msgid "ZSR closed unexpectedly before, so it started in safe mode. Some extra features are off until it runs steadily."
+msgstr "ZSR đã đóng đột ngột trước đó nên khởi động ở chế độ an toàn. Một số tính năng bổ sung tạm tắt cho đến khi chạy ổn định."
+
+msgid "sceneDescription"
+msgstr "Mô tả khung cảnh"
+
+msgid "readCaptcha"
+msgstr "Đọc CAPTCHA"
+
+msgid "customLabel"
+msgstr "Nhãn tùy chỉnh"
+
+msgid "gamerMode"
+msgstr "Chế độ game"
+
+msgid "brightness"
+msgstr "Độ sáng"
+
+msgid "Number {0}"
+msgstr "Số {0}"
+
+msgid "Capital {0}"
+msgstr "Chữ hoa {0}"
+
+msgid "Letter {0}"
+msgstr "Chữ {0}"
+
+msgid "Symbol {0}"
+msgstr "Ký hiệu {0}"
+
+msgid "Failed to process CAPTCHA"
+msgstr "Không xử lý được CAPTCHA"
+
+msgid "No readable text to read as a CAPTCHA"
+msgstr "Không có văn bản để đọc như CAPTCHA"
+
+msgid "No element is focused"
+msgstr "Chưa chọn phần tử nào"
+
+msgid "Custom label removed"
+msgstr "Đã xóa nhãn tùy chỉnh"
+
+msgid "Custom label saved: {0}"
+msgstr "Đã lưu nhãn tùy chỉnh: {0}"
+
+msgid "The label could not be saved"
+msgstr "Không lưu được nhãn"
+
+msgid "Gamer mode on. Speech is off; ZSR answers with vibration."
+msgstr "Đã bật chế độ game. Tắt giọng nói; ZSR phản hồi bằng rung."
+
+msgid "Gamer mode off"
+msgstr "Đã tắt chế độ game"
+
+msgid "Brightness {0} percent"
+msgstr "Độ sáng {0} phần trăm"
+
+msgid "Brightness cannot be changed"
+msgstr "Không thể đổi độ sáng"
+
+msgid "No description returned."
+msgstr "Không có mô tả được trả về."
+
+msgid "ZSR accessibility button"
+msgstr "Nút trợ năng ZSR"
+
+msgid "touchExploration"
+msgstr "Khám phá bằng cảm ứng"
+
+msgid "Crown: press the crown three times quickly."
+msgstr "Núm xoay: nhấn núm xoay ba lần liên tiếp nhanh."
+
+msgid "Crown: press the crown twice quickly."
+msgstr "Núm xoay: nhấn núm xoay hai lần liên tiếp nhanh."
+
+msgid "Crown: press and hold the crown."
+msgstr "Núm xoay: nhấn giữ núm xoay."
+
+msgid "Accessibility button: the ZSR button in the bottom corner of the screen. Double tap it, or press and hold it for the menu."
+msgstr "Nút trợ năng: nút ZSR ở góc dưới màn hình. Chạm hai lần để dùng, hoặc nhấn giữ để mở menu."
+
+msgid "Gesture: swipe up, then down, then up."
+msgstr "Cử chỉ: vuốt lên, rồi xuống, rồi lên."
+
+msgid "No shortcut is switched on. Turn one on in Settings, Activation."
+msgstr "Chưa bật phím tắt nào. Hãy bật một cách trong Cài đặt, Kích hoạt."
+
+msgid "To open ZSR, press the crown to open the app list and choose ZSR."
+msgstr "Để mở ZSR, nhấn núm xoay để mở danh sách ứng dụng rồi chọn ZSR."
+
+msgid "You can also add the ZSR shortcut card to your watch from the Zepp app on your phone, then open it by swiping."
+msgstr "Bạn cũng có thể thêm thẻ lối tắt ZSR vào đồng hồ từ ứng dụng Zepp trên điện thoại, rồi vuốt để mở."
+
+msgid "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
+msgstr "Nếu đồng hồ cho phép chọn chức năng của nút, hãy đặt một nút để mở ZSR. Tìm tùy chọn nút hoặc lối tắt trong cài đặt đồng hồ; tên menu khác nhau giữa các phiên bản Zepp OS."
+
+msgid "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
+msgstr "Trên Zepp OS 4 trở lên, menu Trợ năng trong cài đặt đồng hồ không liệt kê ZSR. Hãy mở ZSR từ danh sách ứng dụng, thẻ lối tắt hoặc một nút."
+
+msgid "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
+msgstr "Khi ZSR đã mở, bật hoặc tắt trình đọc bằng núm xoay, nút trợ năng hoặc cử chỉ."
+
+msgid "Touch exploration on"
+msgstr "Đã bật khám phá bằng cảm ứng"
+
+msgid "Touch exploration off"
+msgstr "Đã tắt khám phá bằng cảm ứng"
+
+msgid "You can turn ZSR on or off three ways: press the crown three times quickly, tap the ZSR accessibility button in the bottom corner of the screen, or swipe up, then down, then up. Change them in Settings, Activation."
+msgstr "Bạn có thể bật hoặc tắt ZSR bằng ba cách: nhấn núm xoay ba lần nhanh, chạm nút trợ năng ZSR ở góc dưới màn hình, hoặc vuốt lên, xuống, rồi lên. Thay đổi trong Cài đặt, Kích hoạt."
+
+msgid "Activation"
+msgstr "Kích hoạt"
+
+msgid "Crown, three presses"
+msgstr "Núm xoay, ba lần nhấn"
+
+msgid "Accessibility button"
+msgstr "Nút trợ năng"
+
+msgid "Gesture, swipe up down up"
+msgstr "Cử chỉ, vuốt lên xuống lên"
+
+msgid "How to open ZSR"
+msgstr "Cách mở ZSR"
+
+msgid "Touch Exploration"
+msgstr "Khám phá bằng cảm ứng"
+
+msgid "qrScanHelp"
+msgstr "Hướng dẫn quét mã QR"
+
+msgid "readImageText"
+msgstr "Đọc chữ trong ảnh"
+
+msgid "The screen is at full brightness for one minute. Hold your phone with its camera facing the watch screen, about 20 centimeters away, and keep both still. Ask someone to help if it does not scan."
+msgstr "Màn hình đang ở độ sáng tối đa trong một phút. Hãy cầm điện thoại sao cho camera hướng vào màn hình đồng hồ, cách khoảng 20 xăng-ti-mét, và giữ yên cả hai. Nhờ người khác giúp nếu không quét được."
+
+msgid "The focused element is not a picture"
+msgstr "Phần tử đang chọn không phải là ảnh"
+
+msgid "Reading the text in the picture..."
+msgstr "Đang đọc chữ trong ảnh..."
+
+msgid "No text was found in the picture"
+msgstr "Không tìm thấy chữ trong ảnh"
+
+msgid "The text in this picture could not be read"
+msgstr "Không đọc được chữ trong ảnh này"

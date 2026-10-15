@@ -1,11 +1,13 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderNavigation(_props) {
   return [
     Section({ title: 'Cursor & Navigation' }, [
-      Row([Text('Announce screen regions'), Toggle({ settingsKey: 'announceRegions' })]),
-      Row([Text('Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })]),
+      Row([Text({}, 'Announce screen regions'), Toggle({ settingsKey: 'announceRegions' })]),
+      Row([Text({}, 'Review Cursor'), Toggle({ settingsKey: 'reviewCursor' })]),
       Row([
-        Text('Cursor Style'),
-        Select({
+        Text({}, 'Cursor Style'),
+        SelectField({
           settingsKey: 'cursorStyle',
           options: [
             { label: 'Border', value: 'border' },
@@ -15,8 +17,8 @@ export default function renderNavigation(_props) {
         })
       ]),
       Row([
-        Text('Cursor Color'),
-        Select({
+        Text({}, 'Cursor Color'),
+        SelectField({
           settingsKey: 'cursorColor',
           options: [
             { label: 'Green', value: '00ff00' },
@@ -28,8 +30,8 @@ export default function renderNavigation(_props) {
         })
       ]),
       Row([
-        Text('Browse Mode Order'),
-        Select({
+        Text({}, 'Browse Mode Order'),
+        SelectField({
           settingsKey: 'browseOrder',
           options: [
             { label: 'Default', value: 'default' },

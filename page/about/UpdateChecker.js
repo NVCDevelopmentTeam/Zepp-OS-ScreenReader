@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style, prop } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -7,6 +8,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -59,7 +61,7 @@ export default ZSRPage({
       normal_color: 0x00aa00,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => this.doCheck()
+      click_func: guard(() => this.doCheck(), 'click_func')
     })
 
     return root

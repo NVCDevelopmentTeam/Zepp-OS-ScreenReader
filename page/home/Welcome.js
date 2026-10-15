@@ -1,9 +1,11 @@
+import '../../lib/utils/polyfills.js'
 import { push, replace } from '@zos/router'
 import { gettext } from '../../lib/utils/i18n.js'
 import { loadSettings, saveSettings } from '../../lib/core/config.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { buildWelcomeLayout } from './Welcome.layout.js'
+import { safeTimeout } from '../../lib/utils/safeCall.js'
 
 /**
  * First launch must never need a sighted helper. The welcome page therefore
@@ -48,7 +50,7 @@ export default ZSRPage({
       ),
       { priority: 'normal' }
     )
-    autoTimer = setTimeout(goHome, AUTO_CONTINUE_MS)
+    autoTimer = safeTimeout(goHome, AUTO_CONTINUE_MS)
   },
 
   build() {

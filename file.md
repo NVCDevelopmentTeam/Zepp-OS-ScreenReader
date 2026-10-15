@@ -1,9 +1,0 @@
-@features.md
-@Zepp_OS_Screen_Reader_PRD.md
-@SECURITY.md
-@README.md
-@CONTRIBUTING.md
-@CODE_OF_CONDUCT.md
-@antigravity.md
-@antigravity2.md
-@.github

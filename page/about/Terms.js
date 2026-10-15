@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { loadSettings } from '../../lib/core/config.js'

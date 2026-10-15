@@ -1,9 +1,11 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderSpeech(_props) {
   return [
     Section({ title: 'Speech' }, [
       Row([
-        Text('Primary TTS Engine'),
-        Select({
+        Text({}, 'Primary TTS Engine'),
+        SelectField({
           settingsKey: 'primaryTTSEngine',
           options: [
             { label: 'eSpeak-NG', value: 'espeak' },
@@ -13,8 +15,8 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Secondary TTS Engine'),
-        Select({
+        Text({}, 'Secondary TTS Engine'),
+        SelectField({
           settingsKey: 'secondaryTTSEngine',
           options: [
             { label: 'None', value: 'none' },
@@ -24,7 +26,7 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Speech Rate'),
+        Text({}, 'Speech Rate'),
         Slider({
           settingsKey: 'speechRate',
           min: 0.1,
@@ -33,7 +35,7 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Pitch'),
+        Text({}, 'Pitch'),
         Slider({
           settingsKey: 'speechPitch',
           min: 0.1,
@@ -42,7 +44,7 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Volume'),
+        Text({}, 'Volume'),
         Slider({
           settingsKey: 'speechVolume',
           min: 0,
@@ -58,19 +60,20 @@ export default function renderSpeech(_props) {
       // it's not wired to anything that would silently misrepresent it as
       // working.
       Row([
-        Text('Audio Ducking (lower background audio when speaking)'),
+        Text({}, 'Audio Ducking (lower background audio when speaking)'),
         Toggle({ settingsKey: 'audioDucking' })
       ]),
       Row([
         Text(
+          {},
           'Read when screen off (Experimental / Developer setting) (experimental, not active yet)'
         ),
         Toggle({ settingsKey: 'readScreenOff' })
       ]),
-      Row([Text('Read time on screen wake-up'), Toggle({ settingsKey: 'readScreenOnTime' })]),
+      Row([Text({}, 'Read time on screen wake-up'), Toggle({ settingsKey: 'readScreenOnTime' })]),
       Row([
-        Text('Granularity'),
-        Select({
+        Text({}, 'Granularity'),
+        SelectField({
           settingsKey: 'defaultGranularity',
           options: [
             { label: 'Character', value: 'character' },
@@ -80,11 +83,11 @@ export default function renderSpeech(_props) {
           ]
         })
       ]),
-      Row([Text('Speech Output (Mute/Unmute)'), Toggle({ settingsKey: 'speechMuted' })]),
-      Row([Text('Read Emojis'), Toggle({ settingsKey: 'readEmoji' })]),
+      Row([Text({}, 'Speech Output (Mute/Unmute)'), Toggle({ settingsKey: 'speechMuted' })]),
+      Row([Text({}, 'Read Emojis'), Toggle({ settingsKey: 'readEmoji' })]),
       Row([
-        Text('Read Punctuation & Symbols'),
-        Select({
+        Text({}, 'Read Punctuation & Symbols'),
+        SelectField({
           settingsKey: 'readSymbols',
           options: [
             { label: 'All', value: 'full' },
@@ -95,8 +98,8 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Capital Letters Reading'),
-        Select({
+        Text({}, 'Capital Letters Reading'),
+        SelectField({
           settingsKey: 'capitalStyle',
           options: [
             { label: 'Raise Pitch', value: 'pitch' },
@@ -106,8 +109,8 @@ export default function renderSpeech(_props) {
         })
       ]),
       Row([
-        Text('Progress Bar Feedback'),
-        Select({
+        Text({}, 'Progress Bar Feedback'),
+        SelectField({
           settingsKey: 'progressFeedback',
           options: [
             { label: 'Speech & Beep', value: 'both' },
@@ -117,11 +120,11 @@ export default function renderSpeech(_props) {
           ]
         })
       ]),
-      Row([Text('Spell out mode'), Toggle({ settingsKey: 'spellOutMode' })]),
-      Row([Text('Read Passwords'), Toggle({ settingsKey: 'readPasswords' })]),
+      Row([Text({}, 'Spell out mode'), Toggle({ settingsKey: 'spellOutMode' })]),
+      Row([Text({}, 'Read Passwords'), Toggle({ settingsKey: 'readPasswords' })]),
       Row([
-        Text('Typing Echo (experimental, not active yet)'),
-        Select({
+        Text({}, 'Typing Echo (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'echoBehavior',
           options: [
             { label: 'Characters', value: 'chars' },
@@ -129,18 +132,21 @@ export default function renderSpeech(_props) {
           ]
         })
       ]),
-      Row([Text('Read list position'), Toggle({ settingsKey: 'readListPosition' })]),
-      Row([Text('Read status bar'), Toggle({ settingsKey: 'readStatusBar' })]),
-      Row([Text('Read progress bars'), Toggle({ settingsKey: 'readProgressBars' })]),
-      Row([Text('Read usage hints'), Toggle({ settingsKey: 'readUsageHints' })])
+      Row([Text({}, 'Read list position'), Toggle({ settingsKey: 'readListPosition' })]),
+      Row([Text({}, 'Read status bar'), Toggle({ settingsKey: 'readStatusBar' })]),
+      Row([Text({}, 'Read progress bars'), Toggle({ settingsKey: 'readProgressBars' })]),
+      Row([Text({}, 'Read usage hints'), Toggle({ settingsKey: 'readUsageHints' })])
     ]),
     // Offline voice: the watch downloads word clips from the phone once and
     // then speaks interface labels with no phone round trip (like the offline
     // voices TalkBack downloads). Uses roughly 1 MB of watch storage.
     Section({ title: 'Offline voice (works without the phone)' }, [
-      Row([Text('Download and use offline voice'), Toggle({ settingsKey: 'offlineVoiceEnabled' })]),
       Row([
-        Text('Speak labels from offline voice first'),
+        Text({}, 'Download and use offline voice'),
+        Toggle({ settingsKey: 'offlineVoiceEnabled' })
+      ]),
+      Row([
+        Text({}, 'Speak labels from offline voice first'),
         Toggle({ settingsKey: 'offlineVoicePreferred' })
       ])
     ])

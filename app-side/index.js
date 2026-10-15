@@ -7,6 +7,9 @@ import { ZSR_VERSION } from '../lib/utils/version.js'
 
 const messageBuilder = new MessageBuilder()
 
+/** Largest problem report stored for the e-mail link. */
+const REPORT_MAX_CHARS = 1500
+
 /**
  * OpenAI TTS implementation
  *
@@ -225,6 +228,23 @@ AppSideService({
         })
       } else if (method === 'CAPTURE_AND_DESCRIBE') {
         ctx.response({ data: await handleImageRequest('DESCRIBE_IMAGE', params) })
+      } else if (method === 'DIAGNOSTIC_REPORT') {
+        // Problem report from the watch (see lib/utils/diagnosticReport.js). It is
+        // only stored here; the Settings App turns it into an e-mail the user
+        // chooses to send. Nothing is uploaded by ZSR.
+        try {
+          const report = params && typeof params.report === 'string' ? params.report : ''
+          if (!report || !settings || !settings.settingsStorage) {
+            ctx.response({ data: { result: 'ERROR', code: 'NO_REPORT' } })
+          } else {
+            settings.settingsStorage.setItem('diagnosticReport', report.slice(0, REPORT_MAX_CHARS))
+            settings.settingsStorage.setItem('diagnosticReportTime', String(Date.now()))
+            ctx.response({ data: { result: 'OK' } })
+          }
+        } catch (error) {
+          console.error('DIAGNOSTIC_REPORT failed:', String(error))
+          ctx.response({ data: { result: 'ERROR', code: 'REPORT_FAILED' } })
+        }
       } else if (method === 'GET_DATA') {
         ctx.response({ data: { result: 'OK' } })
       }

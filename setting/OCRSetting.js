@@ -1,13 +1,15 @@
+import { Row, SelectField } from './ui.js'
+
 // The 'ocrEnabled' settingsKey here matches the flag AccessibilityService
 // exposes internally (lib/core/accessibility.js) so this toggle is
 // end-to-end wired rather than a value nobody reads.
 export default function renderOCR(_props) {
   return [
     Section({ title: 'OCR & Image Recognition' }, [
-      Row([Text('Enable OCR'), Toggle({ settingsKey: 'ocrEnabled' })]),
+      Row([Text({}, 'Enable OCR'), Toggle({ settingsKey: 'ocrEnabled' })]),
       Row([
-        Text('OCR Mode (experimental, not active yet)'),
-        Select({
+        Text({}, 'OCR Mode (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'ocrMode',
           options: [
             { label: 'Automatic', value: 'auto' },
@@ -16,8 +18,8 @@ export default function renderOCR(_props) {
         })
       ]),
       Row([
-        Text('OCR Language (experimental, not active yet)'),
-        Select({
+        Text({}, 'OCR Language (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'ocrLanguage',
           options: [
             { label: 'English', value: 'en-US' },
@@ -26,8 +28,8 @@ export default function renderOCR(_props) {
         })
       ]),
       Row([
-        Text('OCR Region (experimental, not active yet)'),
-        Select({
+        Text({}, 'OCR Region (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'ocrRegion',
           options: [
             { label: 'Full Screen', value: 'full' },

@@ -1,3 +1,4 @@
+import '../../lib/utils/polyfills.js'
 import { widget, text_style } from '@zos/ui'
 import { gettext } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
@@ -8,6 +9,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { guard } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -99,10 +101,10 @@ export default ZSRPage({
       normal_color: 0xaa0000,
       press_color: 0x666666,
       radius: 30,
-      click_func: () => {
+      click_func: guard(() => {
         SpeechHistory.clear()
         replace({ url: 'page/home/History' })
-      }
+      }, 'click_func')
     })
 
     return root

@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // These settingsKeys are read directly by lib/interaction/gesture.js on
 // init (`gesture_${GESTURE_NAME.toLowerCase()}`) to remap what each
 // gesture does - this is fully working end-to-end, not just persisted:
@@ -41,56 +43,68 @@ const ACTIONS = [
 export default function renderGestureActions(_props) {
   return [
     Section({ title: 'Gesture Actions - Swipe' }, [
-      Row([Text('Swipe Up'), Select({ settingsKey: 'gesture_up', options: ACTIONS })]),
-      Row([Text('Swipe Down'), Select({ settingsKey: 'gesture_down', options: ACTIONS })]),
-      Row([Text('Swipe Left'), Select({ settingsKey: 'gesture_left', options: ACTIONS })]),
-      Row([Text('Swipe Right'), Select({ settingsKey: 'gesture_right', options: ACTIONS })])
+      Row([Text({}, 'Swipe Up'), SelectField({ settingsKey: 'gesture_up', options: ACTIONS })]),
+      Row([Text({}, 'Swipe Down'), SelectField({ settingsKey: 'gesture_down', options: ACTIONS })]),
+      Row([Text({}, 'Swipe Left'), SelectField({ settingsKey: 'gesture_left', options: ACTIONS })]),
+      Row([
+        Text({}, 'Swipe Right'),
+        SelectField({ settingsKey: 'gesture_right', options: ACTIONS })
+      ])
     ]),
     Section({ title: 'Gesture Actions - Tap & Hold' }, [
-      Row([Text('Single Tap'), Select({ settingsKey: 'gesture_click', options: ACTIONS })]),
-      Row([Text('Double Tap'), Select({ settingsKey: 'gesture_double_click', options: ACTIONS })]),
-      Row([Text('Long Press'), Select({ settingsKey: 'gesture_long_press', options: ACTIONS })]),
       Row([
-        Text('2-Finger Tap'),
-        Select({ settingsKey: 'gesture_two_finger_tap', options: ACTIONS })
+        Text({}, 'Single Tap'),
+        SelectField({ settingsKey: 'gesture_click', options: ACTIONS })
       ]),
       Row([
-        Text('3-Finger Tap'),
-        Select({ settingsKey: 'gesture_three_finger_tap', options: ACTIONS })
+        Text({}, 'Double Tap'),
+        SelectField({ settingsKey: 'gesture_double_click', options: ACTIONS })
+      ]),
+      Row([
+        Text({}, 'Long Press'),
+        SelectField({ settingsKey: 'gesture_long_press', options: ACTIONS })
+      ]),
+      Row([
+        Text({}, '2-Finger Tap'),
+        SelectField({ settingsKey: 'gesture_two_finger_tap', options: ACTIONS })
+      ]),
+      Row([
+        Text({}, '3-Finger Tap'),
+        SelectField({ settingsKey: 'gesture_three_finger_tap', options: ACTIONS })
       ])
     ]),
     Section({ title: 'Gesture Actions - Multi-Finger Swipe' }, [
       Row([
-        Text('2-Finger Swipe Up'),
-        Select({ settingsKey: 'gesture_two_finger_swipe_up', options: ACTIONS })
+        Text({}, '2-Finger Swipe Up'),
+        SelectField({ settingsKey: 'gesture_two_finger_swipe_up', options: ACTIONS })
       ]),
       Row([
-        Text('2-Finger Swipe Down'),
-        Select({ settingsKey: 'gesture_two_finger_swipe_down', options: ACTIONS })
+        Text({}, '2-Finger Swipe Down'),
+        SelectField({ settingsKey: 'gesture_two_finger_swipe_down', options: ACTIONS })
       ]),
       Row([
-        Text('2-Finger Swipe Left'),
-        Select({ settingsKey: 'gesture_two_finger_swipe_left', options: ACTIONS })
+        Text({}, '2-Finger Swipe Left'),
+        SelectField({ settingsKey: 'gesture_two_finger_swipe_left', options: ACTIONS })
       ]),
       Row([
-        Text('2-Finger Swipe Right'),
-        Select({ settingsKey: 'gesture_two_finger_swipe_right', options: ACTIONS })
+        Text({}, '2-Finger Swipe Right'),
+        SelectField({ settingsKey: 'gesture_two_finger_swipe_right', options: ACTIONS })
       ]),
       Row([
-        Text('3-Finger Swipe Up'),
-        Select({ settingsKey: 'gesture_three_finger_swipe_up', options: ACTIONS })
+        Text({}, '3-Finger Swipe Up'),
+        SelectField({ settingsKey: 'gesture_three_finger_swipe_up', options: ACTIONS })
       ]),
       Row([
-        Text('3-Finger Swipe Down'),
-        Select({ settingsKey: 'gesture_three_finger_swipe_down', options: ACTIONS })
+        Text({}, '3-Finger Swipe Down'),
+        SelectField({ settingsKey: 'gesture_three_finger_swipe_down', options: ACTIONS })
       ]),
       Row([
-        Text('3-Finger Swipe Left'),
-        Select({ settingsKey: 'gesture_three_finger_swipe_left', options: ACTIONS })
+        Text({}, '3-Finger Swipe Left'),
+        SelectField({ settingsKey: 'gesture_three_finger_swipe_left', options: ACTIONS })
       ]),
       Row([
-        Text('3-Finger Swipe Right'),
-        Select({ settingsKey: 'gesture_three_finger_swipe_right', options: ACTIONS })
+        Text({}, '3-Finger Swipe Right'),
+        SelectField({ settingsKey: 'gesture_three_finger_swipe_right', options: ACTIONS })
       ])
     ])
   ]

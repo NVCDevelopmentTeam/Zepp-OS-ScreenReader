@@ -1,3 +1,4 @@
+// @ts-nocheck - messaging library (ZML): its JSDoc is not valid TypeScript. It is still linted and formatted.
 import { EventBus } from '@zos/utils'
 import { log as Logger } from '@zos/utils'
 // `Buffer` is a global of the Zepp OS runtime (the official ZML library, data.js and
@@ -18,7 +19,7 @@ function initLogger() {
   }
 }
 
-const DEBUG = true
+const DEBUG = false
 
 export const MESSAGE_SIZE = 3600
 export const MESSAGE_HEADER = 16

@@ -1,10 +1,12 @@
+import { Row, SelectField } from './ui.js'
+
 export default function renderObjectPresentation(_props) {
   return [
     Section({ title: 'Object Presentation' }, [
-      Row([Text('Read Emoji Names'), Toggle({ settingsKey: 'readEmoji' })]),
+      Row([Text({}, 'Read Emoji Names'), Toggle({ settingsKey: 'readEmoji' })]),
       Row([
-        Text('Read Punctuation & Symbols'),
-        Select({
+        Text({}, 'Read Punctuation & Symbols'),
+        SelectField({
           settingsKey: 'readSymbols',
           options: [
             { label: 'All', value: 'full' },
@@ -15,8 +17,8 @@ export default function renderObjectPresentation(_props) {
         })
       ]),
       Row([
-        Text('Uppercase Reading Style'),
-        Select({
+        Text({}, 'Uppercase Reading Style'),
+        SelectField({
           settingsKey: 'capitalStyle',
           options: [
             { label: 'Announce ("Cap Word")', value: 'announce' },
@@ -24,9 +26,9 @@ export default function renderObjectPresentation(_props) {
           ]
         })
       ]),
-      Row([Text('Read Passwords'), Toggle({ settingsKey: 'readPasswords' })]),
-      Row([Text('Custom Labels'), Toggle({ settingsKey: 'customLabels' })]),
-      Row([Text('Announce Day of Week'), Toggle({ settingsKey: 'announceDayOfWeek' })])
+      Row([Text({}, 'Read Passwords'), Toggle({ settingsKey: 'readPasswords' })]),
+      Row([Text({}, 'Custom Labels'), Toggle({ settingsKey: 'customLabels' })]),
+      Row([Text({}, 'Announce Day of Week'), Toggle({ settingsKey: 'announceDayOfWeek' })])
     ])
   ]
 }

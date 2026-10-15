@@ -121,7 +121,7 @@ Zepp-OS-ScreenReader/
 ├── setting/             # In-app settings screen
 ├── page/                 # Watch UI pages
 ├── lib/                   # Shared libraries: TTS engines, gesture recognizer, braille modules
-├── shared/                 # Code shared across app-side / device-side / settings
+├── GrantPermission/        # Messaging bridge (watch <-> phone) and system permission handling (formerly `shared/`)
 ├── assets/                  # Icons, sounds, and vibration patterns
 ├── server/                   # Backend / auxiliary services
 ├── site/htdocs/                # zeppreader.com project website (Svelte)
@@ -203,12 +203,24 @@ The simplest path — no code, no developer mode required.
 3. Search for **Zepp OS Screen Reader**
 4. Tap **Install**
 
-### 2. Enable the Screen Reader
+### 2. Open and turn on ZSR
 
-After installing (from the App Store or by sideloading), turn it on:
+ZSR is a Mini Program, so it is opened like any other app, and no Zepp OS version lists it under
+**Settings → Accessibility** (on Zepp OS 5 that menu offers only zoom and text size). How to open it:
 
-1. On your watch, go to **Settings → Accessibility → Zepp OS Screen Reader**
-2. Toggle it **On**
+- **All Zepp OS versions (2.x and later):** press the crown to open the app list and choose **ZSR**; or add the
+  ZSR shortcut card to the watch from the Zepp app and open it by swiping.
+- **Watches that let you assign a button to an app:** set a button to open ZSR (look for button or shortcut
+  options in the watch settings; menu names differ between versions).
+- Inside ZSR, **Settings → Activation → How to open ZSR** reads these steps aloud, adapted to the watch.
+
+Once ZSR is open, turn the reader on or off in any of three ways (each can be switched off in
+**Settings → Activation**, or in the phone settings, General):
+
+1. **Crown:** press it three times quickly. A single press still goes Home, after a short delay.
+2. **Accessibility button:** the small ZSR button in the bottom corner of the screen. With ZSR on, find it
+   by swiping through the page and double tap; with ZSR off, one tap. Press and hold for the ZSR menu.
+3. **Gesture:** swipe up, then down, then up within two seconds.
 
 ### 3. Run in the Simulator (Developers)
 

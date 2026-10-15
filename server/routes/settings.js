@@ -17,7 +17,7 @@ router.get('/capabilities', async (req, res) => {
 router.post('/update', async (req, res) => {
   try {
     const { setting, value } = req.body
-    const [success] = await settingsManager.handleSettingChange(
+    const [success, error] = await settingsManager.handleSettingChange(
       async () => {
         switch (setting) {
           case 'brightness':
@@ -34,6 +34,13 @@ router.post('/update', async (req, res) => {
       value,
       setting
     )
+    if (!success) {
+      const status = error && error.status ? error.status : 500
+      res
+        .status(status)
+        .json({ success: false, error: error ? error.message : 'Setting could not be changed' })
+      return
+    }
     res.json({ success })
   } catch (/** @type {any} */ error) {
     logger.error('Settings update failed:', error)

@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // HONESTY NOTE: no on-screen/braille keyboard input pipeline exists in
 // lib/ yet (lib/extensions/keyboard.js and virtualKeyboard.js are unused
 // scaffolding - see setting/KeyboardSetting.js's own notes), so
@@ -7,8 +9,8 @@ export default function renderInputComposition(_props) {
   return [
     Section({ title: 'Input Composition' }, [
       Row([
-        Text('Echo Behavior (feature not yet built) (experimental, not active yet)'),
-        Select({
+        Text({}, 'Echo Behavior (feature not yet built) (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'echoBehavior',
           options: [
             { label: 'Characters', value: 'chars' },
@@ -19,11 +21,11 @@ export default function renderInputComposition(_props) {
         })
       ]),
       Row([
-        Text('Autocomplete suggestions (feature not yet built)'),
+        Text({}, 'Autocomplete suggestions (feature not yet built)'),
         Toggle({ settingsKey: 'announceAutocomplete' })
       ]),
       Row([
-        Text('Selection changes (feature not yet built) (experimental, not active yet)'),
+        Text({}, 'Selection changes (feature not yet built) (experimental, not active yet)'),
         Toggle({ settingsKey: 'announceSelection' })
       ])
     ])

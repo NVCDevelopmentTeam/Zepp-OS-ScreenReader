@@ -1,3 +1,4 @@
+// @ts-nocheck - messaging library (ZML): its JSDoc is not valid TypeScript. It is still linted and formatted.
 import { EventBus } from './event.js'
 import { Deferred, timeout } from './defer.js'
 import { json2buf, buf2json, bin2hex, str2buf, buf2str } from './data.js'
@@ -8,7 +9,7 @@ function initLogger() {
   logger = console
 }
 
-const DEBUG = true
+const DEBUG = false
 
 export const MESSAGE_SIZE = 3600
 export const MESSAGE_HEADER = 16

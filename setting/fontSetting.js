@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // Overall text scale lives in DisplaySetting.js's "ZSR Text Scale" slider.
 // This screen covers typeface style, which is a separate, orthogonal
 // choice from size.
@@ -5,8 +7,8 @@ export default function renderFont(_props) {
   return [
     Section({ title: 'Font Style' }, [
       Row([
-        Text('Font Family (experimental, not active yet)'),
-        Select({
+        Text({}, 'Font Family (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'fontFamily',
           options: [
             { label: 'Default', value: 'default' },
@@ -16,8 +18,8 @@ export default function renderFont(_props) {
         })
       ]),
       Row([
-        Text('Font Weight (experimental, not active yet)'),
-        Select({
+        Text({}, 'Font Weight (experimental, not active yet)'),
+        SelectField({
           settingsKey: 'fontWeight',
           options: [
             { label: 'Normal', value: 'normal' },

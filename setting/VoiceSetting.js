@@ -1,3 +1,5 @@
+import { Row, SelectField } from './ui.js'
+
 // This is the one real, wired voice-character control: lib/TTSSystem/
 // EspeakTTSEngine.js maps this preset onto an espeak-ng voice-variant
 // suffix (e.g. "en-US+f3" for Female) whenever the primary engine is
@@ -7,8 +9,8 @@ export default function renderVoice(_props) {
   return [
     Section({ title: 'Voice Preset' }, [
       Row([
-        Text('Voice Variant'),
-        Select({
+        Text({}, 'Voice Variant'),
+        SelectField({
           settingsKey: 'voicePreset',
           options: [
             { label: 'English US (Male 2 - Default)', value: 'male2' },
@@ -26,14 +28,14 @@ export default function renderVoice(_props) {
     // ZSR ships no key: enter an OpenAI-compatible provider of your choice.
     Section({ title: 'Online services (voice commands)' }, [
       Row([
-        Text('API base URL'),
+        Text({}, 'API base URL'),
         TextInput({
           placeholder: 'https://api.openai.com/v1',
           settingsKey: 'aiBaseUrl'
         })
       ]),
       Row([
-        Text('API key'),
+        Text({}, 'API key'),
         TextInput({
           placeholder: 'sk-...',
           settingsKey: 'aiApiKey'
