@@ -12,6 +12,7 @@
     expanded = !expanded;
   }
 
+  /** @param {MouseEvent} event */
   function toggleDropdown(event) {
     event.stopPropagation();
     expandedDropdown = !expandedDropdown;
@@ -21,7 +22,7 @@
     darkMode = !darkMode;
     if (browser) {
       document.documentElement.classList.toggle('dark', darkMode);
-      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+      localStorage.setItem('theme-preference', darkMode ? 'dark' : 'light');
     }
   }
 
@@ -37,27 +38,36 @@
       // Sync darkMode state with DOM (initialized in app.html)
       darkMode = document.documentElement.classList.contains('dark');
 
+      /** @param {MouseEvent} e */
       const closeMenus = (e) => {
-        if (!e.target.closest('.dropdown-container')) {
+        if (!(/** @type {Element} */ (e.target).closest('.dropdown-container'))) {
           expandedDropdown = false;
         }
       };
+      /** @param {KeyboardEvent} e */
+      const closeOnEscape = (e) => {
+        if (e.key === 'Escape') expandedDropdown = expanded = false;
+      };
 
       document.addEventListener('click', closeMenus);
-      return () => document.removeEventListener('click', closeMenus);
+      document.addEventListener('keydown', closeOnEscape);
+      return () => {
+        document.removeEventListener('click', closeMenus);
+        document.removeEventListener('keydown', closeOnEscape);
+      };
     }
   });
 
   const primaryNav = [
     { label: 'Home', href: '/' },
-    { label: 'News', href: '/news' },
-    { label: 'About', href: '/about' }
+    { label: 'News', href: '/news/' },
+    { label: 'About', href: '/about/' }
   ];
 
   const secondaryNav = [
-    { label: 'Support', href: '/support' },
-    { label: 'Accessibility', href: '/accessibility-statement' },
-    { label: 'Contact', href: '/contact' }
+    { label: 'Support', href: '/support/' },
+    { label: 'Accessibility', href: '/accessibility-statement/' },
+    { label: 'Contact', href: '/contact/' }
   ];
 </script>
 
@@ -73,7 +83,7 @@
       {#each secondaryNav as item (item.href)}
         <a 
           href={item.href} 
-          class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"
+          class="text-xs font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           aria-current={page.url.pathname === item.href ? 'page' : undefined}
         >
           {item.label}
@@ -97,13 +107,13 @@
           class="relative w-9 h-9 md:w-11 md:h-11 overflow-hidden rounded-xl ring-2 ring-blue-500/10 group-hover:ring-blue-500/30 transition-all duration-500"
         >
           <enhanced:img
-            src="#lib/images/logo.svg"
+            src="#lib/images/logo.jpg"
             alt=""
             class="w-full h-full object-cover"
           ></enhanced:img>
         </div>
         <span class="font-display font-black text-lg md:text-xl tracking-tighter uppercase" aria-hidden="true">
-          <span class="text-blue-600">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
+          <span class="text-blue-600 dark:text-blue-400">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
         </span>
       </a>
 
@@ -113,7 +123,7 @@
           {@const isActive = page.url.pathname === item.href}
           <a 
             href={item.href} 
-            class="nav-link relative group/item {isActive ? 'text-blue-600' : ''}"
+            class="nav-link relative group/item {isActive ? 'text-blue-600 dark:text-blue-400' : ''}"
             aria-current={isActive ? 'page' : undefined}
           >
             {item.label}
@@ -125,30 +135,29 @@
         <div class="relative dropdown-container">
           <button 
             onclick={toggleDropdown}
-            class="nav-link flex items-center gap-1.5 focus:outline-none"
+            class="nav-link flex items-center gap-1.5"
             aria-expanded={expandedDropdown}
-            aria-haspopup="true"
+           
           >
-            Resources <div class="i-lucide-chevron-down text-[10px] transition-transform duration-300" class:rotate-180={expandedDropdown} aria-hidden="true"></div>
+            Resources <div class="i-lucide-chevron-down text-xs transition-transform duration-300 {expandedDropdown ? 'rotate-180' : ''}" aria-hidden="true"></div>
           </button>
 
           {#if expandedDropdown}
             <div 
               class="absolute top-full right-0 mt-4 w-60 glass rounded-2xl shadow-2xl border border-white/20 dark:border-white/5 py-3 animate-in fade-in slide-in-from-top-4 duration-300 overflow-hidden"
-              role="menu"
             >
-              <a href={discordChat} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors" role="menuitem">
+              <a href={discordChat} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
                 <div class="i-lucide-message-circle text-blue-500" aria-hidden="true"></div> 
                 <span class="text-sm font-bold">Discord</span>
               </a>
-              <a href={githubLink} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors" role="menuitem">
+              <a href={githubLink} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
                 <div class="i-lucide-github" aria-hidden="true"></div> 
                 <span class="text-sm font-bold">GitHub</span>
               </a>
-              <div class="h-px bg-gray-100 dark:bg-white/5 my-2 mx-5" role="separator"></div>
-              <a href={zeppOSDev} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors" role="menuitem">
+              <div class="h-px bg-gray-100 dark:bg-white/5 my-2 mx-5"></div>
+              <a href={zeppOSDev} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
                 <div class="i-lucide-external-link text-gray-600 dark:text-gray-400" aria-hidden="true"></div> 
-                <span class="text-[10px] font-black uppercase tracking-widest text-gray-600 dark:text-gray-400">Developer Portal</span>
+                <span class="text-xs font-black uppercase tracking-widest text-gray-600 dark:text-gray-400">Developer Portal</span>
               </a>
             </div>
           {/if}
@@ -188,9 +197,9 @@
 
   <!-- Mobile Nav -->
   {#if expanded}
-    <div class="lg:hidden fixed inset-x-0 top-16 md:top-20 glass border-b border-gray-100 dark:border-white/5 p-6 space-y-4 animate-in slide-in-from-top-8 duration-500 shadow-2xl max-h-[80vh] overflow-y-auto">
+    <div class="lg:hidden fixed inset-x-0 top-16 md:top-28 glass border-b border-gray-100 dark:border-white/5 p-6 space-y-4 animate-in slide-in-from-top-8 duration-500 shadow-2xl max-h-[80vh] overflow-y-auto">
       <nav class="grid grid-cols-1 gap-2">
-        <div class="text-[10px] font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mb-2">Main Menu</div>
+        <div class="text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mb-2">Main Menu</div>
         {#each primaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
           <a 
@@ -203,7 +212,7 @@
           </a>
         {/each}
         
-        <div class="text-[10px] font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mt-6 mb-2">Support & Info</div>
+        <div class="text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mt-6 mb-2">Support & Info</div>
         {#each secondaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
           <a 
@@ -220,11 +229,11 @@
       <div class="pt-6 border-t border-gray-100 dark:border-white/5 grid grid-cols-2 gap-3">
         <a href={discordChat} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
           <div class="i-lucide-message-circle text-blue-500" aria-hidden="true"></div>
-          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">Discord</span>
+          <span class="text-xs font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">Discord</span>
         </a>
         <a href={githubLink} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
           <div class="i-lucide-github" aria-hidden="true"></div>
-          <span class="text-[10px] font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">GitHub</span>
+          <span class="text-xs font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">GitHub</span>
         </a>
       </div>
     </div>

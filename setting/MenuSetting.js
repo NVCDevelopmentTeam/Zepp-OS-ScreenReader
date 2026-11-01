@@ -28,6 +28,7 @@ export default function renderMenu(_props) {
         Toggle({ settingsKey: 'menuShowScreenRecognition' })
       ]),
       Row([Text({}, 'Photo Guidance'), Toggle({ settingsKey: 'menuShowPhotoGuidance' })]),
+      Row([Text({}, 'Verbosity'), Toggle({ settingsKey: 'menuShowVerbosity' })]),
       Row([Text({}, 'Touch Exploration'), Toggle({ settingsKey: 'menuShowTouchExploration' })]),
       Row([Text({}, 'QR Scan Help'), Toggle({ settingsKey: 'menuShowQrScanHelp' })]),
       Row([Text({}, 'Read Text in Image'), Toggle({ settingsKey: 'menuShowReadImageText' })]),

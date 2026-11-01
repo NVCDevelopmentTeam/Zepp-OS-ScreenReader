@@ -104,6 +104,7 @@ export default ZSRPage({
       { name: gettext('Settings'), url: 'page/home/Settings' },
       { name: gettext('User Guide'), url: 'page/userGuide/userGuide' },
       { name: gettext('Sensors'), url: 'page/home/Sensors' },
+      { name: gettext('Text Editor'), url: 'page/tools/TextEditor' },
       { name: gettext('Speech History'), url: 'page/home/History' },
       { name: gettext('About'), url: 'page/about/AppInfo' }
     ]

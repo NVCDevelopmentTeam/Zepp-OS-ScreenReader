@@ -9,6 +9,7 @@ import { loadSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
 import { guard } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -29,38 +30,38 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 40,
+      y: px(40),
       w: width,
-      h: 60,
+      h: px(60),
       text: gettext('Check for Updates'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     this.statusWidget = createChild(root, widget.TEXT, {
-      x: 20,
-      y: 120,
-      w: width - 40,
-      h: 100,
+      x: px(20),
+      y: px(120),
+      w: width - px(40),
+      h: px(100),
       text: gettext('Ready to scan'),
       color: 0xaaaaaa,
-      text_size: 20,
+      text_size: px(20),
       align_h: 2,
       text_style: text_style.WRAP
     })
 
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: height - 120,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: height - px(120),
+      w: width - px(80),
+      h: px(60),
       text: gettext('Check for Updates'),
       color: 0xffffff,
       normal_color: 0x00aa00,
       press_color: 0x666666,
-      radius: 30,
+      radius: px(30),
       click_func: guard(() => this.doCheck(), 'click_func')
     })
 

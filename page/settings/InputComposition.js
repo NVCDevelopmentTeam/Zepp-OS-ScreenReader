@@ -8,6 +8,7 @@ import { loadSettings, saveSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 import { guard } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -27,38 +28,38 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 20,
+      y: px(20),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('Input Composition'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     const inputEcho = config.inputEcho || 'character'
     createChild(root, widget.TEXT, {
-      x: 40,
-      y: 100,
-      w: width - 80,
-      h: 40,
+      x: px(40),
+      y: px(100),
+      w: width - px(80),
+      h: px(40),
       text: `${gettext('Echo')}: ${inputEcho.toUpperCase()}`,
       color: 0xaaaaaa,
-      text_size: 24,
+      text_size: px(24),
       align_v: 2
     })
 
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: 150,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: px(150),
+      w: width - px(80),
+      h: px(60),
       text: gettext('Change Echo'),
       color: 0xffffff,
       normal_color: 0x333333,
       press_color: 0x555555,
-      radius: 30,
+      radius: px(30),
       click_func: guard(() => {
         const modes = ['none', 'character', 'word', 'sentence']
         let nextIndex = (modes.indexOf(inputEcho) + 1) % modes.length
@@ -78,21 +79,21 @@ export default ZSRPage({
 
   createToggle(root, y, label, checked, onChange) {
     createChild(root, widget.TEXT, {
-      x: 40,
+      x: px(40),
       y: y,
-      w: width - 150,
-      h: 60,
+      w: width - px(150),
+      h: px(60),
       text: label,
       color: 0xffffff,
-      text_size: 24,
+      text_size: px(24),
       align_v: 2
     })
 
     createChild(root, widget.SLIDE_SWITCH, {
-      x: width - 110,
-      y: y + 10,
-      w: 80,
-      h: 40,
+      x: width - px(110),
+      y: y + px(10),
+      w: px(80),
+      h: px(40),
       checked: checked,
       select_bg: 0x00aa00,
       unselect_bg: 0x666666,

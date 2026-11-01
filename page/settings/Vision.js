@@ -9,25 +9,26 @@ import { setTouchExploration } from '../../lib/core/TouchExploration.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 function createToggle(root, y, label, checked, onChange) {
   createChild(root, widget.TEXT, {
-    x: 40,
+    x: px(40),
     y: y,
-    w: width - 150,
-    h: 60,
+    w: width - px(150),
+    h: px(60),
     text: label,
     color: 0xffffff,
-    text_size: 24,
+    text_size: px(24),
     align_v: 2
   })
 
   createChild(root, widget.SLIDE_SWITCH, {
-    x: width - 110,
-    y: y + 10,
-    w: 80,
-    h: 40,
+    x: width - px(110),
+    y: y + px(10),
+    w: px(80),
+    h: px(40),
     checked: checked,
     select_bg: 0x00aa00,
     unselect_bg: 0x666666,
@@ -56,14 +57,14 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 20,
+      y: px(20),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('Vision Settings'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     // Screen Curtain

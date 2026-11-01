@@ -1204,8 +1204,6 @@ msgstr "You can also add the ZSR shortcut card to your watch from the Zepp app o
 msgid "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
 msgstr "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
 
-msgid "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
-msgstr "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
 
 msgid "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
 msgstr "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
@@ -1257,3 +1255,318 @@ msgstr "No text was found in the picture"
 
 msgid "The text in this picture could not be read"
 msgstr "The text in this picture could not be read"
+
+msgid "On Zepp OS 4.2 and later, Settings, Accessibility is where ZSR is meant to be turned on. It is not available yet, because Zepp OS does not let apps provide an accessibility service. Until it is, open ZSR with the steps above."
+msgstr "On Zepp OS 4.2 and later, Settings, Accessibility is where ZSR is meant to be turned on. It is not available yet, because Zepp OS does not let apps provide an accessibility service. Until it is, open ZSR with the steps above."
+
+msgid "Minimal"
+msgstr "Minimal"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Detailed"
+msgstr "Detailed"
+
+msgid "Custom"
+msgstr "Custom"
+
+msgid "Verbosity"
+msgstr "Verbosity"
+
+msgid "verbosity"
+msgstr "verbosity"
+
+msgid "Verbosity: {0}"
+msgstr "Verbosity: {0}"
+
+msgid "Performance"
+msgstr "Performance"
+
+msgid "Battery saver"
+msgstr "Battery saver"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Back up settings"
+msgstr "Back up settings"
+
+msgid "Restore settings"
+msgstr "Restore settings"
+
+msgid "Press Restore settings again within five seconds to replace your settings."
+msgstr "Press Restore settings again within five seconds to replace your settings."
+
+msgid "Settings backed up. A copy was sent to your phone."
+msgstr "Settings backed up. A copy was sent to your phone."
+
+msgid "Settings backed up on the watch. The phone could not be reached."
+msgstr "Settings backed up on the watch. The phone could not be reached."
+
+msgid "No backup was found."
+msgstr "No backup was found."
+
+msgid "Settings restored."
+msgstr "Settings restored."
+
+msgid "This backup is from a newer version of ZSR and cannot be restored."
+msgstr "This backup is from a newer version of ZSR and cannot be restored."
+
+msgid "The backup is too large."
+msgstr "The backup is too large."
+
+msgid "The backup is empty."
+msgstr "The backup is empty."
+
+msgid "This is not a ZSR backup."
+msgstr "This is not a ZSR backup."
+
+msgid "The backup could not be read."
+msgstr "The backup could not be read."
+
+msgid "Calories burned: {0} kilocalories."
+msgstr "Calories burned: {0} kilocalories."
+
+msgid "Distance traveled: {0} meters."
+msgstr "Distance traveled: {0} meters."
+
+msgid "Heart rate is {0} beats per minute."
+msgstr "Heart rate is {0} beats per minute."
+
+msgid "Blood oxygen level is {0} percent."
+msgstr "Blood oxygen level is {0} percent."
+
+msgid "Sleep summary: total {0} hours and {1} minutes. Deep sleep: {2} minutes. Light sleep: {3} minutes. REM: {4} minutes."
+msgstr "Sleep summary: total {0} hours and {1} minutes. Deep sleep: {2} minutes. Light sleep: {3} minutes. REM: {4} minutes."
+
+msgid "Step count is {0}. Goal progress {1} percent."
+msgstr "Step count is {0}. Goal progress {1} percent."
+
+msgid "Relaxed"
+msgstr "Relaxed"
+
+msgid "High"
+msgstr "High"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Stress level is {0}, {1}."
+msgstr "Stress level is {0}, {1}."
+
+msgid "Workout stats:"
+msgstr "Workout stats:"
+
+msgid "Duration {0}."
+msgstr "Duration {0}."
+
+msgid "Distance {0}."
+msgstr "Distance {0}."
+
+msgid "Heart rate {0}."
+msgstr "Heart rate {0}."
+
+msgid "Calories {0}."
+msgstr "Calories {0}."
+
+msgid "Battery: {0} percent."
+msgstr "Battery: {0} percent."
+
+msgid "Battery data not available"
+msgstr "Battery data not available"
+
+msgid "Location is not available on this watch"
+msgstr "Location is not available on this watch"
+
+msgid "Location is turned off for ZSR. Allow it in the watch settings."
+msgstr "Location is turned off for ZSR. Allow it in the watch settings."
+
+msgid "Looking for GPS. This can take up to 20 seconds."
+msgstr "Looking for GPS. This can take up to 20 seconds."
+
+msgid "GPS: no position yet. Go outside or near a window and try again."
+msgstr "GPS: no position yet. Go outside or near a window and try again."
+
+msgid "GPS: found. Latitude {0} degrees {1}, longitude {2} degrees {3}."
+msgstr "GPS: found. Latitude {0} degrees {1}, longitude {2} degrees {3}."
+
+msgid "north"
+msgstr "north"
+
+msgid "south"
+msgstr "south"
+
+msgid "east"
+msgstr "east"
+
+msgid "west"
+msgstr "west"
+
+msgid "Location data not available"
+msgstr "Location data not available"
+
+msgid "Altitude {0} meters. Air pressure {1} hectopascals."
+msgstr "Altitude {0} meters. Air pressure {1} hectopascals."
+
+msgid "Altitude and pressure data not available"
+msgstr "Altitude and pressure data not available"
+
+msgid "The compass is not calibrated. Move the watch in a figure eight and try again."
+msgstr "The compass is not calibrated. Move the watch in a figure eight and try again."
+
+msgid "Facing {0}, {1} degrees."
+msgstr "Facing {0}, {1} degrees."
+
+msgid "Compass data not available"
+msgstr "Compass data not available"
+
+msgid "Read Battery"
+msgstr "Read Battery"
+
+msgid "Where am I (GPS)"
+msgstr "Where am I (GPS)"
+
+msgid "Read Altitude and Pressure"
+msgstr "Read Altitude and Pressure"
+
+msgid "Read Compass"
+msgstr "Read Compass"
+
+msgid "Text Editor"
+msgstr "Text Editor"
+
+msgid "Dot {0}"
+msgstr "Dot {0}"
+
+msgid "Dot {0} on"
+msgstr "Dot {0} on"
+
+msgid "Dot {0} off"
+msgstr "Dot {0} off"
+
+msgid "No dots are on"
+msgstr "No dots are on"
+
+msgid "No character for these dots"
+msgstr "No character for these dots"
+
+msgid "Text is full"
+msgstr "Text is full"
+
+msgid "Start of text"
+msgstr "Start of text"
+
+msgid "End of text"
+msgstr "End of text"
+
+msgid "Selected: {0}"
+msgstr "Selected: {0}"
+
+msgid "Text: {0}"
+msgstr "Text: {0}"
+
+msgid "Empty"
+msgstr "Empty"
+
+msgid "Write character"
+msgstr "Write character"
+
+msgid "Space"
+msgstr "Space"
+
+msgid "Backspace"
+msgstr "Backspace"
+
+msgid "Deleted {0}"
+msgstr "Deleted {0}"
+
+msgid "Cursor left"
+msgstr "Cursor left"
+
+msgid "Cursor right"
+msgstr "Cursor right"
+
+msgid "Previous word"
+msgstr "Previous word"
+
+msgid "Next word"
+msgstr "Next word"
+
+msgid "Select: on or off"
+msgstr "Select: on or off"
+
+msgid "Selection on"
+msgstr "Selection on"
+
+msgid "Selection off"
+msgstr "Selection off"
+
+msgid "Select all"
+msgstr "Select all"
+
+msgid "Selected all"
+msgstr "Selected all"
+
+msgid "Read text"
+msgstr "Read text"
+
+msgid "Copy"
+msgstr "Copy"
+
+msgid "Copied: {0}"
+msgstr "Copied: {0}"
+
+msgid "Nothing selected"
+msgstr "Nothing selected"
+
+msgid "Cut"
+msgstr "Cut"
+
+msgid "Cut: {0}"
+msgstr "Cut: {0}"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Pasted {0}"
+msgstr "Pasted {0}"
+
+msgid "Nothing to paste"
+msgstr "Nothing to paste"
+
+msgid "Undo"
+msgstr "Undo"
+
+msgid "Undone"
+msgstr "Undone"
+
+msgid "Nothing to undo"
+msgstr "Nothing to undo"
+
+msgid "Dictate"
+msgstr "Dictate"
+
+msgid "Inserted: {0}"
+msgstr "Inserted: {0}"
+
+msgid "Done"
+msgstr "Done"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Text saved, {0} characters"
+msgstr "Text saved, {0} characters"
+
+msgid "Changes discarded"
+msgstr "Changes discarded"
+
+msgid "space"
+msgstr "space"
+
+msgid "new line"
+msgstr "new line"
+
+msgid "tab"
+msgstr "tab"

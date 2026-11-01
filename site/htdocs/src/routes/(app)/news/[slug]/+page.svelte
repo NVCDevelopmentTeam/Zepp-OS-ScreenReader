@@ -22,10 +22,10 @@
   <div class="lg:flex lg:gap-24">
     
     <!-- Main Content -->
-    <main class="flex-1 max-w-4xl mx-auto lg:mx-0 reveal-up">
+    <div class="flex-1 max-w-4xl mx-auto lg:mx-0 reveal-up">
       <article>
         <header class="mb-20">
-          <a href="/news" class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600 mb-12 hover:translate-x-[-4px] transition-transform" aria-label="Go back to news list">
+          <a href="/news/" class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-12 hover:translate-x-[-4px] transition-transform" aria-label="Go back to news list">
             <div class="w-8 h-8 rounded-full bg-blue-500/10 flex-center" aria-hidden="true">
               <div class="i-lucide-arrow-left w-4 h-4"></div>
             </div>
@@ -42,21 +42,21 @@
                 <div class="i-lucide-user w-6 h-6"></div>
               </div>
               <div>
-                <p class="text-[10px] uppercase tracking-[0.2em] font-black text-gray-400 mb-1">Author</p>
+                <p class="text-xs uppercase tracking-[0.2em] font-black text-gray-600 dark:text-gray-400 mb-1">Author</p>
                 <p class="text-sm font-black uppercase tracking-tight">{siteAuthor}</p>
               </div>
             </div>
             
             <div class="h-10 w-px bg-gray-100 dark:bg-white/5 hidden sm:block"></div>
             
-            <PostDate post={data.post} class="text-xs uppercase font-bold tracking-widest text-gray-500" />
+            <PostDate post={data.post} class="text-xs uppercase font-bold tracking-widest text-gray-600 dark:text-gray-400" />
           </div>
         </header>
 
         <!-- Post Body -->
         <div class="prose prose-lg md:prose-xl dark:prose-invert max-w-none 
           prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
-          prose-a:text-blue-600 prose-a:font-bold prose-a:no-underline hover:prose-a:underline
+          prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:font-bold prose-a:no-underline hover:prose-a:underline
           prose-img:rounded-[2.5rem] prose-img:shadow-2xl prose-pre:rounded-[2rem] prose-pre:bg-zeppDark prose-pre:border prose-pre:border-white/5">
           <data.component />
         </div>
@@ -67,7 +67,7 @@
             <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-transparent pointer-events-none"></div>
             <div class="relative z-10">
               <h3 class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tighter">Stay Connected</h3>
-              <p class="text-blue-100 text-lg font-medium opacity-80">Join our growing community and never miss an update.</p>
+              <p class="text-white text-lg font-medium">Join our growing community and never miss an update.</p>
             </div>
             <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="btn bg-white text-blue-600 px-10 py-5 text-sm uppercase tracking-widest font-black shadow-xl hover:scale-105 active:scale-95 transition-all">
               Join Discord
@@ -75,12 +75,12 @@
           </div>
         </footer>
       </article>
-    </main>
+    </div>
 
     <!-- Sidebar / TOC -->
     <aside class="hidden lg:block w-72 shrink-0 reveal-up" style="animation-delay: 0.3s">
       <div class="sticky top-32">
-        <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">
+        <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-xs font-black uppercase tracking-[0.2em]">
           <div class="i-lucide-list w-4 h-4 text-blue-500"></div>
           Contents
         </div>

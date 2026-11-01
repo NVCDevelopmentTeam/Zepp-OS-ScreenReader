@@ -1204,8 +1204,6 @@ msgstr "Bạn cũng có thể thêm thẻ lối tắt ZSR vào đồng hồ từ
 msgid "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
 msgstr "Nếu đồng hồ cho phép chọn chức năng của nút, hãy đặt một nút để mở ZSR. Tìm tùy chọn nút hoặc lối tắt trong cài đặt đồng hồ; tên menu khác nhau giữa các phiên bản Zepp OS."
 
-msgid "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
-msgstr "Trên Zepp OS 4 trở lên, menu Trợ năng trong cài đặt đồng hồ không liệt kê ZSR. Hãy mở ZSR từ danh sách ứng dụng, thẻ lối tắt hoặc một nút."
 
 msgid "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
 msgstr "Khi ZSR đã mở, bật hoặc tắt trình đọc bằng núm xoay, nút trợ năng hoặc cử chỉ."
@@ -1257,3 +1255,318 @@ msgstr "Không tìm thấy chữ trong ảnh"
 
 msgid "The text in this picture could not be read"
 msgstr "Không đọc được chữ trong ảnh này"
+
+msgid "On Zepp OS 4.2 and later, Settings, Accessibility is where ZSR is meant to be turned on. It is not available yet, because Zepp OS does not let apps provide an accessibility service. Until it is, open ZSR with the steps above."
+msgstr "Trên Zepp OS 4.2 trở lên, Cài đặt, Trợ năng là nơi dự kiến để bật ZSR. Hiện chưa dùng được vì Zepp OS chưa cho ứng dụng cung cấp dịch vụ trợ năng. Cho đến khi có, hãy mở ZSR theo các bước trên."
+
+msgid "Minimal"
+msgstr "Tối giản"
+
+msgid "Standard"
+msgstr "Tiêu chuẩn"
+
+msgid "Detailed"
+msgstr "Chi tiết"
+
+msgid "Custom"
+msgstr "Tùy chỉnh"
+
+msgid "Verbosity"
+msgstr "Mức độ chi tiết"
+
+msgid "verbosity"
+msgstr "Mức độ chi tiết"
+
+msgid "Verbosity: {0}"
+msgstr "Mức độ chi tiết: {0}"
+
+msgid "Performance"
+msgstr "Hiệu năng"
+
+msgid "Battery saver"
+msgstr "Tiết kiệm pin"
+
+msgid "Normal"
+msgstr "Bình thường"
+
+msgid "Back up settings"
+msgstr "Sao lưu cài đặt"
+
+msgid "Restore settings"
+msgstr "Khôi phục cài đặt"
+
+msgid "Press Restore settings again within five seconds to replace your settings."
+msgstr "Hãy nhấn Khôi phục cài đặt lần nữa trong năm giây để thay thế cài đặt của bạn."
+
+msgid "Settings backed up. A copy was sent to your phone."
+msgstr "Đã sao lưu cài đặt. Một bản sao đã được gửi tới điện thoại."
+
+msgid "Settings backed up on the watch. The phone could not be reached."
+msgstr "Đã sao lưu cài đặt trên đồng hồ. Không kết nối được với điện thoại."
+
+msgid "No backup was found."
+msgstr "Không tìm thấy bản sao lưu."
+
+msgid "Settings restored."
+msgstr "Đã khôi phục cài đặt."
+
+msgid "This backup is from a newer version of ZSR and cannot be restored."
+msgstr "Bản sao lưu này thuộc phiên bản ZSR mới hơn nên không thể khôi phục."
+
+msgid "The backup is too large."
+msgstr "Bản sao lưu quá lớn."
+
+msgid "The backup is empty."
+msgstr "Bản sao lưu trống."
+
+msgid "This is not a ZSR backup."
+msgstr "Đây không phải bản sao lưu ZSR."
+
+msgid "The backup could not be read."
+msgstr "Không đọc được bản sao lưu."
+
+msgid "Calories burned: {0} kilocalories."
+msgstr "Đã đốt {0} kilôcalo."
+
+msgid "Distance traveled: {0} meters."
+msgstr "Quãng đường đã đi: {0} mét."
+
+msgid "Heart rate is {0} beats per minute."
+msgstr "Nhịp tim là {0} nhịp mỗi phút."
+
+msgid "Blood oxygen level is {0} percent."
+msgstr "Nồng độ oxy trong máu là {0} phần trăm."
+
+msgid "Sleep summary: total {0} hours and {1} minutes. Deep sleep: {2} minutes. Light sleep: {3} minutes. REM: {4} minutes."
+msgstr "Tóm tắt giấc ngủ: tổng {0} giờ {1} phút. Ngủ sâu: {2} phút. Ngủ nhẹ: {3} phút. REM: {4} phút."
+
+msgid "Step count is {0}. Goal progress {1} percent."
+msgstr "Số bước chân là {0}. Đạt {1} phần trăm mục tiêu."
+
+msgid "Relaxed"
+msgstr "Thư giãn"
+
+msgid "High"
+msgstr "Cao"
+
+msgid "Medium"
+msgstr "Trung bình"
+
+msgid "Stress level is {0}, {1}."
+msgstr "Mức căng thẳng là {0}, {1}."
+
+msgid "Workout stats:"
+msgstr "Thông số buổi tập:"
+
+msgid "Duration {0}."
+msgstr "Thời lượng {0}."
+
+msgid "Distance {0}."
+msgstr "Quãng đường {0}."
+
+msgid "Heart rate {0}."
+msgstr "Nhịp tim {0}."
+
+msgid "Calories {0}."
+msgstr "Calo {0}."
+
+msgid "Battery: {0} percent."
+msgstr "Pin: {0} phần trăm."
+
+msgid "Battery data not available"
+msgstr "Không có dữ liệu pin"
+
+msgid "Location is not available on this watch"
+msgstr "Đồng hồ này không hỗ trợ định vị"
+
+msgid "Location is turned off for ZSR. Allow it in the watch settings."
+msgstr "Định vị đang tắt đối với ZSR. Hãy cho phép trong cài đặt đồng hồ."
+
+msgid "Looking for GPS. This can take up to 20 seconds."
+msgstr "Đang tìm GPS. Việc này có thể mất tới 20 giây."
+
+msgid "GPS: no position yet. Go outside or near a window and try again."
+msgstr "GPS: chưa có vị trí. Hãy ra ngoài hoặc lại gần cửa sổ rồi thử lại."
+
+msgid "GPS: found. Latitude {0} degrees {1}, longitude {2} degrees {3}."
+msgstr "GPS: đã có vị trí. Vĩ độ {0} độ {1}, kinh độ {2} độ {3}."
+
+msgid "north"
+msgstr "bắc"
+
+msgid "south"
+msgstr "nam"
+
+msgid "east"
+msgstr "đông"
+
+msgid "west"
+msgstr "tây"
+
+msgid "Location data not available"
+msgstr "Không có dữ liệu vị trí"
+
+msgid "Altitude {0} meters. Air pressure {1} hectopascals."
+msgstr "Độ cao {0} mét. Áp suất không khí {1} héctopascal."
+
+msgid "Altitude and pressure data not available"
+msgstr "Không có dữ liệu độ cao và áp suất"
+
+msgid "The compass is not calibrated. Move the watch in a figure eight and try again."
+msgstr "La bàn chưa được hiệu chỉnh. Hãy vẽ hình số tám bằng đồng hồ rồi thử lại."
+
+msgid "Facing {0}, {1} degrees."
+msgstr "Đang hướng {0}, {1} độ."
+
+msgid "Compass data not available"
+msgstr "Không có dữ liệu la bàn"
+
+msgid "Read Battery"
+msgstr "Đọc pin"
+
+msgid "Where am I (GPS)"
+msgstr "Tôi đang ở đâu (GPS)"
+
+msgid "Read Altitude and Pressure"
+msgstr "Đọc độ cao và áp suất"
+
+msgid "Read Compass"
+msgstr "Đọc la bàn"
+
+msgid "Text Editor"
+msgstr "Soạn thảo văn bản"
+
+msgid "Dot {0}"
+msgstr "Chấm {0}"
+
+msgid "Dot {0} on"
+msgstr "Chấm {0} bật"
+
+msgid "Dot {0} off"
+msgstr "Chấm {0} tắt"
+
+msgid "No dots are on"
+msgstr "Chưa bật chấm nào"
+
+msgid "No character for these dots"
+msgstr "Không có ký tự cho các chấm này"
+
+msgid "Text is full"
+msgstr "Văn bản đã đầy"
+
+msgid "Start of text"
+msgstr "Đầu văn bản"
+
+msgid "End of text"
+msgstr "Cuối văn bản"
+
+msgid "Selected: {0}"
+msgstr "Đã chọn: {0}"
+
+msgid "Text: {0}"
+msgstr "Văn bản: {0}"
+
+msgid "Empty"
+msgstr "Trống"
+
+msgid "Write character"
+msgstr "Viết ký tự"
+
+msgid "Space"
+msgstr "Dấu cách"
+
+msgid "Backspace"
+msgstr "Xóa lùi"
+
+msgid "Deleted {0}"
+msgstr "Đã xóa {0}"
+
+msgid "Cursor left"
+msgstr "Con trỏ sang trái"
+
+msgid "Cursor right"
+msgstr "Con trỏ sang phải"
+
+msgid "Previous word"
+msgstr "Từ trước"
+
+msgid "Next word"
+msgstr "Từ sau"
+
+msgid "Select: on or off"
+msgstr "Chọn: bật hoặc tắt"
+
+msgid "Selection on"
+msgstr "Đã bật chế độ chọn"
+
+msgid "Selection off"
+msgstr "Đã tắt chế độ chọn"
+
+msgid "Select all"
+msgstr "Chọn tất cả"
+
+msgid "Selected all"
+msgstr "Đã chọn tất cả"
+
+msgid "Read text"
+msgstr "Đọc văn bản"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "Copied: {0}"
+msgstr "Đã sao chép: {0}"
+
+msgid "Nothing selected"
+msgstr "Chưa chọn gì"
+
+msgid "Cut"
+msgstr "Cắt"
+
+msgid "Cut: {0}"
+msgstr "Đã cắt: {0}"
+
+msgid "Paste"
+msgstr "Dán"
+
+msgid "Pasted {0}"
+msgstr "Đã dán {0}"
+
+msgid "Nothing to paste"
+msgstr "Không có gì để dán"
+
+msgid "Undo"
+msgstr "Hoàn tác"
+
+msgid "Undone"
+msgstr "Đã hoàn tác"
+
+msgid "Nothing to undo"
+msgstr "Không có gì để hoàn tác"
+
+msgid "Dictate"
+msgstr "Đọc để nhập"
+
+msgid "Inserted: {0}"
+msgstr "Đã chèn: {0}"
+
+msgid "Done"
+msgstr "Xong"
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "Text saved, {0} characters"
+msgstr "Đã lưu văn bản, {0} ký tự"
+
+msgid "Changes discarded"
+msgstr "Đã bỏ các thay đổi"
+
+msgid "space"
+msgstr "dấu cách"
+
+msgid "new line"
+msgstr "xuống dòng"
+
+msgid "tab"
+msgstr "tab"

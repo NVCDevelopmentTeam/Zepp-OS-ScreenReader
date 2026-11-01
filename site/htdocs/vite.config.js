@@ -5,11 +5,13 @@ import adapter from '@sveltejs/adapter-cloudflare'
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import UnoCSS from 'unocss/vite'
-import { compression } from 'vite-plugin-compression2'
+import { enhancedImages } from '@sveltejs/enhanced-img'
 
 export default defineConfig({
   plugins: [
     UnoCSS(),
+    // Processes <enhanced:img> and ?w=…&format=… image imports
+    enhancedImages(),
     // Cấu hình SvelteKit 3 mới nhất: Truyền trực tiếp các tùy chọn cấu hình vào sveltekit()
     sveltekit({
       extensions: ['.svelte', ...mdsvexConfig.extensions],
@@ -27,25 +29,8 @@ export default defineConfig({
 
       // Prerender all static pages
       prerender: { entries: ['*'], handleHttpError: 'warn' },
-      // Output gzip/brotli for faster Cloudflare serving
-      // (handled by vite-plugin-compression2)
-      alias: { $lib: 'src/lib' },
       // CSP set in hooks.server.js (dynamic nonce if needed later)
       csp: { mode: 'auto' }
-    }),
-
-    // Tối ưu nén Brotli & Gzip
-    compression({
-      algorithm: 'brotliCompress',
-      exclude: [/\.(br)$/, /\.(gz)$/],
-      deleteOriginalAssets: false,
-      threshold: 1024
-    }),
-    compression({
-      algorithm: 'gzip',
-      exclude: [/\.(br)$/, /\.(gz)$/],
-      deleteOriginalAssets: false,
-      threshold: 1024
     })
   ],
 
@@ -57,14 +42,6 @@ export default defineConfig({
   build: {
     target: 'es2022',
     minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('@sveltia/cms')) return 'cms-engine'
-          if (id.includes('node_modules/svelte')) return 'svelte-core'
-        }
-      }
-    },
     chunkSizeWarningLimit: 500
   },
 

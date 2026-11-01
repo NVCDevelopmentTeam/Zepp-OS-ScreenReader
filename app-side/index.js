@@ -9,6 +9,8 @@ const messageBuilder = new MessageBuilder()
 
 /** Largest problem report stored for the e-mail link. */
 const REPORT_MAX_CHARS = 1500
+/** Largest settings backup accepted (see lib/core/settingsBackup.js). */
+const BACKUP_MAX_CHARS = 20000
 
 /**
  * OpenAI TTS implementation
@@ -244,6 +246,27 @@ AppSideService({
         } catch (error) {
           console.error('DIAGNOSTIC_REPORT failed:', String(error))
           ctx.response({ data: { result: 'ERROR', code: 'REPORT_FAILED' } })
+        }
+      } else if (method === 'SETTINGS_BACKUP') {
+        // A copy of the watch's settings, kept in the phone settings so it survives a reset
+        // of the watch. Only stored here (settings text, no personal data).
+        try {
+          const backup = params && typeof params.backup === 'string' ? params.backup : ''
+          if (
+            !backup ||
+            backup.length > BACKUP_MAX_CHARS ||
+            !settings ||
+            !settings.settingsStorage
+          ) {
+            ctx.response({ data: { result: 'ERROR', code: 'NO_BACKUP' } })
+          } else {
+            settings.settingsStorage.setItem('settingsBackupText', backup)
+            settings.settingsStorage.setItem('settingsBackupTime', String(Date.now()))
+            ctx.response({ data: { result: 'OK' } })
+          }
+        } catch (error) {
+          console.error('SETTINGS_BACKUP failed:', String(error))
+          ctx.response({ data: { result: 'ERROR', code: 'BACKUP_FAILED' } })
         }
       } else if (method === 'GET_DATA') {
         ctx.response({ data: { result: 'OK' } })

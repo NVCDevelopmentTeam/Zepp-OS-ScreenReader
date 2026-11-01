@@ -21,19 +21,19 @@
 
 <div class="container py-20 reveal-up">
   <header class="max-w-4xl mb-24">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
       Latest Updates
     </div>
-    <h1 class="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
-      News & <br /> <span class="text-blue-600">Releases</span>
+    <h1 class="text-4xl min-[420px]:text-5xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
+      News & <br /> <span class="text-blue-600 dark:text-blue-400">Releases</span>
     </h1>
-    <p class="text-xl text-gray-500 font-medium max-w-2xl leading-relaxed">
+    <p class="text-xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl leading-relaxed">
       Stay informed with the latest developments, feature announcements, and community insights from the ZSR team.
     </p>
   </header>
 
   <div class="space-y-20">
-    <PostsList posts={data.posts} />
+    <PostsList posts={data.posts} heading="h2" />
   </div>
 
   <!-- Pagination -->
@@ -41,7 +41,7 @@
     <div class="flex items-center justify-between mt-32 pt-12 border-t border-gray-100 dark:border-white/5" aria-label="Pagination">
       {#if !isFirstPage}
         <a 
-          href={`/news?page=${data.page - 1}`} 
+          href={`/news/?page=${data.page - 1}`} 
           class="btn-secondary group flex items-center gap-3"
           data-sveltekit-prefetch
           aria-label={`Go to previous page (page ${data.page - 1})`}
@@ -53,13 +53,13 @@
         <div></div>
       {/if}
 
-      <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] bg-gray-50 dark:bg-white/5 px-6 py-2 rounded-full" aria-current="page">
+      <div class="text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-[0.3em] bg-gray-50 dark:bg-white/5 px-6 py-2 rounded-full" aria-current="page">
         Page {data.page}
       </div>
 
       {#if hasNextPage}
         <a 
-          href={`/news?page=${data.page + 1}`} 
+          href={`/news/?page=${data.page + 1}`} 
           class="btn-secondary group flex items-center gap-3"
           data-sveltekit-prefetch
           aria-label={`Go to next page (page ${data.page + 1})`}

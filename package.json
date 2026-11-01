@@ -18,7 +18,8 @@
     "test:polyfills": "node .scripts/test-polyfills.mjs",
     "check:i18n": "node .scripts/check-i18n.mjs",
     "check:targets": "node .scripts/check-targets.mjs",
-    "verify": "npm run lint && npm run check && npm run check:api && npm run check:i18n && npm run check:targets && npm run test:polyfills && npm run simulate"
+    "verify": "npm run lint && npm run check && npm run check:api && npm run check:i18n && npm run check:targets && npm run check:permissions && npm run test:polyfills && npm run simulate",
+    "check:permissions": "node .scripts/check-permissions.mjs"
   },
   "author": "NVC development Team",
   "license": "MIT",

@@ -15,7 +15,7 @@
     <!-- Hero Background with Overlay -->
     <div class="absolute inset-0 z-0">
       <enhanced:img
-        src="#lib/images/background.svg"
+        src="#lib/images/background.jpg"
         alt=""
         class="w-full h-full object-cover"
         loading="eager"
@@ -32,7 +32,7 @@
       
       <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-10 leading-[0.9] tracking-tighter">
         ZEPP OS <br /> 
-        <span class="text-blue-600">SCREEN READER</span>
+        <span class="text-blue-600 dark:text-blue-400">SCREEN READER</span>
       </h1>
       
       <p class="text-lg md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-14 font-medium">
@@ -41,11 +41,11 @@
       </p>
       
       <div class="flex flex-wrap justify-center gap-6">
-        <a href="/news" class="btn-primary group">
+        <a href="/news/" class="btn-primary group">
           Get Started 
           <div class="i-lucide-arrow-right w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" aria-hidden="true"></div>
         </a>
-        <a href="/about" class="btn-secondary">
+        <a href="/about/" class="btn-secondary">
           Explore Features
         </a>
       </div>
@@ -57,7 +57,7 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 reveal-up">
       <div class="max-w-2xl">
         <h2 class="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter">Why choose ZSR?</h2>
-        <p class="text-xl text-gray-500 font-medium leading-relaxed">
+        <p class="text-xl text-gray-600 dark:text-gray-400 font-medium leading-relaxed">
           Designed with a focus on speed, reliability, and ease of use. 
           Empowering you to stay connected wherever you are.
         </p>
@@ -67,7 +67,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="card group reveal-up" style="animation-delay: 0.1s">
-        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
+        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
           <div class="i-lucide-volume-2 w-8 h-8" aria-hidden="true"></div>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Voice Feedback</h3>
@@ -75,7 +75,7 @@
       </div>
 
       <div class="card group reveal-up" style="animation-delay: 0.2s">
-        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
+        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
           <div class="i-lucide-move w-8 h-8" aria-hidden="true"></div>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Gesture Navigation</h3>
@@ -83,7 +83,7 @@
       </div>
 
       <div class="card group reveal-up" style="animation-delay: 0.3s">
-        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
+        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
           <div class="i-lucide-shield-check w-8 h-8" aria-hidden="true"></div>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Reliable & Safe</h3>
@@ -147,7 +147,7 @@
   <section class="container">
     <div class="flex items-center justify-between mb-16 reveal-up">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Latest News</h2>
-      <a href="/news" class="nav-link flex items-center gap-2 group">
+      <a href="/news/" class="nav-link flex items-center gap-2 group">
         All Updates <div class="i-lucide-arrow-right w-4 h-4 group-hover:translate-x-2 transition-transform" aria-hidden="true"></div>
       </a>
     </div>

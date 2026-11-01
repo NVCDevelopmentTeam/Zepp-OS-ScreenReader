@@ -13,15 +13,12 @@ import VoiceControlService from './lib/core/voiceControlService.js'
 import AccessibilityService from './lib/core/accessibility.js'
 import { loadSettings } from './lib/core/config.js'
 import ErrorMonitor from './lib/utils/errorMonitor.js'
-import { ServerConfig, saveSettings } from './lib/core/config.js'
-import { coerceSettingValue } from './lib/utils/settingValue.js'
 import { beginRun, markStage, endRun, isSafeMode } from './lib/utils/crashGuard.js'
 import ZSRCore from './lib/core/index.js'
 import ZSRComponents from './lib/components/index.js'
 import ZSRExtensions from './lib/extensions/index.js'
-import { sendReportAndSpeakResult } from './lib/utils/diagnosticReport.js'
-import BrailleService from './lib/core/braille.js'
-import SpeechHistory from './lib/utils/speechHistory.js'
+import { isSaverMode } from './lib/core/powerMode.js'
+import { applyPhoneSetting } from './lib/core/phoneSettings.js'
 import { registerApiCapabilityProbes } from './lib/utils/apiCapability.js'
 import { gettext, format } from './lib/utils/i18n.js'
 import { recordBootError } from './lib/utils/bootErrors.js'
@@ -178,7 +175,8 @@ App({
       }
       startPart('shortcuts', () => ShortcutHandler.init())
       startPart('gestures', () => GestureHandler.init())
-      if (!isSafeMode()) {
+      // Safe mode (after crashes) and battery saver both keep only the core running.
+      if (!isSafeMode() && !isSaverMode()) {
         startPart('voice control', () => VoiceControlService.init())
         startPart('accessibility service', () => AccessibilityService.init())
 
@@ -193,7 +191,7 @@ App({
           .then(() => ScreenReader.syncOfflineVoice(messageBuilder))
           .catch((e) => log.info('Speech engine warm-up skipped: ' + String(e)))
       } else {
-        log.info('Safe mode: voice control, accessibility extras and warm-up are off')
+        log.info('Safe mode or battery saver: voice control, extras and warm-up are off')
       }
       markStage('ready')
 
@@ -270,50 +268,7 @@ App({
             }
           } else if (method === 'SETTING_UPDATE') {
             const { key, value } = params
-            if (key === 'clearHistorySignal') {
-              // "Clear History" button (setting/SpeechHistorySetting.js)
-              // previously just stored a timestamp nobody read.
-              SpeechHistory.clear()
-            } else if (key === 'brailleTable') {
-              // Previously the raw config value updated, but
-              // BrailleService's own internal `currentTable` (what
-              // translation actually uses) never synced with it.
-              const table = coerceSettingValue(value, ServerConfig.brailleTable)
-              BrailleService.setTable(table)
-              if (globalThis.ScreenReaderConfig) {
-                globalThis.ScreenReaderConfig[key] = table
-                saveSettings(globalThis.ScreenReaderConfig)
-              }
-            } else if (key === 'resetSettingsSignal') {
-              // "Reset All Settings" button (setting/DeveloperSettings.js)
-              // previously just stored a timestamp nobody read.
-              const defaults = JSON.parse(JSON.stringify(ServerConfig))
-              globalThis.ScreenReaderConfig = defaults
-              saveSettings(defaults)
-              await ScreenReader.speak(gettext('All settings have been reset to defaults.'), {
-                priority: 'high',
-                force: true
-              })
-            } else if (key === 'exportLogSignal') {
-              // "Prepare report" on the phone: build the problem report and hand it
-              // back to the Side Service, which stores it for the Settings App's
-              // ready-made e-mail link. The outcome is spoken.
-              await sendReportAndSpeakResult()
-            } else if (globalThis.ScreenReaderConfig && key !== undefined) {
-              // Settings Storage holds strings only ('false' is truthy), so convert to
-              // the type of the setting's default before using it.
-              globalThis.ScreenReaderConfig[key] = coerceSettingValue(value, ServerConfig[key])
-              // CRITICAL FIX: every setting changed from the phone's
-              // Settings App was only ever updated in-memory here - never
-              // persisted to device storage. That meant every single
-              // preference silently reverted to defaults the moment ZSR
-              // restarted on the watch (app relaunch, device reboot),
-              // regardless of how many settings screens correctly wrote
-              // to config.js's schema. saveSettings() must run on every
-              // update, not just the special-cased reset/braille-table
-              // paths above.
-              saveSettings(globalThis.ScreenReaderConfig)
-            }
+            await applyPhoneSetting(key, value)
           }
         } catch (error) {
           // A malformed/corrupted BLE payload (dropped bytes, mid-transfer
@@ -425,7 +380,7 @@ App({
   async grantPermissions() {
     // Must match the "permissions" array in app.json, and only lists codes that
     // the official documentation / typings publish: getDeviceInfo, localStorage
-    // and the health sensors ZSR reads aloud on request. Audio playback and
+    // the health sensors, location, barometer and compass ZSR reads aloud on request. Audio playback and
     // recording ('@zos/media'), @zos/ble and the Vibrator document no
     // permission code, and ZSR uses no camera API, so none is requested.
     const permissions = [
@@ -437,7 +392,10 @@ App({
       'data:user.hd.step',
       'data:user.hd.stress',
       'data:user.hd.calorie',
-      'data:user.hd.distance'
+      'data:user.hd.distance',
+      'device:os.geolocation',
+      'device:os.barometer',
+      'device:os.compass'
     ]
 
     // @zos/app has no `permission` object - the real Zepp OS 2.0/3.0 API is

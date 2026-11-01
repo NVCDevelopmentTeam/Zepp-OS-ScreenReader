@@ -10,6 +10,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 import { guard } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -28,41 +29,41 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 20,
+      y: px(20),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('Contact & Feedback'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     createChild(root, widget.TEXT, {
-      x: 20,
-      y: 80,
-      w: width - 40,
-      h: 400,
+      x: px(20),
+      y: px(80),
+      w: width - px(40),
+      h: px(400),
       text: gettext(
         'We value your feedback to make ZSR better.\n\nPlease visit our website to report bugs or request features:\n\nhttps://zeppreader.com/contact\n\nEmail: support@zeppreader.com'
       ),
       color: 0xaaaaaa,
-      text_size: 20,
+      text_size: px(20),
       text_style: text_style.WRAP
     })
 
     // Diagnostics to attach to a bug report: ZSR version, Zepp OS API level,
     // device model and which features this watch supports. No personal data.
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: height - 110,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: height - px(110),
+      w: width - px(80),
+      h: px(60),
       text: gettext('Read diagnostics'),
       color: 0xffffff,
       normal_color: 0x333333,
       press_color: 0x666666,
-      radius: 30,
+      radius: px(30),
       click_func: guard(
         () => ScreenReader.speak(describeDiagnostics(), { priority: 'high' }),
         'click_func'
@@ -72,15 +73,15 @@ export default ZSRPage({
     // Hands the same report to the phone, where the Zepp app offers it as a
     // ready-made e-mail. This is how a blind user reports a problem alone.
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: height - 180,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: height - px(180),
+      w: width - px(80),
+      h: px(60),
       text: gettext('Send report to phone'),
       color: 0xffffff,
       normal_color: 0x333333,
       press_color: 0x666666,
-      radius: 30,
+      radius: px(30),
       click_func: guard(() => sendReportAndSpeakResult(), 'click_func')
     })
 

@@ -1,5 +1,6 @@
 import { posts } from '#lib/data/posts.js'
 import { siteTitle, siteDescription, siteURL } from '#lib/info.js'
+import { escapeXml } from '#lib/util.js'
 
 export const prerender = true
 
@@ -11,28 +12,29 @@ const postsUrl = `${siteURL}/news`
  */
 export async function GET({ setHeaders }) {
   setHeaders({
-    'Cache-Control': 'max-age=0, s-max-age=600',
-    'Content-Type': 'application/xml'
+    'Cache-Control': 'max-age=0, s-maxage=600',
+    'Content-Type': 'application/xml; charset=utf-8'
   })
 
-  const xml = `<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
                     xmlns:content="http://purl.org/rss/1.0/modules/content/"
                     xmlns:atom="http://www.w3.org/2005/Atom"
                     version="2.0">
     <channel>
-      <title>${siteTitle}</title>
+      <title>${escapeXml(siteTitle)}</title>
       <link>${siteURL}</link>
-      <description>${websiteDescription}</description>
+      <description>${escapeXml(websiteDescription)}</description>
       <language>en-us</language>
       <atom:link href="${siteURL}/rss.xml" rel="self" type="application/rss+xml" />
       ${posts
         .map(
           (post) => `
         <item>
-          <guid>${postsUrl}/${post.slug}</guid>
-          <title>${post.title}</title>
-          <description>${post.preview.text}</description>
-          <link>${postsUrl}/${post.slug}</link>
+          <guid>${postsUrl}/${post.slug}/</guid>
+          <title>${escapeXml(post.title)}</title>
+          <description>${escapeXml(post.preview.text)}</description>
+          <link>${postsUrl}/${post.slug}/</link>
           <pubDate>${new Date(post.date).toUTCString()}</pubDate>
         </item>`
         )

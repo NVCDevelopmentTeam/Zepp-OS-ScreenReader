@@ -5,6 +5,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -23,24 +24,24 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 20,
+      y: px(20),
       w: width,
-      h: 50,
+      h: px(50),
       text: 'Terms of Service',
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     createChild(root, widget.TEXT, {
-      x: 20,
-      y: 80,
-      w: width - 40,
-      h: 400,
+      x: px(20),
+      y: px(80),
+      w: width - px(40),
+      h: px(400),
       text: 'By using ZSR, you agree to the open-source terms of the MIT License.\n\nThe software is provided "AS IS", without warranty of any kind.\n\nFull terms: https://zeppreader.com',
       color: 0xaaaaaa,
-      text_size: 20,
+      text_size: px(20),
       text_style: text_style.WRAP
     })
 

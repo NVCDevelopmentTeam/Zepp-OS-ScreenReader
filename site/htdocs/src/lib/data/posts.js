@@ -8,6 +8,7 @@ if (browser) {
 }
 
 // Adjust for timezone offset based on user's timezone
+/** @param {Date} date */
 function addTimezoneOffset(date) {
   const offsetInMilliseconds = new Date().getTimezoneOffset() * 60 * 1000
   return new Date(date.getTime() + offsetInMilliseconds)
@@ -15,14 +16,17 @@ function addTimezoneOffset(date) {
 
 // Main function to import and process all Markdown posts
 export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', { eager: true }))
-  .map(([filepath, post]) => {
+  .map(([filepath, mod]) => {
+    const post = /** @type {any} */ (mod)
     const htmlContent = typeof post.default === 'string' ? post.default : render(post.default).body
     const html = parse(htmlContent)
 
     // Obtain preview text for each post
     const previewElement = post.metadata.preview || html.querySelector('p')
 
-    const preview = previewElement ? previewElement.innerText || previewElement.textContent : ''
+    // metadata.preview is a plain string; otherwise use the text of the first paragraph
+    const preview =
+      typeof previewElement === 'string' ? previewElement : (previewElement?.textContent ?? '')
 
     return {
       ...post.metadata,
@@ -48,16 +52,17 @@ export const posts = Object.entries(import.meta.glob('/src/lib/posts/**/*.md', {
       },
       readingTime: readingTime(html.textContent || '').text
     }
-  }) // Sort posts by date (most recent first)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Add links to next and previous posts for navigation
-  .map((post, index, allPosts) => ({
-    ...post,
-    next: allPosts[index - 1] || null,
-    previous: allPosts[index + 1] || null
-  })) // Filter out posts that are unpublished or marked as hidden
+  }) // Filter out posts that are unpublished or marked as hidden
   .filter((post) => {
     const isPublished = new Date() >= new Date(post.date)
     const isHidden = !!post.hidden
 
     return isPublished && !isHidden
-  })
+  }) // Sort posts by date (most recent first)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  // Link to the next and previous published posts for navigation
+  .map((post, index, allPosts) => ({
+    ...post,
+    next: allPosts[index - 1] || null,
+    previous: allPosts[index + 1] || null
+  }))

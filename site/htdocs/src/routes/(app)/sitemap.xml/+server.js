@@ -6,23 +6,24 @@ export const prerender = true
 // Definition of static pages
 const staticPages = [
   { loc: `${siteURL}/`, priority: 1.0 },
-  { loc: `${siteURL}/about`, priority: 0.8 },
-  { loc: `${siteURL}/contact`, priority: 0.8 },
-  { loc: `${siteURL}/accessibility-statement`, priority: 0.7 },
-  { loc: `${siteURL}/support`, priority: 0.7 },
-  { loc: `${siteURL}/privacy-policy`, priority: 0.6 }
+  { loc: `${siteURL}/about/`, priority: 0.8 },
+  { loc: `${siteURL}/news/`, priority: 0.9 },
+  { loc: `${siteURL}/contact/`, priority: 0.8 },
+  { loc: `${siteURL}/accessibility-statement/`, priority: 0.7 },
+  { loc: `${siteURL}/support/`, priority: 0.7 },
+  { loc: `${siteURL}/privacy-policy/`, priority: 0.6 }
 ]
 
 // Definition of the path for the article
-const getPostUrl = (slug) => `${siteURL}/news/${slug}`
+const getPostUrl = (/** @type {string} */ slug) => `${siteURL}/news/${slug}/`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function GET({ setHeaders }) {
   setHeaders({
-    'Cache-Control': 'max-age=0, s-max-age=600',
-    'Content-Type': 'application/xml'
+    'Cache-Control': 'max-age=0, s-maxage=600',
+    'Content-Type': 'application/xml; charset=utf-8'
   })
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

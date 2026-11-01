@@ -11,6 +11,7 @@ import renderSpeechHistory from './SpeechHistorySetting.js'
 import renderRemoteAccess from './RemoteAccessSetting.js'
 import renderDocument from './DocumentSetting.js'
 import renderDeveloperOptions from './DeveloperSettings.js'
+import renderAdvanced from './AdvancedSettings.js'
 import renderAbout from './AboutSetting.js'
 import renderReport from './ReportSetting.js'
 import renderDisplay from './DisplaySetting.js'
@@ -70,6 +71,7 @@ AppSettingsPage({
       { label: 'Remote Access', value: 'remote' },
       { label: 'Document Settings', value: 'document' },
       { label: 'Reliability & Diagnostics', value: 'diagnostics' },
+      { label: 'Advanced', value: 'advanced' },
       { label: 'About', value: 'about' }
     ]
 
@@ -165,6 +167,9 @@ AppSettingsPage({
         break
       case 'about':
         content = renderAbout(props)
+        break
+      case 'advanced':
+        content = renderAdvanced(props)
         break
       case 'developer':
         content = renderDeveloperOptions(props)

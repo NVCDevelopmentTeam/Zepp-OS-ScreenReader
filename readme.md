@@ -205,17 +205,21 @@ The simplest path — no code, no developer mode required.
 
 ### 2. Open and turn on ZSR
 
-ZSR is a Mini Program, so it is opened like any other app, and no Zepp OS version lists it under
-**Settings → Accessibility** (on Zepp OS 5 that menu offers only zoom and text size). How to open it:
+A screen reader works in the background, so it should be switched on from the watch's own accessibility
+settings. **How it is switched on depends on the Zepp OS version:**
 
-- **All Zepp OS versions (2.x and later):** press the crown to open the app list and choose **ZSR**; or add the
-  ZSR shortcut card to the watch from the Zepp app and open it by swiping.
-- **Watches that let you assign a button to an app:** set a button to open ZSR (look for button or shortcut
-  options in the watch settings; menu names differ between versions).
-- Inside ZSR, **Settings → Activation → How to open ZSR** reads these steps aloud, adapted to the watch.
+- **Zepp OS 4.2 and later:** the watch settings have an **Accessibility** menu, and that is where ZSR is meant to
+  be turned on (**Settings → Accessibility**), like TalkBack on Android. **This is not available yet.** Zepp OS
+  gives apps no API to provide an accessibility service or to ask for that permission. When Zepp OS supports it,
+  ZSR will be integrated there. Until then, open ZSR the way described for earlier versions.
+- **Earlier versions (2.x up to 4.2), and until the menu above exists:** open ZSR like any other app: press the
+  crown to open the app list and choose **ZSR**; or add the ZSR shortcut card to the watch from the Zepp app and
+  open it by swiping; or, on watches that let you assign a button to an app, set a button to open ZSR (menu
+  names differ between versions).
+- Inside ZSR, **Settings → Activation → How to open ZSR** reads the steps for the watch you are using.
 
-Once ZSR is open, turn the reader on or off in any of three ways (each can be switched off in
-**Settings → Activation**, or in the phone settings, General):
+**The accessibility shortcuts are the same on every version.** Once ZSR is open, turn the reader on or off
+in any of three ways (each can be switched off in **Settings → Activation**, or in the phone settings, General):
 
 1. **Crown:** press it three times quickly. A single press still goes Home, after a short delay.
 2. **Accessibility button:** the small ZSR button in the bottom corner of the screen. With ZSR on, find it

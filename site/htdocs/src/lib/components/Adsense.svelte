@@ -39,7 +39,11 @@
     });
   }
 
-  /** Delay helper — waits for full load then fires callback after `delay` ms */
+  /**
+   * Delay helper — waits for full load then fires callback after `delay` ms
+   * @param {() => void} callback
+   * @param {number} [delay]
+   */
   function afterLoad(callback, delay = 2000) {
     if (document.readyState === 'complete') {
       setTimeout(callback, delay);

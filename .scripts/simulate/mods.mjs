@@ -48,6 +48,7 @@ const WIDGET_METHODS = new Set([
   'setVal',
   'then',
   'toJSON',
+  'onClick', // ZSR's own virtual list items have it; probing a native widget gives undefined
   'constructor'
 ])
 function makeWidget(typeName, type, opts) {
@@ -227,9 +228,9 @@ export function build(name) {
       break
     case '@zos/device':
       out.getDeviceInfo = () => ({
-        width: 480,
-        height: 480,
-        screenShape: 1,
+        width: Number(process.env.ZSR_WIDTH || 480),
+        height: Number(process.env.ZSR_HEIGHT || 480),
+        screenShape: Number(process.env.ZSR_SHAPE || 1),
         deviceName: 'Sim',
         deviceSource: 1,
         keyNumber: 2,
@@ -311,8 +312,32 @@ export function build(name) {
           constructor() {
             this.__n = n
           }
+          getStatus() {
+            return 'A'
+          }
+          getEnabled() {
+            return true
+          }
+          getLatitude() {
+            return 10.77621
+          }
+          getLongitude() {
+            return 106.70098
+          }
+          getAirPressure() {
+            return 1013.2
+          }
+          getAltitude() {
+            return 12.4
+          }
+          getDirection() {
+            return 'N'
+          }
+          getDirectionAngle() {
+            return 92
+          }
           getCurrent() {
-            return 70
+            return Number(process.env.ZSR_BATTERY || 70)
           }
           getLast() {
             return 70
@@ -326,9 +351,6 @@ export function build(name) {
           onRelease() {}
           start() {}
           stop() {}
-          getStatus() {
-            return 0
-          }
           getAverage() {
             return 70
           }

@@ -9,7 +9,8 @@
     let { headerText, children } = $props();
 
     let expanded = $state(false);
-    const id = Math.random().toString(36).substring(2, 9);
+    // Stable between server and client rendering (Math.random() caused hydration mismatches)
+    const id = $props.id();
 </script>
 
 <div class="group border border-gray-100 dark:border-white/10 rounded-[2rem] overflow-hidden bg-white dark:bg-white/5 transition-all duration-500 shadow-sm hover:shadow-xl">
@@ -23,8 +24,7 @@
         >
             <span class="text-gray-900 dark:text-white font-black uppercase tracking-widest text-sm">{headerText}</span>
             <div 
-                class="i-lucide-chevron-down w-5 h-5 text-blue-500 transition-transform duration-500" 
-                class:rotate-180={expanded}
+                class="i-lucide-chevron-down w-5 h-5 text-blue-500 transition-transform duration-500 {expanded ? 'rotate-180' : ''}"
                 aria-hidden="true"
             ></div>
         </button>

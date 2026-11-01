@@ -1,9 +1,23 @@
 /**
+ * Escapes the XML special characters (titles and descriptions inside RSS).
+ * @param {unknown} value
+ * @returns {string}
+ */
+export function escapeXml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+/**
  * Paginates an array of data.
  *
  * @param {any[]} data
- * @param {{ page?: number, limit: number }} args
- * @returns
+ * @param {{ page?: number, limit?: number }} [args]
+ * @returns {any[]}
  */
 export function paginate(data, { page = 1, limit } = {}) {
   if (limit) {
@@ -11,13 +25,4 @@ export function paginate(data, { page = 1, limit } = {}) {
   }
 
   return data
-}
-
-/**
- * Checks if the user agent is a mobile device.
- * @param {string} ua
- * @returns {boolean}
- */
-export function isMobile(ua) {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
 }

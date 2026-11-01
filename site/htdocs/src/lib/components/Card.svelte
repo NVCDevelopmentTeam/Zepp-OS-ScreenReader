@@ -5,6 +5,7 @@
    * @property {string} [href]
    * @property {string} [class]
    * @property {string} [ariaLabel]
+   * @property {'h2' | 'h3'} [heading] heading level of the title (h3 by default)
    * @property {import('svelte').Snippet} [eyebrow]
    * @property {import('svelte').Snippet} [title]
    * @property {import('svelte').Snippet} [description]
@@ -17,6 +18,7 @@
     href = undefined,
     class: _class = '',
     ariaLabel = undefined,
+    heading = 'h3',
     eyebrow,
     title,
     description,
@@ -35,19 +37,19 @@
   {/if}
 
   {#if title}
-    <h3 class="relative z-10 text-2xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tight">
+    <svelte:element this={heading} class="relative z-10 text-2xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tight">
       {#if href}
-        <a {href} class="focus:outline-none" aria-label={ariaLabel}>
+        <a {href} aria-label={ariaLabel}>
           <!-- This span makes the whole card clickable -->
           <span class="absolute -inset-0 z-20 rounded-[2rem]" aria-hidden="true"></span>
-          <span class="relative z-10 group-hover:text-blue-600 transition-colors duration-300">
+          <span class="relative z-10 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
             {@render title()}
           </span>
         </a>
       {:else}
         {@render title()}
       {/if}
-    </h3>
+    </svelte:element>
   {/if}
 
   {#if description}

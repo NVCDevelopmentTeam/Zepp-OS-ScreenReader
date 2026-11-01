@@ -1,13 +1,46 @@
-export const ssr = true
-export const prerender = false
+export const prerender = true // Bật tính năng prerender để xuất ra file tĩnh
 
-export const load = async ({ fetch }) => {
+export const load = async () => {
   try {
-    const response = await fetch('/sveltiaconfig.json')
-    if (!response.ok) {
-      throw new Error('Failed to load configuration')
+    // Khai báo trực tiếp cấu hình hoặc import từ file hằng số dùng chung (ví dụ: config.js)
+    // Paths are relative to the root of the Git repository, which contains this site in `site/htdocs`.
+    const config = {
+      load_config_file: false, // the configuration below is used instead of /admin/config.yml
+      backend: {
+        name: 'github',
+        repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
+        branch: 'main',
+        // `base_url` is set in +page.svelte to the current origin, so sign-in also works on localhost
+        auth_endpoint: 'admin/oauth'
+      },
+      site_url: 'https://www.zeppreader.com',
+      display_url: 'https://www.zeppreader.com',
+      // Sveltia requires an absolute public path: uploads are served from /uploads (static folder)
+      media_folder: 'site/htdocs/static/uploads',
+      public_folder: '/uploads',
+      collections: [
+        {
+          name: 'posts',
+          label: 'Posts',
+          folder: 'site/htdocs/src/lib/posts',
+          extension: 'md',
+          format: 'frontmatter',
+          create: true,
+          slug: '{{slug}}',
+          fields: [
+            {
+              label: 'Title',
+              name: 'title',
+              widget: 'string',
+              pattern: ['.{3,}', 'Post title must be at least 3 characters long.']
+            },
+            { label: 'Publish Date', name: 'date', widget: 'datetime' },
+            { label: 'Body', name: 'body', widget: 'markdown' }
+          ]
+        }
+      ]
     }
-    const config = await response.json()
+
     return {
       config
     }
@@ -18,58 +51,4 @@ export const load = async ({ fetch }) => {
       error: 'Failed to load configuration'
     }
   }
-}
-import { json } from '@sveltejs/kit'
-
-export async function GET() {
-  const config = {
-    backend: {
-      name: 'github',
-      repo: 'NVCDevelopmentTeam/Zepp-OS-ScreenReader',
-      branch: 'main',
-      site_domain: 'zeppreader.com',
-      base_url: 'https://www.zeppreader.com',
-      auth_endpoint: '/oauth'
-    },
-    site_url: 'https://www.zeppreader.com',
-    display_url: 'https://www.zeppreader.com',
-    logo_url: 'https://www.zeppreader.com/logo.jpg',
-    // Using relative paths from the root of the repo for GitHub backend compatibility
-    media_folder: 'src/lib/images',
-    public_folder: 'src/lib/images',
-    adminDisabled: false,
-    adminRoute: '/admin',
-    oauthDisabled: false,
-    oauthLoginRoute: '/oauth',
-    oauthCallbackRoute: '/oauth/callback',
-    collections: [
-      {
-        name: 'posts',
-        label: 'Posts',
-        folder: 'src/lib/posts',
-        create: true,
-        preview_path_date_field: 'date',
-        slug: '{{slug}}',
-        fields: [
-          {
-            label: 'Title',
-            name: 'title',
-            widget: 'string'
-          },
-          {
-            label: 'Publish Date',
-            name: 'date',
-            widget: 'datetime'
-          },
-          {
-            label: 'Body',
-            name: 'body',
-            widget: 'markdown'
-          }
-        ]
-      }
-    ]
-  }
-
-  return json(config)
 }

@@ -4,20 +4,18 @@
   import Adsense from '#lib/components/Adsense.svelte';
   import Analytics from '#lib/components/Analytics.svelte';
 
-  let { children, data } = $props();
+  let { children } = $props();
 </script>
 
 <div class="min-h-screen flex flex-col bg-zepp font-sans selection:bg-blue-500/30">
   <Header />
 
-  <main id="main" class="flex-grow pt-16 md:pt-20">
+  <main id="main" class="flex-grow pt-16 md:pt-28">
     {@render children?.()}
   </main>
 
   <Footer />
 </div>
 
-{#if !data.isMobile}
-  <Adsense />
-{/if}
+<Adsense />
 <Analytics />

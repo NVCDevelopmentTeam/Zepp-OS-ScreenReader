@@ -132,6 +132,24 @@ export default function renderSpeech(_props) {
           ]
         })
       ]),
+      Row([
+        Text({}, 'Verbosity'),
+        SelectField({
+          settingsKey: 'verbosity',
+          options: [
+            { label: 'Minimal', value: 'minimal' },
+            { label: 'Standard', value: 'standard' },
+            { label: 'Detailed', value: 'detailed' },
+            { label: 'Custom', value: 'custom' }
+          ]
+        })
+      ]),
+      Row([Text({}, 'Custom verbosity: say roles'), Toggle({ settingsKey: 'speakRoles' })]),
+      Row([Text({}, 'Custom verbosity: say states'), Toggle({ settingsKey: 'speakStates' })]),
+      Row([
+        Text({}, 'Custom verbosity: name unlabeled items'),
+        Toggle({ settingsKey: 'speakUnlabeled' })
+      ]),
       Row([Text({}, 'Read list position'), Toggle({ settingsKey: 'readListPosition' })]),
       Row([Text({}, 'Read status bar'), Toggle({ settingsKey: 'readStatusBar' })]),
       Row([Text({}, 'Read progress bars'), Toggle({ settingsKey: 'readProgressBars' })]),

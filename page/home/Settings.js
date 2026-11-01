@@ -7,6 +7,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -49,23 +50,23 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 10,
+      y: px(10),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('ZSR Settings'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     createChild(root, widget.SCROLL_LIST, {
       x: 0,
-      y: 70,
+      y: px(70),
       w: width,
-      h: height - 70,
-      item_height: 80,
-      item_space: 10,
+      h: height - px(70),
+      item_height: px(80),
+      item_space: px(10),
       item_config: [
         {
           type_id: 1,
@@ -73,13 +74,13 @@ export default ZSRPage({
           item_bg_radius: 10,
           text_view: [
             {
-              x: 20,
+              x: px(20),
               y: 0,
-              w: width - 40,
-              h: 80,
+              w: width - px(40),
+              h: px(80),
               key: 'name',
               color: 0xffffff,
-              text_size: 24,
+              text_size: px(24),
               align_h: 1,
               align_v: 2
             }

@@ -10,6 +10,7 @@ import { loadSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 import { guard } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -29,39 +30,39 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 10,
+      y: px(10),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('Speech History'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     const history = SpeechHistory.getHistory().map((item) => ({ ...item, type_id: 1 }))
 
     if (history.length === 0) {
       createChild(root, widget.TEXT, {
-        x: 20,
-        y: 100,
-        w: width - 40,
-        h: 100,
+        x: px(20),
+        y: px(100),
+        w: width - px(40),
+        h: px(100),
         text: gettext('No history available'),
         color: 0xaaaaaa,
         align_h: 2,
         align_v: 2,
-        text_size: 24
+        text_size: px(24)
       })
       return root
     }
 
     createChild(root, widget.SCROLL_LIST, {
       x: 0,
-      y: 70,
+      y: px(70),
       w: width,
-      h: height - 150,
-      item_height: 100,
+      h: height - px(150),
+      item_height: px(100),
       item_space: 5,
       item_config: [
         {
@@ -70,13 +71,13 @@ export default ZSRPage({
           item_bg_radius: 10,
           text_view: [
             {
-              x: 10,
+              x: px(10),
               y: 5,
-              w: width - 20,
-              h: 90,
+              w: width - px(20),
+              h: px(90),
               key: 'text',
               color: 0xffffff,
-              text_size: 18,
+              text_size: px(18),
               text_style: text_style.WRAP,
               align_v: 2
             }
@@ -92,15 +93,15 @@ export default ZSRPage({
     })
 
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: height - 70,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: height - px(70),
+      w: width - px(80),
+      h: px(60),
       text: gettext('Clear History'),
       color: 0xffffff,
       normal_color: 0xaa0000,
       press_color: 0x666666,
-      radius: 30,
+      radius: px(30),
       click_func: guard(() => {
         SpeechHistory.clear()
         replace({ url: 'page/home/History' })

@@ -1,16 +1,16 @@
 <script>
   import { siteAuthor, siteTitle } from '#lib/info.js';
-  import logo from '#lib/images/logo.svg?w=48&format=webp';
+  import logo from '#lib/images/logo.jpg?w=48&format=webp';
 
   let year = new Date().getFullYear();
 
   const links = [
-    { label: 'About', href: '/about' },
-    { label: 'News', href: '/news' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Accessibility', href: '/accessibility-statement' },
-    { label: 'Support', href: '/support' },
-    { label: 'Privacy', href: '/privacy-policy' }
+    { label: 'About', href: '/about/' },
+    { label: 'News', href: '/news/' },
+    { label: 'Contact', href: '/contact/' },
+    { label: 'Accessibility', href: '/accessibility-statement/' },
+    { label: 'Support', href: '/support/' },
+    { label: 'Privacy', href: '/privacy-policy/' }
   ];
 </script>
 
@@ -26,17 +26,17 @@
         <div class="flex items-center gap-3 mb-8">
           <img src={logo} alt="" class="w-10 h-10 rounded-xl" aria-hidden="true" loading="lazy" />
           <span class="font-display font-black text-2xl tracking-tighter uppercase">
-            <span class="text-blue-600">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
+            <span class="text-blue-600 dark:text-blue-400">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
           </span>
         </div>
         <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-8 leading-relaxed font-medium">
           The first professional screen reader for Zepp OS devices. Empowering blind and low-vision users to experience the full potential of their smart wearables.
         </p>
         <div class="flex items-center gap-4">
-          <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on GitHub">
+          <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on GitHub">
             <div class="i-lucide-github w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></div>
           </a>
-          <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on Discord">
+          <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on Discord">
             <div class="i-lucide-message-circle w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></div>
           </a>
         </div>
@@ -48,7 +48,7 @@
         <ul class="space-y-4">
           {#each links as link (link.href)}
             <li>
-              <a href={link.href} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 font-bold transition-colors text-sm uppercase tracking-wide">
+              <a href={link.href} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 font-bold transition-colors text-sm uppercase tracking-wide">
                 {link.label}
               </a>
             </li>

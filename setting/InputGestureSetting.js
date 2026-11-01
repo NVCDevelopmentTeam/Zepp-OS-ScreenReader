@@ -24,6 +24,8 @@ const ACTIONS = [
   { label: 'Spell Out', value: 'spell_out' },
   { label: 'Toggle Mute (pause/resume speech)', value: 'toggle_mute' },
   { label: 'Toggle Screen Curtain', value: 'toggle_screen_curtain' },
+  { label: 'Change Verbosity', value: 'cycle_verbosity' },
+  { label: 'Touch Exploration On/Off', value: 'toggle_touch_exploration' },
   { label: 'Review Cursor: Next', value: 'review_next' },
   { label: 'Review Cursor: Previous', value: 'review_prev' },
   { label: 'Speak Review Cursor Item', value: 'review_speak' },

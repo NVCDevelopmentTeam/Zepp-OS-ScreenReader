@@ -1,9 +1,18 @@
 <script>
   import 'virtual:uno.css';
   import './layout.css';
+  import { page } from '$app/state';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '#lib/info.js';
-  import ogImageURL from '#lib/images/logo.svg';
+  import ogImageURL from '#lib/images/logo.jpg';
 const { children } = $props();
+
+  // Canonical and og:url must follow the current route, not always point at the home page
+  const canonical = $derived(siteURL + page.url.pathname);
+  const robots = $derived(
+    page.url.pathname.startsWith('/admin')
+      ? 'noindex, nofollow'
+      : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+  );
 
   // SEO Configuration
   const SEO = {
@@ -16,13 +25,12 @@ const { children } = $props();
 
 <svelte:head>
   <title>{siteTitle}</title>
-  <meta name="description" content={siteDescription} />
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href={siteURL} />
+  <meta name="robots" content={robots} />
+  <link rel="canonical" href={canonical} />
   <meta name="keywords" content={SEO.keywords} />
   <meta name="author" content={siteAuthor} />
   <meta property="og:type" content={SEO.type} />
-  <meta property="og:url" content={siteURL} />
+  <meta property="og:url" content={canonical} />
   <meta property="og:site_name" content={siteTitle} />
   <meta property="og:title" content={siteTitle} />
   <meta property="og:description" content={siteDescription} />
@@ -38,8 +46,10 @@ const { children } = $props();
   <link rel="sitemap" type="application/xml" href="{siteURL}/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" href="{siteURL}/rss.xml" />
 
-  <script type="application/ld+json">
-    {JSON.stringify({
+  <!-- A <script> element inside <svelte:head> is raw text, so the JSON-LD is emitted with {@html}.
+       The content is a static object and `<` is escaped. -->
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<script type="application/ld+json">${JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: siteTitle,
@@ -49,8 +59,7 @@ const { children } = $props();
         '@type': 'Organization',
         name: siteAuthor
       }
-    })}
-  </script>
+    }).replace(/</g, '\\u003c')}</` + 'script>'}
 </svelte:head>
 
 {@render children?.()}

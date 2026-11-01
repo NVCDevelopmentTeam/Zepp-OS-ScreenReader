@@ -3,11 +3,13 @@
   let status = $state('');
   let success = $state(false);
 
+  /** @param {SubmitEvent & { currentTarget: HTMLFormElement }} event */
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const form = event.currentTarget; // currentTarget is cleared after the first await
     status = 'Submitting...';
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
@@ -26,7 +28,7 @@
       if (result.success) {
         status = "Message sent successfully! We'll get back to you soon.";
         success = true;
-        event.target.reset();
+        form.reset();
       } else {
         status = "Something went wrong. Please try again later.";
         success = false;
@@ -44,8 +46,8 @@
 
   <div class="grid md:grid-cols-2 gap-8">
     <div class="space-y-3">
-      <label for="contact-name" class="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
-        Your Name <span class="text-blue-600">*</span>
+      <label for="contact-name" class="block text-xs font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 ml-1">
+        Your Name <span class="text-blue-600 dark:text-blue-400">*</span>
       </label>
       <input 
         class="input-field" 
@@ -54,8 +56,8 @@
     </div>
 
     <div class="space-y-3">
-      <label for="contact-email" class="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
-        Your Email <span class="text-blue-600">*</span>
+      <label for="contact-email" class="block text-xs font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 ml-1">
+        Your Email <span class="text-blue-600 dark:text-blue-400">*</span>
       </label>
       <input 
         class="input-field" 
@@ -65,8 +67,8 @@
   </div>
 
   <div class="space-y-3">
-    <label for="contact-subject" class="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
-      Subject <span class="text-blue-600">*</span>
+    <label for="contact-subject" class="block text-xs font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 ml-1">
+      Subject <span class="text-blue-600 dark:text-blue-400">*</span>
     </label>
     <input 
       class="input-field" 
@@ -75,8 +77,8 @@
   </div>
 
   <div class="space-y-3">
-    <label for="contact-message" class="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
-      Message <span class="text-blue-600">*</span>
+    <label for="contact-message" class="block text-xs font-black uppercase tracking-[0.2em] text-gray-600 dark:text-gray-400 ml-1">
+      Message <span class="text-blue-600 dark:text-blue-400">*</span>
     </label>
     <textarea 
       class="input-field min-h-[200px] resize-none" 
@@ -99,7 +101,7 @@
   {#if status && status !== 'Submitting...'}
     <div 
       aria-live="polite"
-      class="flex items-center gap-4 p-6 rounded-3xl text-sm font-bold uppercase tracking-wider animate-in fade-in zoom-in duration-500 {success ? 'bg-blue-500/10 text-blue-600 border border-blue-500/20' : 'bg-red-500/10 text-red-600 border border-red-500/20'}"
+      class="flex items-center gap-4 p-6 rounded-3xl text-sm font-bold uppercase tracking-wider animate-in fade-in zoom-in duration-500 {success ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20' : 'bg-red-500/10 text-red-600 border border-red-500/20'}"
     >
       <div class={success ? "i-lucide-check-circle" : "i-lucide-alert-circle"} aria-hidden="true"></div>
       {status}

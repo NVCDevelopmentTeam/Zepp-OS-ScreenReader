@@ -34,9 +34,6 @@
   --font-mono:
     'Fira Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
-
-  /* Fluid base font — single source of truth */
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
 }
 
 /* Dark mode bridge — matches class="dark" from app.html + UnoCSS */
@@ -58,6 +55,8 @@
 
 html {
   height: 100%;
+  /* Keep the browser default so the user's font-size preference and zoom are respected */
+  font-size: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   /* scroll-behavior only on when user doesn't request reduced motion */
@@ -105,7 +104,22 @@ textarea {
   min-height: 44px; /* WCAG touch target */
 }
 
-/* Chỉ ẩn outline khi dùng mouse, giữ lại khi dùng keyboard */
+/* Links inherit colour and underline from their context (the design styles them with utilities);
+   without this the browser's default #0000EE blue and underline show through */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* The UA grey button background gives unreadable text in dark mode (WAVE contrast errors) */
+button {
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  border: 0 solid; /* drop the UA outset border; border utilities still apply */
+}
+
+/* Hide the outline for mouse users only; keep it for keyboard users */
 :focus:not(:focus-visible) {
   outline: none;
 }

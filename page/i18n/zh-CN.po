@@ -1204,8 +1204,6 @@ msgstr "您也可以在手机的 Zepp 应用中将 ZSR 快捷卡片添加到手�
 msgid "If your watch lets you choose what a button does, set one button to open ZSR. Look for button or shortcut options in the watch settings; the menu names differ between Zepp OS versions."
 msgstr "如果手表允许设置按键功能，请将一个按键设置为打开 ZSR。请在手表设置中查找按键或快捷方式选项；不同 Zepp OS 版本的菜单名称不同。"
 
-msgid "On Zepp OS 4 and later, the Accessibility menu in the watch settings does not list ZSR. Open it from the app list, the shortcut card or a button."
-msgstr "在 Zepp OS 4 及更高版本中，手表设置里的“辅助功能”菜单不会列出 ZSR。请从应用列表、快捷卡片或按键打开。"
 
 msgid "Once ZSR is open, turn the reader on or off with the crown, the accessibility button or the gesture."
 msgstr "ZSR 打开后，可用表冠、辅助功能按钮或手势开启或关闭读屏。"
@@ -1257,3 +1255,318 @@ msgstr "图片中没有找到文字"
 
 msgid "The text in this picture could not be read"
 msgstr "无法读取这张图片中的文字"
+
+msgid "On Zepp OS 4.2 and later, Settings, Accessibility is where ZSR is meant to be turned on. It is not available yet, because Zepp OS does not let apps provide an accessibility service. Until it is, open ZSR with the steps above."
+msgstr "在 Zepp OS 4.2 及更高版本中，“设置”“辅助功能”将是开启 ZSR 的位置。目前尚不可用，因为 Zepp OS 还不允许应用提供辅助功能服务。在此之前，请按上述步骤打开 ZSR。"
+
+msgid "Minimal"
+msgstr "简洁"
+
+msgid "Standard"
+msgstr "标准"
+
+msgid "Detailed"
+msgstr "详细"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "Verbosity"
+msgstr "详细程度"
+
+msgid "verbosity"
+msgstr "详细程度"
+
+msgid "Verbosity: {0}"
+msgstr "详细程度：{0}"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Battery saver"
+msgstr "省电模式"
+
+msgid "Normal"
+msgstr "普通"
+
+msgid "Back up settings"
+msgstr "备份设置"
+
+msgid "Restore settings"
+msgstr "恢复设置"
+
+msgid "Press Restore settings again within five seconds to replace your settings."
+msgstr "请在五秒内再次点按“恢复设置”以替换当前设置。"
+
+msgid "Settings backed up. A copy was sent to your phone."
+msgstr "设置已备份，并已将副本发送到手机。"
+
+msgid "Settings backed up on the watch. The phone could not be reached."
+msgstr "设置已备份在手表上，但无法连接手机。"
+
+msgid "No backup was found."
+msgstr "未找到备份。"
+
+msgid "Settings restored."
+msgstr "设置已恢复。"
+
+msgid "This backup is from a newer version of ZSR and cannot be restored."
+msgstr "此备份来自更新版本的 ZSR，无法恢复。"
+
+msgid "The backup is too large."
+msgstr "备份文件过大。"
+
+msgid "The backup is empty."
+msgstr "备份为空。"
+
+msgid "This is not a ZSR backup."
+msgstr "这不是 ZSR 备份。"
+
+msgid "The backup could not be read."
+msgstr "无法读取备份。"
+
+msgid "Calories burned: {0} kilocalories."
+msgstr "已消耗 {0} 千卡。"
+
+msgid "Distance traveled: {0} meters."
+msgstr "已行进距离：{0} 米。"
+
+msgid "Heart rate is {0} beats per minute."
+msgstr "心率为每分钟 {0} 次。"
+
+msgid "Blood oxygen level is {0} percent."
+msgstr "血氧为 {0}%。"
+
+msgid "Sleep summary: total {0} hours and {1} minutes. Deep sleep: {2} minutes. Light sleep: {3} minutes. REM: {4} minutes."
+msgstr "睡眠概要：共 {0} 小时 {1} 分钟。深睡 {2} 分钟，浅睡 {3} 分钟，快速眼动 {4} 分钟。"
+
+msgid "Step count is {0}. Goal progress {1} percent."
+msgstr "步数为 {0}，目标完成 {1}%。"
+
+msgid "Relaxed"
+msgstr "放松"
+
+msgid "High"
+msgstr "高"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "Stress level is {0}, {1}."
+msgstr "压力值为 {0}，{1}。"
+
+msgid "Workout stats:"
+msgstr "运动数据："
+
+msgid "Duration {0}."
+msgstr "时长 {0}。"
+
+msgid "Distance {0}."
+msgstr "距离 {0}。"
+
+msgid "Heart rate {0}."
+msgstr "心率 {0}。"
+
+msgid "Calories {0}."
+msgstr "卡路里 {0}。"
+
+msgid "Battery: {0} percent."
+msgstr "电量：{0}%。"
+
+msgid "Battery data not available"
+msgstr "无法获取电量数据"
+
+msgid "Location is not available on this watch"
+msgstr "此手表不支持定位"
+
+msgid "Location is turned off for ZSR. Allow it in the watch settings."
+msgstr "已对 ZSR 关闭定位。请在手表设置中允许。"
+
+msgid "Looking for GPS. This can take up to 20 seconds."
+msgstr "正在搜索 GPS，最多需要 20 秒。"
+
+msgid "GPS: no position yet. Go outside or near a window and try again."
+msgstr "GPS：暂未定位。请到室外或靠近窗户后重试。"
+
+msgid "GPS: found. Latitude {0} degrees {1}, longitude {2} degrees {3}."
+msgstr "GPS：已定位。纬度 {0} 度{1}，经度 {2} 度{3}。"
+
+msgid "north"
+msgstr "北"
+
+msgid "south"
+msgstr "南"
+
+msgid "east"
+msgstr "东"
+
+msgid "west"
+msgstr "西"
+
+msgid "Location data not available"
+msgstr "无法获取位置数据"
+
+msgid "Altitude {0} meters. Air pressure {1} hectopascals."
+msgstr "海拔 {0} 米，气压 {1} 百帕。"
+
+msgid "Altitude and pressure data not available"
+msgstr "无法获取海拔和气压数据"
+
+msgid "The compass is not calibrated. Move the watch in a figure eight and try again."
+msgstr "指南针尚未校准。请用手表画八字后重试。"
+
+msgid "Facing {0}, {1} degrees."
+msgstr "朝向 {0}，{1} 度。"
+
+msgid "Compass data not available"
+msgstr "无法获取指南针数据"
+
+msgid "Read Battery"
+msgstr "读取电量"
+
+msgid "Where am I (GPS)"
+msgstr "我在哪里（GPS）"
+
+msgid "Read Altitude and Pressure"
+msgstr "读取海拔和气压"
+
+msgid "Read Compass"
+msgstr "读取指南针"
+
+msgid "Text Editor"
+msgstr "文本编辑器"
+
+msgid "Dot {0}"
+msgstr "点 {0}"
+
+msgid "Dot {0} on"
+msgstr "点 {0} 已开"
+
+msgid "Dot {0} off"
+msgstr "点 {0} 已关"
+
+msgid "No dots are on"
+msgstr "没有开启任何点"
+
+msgid "No character for these dots"
+msgstr "这些点没有对应的字符"
+
+msgid "Text is full"
+msgstr "文本已满"
+
+msgid "Start of text"
+msgstr "文本开头"
+
+msgid "End of text"
+msgstr "文本末尾"
+
+msgid "Selected: {0}"
+msgstr "已选择：{0}"
+
+msgid "Text: {0}"
+msgstr "文本：{0}"
+
+msgid "Empty"
+msgstr "空"
+
+msgid "Write character"
+msgstr "写入字符"
+
+msgid "Space"
+msgstr "空格"
+
+msgid "Backspace"
+msgstr "退格"
+
+msgid "Deleted {0}"
+msgstr "已删除 {0}"
+
+msgid "Cursor left"
+msgstr "光标左移"
+
+msgid "Cursor right"
+msgstr "光标右移"
+
+msgid "Previous word"
+msgstr "上一个词"
+
+msgid "Next word"
+msgstr "下一个词"
+
+msgid "Select: on or off"
+msgstr "选择：开或关"
+
+msgid "Selection on"
+msgstr "选择已开启"
+
+msgid "Selection off"
+msgstr "选择已关闭"
+
+msgid "Select all"
+msgstr "全选"
+
+msgid "Selected all"
+msgstr "已全选"
+
+msgid "Read text"
+msgstr "朗读文本"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Copied: {0}"
+msgstr "已复制：{0}"
+
+msgid "Nothing selected"
+msgstr "未选择内容"
+
+msgid "Cut"
+msgstr "剪切"
+
+msgid "Cut: {0}"
+msgstr "已剪切：{0}"
+
+msgid "Paste"
+msgstr "粘贴"
+
+msgid "Pasted {0}"
+msgstr "已粘贴 {0}"
+
+msgid "Nothing to paste"
+msgstr "没有可粘贴的内容"
+
+msgid "Undo"
+msgstr "撤销"
+
+msgid "Undone"
+msgstr "已撤销"
+
+msgid "Nothing to undo"
+msgstr "没有可撤销的操作"
+
+msgid "Dictate"
+msgstr "语音输入"
+
+msgid "Inserted: {0}"
+msgstr "已插入：{0}"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Text saved, {0} characters"
+msgstr "文本已保存，共 {0} 个字符"
+
+msgid "Changes discarded"
+msgstr "已放弃更改"
+
+msgid "space"
+msgstr "空格"
+
+msgid "new line"
+msgstr "换行"
+
+msgid "tab"
+msgstr "制表符"

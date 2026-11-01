@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
-Sitemap: https://zeppreader.com/sitemap.xml
+Disallow: /admin/
+Sitemap: https://www.zeppreader.com/sitemap.xml

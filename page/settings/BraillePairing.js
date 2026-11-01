@@ -10,6 +10,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 import { guard, safeTimeout } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -29,47 +30,47 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 10,
+      y: px(10),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('Braille Pairing'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     const statusText = this.isScanning ? gettext('Scanning...') : gettext('Ready to scan')
     createChild(root, widget.TEXT, {
-      x: 20,
-      y: 60,
-      w: width - 40,
-      h: 40,
+      x: px(20),
+      y: px(60),
+      w: width - px(40),
+      h: px(40),
       text: statusText,
       color: 0xaaaaaa,
       align_h: 2,
-      text_size: 20
+      text_size: px(20)
     })
 
     if (this.devices.length === 0) {
       createChild(root, widget.TEXT, {
-        x: 20,
-        y: 150,
-        w: width - 40,
-        h: 100,
+        x: px(20),
+        y: px(150),
+        w: width - px(40),
+        h: px(100),
         text: gettext('No displays found'),
         color: 0x666666,
         align_h: 2,
         align_v: 2,
-        text_size: 22
+        text_size: px(22)
       })
     } else {
       createChild(root, widget.SCROLL_LIST, {
         x: 0,
-        y: 110,
+        y: px(110),
         w: width,
-        h: height - 200,
-        item_height: 80,
+        h: height - px(200),
+        item_height: px(80),
         item_space: 5,
         item_config: [
           {
@@ -78,13 +79,13 @@ export default ZSRPage({
             item_bg_radius: 10,
             text_view: [
               {
-                x: 20,
+                x: px(20),
                 y: 0,
-                w: width - 40,
-                h: 80,
+                w: width - px(40),
+                h: px(80),
                 key: 'name',
                 color: 0xffffff,
-                text_size: 22,
+                text_size: px(22),
                 align_v: 2
               }
             ]
@@ -100,15 +101,15 @@ export default ZSRPage({
     }
 
     createChild(root, widget.BUTTON, {
-      x: 40,
-      y: height - 80,
-      w: width - 80,
-      h: 60,
+      x: px(40),
+      y: height - px(80),
+      w: width - px(80),
+      h: px(60),
       text: this.isScanning ? gettext('Stop Scan') : gettext('Start Scan'),
       color: 0xffffff,
       normal_color: this.isScanning ? 0xaa0000 : 0x00aa00,
       press_color: 0x666666,
-      radius: 30,
+      radius: px(30),
       click_func: guard(() => {
         if (this.isScanning) this.stopScan()
         else this.startScan()

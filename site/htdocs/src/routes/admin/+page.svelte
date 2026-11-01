@@ -3,11 +3,14 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/env';
 
+  /** @type {{ data: { config: any } }} */
   let { data } = $props();
   let config = $derived(data.config);
 
+  /** @type {any} */
   let CMS = null;
   let cmsInitialized = $state(false);
+  /** @type {Error | null} */
   let cmsError = $state(null);
 
   async function initializeCMS() {
@@ -16,18 +19,14 @@
       CMS = sveltia.default;
 
       await CMS.init({
-        hooks: {
-          preSave: (collection, data) => {
-            if (collection === 'posts' && data.title.length < 3) {
-              throw new Error('Post title must be at least 3 characters long.');
-            }
-            return data;
-          },
-        },
+        config: {
+          ...config,
+          backend: { ...config.backend, base_url: location.origin }
+        }
       });
       cmsInitialized = true;
     } catch (err) {
-      cmsError = err;
+      cmsError = /** @type {Error} */ (err);
       console.error('CMS Initialization Error:', err);
     }
   }
@@ -68,7 +67,7 @@
       </div>
       <div class="text-center">
         <h2 class="text-2xl font-black uppercase tracking-[0.2em] mb-3">Syncing CMS</h2>
-        <p class="text-gray-400 font-bold text-[10px] uppercase tracking-[0.3em]">Preparing your environment...</p>
+        <p class="text-gray-600 dark:text-gray-400 font-bold text-xs uppercase tracking-[0.3em]">Preparing your environment...</p>
       </div>
     </div>
   {:else}

@@ -9,6 +9,7 @@ import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
 import { ZSR_VERSION } from '../../lib/utils/version.js'
 import { guard } from '../../lib/utils/safeCall.js'
+import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
 export default ZSRPage({
@@ -30,14 +31,14 @@ export default ZSRPage({
 
     createChild(root, widget.TEXT, {
       x: 0,
-      y: 20,
+      y: px(20),
       w: width,
-      h: 50,
+      h: px(50),
       text: gettext('App Information'),
       color: 0xffffff,
       align_h: 2,
       align_v: 2,
-      text_size: 28
+      text_size: px(28)
     })
 
     const info = [
@@ -48,13 +49,13 @@ export default ZSRPage({
     ]
 
     const infoWidget = createChild(root, widget.TEXT, {
-      x: 20,
-      y: 80,
-      w: width - 40,
-      h: 120,
+      x: px(20),
+      y: px(80),
+      w: width - px(40),
+      h: px(120),
       text: info.join('\n'),
       color: 0xaaaaaa,
-      text_size: 18,
+      text_size: px(18),
       text_style: text_style.WRAP,
       align_h: 2
     })
@@ -104,11 +105,11 @@ export default ZSRPage({
     ]
 
     createChild(root, widget.SCROLL_LIST, {
-      x: 20,
-      y: 210,
-      w: width - 40,
-      h: height - 210,
-      item_height: 60,
+      x: px(20),
+      y: px(210),
+      w: width - px(40),
+      h: height - px(210),
+      item_height: px(60),
       item_space: 5,
       item_config: [
         {
@@ -117,13 +118,13 @@ export default ZSRPage({
           item_bg_radius: 10,
           text_view: [
             {
-              x: 15,
+              x: px(15),
               y: 0,
-              w: width - 70,
-              h: 60,
+              w: width - px(70),
+              h: px(60),
               key: 'name',
               color: 0xffffff,
-              text_size: 20,
+              text_size: px(20),
               align_h: 1,
               align_v: 2
             }

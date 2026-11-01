@@ -13,7 +13,14 @@ export async function handle({ event, resolve }) {
   // ================================
   // 1. STATIC ASSETS (hashed by Vite — safe to cache 1 year)
   // ================================
-  if (url.pathname.startsWith('/_app/immutable/')) // Vite hashed chunks
+  const isAdmin = url.pathname.startsWith('/admin')
+
+  // The CMS and the OAuth callback (which carries the access token) must never be cached
+  if (isAdmin) {
+    headers.set('Cache-Control', 'no-store')
+    headers.delete('CDN-Cache-Control')
+    headers.delete('Cloudflare-CDN-Cache-Control')
+  } else if (url.pathname.startsWith('/_app/immutable/')) // Vite hashed chunks
   {
     headers.set('Cache-Control', 'public, max-age=31536000, immutable')
     headers.set('CDN-Cache-Control', 'public, max-age=31536000, immutable')
@@ -56,17 +63,33 @@ export async function handle({ event, resolve }) {
   // Strict CSP — adjust src domains as needed
   headers.set(
     'Content-Security-Policy',
-    [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https: blob:",
-      "font-src 'self' data:",
-      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net",
-      'frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com',
-      "object-src 'none'",
-      "base-uri 'self'"
-    ].join('; ')
+    (isAdmin
+      ? [
+          "default-src 'self'",
+          "script-src 'self' 'unsafe-inline'",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: https: blob:",
+          "font-src 'self' data:",
+          "connect-src 'self' data: blob: https://api.github.com https://github.com https://*.githubusercontent.com https://www.githubstatus.com",
+          "worker-src 'self' blob:",
+          "object-src 'none'",
+          "base-uri 'self'",
+          "frame-ancestors 'none'"
+        ]
+      : [
+          "default-src 'self'",
+          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: https: blob:",
+          "font-src 'self' data:",
+          "connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://www.google.com",
+          'frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.adtrafficquality.google',
+          "object-src 'none'",
+          "base-uri 'self'",
+          "form-action 'self' https://api.web3forms.com",
+          "frame-ancestors 'none'"
+        ]
+    ).join('; ')
   )
 
   return new Response(response.body, {

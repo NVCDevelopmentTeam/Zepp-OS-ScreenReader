@@ -3,6 +3,7 @@ import fs from 'fs'
 import { pathToFileURL } from 'url'
 import { S, issue } from './state.mjs'
 const root = process.cwd()
+const toggleChecks = []
 const captured = { app: null, pages: [], widgets: [] }
 const realLog = console.log.bind(console)
 const consoleHits = []
@@ -70,6 +71,7 @@ if (captured.app) {
   })
   await sleep(300)
 }
+const uiModule = await import('@zos/ui')
 for (const p of pages) {
   const before = captured.pages.length
   await step('import ' + p, async () => {
@@ -91,6 +93,107 @@ for (const p of pages) {
     opts.build && (await opts.build.call(inst))
   })
   await sleep(50)
+  // Horizontal layout: nothing may stick out of the screen sideways (vertical overflow is normal,
+  // pages scroll). The focus ring is deliberately 4 px wider than the screen.
+  {
+    const W = Number(process.env.ZSR_WIDTH || 480)
+    for (const w of S.widgets) {
+      const { x, w: width, y, h } = w.__props
+      if (typeof x !== 'number' || typeof width !== 'number') continue
+      if (w.__typeName === 'STROKE_RECT') continue
+      if (x < -1 || x + width > W + 1 || width < 0 || (typeof h === 'number' && h < 0)) {
+        issue(
+          'OFFSCREEN',
+          `${p}: ${w.__typeName} x=${x} w=${width} y=${y} h=${h} on a ${W}px wide screen`
+        )
+      }
+    }
+  }
+  // Every switch of a settings page must hand its page callback a boolean, from the platform
+  // call (slideSwitch, checked) and from ZSR's own activation (double tap).
+  if (p === 'page/settings/Activation') {
+    const config = globalThis.ScreenReaderConfig
+    const switches = S.widgets.filter((w) => w.__typeName === 'SLIDE_SWITCH')
+    const callbacks = switches.map((w) => w.__props.checked_change_func)
+    callbacks[0](switches[0], false)
+    toggleChecks.push([
+      'switch: platform call turns the crown shortcut off',
+      config.accessibilityShortcut === 'off'
+    ])
+    callbacks[0](switches[0], true)
+    toggleChecks.push([
+      'switch: platform call turns it back on',
+      config.accessibilityShortcut === 'triple_click_home'
+    ])
+    callbacks[1](switches[1], false)
+    toggleChecks.push([
+      'switch: accessibility button saved as boolean false',
+      config.accessibilityButton === false
+    ])
+    callbacks[1](switches[1], true)
+    const navigation = globalThis.NavigationManagerInstance
+    const at = navigation.elements.findIndex((e) => e.element === switches[2])
+    toggleChecks.push(['switch: it is reachable by ZSR navigation', at >= 0])
+    if (at >= 0) {
+      navigation.currentIndex = at
+      const before = config.activationGesture
+      navigation.handleSelection()
+      toggleChecks.push([
+        'switch: double tap activation gives the callback a boolean',
+        before === 'zigzag'
+          ? config.activationGesture === 'off'
+          : config.activationGesture === 'zigzag'
+      ])
+      navigation.handleSelection()
+    }
+  }
+  if (p === 'page/tools/TextEditor') {
+    try {
+      const press = (label) => {
+        const b = S.widgets.find((w) => w.__typeName === 'BUTTON' && w.__props.text === label)
+        if (!b) throw new Error('no button ' + label)
+        return b.__props.click_func(b)
+      }
+      // The page changes the shown text with setProperty(prop.TEXT, ...), read back the same way
+      const screenText = () => {
+        const w = S.widgets.find((x) => x.__typeName === 'TEXT' && x.__props.text !== 'Text Editor')
+        return w.getProperty(uiModule.prop.TEXT)
+      }
+      const add = (name, ok) => toggleChecks.push([name, ok])
+      add(
+        'editor page has the Braille dot buttons and the editing buttons',
+        ['Dot 1', 'Dot 6', 'Write character', 'Backspace', 'Undo', 'Done', 'Cancel'].every((l) =>
+          S.widgets.some((w) => w.__props.text === l)
+        )
+      )
+      press('Dot 1')
+      press('Write character')
+      add('dot 1 then Write character types "a"', screenText() === 'a')
+      press('Dot 1')
+      press('Dot 2')
+      press('Write character')
+      add('dots 1 and 2 type "b"', screenText() === 'ab')
+      press('Space')
+      press('Dot 1')
+      press('Dot 4')
+      press('Write character')
+      add('space and dots 1 and 4 type "c" after a space', screenText() === 'ab c')
+      press('Backspace')
+      press('Undo')
+      add('backspace then undo gives the text back', screenText() === 'ab c')
+      for (const dot of [1, 2, 3, 4, 5, 6]) press('Dot ' + dot)
+      press('Write character')
+      add('dots that are no character do not change the text', screenText() === 'ab c')
+    } catch (e) {
+      issue(
+        'EDITOR_TEST',
+        String((e && e.stack) || e)
+          .split('\n')
+          .slice(0, 3)
+          .join(' | ')
+      )
+    }
+  }
   captured.last = { p, n: S.widgets.length }
   if (process.env.VERBOSE) realLog(p, 'widgets:', S.widgets.length)
   await step(p + ' onDestroy', async () => {
@@ -266,13 +369,17 @@ if (nav && reader && zsr) {
     const b = ui.accessButton
     check('accessibility button exists', !!b)
     if (b) {
-      const info = { w: 480, h: 480 }
+      const W = Number(process.env.ZSR_WIDTH || 480)
+      const H = Number(process.env.ZSR_HEIGHT || 480)
+      const round = process.env.ZSR_SHAPE !== '0'
       const size = b.__props.w
       const cx = b.__props.x + size / 2
       const cy = b.__props.y + size / 2
-      const R = info.w / 2
-      const farthest = Math.hypot(cx - R, cy - R) + size / 2
-      check('button lies inside the round screen, bottom right', farthest <= R && cx > R && cy > R)
+      const R = Math.min(W, H) / 2
+      const inside = round
+        ? Math.hypot(cx - W / 2, cy - H / 2) + size / 2 <= R
+        : b.__props.x >= 0 && b.__props.y >= 0 && b.__props.x + size <= W && b.__props.y + size <= H
+      check('button lies on the screen, in the bottom right', inside && cx > W / 2 && cy > H / 2)
       check('button is large enough to find (>= 48 px)', size >= 48)
       check(
         'button is reachable in the navigation order',
@@ -356,10 +463,297 @@ if (nav && reader && zsr) {
       idx !== -1 && nav.elements[idx].options.text === 'Delta'
     )
   })
+  await step('text editor core', async () => {
+    const editorModule = await import(pathToFileURL(root + '/lib/core/textEditor.js').href)
+    const { TextEditor, echoFor, MAX_TEXT_LENGTH, getClipboard } = editorModule
+    const e = new TextEditor('hello world')
+    check('cursor starts at the end', e.cursor === 11)
+    e.moveBy(-5)
+    e.insert('big ')
+    check('insert at the cursor', e.text === 'hello big world' && e.cursor === 10)
+    check(
+      'delete backward removes one character',
+      e.deleteBackward() === ' ' && e.text === 'hello bigworld'
+    )
+    e.undo()
+    check('undo restores text and cursor', e.text === 'hello big world' && e.cursor === 10)
+    e.moveToEdge('start')
+    check(
+      'word movement stops at word ends',
+      e.moveWord(1) && e.cursor === 5 && e.moveWord(1) && e.cursor === 9
+    )
+    e.moveToEdge('start')
+    e.moveWord(1, true)
+    check('selection by word', e.selectedText() === 'hello')
+    check(
+      'copy then cut then paste',
+      e.copy() === 'hello' &&
+        e.cut() === 'hello' &&
+        e.text === ' big world' &&
+        (e.moveToEdge('end'), e.paste() === 'hello') &&
+        e.text === ' big worldhello' &&
+        getClipboard() === 'hello'
+    )
+    e.selectAll()
+    e.insert('x')
+    check('typing over a selection replaces it', e.text === 'x')
+    const full = new TextEditor('a'.repeat(MAX_TEXT_LENGTH))
+    check(
+      'the text length is limited',
+      full.insert('b') === '' && full.text.length === MAX_TEXT_LENGTH
+    )
+    const t = new TextEditor('say hi')
+    t.insert(' ')
+    check(
+      'word echo says the finished word',
+      echoFor(t, ' ', 'words') === 'hi' && echoFor(t, ' ', 'both') === 'space hi'
+    )
+    check(
+      'character echo and no echo',
+      echoFor(t, 'z', 'chars') === 'z' &&
+        echoFor(t, 'z', 'none') === '' &&
+        echoFor(t, 'z', 'words') === ''
+    )
+    const vi = new TextEditor('Xin chào')
+    vi.moveToEdge('start')
+    check(
+      'words of other languages move as words',
+      vi.moveWord(1) && vi.cursor === 3 && vi.moveWord(1) && vi.cursor === 8
+    )
+  })
+
+  await step('verbosity', async () => {
+    if (!reader.enabled) await reader.toggleEnabled(true)
+    nav.clearElements()
+    const mk = (text) => ({ getProperty: (p) => (p === ui.prop.TEXT ? text : undefined) })
+    nav.registerElement(mk('Save'), ui.widget.BUTTON, { x: 20, y: 40, w: 200, h: 50, text: 'Save' })
+    nav.registerElement(mk(''), ui.widget.BUTTON, { x: 20, y: 120, w: 200, h: 50, text: '' })
+    const said = async (index) => {
+      spoken.length = 0
+      await nav.focusElement(index)
+      return spoken.join(' | ')
+    }
+    const saved = config.verbosity
+    config.verbosity = 'detailed'
+    const detailed = await said(0)
+    check('detailed gives the usage hint', /Double tap to activate/i.test(detailed))
+    config.verbosity = 'standard'
+    const standard = await said(0)
+    const standardUnlabeled = await said(1)
+    config.verbosity = 'minimal'
+    const minimal = await said(0)
+    const minimalUnlabeled = await said(1)
+    config.verbosity = 'custom'
+    config.speakRoles = false
+    const customNoRole = await said(0)
+    config.speakRoles = true
+    config.verbosity = saved
+    check('detailed: label and role', /Save/.test(detailed) && /Button/i.test(detailed))
+    check('standard: label and role', /Save/.test(standard) && /Button/i.test(standard))
+    check('minimal: label only', /Save/.test(minimal) && !/Button/i.test(minimal))
+    check('standard names an unlabeled control', /Unlabeled button/i.test(standardUnlabeled))
+    check('standard keeps no usage hints', !/Double tap/i.test(standardUnlabeled))
+    check(
+      'minimal stays silent on an unlabeled control',
+      !/Unlabeled|Button/i.test(minimalUnlabeled)
+    )
+    check(
+      'custom with roles off: label only',
+      /Save/.test(customNoRole) && !/Button/i.test(customNoRole)
+    )
+    check(
+      'verbosity cycles minimal -> standard -> detailed -> custom',
+      (() => {
+        config.verbosity = 'minimal'
+        const seen = []
+        for (let i = 0; i < 4; i++) {
+          globalThis.ShortcutHandlerInstance.execute('cycleVerbosity')
+          seen.push(config.verbosity)
+        }
+        config.verbosity = saved
+        return seen.join() === 'standard,detailed,custom,minimal'
+      })()
+    )
+  })
+
+  await step('phone settings, backup and battery saver', async () => {
+    const load = (file) => import(pathToFileURL(root + '/lib/' + file).href)
+    const backup = await load('core/settingsBackup.js')
+    const phone = await load('core/phoneSettings.js')
+    const power = await load('core/powerMode.js')
+    const accessibility = (await load('core/accessibility.js')).default
+    const cfg = () => globalThis.ScreenReaderConfig
+
+    // --- settings from the phone: typed, and only known settings are stored
+    await phone.applyPhoneSetting('verbosity', 'minimal')
+    check('phone setting is stored', cfg().verbosity === 'minimal')
+    await phone.applyPhoneSetting('exploreMode', 'false')
+    check('"false" from the phone becomes a real boolean false', cfg().exploreMode === false)
+    await phone.applyPhoneSetting('exploreMode', 'true')
+    await phone.applyPhoneSetting('activeTab', 'audio')
+    check('phone UI state is not stored as a reader setting', cfg().activeTab === undefined)
+    await phone.applyPhoneSetting('__proto__', '{"polluted":1}')
+    check('a __proto__ key cannot change every object', {}.polluted === undefined)
+
+    // --- backup and restore
+    cfg().verbosity = 'minimal'
+    cfg().soundVolume = 0.3
+    const saved = backup.createBackup(cfg())
+    check(
+      'a backup is JSON with app, schema and settings',
+      (() => {
+        const o = JSON.parse(saved)
+        return (
+          o.app === 'ZSR' &&
+          o.schema === backup.SETTINGS_SCHEMA_VERSION &&
+          typeof o.settings === 'object'
+        )
+      })()
+    )
+    cfg().verbosity = 'detailed'
+    cfg().soundVolume = 0.9
+    const restored = backup.restoreBackup(saved)
+    check(
+      'restore brings the saved settings back',
+      restored.ok && cfg().verbosity === 'minimal' && cfg().soundVolume === 0.3
+    )
+
+    const before = JSON.stringify(cfg())
+    const rejects = {
+      'not JSON': ['{bad', 'NOT_JSON'],
+      empty: ['', 'EMPTY'],
+      'another app': [JSON.stringify({ app: 'X', schema: 1, settings: {} }), 'NOT_ZSR'],
+      'newer schema': [
+        JSON.stringify({ app: 'ZSR', schema: 99, settings: { verbosity: 'standard' } }),
+        'NEWER_SCHEMA'
+      ],
+      'too large': ['{"app":"ZSR"' + ' '.repeat(30000) + '}', 'TOO_LARGE'],
+      'no settings': [JSON.stringify({ app: 'ZSR', schema: 2 }), 'NO_SETTINGS']
+    }
+    for (const [name, [text, code]] of Object.entries(rejects)) {
+      const result = backup.restoreBackup(text)
+      check(
+        `restore refuses a backup that is ${name}`,
+        result.ok === false && result.error === code
+      )
+    }
+    check('a refused backup changes nothing', JSON.stringify(cfg()) === before)
+
+    const odd = backup.parseBackup(
+      JSON.stringify({
+        app: 'ZSR',
+        schema: 2,
+        settings: {
+          verbosity: 'standard',
+          exploreMode: 'maybe',
+          notASetting: 1,
+          soundVolume: 'loud'
+        }
+      })
+    )
+    check(
+      'unknown keys are ignored and types are repaired',
+      odd.ok &&
+        odd.settings.verbosity === 'standard' &&
+        odd.settings.exploreMode === false &&
+        !('notASetting' in odd.settings) &&
+        odd.ignored >= 1
+    )
+    const proto = backup.parseBackup('{"app":"ZSR","schema":2,"settings":{"__proto__":{"x":1}}}')
+    check('prototype is untouched by a backup', proto.ok && {}.x === undefined)
+
+    const old = backup.parseBackup(
+      JSON.stringify({ app: 'ZSR', schema: 1, settings: { gesture_down: 'read_screen' } })
+    )
+    check(
+      'an older backup is migrated (read_screen -> read_all)',
+      old.ok && old.settings.gesture_down === 'read_all'
+    )
+
+    backup.saveLocalBackup(cfg())
+    check(
+      'the backup kept on the watch can be read back',
+      backup.loadLocalBackup() === backup.createBackup(cfg())
+    )
+
+    // --- battery saver
+    cfg().performanceMode = 'normal'
+    cfg().autoBatterySaver = true
+    power.refreshBatteryLevel()
+    const level = Number(process.env.ZSR_BATTERY || 70)
+    check(
+      `saver follows the battery (${level}%)`,
+      power.isSaverMode() === level <= power.SAVER_BELOW_PERCENT
+    )
+    cfg().autoBatterySaver = false
+    check('automatic saver can be switched off', power.isSaverMode() === false)
+    cfg().autoBatterySaver = true
+    cfg().performanceMode = 'saver'
+    check(
+      'saver can be chosen, and slows the phone-link timer',
+      power.isSaverMode() && power.remoteStateIntervalMs() === 30000
+    )
+    cfg().performanceMode = 'normal'
+    power.refreshBatteryLevel()
+    check(
+      'normal mode polls every 5 s (when the battery is fine)',
+      level <= 15 || power.remoteStateIntervalMs() === 5000
+    )
+
+    // --- the phone-link timer only exists while remote access is on
+    await phone.applyPhoneSetting('remoteAccessEnabled', 'false')
+    check('no timer while remote access is off', accessibility.remoteTimer === null)
+    await phone.applyPhoneSetting('remoteAccessEnabled', 'true')
+    check('timer starts when remote access is switched on', !!accessibility.remoteTimer)
+    await phone.applyPhoneSetting('performanceMode', 'saver')
+    check('timer period follows saver mode', accessibility.remoteTimerPeriod === 30000)
+    await phone.applyPhoneSetting('performanceMode', 'normal')
+    await phone.applyPhoneSetting('remoteAccessEnabled', 'false')
+    check('timer stops when it is switched off', accessibility.remoteTimer === null)
+    await phone.applyPhoneSetting('verbosity', 'detailed')
+  })
+
+  await step('sensors', async () => {
+    const sensorReader = (
+      await import(pathToFileURL(root + '/lib/extensions/sensorReader.js').href)
+    ).default
+    const said = async (fn) => {
+      spoken.length = 0
+      await fn()
+      return spoken.join(' | ')
+    }
+    const gps = await said(() => sensorReader.readLocation())
+    check(
+      'GPS reads the position on request',
+      /Latitude 10\.77621 degrees north/.test(gps) && /longitude 106\.70098 degrees east/.test(gps)
+    )
+    const altitude = await said(() => sensorReader.readAltitude())
+    check(
+      'altitude and air pressure are read with units',
+      /Altitude 12 meters/.test(altitude) && /1013 hectopascals/.test(altitude)
+    )
+    const compass = await said(() => sensorReader.readCompass())
+    check('compass heading is read', /Facing N, 92 degrees/.test(compass))
+    const battery = await said(() => sensorReader.readBattery())
+    check('battery level is read', /Battery: \d+ percent/.test(battery))
+    const steps = await said(() => sensorReader.readSteps())
+    check('step count goes through translation', /Step count is/.test(steps))
+  })
+
   reader.speak = originalSpeak
   config.confirmBeforeDisable = confirmSetting
 }
-for (const [name, ok] of checks) realLog((ok ? 'CHECK ok   ' : 'CHECK FAIL ') + name)
+// A normal start must not write warnings or errors to the log (expected conditions such as no
+// phone, no audio on API 2.0 or a low battery are information, not errors). The one exception is
+// a simulated crash of the previous run, which is reported on purpose.
+if (!process.env.ZSR_PREV_CRASH) {
+  const noisy = S.logs.filter(([level]) => level === 'error' || level === 'warn')
+  check('a normal start writes no warning or error to the log', noisy.length === 0)
+  if (noisy.length > 0)
+    noisy.slice(0, 5).forEach(([level, text]) => realLog(`  ${level}: ${text.slice(0, 140)}`))
+}
+for (const [name, ok] of [...toggleChecks, ...checks])
+  realLog((ok ? 'CHECK ok   ' : 'CHECK FAIL ') + name)
 await sleep(500)
 if (captured.app)
   await step('app.onDestroy', async () => {
