@@ -22,7 +22,7 @@
   <div class="lg:flex lg:gap-24">
     
     <!-- Main Content -->
-    <div class="flex-1 max-w-4xl mx-auto lg:mx-0 reveal-up">
+    <div class="flex-1 max-w-4xl mx-auto lg:mx-0">
       <article>
         <header class="mb-20">
           <a href="/news/" class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-12 hover:translate-x-[-4px] transition-transform" aria-label="Go back to news list">
@@ -54,10 +54,7 @@
         </header>
 
         <!-- Post Body -->
-        <div class="prose prose-lg md:prose-xl dark:prose-invert max-w-none 
-          prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
-          prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:font-bold prose-a:no-underline hover:prose-a:underline
-          prose-img:rounded-[2.5rem] prose-img:shadow-2xl prose-pre:rounded-[2rem] prose-pre:bg-zeppDark prose-pre:border prose-pre:border-white/5">
+        <div class="prose prose-lg md:text-xl">
           <data.component />
         </div>
 
@@ -78,7 +75,7 @@
     </div>
 
     <!-- Sidebar / TOC -->
-    <aside class="hidden lg:block w-72 shrink-0 reveal-up" style="animation-delay: 0.3s">
+    <aside class="hidden lg:block w-72 shrink-0">
       <div class="sticky top-32">
         <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-xs font-black uppercase tracking-[0.2em]">
           <div class="i-lucide-list w-4 h-4 text-blue-500"></div>

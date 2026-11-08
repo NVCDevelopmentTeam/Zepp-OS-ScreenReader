@@ -40,22 +40,27 @@
     }
   };
 
+  // Content follows the README of the Zepp-OS-ScreenReader app repository
   const faqs = [
     {
       q: 'What is ZSR?',
-      a: 'Zepp OS Screen reader (ZSR) is a professional accessibility feature designed for visually impaired users. It uses advanced speech synthesis to read on-screen content, enabling full device interaction without visual reliance.'
+      a: 'Zepp OS Screen Reader (ZSR) is an application for Amazfit watches that run Zepp OS, designed for blind and low-vision users. It provides text-to-speech output, braille support, navigation commands and interaction with apps and device settings.'
     },
     {
-      q: 'How do I enable ZSR?',
-      a: 'Navigate to Settings > Accessibility > Screen Reader on your Zepp OS device and toggle the switch to ON.'
+      q: 'How do I install and enable ZSR?',
+      a: '1. Connect your watch to your phone and open the Zepp app.\n2. Go to Profile > [your device name] > App Store and select Zepp OS Screen Reader.\n3. Tap Install.\n4. On your watch, go to Settings > Accessibility > Zepp OS Screen Reader and switch it on.'
     },
     {
-      q: 'Basic Gestures',
-      a: '→ Swipe up/down: Navigate items\n→ Double-tap: Select/Activate\n→ Swipe left/right: Switch screens\n→ Long press: Voice assistant'
+      q: 'Which watches are supported?',
+      a: 'Amazfit GTS 3, GTR 3, GTR 3 Pro, GTS 4 Mini, T-Rex 2, Falcon, Balance and Bip 5. The list may change, so check the official Amazfit website for the latest information.'
     },
     {
-      q: 'Supported Languages',
-      a: 'ZSR currently supports English, Chinese, Japanese, Korean, German, French, Spanish, Portuguese, Russian, and Italian.'
+      q: 'Which Zepp OS version should I use?',
+      a: 'Zepp OS 3.5 or higher is recommended. It uses OpenAI GPT-4o technology and Zepp Flow for more natural text-to-speech. On older versions ZSR uses eSpeak, which sounds less natural.'
+    },
+    {
+      q: 'How do I check my Zepp OS version?',
+      a: 'On the watch: open the app menu, then Settings > System > About (or Device Information) and look for the software version.\nIn the Zepp app: Profile > [your device name] > System Update.'
     }
   ];
 </script>
@@ -65,7 +70,7 @@
   <meta name="description" content="Troubleshooting tips, FAQs, and everything you need to know about ZSR, the Zepp OS Screen Reader." />
 </svelte:head>
 
-<div class="container py-20 md:py-32 reveal-up">
+<div class="container py-20 md:py-32">
   <header class="text-center mb-32">
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
       Support Center
@@ -91,7 +96,7 @@
         <div class="space-y-6">
           {#each faqs as faq (faq.q)}
             <CollapsibleSection headerText={faq.q}>
-              <div class="prose dark:prose-invert py-4 text-gray-600 dark:text-gray-400 font-medium whitespace-pre-line leading-relaxed">
+              <div class="prose py-4 text-gray-600 dark:text-gray-400 font-medium whitespace-pre-line leading-relaxed">
                 {faq.a}
               </div>
             </CollapsibleSection>
@@ -107,14 +112,14 @@
               <div class="i-lucide-rotate-ccw w-6 h-6"></div>
             </div>
             <h3 class="text-xl font-black uppercase tracking-tight">Restart Device</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">A quick restart solves 90% of temporary performance issues on Zepp OS devices.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">A quick restart often resolves temporary issues on Zepp OS devices.</p>
           </div>
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex-center shadow-lg shadow-blue-500/20">
               <div class="i-lucide-refresh-cw w-6 h-6"></div>
             </div>
             <h3 class="text-xl font-black uppercase tracking-tight">Update ZSR</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">Ensure you have the latest version from the App Store for the best accessibility support.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">Make sure you have the latest version of ZSR from the App Store in the Zepp app for the best accessibility support.</p>
           </div>
         </div>
       </section>
@@ -123,7 +128,7 @@
     <!-- Right: Sidebar Support Options -->
     <aside class="space-y-8">
       <div class="card bg-zeppDark text-white p-10 border-none relative overflow-hidden group dark">
-        <div class="absolute -top-12 -right-12 w-48 h-48 bg-blue-600/30 blur-[60px] group-hover:bg-blue-600/50 transition-all duration-700"></div>
+        <div class="absolute -top-12 -right-12 w-48 h-48 glow-blue opacity-70 group-hover:opacity-100 transition-opacity duration-700"></div>
         <h3 class="text-2xl font-black uppercase tracking-tighter mb-6 relative z-10">Expert Help</h3>
         <p class="text-gray-600 dark:text-gray-400 mb-10 text-sm font-medium leading-relaxed relative z-10">
           Connect with our development team directly via Discord or GitHub for complex technical queries.

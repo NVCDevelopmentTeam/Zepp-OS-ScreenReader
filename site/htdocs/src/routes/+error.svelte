@@ -6,7 +6,7 @@
   <title>Error | {siteTitle}</title>
 </svelte:head>
 
-<main class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 reveal-up">
+<main class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
   <div class="relative mb-12">
     <h1 class="text-[8rem] sm:text-[12rem] md:text-[18rem] font-black leading-none tracking-tighter opacity-5 select-none">404</h1>
     <div class="absolute inset-0 flex-center flex-col">

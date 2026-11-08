@@ -8,7 +8,7 @@
   <meta name="description" content="Get in touch with the ZSR development team." />
 </svelte:head>
 
-<div class="container py-20 md:py-32 reveal-up">
+<div class="container py-20 md:py-32">
   <div class="max-w-4xl mx-auto">
     <header class="text-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">

@@ -3,12 +3,12 @@ import {
   defineConfig,
   presetUno,
   presetIcons,
-  presetTypography,
   presetWebFonts,
   presetAttributify,
   transformerDirectives,
   transformerVariantGroup
 } from 'unocss'
+import { lucide } from './src/lib/icons.js'
 
 export default defineConfig({
   // ─────────────────────────────────────────────────────────
@@ -26,17 +26,16 @@ export default defineConfig({
       'flex-center': 'flex items-center justify-center',
       'flex-between': 'flex items-center justify-between',
       'flex-col-center': 'flex flex-col items-center justify-center',
-      card: 'bg-white dark:bg-[#13171c] rounded-3xl border border-gray-100 dark:border-white/7 shadow-sm p-8 transition-shadow,transform duration-300 ease-out hover:shadow-xl hover:-translate-y-1 will-change-transform',
+      card: 'bg-white dark:bg-[#13171c] rounded-3xl border border-gray-100 dark:border-white/7 shadow-sm p-8 transition-[box-shadow,transform] duration-300 ease-out hover:shadow-xl hover:-translate-y-1',
       'card-glass':
-        'bg-white/70 dark:bg-[#0b0e11]/70 backdrop-blur-md rounded-3xl border border-white/20 dark:border-white/10 shadow-sm p-8',
+        'bg-white/90 dark:bg-[#0b0e11]/90 rounded-3xl border border-white/20 dark:border-white/10 shadow-sm p-8',
       btn: 'inline-flex items-center justify-center min-h-[44px] min-w-[44px] px-8 py-3 rounded-full font-bold text-sm transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0052ff]',
       'btn-primary':
         'btn bg-gradient-to-b from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 hover:from-blue-700 hover:to-blue-800',
       'btn-secondary':
         'btn bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/20',
       'btn-ghost': 'btn text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10',
-      glass:
-        'bg-white/70 dark:bg-[#0b0e11]/70 backdrop-blur-md border border-white/20 dark:border-white/10',
+      glass: 'bg-white/90 dark:bg-[#0b0e11]/90 border border-white/20 dark:border-white/10',
       'nav-link':
         'min-h-[44px] flex items-center text-gray-600 dark:text-gray-400 hover:text-[#0052ff] dark:hover:text-blue-400 font-bold text-sm tracking-wide uppercase transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0052ff] rounded-sm',
       'input-field':
@@ -71,13 +70,13 @@ export default defineConfig({
 
     presetIcons({
       scale: 1.2,
+      // Local collection (src/lib/icons.js): no icon package is installed or fetched
+      collections: { lucide },
       extraProperties: {
         display: 'inline-block',
         'vertical-align': 'middle'
       }
     }),
-
-    presetTypography(),
 
     presetWebFonts({
       provider: 'none',

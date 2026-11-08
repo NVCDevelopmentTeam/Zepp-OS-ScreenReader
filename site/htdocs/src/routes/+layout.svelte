@@ -3,7 +3,7 @@
   import './layout.css';
   import { page } from '$app/state';
   import { siteTitle, siteURL, siteDescription, siteAuthor } from '#lib/info.js';
-  import ogImageURL from '#lib/images/logo.jpg';
+  import icon from '#lib/images/icon.png?no-inline';
 const { children } = $props();
 
   // Canonical and og:url must follow the current route, not always point at the home page
@@ -35,13 +35,15 @@ const { children } = $props();
   <meta property="og:title" content={siteTitle} />
   <meta property="og:description" content={siteDescription} />
   <meta property="og:locale" content={SEO.locale} />
-  <meta property="og:image" content={ogImageURL.startsWith('data:') ? ogImageURL : siteURL + ogImageURL} />
+  <meta property="og:image" content={siteURL + icon} />
   <meta property="og:image:alt" content={SEO.imageAlt} />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content={siteTitle} />
   <meta name="twitter:description" content={siteDescription} />
-  <meta name="twitter:image" content={ogImageURL.startsWith('data:') ? ogImageURL : siteURL + ogImageURL} />
+  <meta name="twitter:image" content={siteURL + icon} />
   
+  <link rel="icon" href={icon} type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href={icon} />
   <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
   <link rel="sitemap" type="application/xml" href="{siteURL}/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" href="{siteURL}/rss.xml" />

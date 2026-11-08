@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/state';
   import { onMount } from 'svelte';
+  import logo from '#lib/images/logo.webp?no-inline';
   import { browser } from '$app/env';
   import { githubLink, discordChat, zeppOSDev } from '#lib/info.js';
 
@@ -66,8 +67,9 @@
 
   const secondaryNav = [
     { label: 'Support', href: '/support/' },
-    { label: 'Accessibility', href: '/accessibility-statement/' },
-    { label: 'Contact', href: '/contact/' }
+    { label: 'Contact', href: '/contact/' },
+    // Last on purpose: a page whose first link goes to /contact/ must not follow another /contact/ link
+    { label: 'Accessibility', href: '/accessibility-statement/' }
   ];
 </script>
 
@@ -78,7 +80,7 @@
 
 <header class="fixed top-0 z-50 w-full">
   <!-- Secondary Utility Bar (Small) -->
-  <div class="h-8 bg-gray-50/80 dark:bg-zeppDark/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5 hidden md:block">
+  <div class="h-8 bg-gray-50/95 dark:bg-zeppDark/95 border-b border-gray-100 dark:border-white/5 hidden md:block">
     <div class="container h-full flex justify-end items-center gap-6">
       {#each secondaryNav as item (item.href)}
         <a 
@@ -98,24 +100,19 @@
       
       <!-- Logo & Brand -->
 
-      <a
-        href="/"
-        class="flex items-center gap-3 group"
-        aria-label="Zepp OS Screen Reader Home"
-      >
-        <div
-          class="relative w-9 h-9 md:w-11 md:h-11 overflow-hidden rounded-xl ring-2 ring-blue-500/10 group-hover:ring-blue-500/30 transition-all duration-500"
-        >
-          <enhanced:img
-            src="#lib/images/logo.jpg"
-            alt=""
-            class="w-full h-full object-cover"
-          ></enhanced:img>
-        </div>
-        <span class="font-display font-black text-lg md:text-xl tracking-tighter uppercase" aria-hidden="true">
+      <!-- Not a link: "Home" is already in the menu, so a second link to "/" would be a redundant link -->
+      <div class="flex items-center gap-3">
+        <img
+          src={logo}
+          width="44"
+          height="44"
+          alt="Zepp OS Screen Reader logo: illustration of a person wearing a visor with a hand on their chest"
+          class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-xl ring-2 ring-blue-500/10"
+        />
+        <span class="font-display font-black text-lg md:text-xl tracking-tighter uppercase">
           <span class="text-blue-600 dark:text-blue-400">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
         </span>
-      </a>
+      </div>
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-10">

@@ -1,5 +1,5 @@
 <script>
-  import logo from '#lib/images/logo.jpg?w=64&format=webp';
+  import logo from '#lib/images/logo.webp?no-inline';
   import { siteTitle } from '#lib/info.js';
   /**
    * @typedef {Object} Props
@@ -14,7 +14,7 @@
   <!-- Admin Top Bar: Simple, functional, distinct from App header -->
   <header class="h-16 bg-white dark:bg-dark-900 border-b border-gray-200 dark:border-dark-800 flex items-center px-6 sticky top-0 z-50">
     <a href="/admin/" class="flex items-center gap-3">
-      <img src={logo} alt="" class="w-8 h-8 rounded-lg" />
+      <img src={logo} width="32" height="32" alt="" class="w-8 h-8 rounded-lg" />
       <span class="font-bold tracking-tight text-sm uppercase">ZSR Manager</span>
     </a>
     

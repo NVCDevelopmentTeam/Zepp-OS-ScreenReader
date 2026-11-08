@@ -7,7 +7,7 @@
   <meta name="description" content="Learn more about ZSR - the Zepp OS Screen Reader." />
 </svelte:head>
 
-<div class="container py-20 md:py-32 reveal-up">
+<div class="container py-20 md:py-32">
   <div class="max-w-4xl mx-auto">
     <header class="text-center mb-32">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
@@ -23,17 +23,17 @@
 
     <div class="space-y-32">
       <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="prose prose-lg dark:prose-invert">
+        <div class="prose prose-lg">
           <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">What is ZSR?</h2>
           <p class="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
-            ZSR (Zepp OS Screen Reader) is a professional accessibility service designed from the ground up for the Zepp operating system. It provides comprehensive auditory feedback and intuitive controls for smartwatches and fitness trackers.
+            ZSR (Zepp OS Screen Reader) is an accessibility application for Amazfit watches that run Zepp OS, built for blind and low-vision users. It provides text-to-speech output, braille support, navigation commands and interaction with apps and device settings.
           </p>
           <p class="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
-            Our technology translates visual information into clear, synthetic speech, allowing users to interact with their devices without needing to see the screen.
+            ZSR is open source, and its goal is simple: let people use their watch independently, without needing to see the screen.
           </p>
         </div>
         <div class="relative group">
-          <div class="absolute -inset-4 bg-gradient-to-tr from-blue-600 to-purple-600 opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
+          <div class="absolute -inset-4 glow-violet opacity-40 group-hover:opacity-70 transition-opacity duration-500 rounded-full"></div>
           <div class="card glass relative z-10 p-12 aspect-square flex-center text-center">
             <div class="i-lucide-accessibility text-blue-600 dark:text-blue-400 w-32 h-32 mb-8" aria-hidden="true"></div>
             <p class="font-black text-xs uppercase tracking-[0.3em]">Accessibility First</p>
@@ -42,7 +42,7 @@
       </section>
 
       <section class="card bg-zeppDark text-white p-12 md:p-20 border-none relative overflow-hidden dark">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 glow-blue" aria-hidden="true"></div>
         <div class="relative z-10 grid md:grid-cols-3 gap-12">
           <div class="md:col-span-2">
             <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Our Mission</h2>

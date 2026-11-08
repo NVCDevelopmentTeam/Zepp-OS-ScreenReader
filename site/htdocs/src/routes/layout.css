@@ -9,8 +9,8 @@
 @layer uno-base, uno-components, uno-utilities;
 
 /* ── 2. FIRA MONO — font-display: swap to avoid FOIT ─────── */
-@import '@fontsource/fira-mono/400.css';
-@import '@fontsource/fira-mono/700.css';
+/* Latin subset only: code blocks are the only place the monospace font is used */
+@import '@fontsource/fira-mono/latin-400.css';
 
 /* Override font-display if @fontsource doesn't set it */
 @font-face {
@@ -203,8 +203,8 @@ samp {
 /* content-visibility: dùng cho các section dài bên dưới fold */
 .virtual {
   content-visibility: auto;
-  /* contain-intrinsic-block-size thay contain-intrinsic-size (spec 2024+) */
-  contain-intrinsic-block-size: 200px;
+  /* `auto` remembers the real height once rendered, so scrolling never shifts the layout */
+  contain-intrinsic-block-size: auto 500px;
 }
 
 .contain {
@@ -212,63 +212,114 @@ samp {
 }
 
 /* ── 10. SCROLLBAR (lightweight) ──────────────────────────── */
-* {
+html {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
 }
 
-.dark * {
+.dark {
   scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
 }
 
-/* ── 11. ANIMATIONS (Reveal on Scroll) ────────────────────── */
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ── 10b. LONG-FORM CONTENT (.prose) ───────────────────────────
+   Articles, legal pages and FAQ answers. Blocks inside `.not-prose` are left alone. */
+.prose {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.prose-lg {
+  font-size: 1.125rem;
+}
+.prose > * + * {
+  margin-top: 1.25em;
+}
+.prose > :first-child {
+  margin-top: 0;
+}
+.prose :is(h2, h3, h4):not(.not-prose *) {
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.prose h2:not(.not-prose *) {
+  font-size: 1.75em;
+  margin-top: 2em;
+}
+.prose h3:not(.not-prose *) {
+  font-size: 1.35em;
+  margin-top: 1.7em;
+}
+.prose h4:not(.not-prose *) {
+  font-size: 1.1em;
+  margin-top: 1.5em;
+}
+.prose :is(ul, ol):not(.not-prose *) {
+  padding-inline-start: 1.6em;
+}
+.prose ul:not(.not-prose *) {
+  list-style: disc;
+}
+.prose ol:not(.not-prose *) {
+  list-style: decimal;
+}
+.prose li:not(.not-prose *) {
+  margin-top: 0.5em;
+}
+.prose li:not(.not-prose *)::marker {
+  color: #2563eb;
+}
+.prose a:not(.not-prose *) {
+  color: #2563eb; /* 5.2:1 on white */
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.dark .prose a:not(.not-prose *) {
+  color: #60a5fa;
+}
+.prose strong:not(.not-prose *) {
+  font-weight: 700;
+  color: var(--c-text);
+}
+.prose :is(img, video):not(.not-prose *) {
+  border-radius: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+.prose pre:not(.not-prose *) {
+  overflow-x: auto;
+  padding: 1.25em 1.5em;
+  border-radius: 2rem;
+  background: #0b0e11;
+  color: #e5e7eb;
+  font-size: 0.875em;
+}
+.prose blockquote:not(.not-prose *) {
+  padding-inline-start: 1.25em;
+  border-inline-start: 4px solid #2563eb;
+  font-style: italic;
+}
+.prose hr:not(.not-prose *) {
+  margin-block: 2.5em;
+  border: 0;
+  border-top: 1px solid rgb(128 128 128 / 0.3);
 }
 
-@keyframes reveal-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* ── 11. DECORATIVE GLOWS ─────────────────────────────────────
+   Soft radial gradients instead of `filter: blur()`: same look, no costly filter layers. */
+.glow-blue {
+  background: radial-gradient(closest-side, rgb(37 99 235 / 0.28), transparent);
 }
-
-/* Default: không animate (mobile + reduced motion) */
-.reveal-up,
-.reveal-fade {
-  opacity: 1;
+.glow-white {
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.3), transparent);
 }
-
-/* Chỉ animate khi desktop + user OK với motion */
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .reveal-up {
-    opacity: 0;
-    animation: reveal-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  }
-
-  .reveal-fade {
-    opacity: 0;
-    animation: reveal-fade 1s ease-out forwards;
-  }
-
-  .reveal-up-delay-1 {
-    animation-delay: 0.1s;
-  }
-  .reveal-up-delay-2 {
-    animation-delay: 0.2s;
-  }
-  .reveal-up-delay-3 {
-    animation-delay: 0.3s;
-  }
+.glow-violet {
+  background: radial-gradient(
+    closest-side,
+    rgb(124 58 237 / 0.45),
+    rgb(37 99 235 / 0.2),
+    transparent
+  );
 }
 
 /* ── 12. PRINT RESET ──────────────────────────────────────── */

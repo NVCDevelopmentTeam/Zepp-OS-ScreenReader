@@ -15,9 +15,10 @@ export const load = async () => {
       },
       site_url: 'https://www.zeppreader.com',
       display_url: 'https://www.zeppreader.com',
-      // Sveltia requires an absolute public path: uploads are served from /uploads (static folder)
-      media_folder: 'site/htdocs/static/uploads',
-      public_folder: '/uploads',
+      // The media library manages the site images (logo.webp, icon.png, background.webp). Upload a file
+      // with the same name to replace one. Sveltia requires `public_folder` to be an absolute path.
+      media_folder: 'site/htdocs/src/lib/images',
+      public_folder: '/src/lib/images',
       collections: [
         {
           name: 'posts',
@@ -35,7 +36,8 @@ export const load = async () => {
               pattern: ['.{3,}', 'Post title must be at least 3 characters long.']
             },
             { label: 'Publish Date', name: 'date', widget: 'datetime' },
-            { label: 'Body', name: 'body', widget: 'markdown' }
+            // The posts are text only: no image or code-block components in the editor
+            { label: 'Body', name: 'body', widget: 'markdown', editor_components: [] }
           ]
         }
       ]

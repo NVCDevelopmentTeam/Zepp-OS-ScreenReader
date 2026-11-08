@@ -1,5 +1,7 @@
 <script>
   import PostsList from '#lib/components/PostsList.svelte';
+  // Small enough (< 8 kB) to be inlined by Vite, so the largest element of the page needs no request
+  import background from '#lib/images/background.webp';
   import { siteTitle, siteDescription } from '#lib/info.js';
   let { data } = $props();
 </script>
@@ -14,17 +16,17 @@
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <!-- Hero Background with Overlay -->
     <div class="absolute inset-0 z-0">
-      <enhanced:img
-        src="#lib/images/background.jpg"
+      <img
+        src={background}
+        width="480"
+        height="480"
         alt=""
         class="w-full h-full object-cover"
-        loading="eager"
-        fetchpriority="high"
       />
-      <div class="absolute inset-0 bg-white/60 dark:bg-zeppDark/80 backdrop-blur-[2px]"></div>
+      <div class="absolute inset-0 bg-white/60 dark:bg-zeppDark/80"></div>
     </div>
 
-    <div class="relative z-10 container text-center reveal-up">
+    <div class="relative z-10 container text-center">
       <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
         <div class="i-lucide-zap w-4 h-4" aria-hidden="true"></div>
         <span>Powering Accessibility</span>
@@ -54,49 +56,49 @@
 
   <!-- Features Grid -->
   <section class="container">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 reveal-up">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
       <div class="max-w-2xl">
         <h2 class="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter">Why choose ZSR?</h2>
         <p class="text-xl text-gray-600 dark:text-gray-400 font-medium leading-relaxed">
-          Designed with a focus on speed, reliability, and ease of use. 
-          Empowering you to stay connected wherever you are.
+          Built for blind and low-vision users of Zepp OS watches, so you can 
+          use your smartwatch independently.
         </p>
       </div>
       <div class="hidden md:block h-px flex-grow bg-gray-100 dark:bg-white/10 mx-10 mb-6" aria-hidden="true"></div>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="card group reveal-up" style="animation-delay: 0.1s">
+      <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
           <div class="i-lucide-volume-2 w-8 h-8" aria-hidden="true"></div>
         </div>
-        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Voice Feedback</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Crystal clear text-to-speech engine that describes every element on your watch face and in apps.</p>
+        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Text-to-Speech</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Converts on-screen text into spoken words, so you can use your watch without looking at it. Zepp OS 3.5 or higher uses OpenAI GPT-4o voices through Zepp Flow; older versions use eSpeak.</p>
       </div>
 
-      <div class="card group reveal-up" style="animation-delay: 0.2s">
+      <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-move w-8 h-8" aria-hidden="true"></div>
+          <div class="i-lucide-hand w-8 h-8" aria-hidden="true"></div>
         </div>
-        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Gesture Navigation</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Intuitive swipe and tap gestures designed for blind and low-vision users to navigate effortlessly.</p>
+        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Braille Support</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Works with braille displays, giving you another way to read and control your watch.</p>
       </div>
 
-      <div class="card group reveal-up" style="animation-delay: 0.3s">
+      <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-shield-check w-8 h-8" aria-hidden="true"></div>
+          <div class="i-lucide-layout-grid w-8 h-8" aria-hidden="true"></div>
         </div>
-        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Reliable & Safe</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Optimized for Zepp OS with minimal battery impact and maximum security for your personal data.</p>
+        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Navigation & Apps</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Simple navigation commands, plus interaction with your apps and device settings.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
   <section class="container">
-    <div class="relative overflow-hidden rounded-[3rem] bg-zeppDark p-10 md:p-20 text-white shadow-2xl reveal-up dark">
+    <div class="relative overflow-hidden rounded-[3rem] bg-zeppDark p-10 md:p-20 text-white shadow-2xl dark">
       <!-- Decoration -->
-      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent blur-[80px]" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent" aria-hidden="true"></div>
       
       <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -105,8 +107,8 @@
             <span class="text-blue-500">accessible</span> journey.
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-12 font-medium leading-relaxed">
-            Download the Zepp OS Screen Reader today and transform your wearable experience. 
-            Available on all Zepp OS compatible devices.
+            Install the Zepp OS Screen Reader on a supported Amazfit watch from the Zepp app on your phone. 
+            Zepp OS 3.5 or higher is recommended for the best voice quality.
           </p>
           <div class="flex flex-wrap gap-6">
             <a href="https://developer.zepp.com/os/home" target="_blank" class="btn-primary">Get it on Zepp App Store</a>
@@ -119,22 +121,22 @@
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">1</div>
               <div>
-                <p class="font-bold mb-1">Open Zepp App</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Navigate to the App Store on your smartphone.</p>
+                <p class="font-bold mb-1">Open the Zepp app</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Connect your watch to your phone and open the Zepp app.</p>
               </div>
             </li>
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">2</div>
               <div>
-                <p class="font-bold mb-1">Search for ZSR</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Find our official screen reader in the utility section.</p>
+                <p class="font-bold mb-1">Find ZSR in the App Store</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Go to Profile &gt; your device name &gt; App Store and select Zepp OS Screen Reader.</p>
               </div>
             </li>
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">3</div>
               <div>
-                <p class="font-bold mb-1">Install & Enable</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Sync with your watch and enable it in the accessibility settings.</p>
+                <p class="font-bold mb-1">Install &amp; enable</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Tap Install, then on the watch go to Settings &gt; Accessibility &gt; Zepp OS Screen Reader and switch it on.</p>
               </div>
             </li>
           </ul>
@@ -145,13 +147,13 @@
 
   <!-- Recent Posts -->
   <section class="container">
-    <div class="flex items-center justify-between mb-16 reveal-up">
+    <div class="flex items-center justify-between mb-16">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Latest News</h2>
       <a href="/news/" class="nav-link flex items-center gap-2 group">
         All Updates <div class="i-lucide-arrow-right w-4 h-4 group-hover:translate-x-2 transition-transform" aria-hidden="true"></div>
       </a>
     </div>
-    <div class="reveal-up" style="animation-delay: 0.2s">
+    <div>
       <PostsList posts={data.posts} />
     </div>
   </section>

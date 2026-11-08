@@ -1,16 +1,42 @@
 # Cloudflare Pages headers for the PRERENDERED pages and static files. Those are served directly by
 # Cloudflare and never reach src/hooks.server.js, so the security headers must be repeated here.
 # Keep the policy in sync with src/hooks.server.js.
+# Whole site is cacheable: browsers re-check pages every 5 minutes, Cloudflare keeps them for a day
+# (a new deployment purges the edge cache). Hashed files under /_app/immutable/ are cached for a
+# year by the SvelteKit adapter.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://www.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
+  Cache-Control: public, max-age=300, s-maxage=86400
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://www.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
 
 # The CMS talks to GitHub, so it has its own policy and is never cached or indexed.
 /admin/*
   ! Content-Security-Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' data: blob: https://api.github.com https://github.com https://*.githubusercontent.com https://www.githubstatus.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  ! Cache-Control
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://cloudflareinsights.com data: blob: https://api.github.com https://github.com https://*.githubusercontent.com https://www.githubstatus.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow
+
+# Files that never change name: cache for longer
+/favicon.ico
+  ! Cache-Control
+  Cache-Control: public, max-age=604800, s-maxage=2592000
+
+/robots.txt
+  ! Cache-Control
+  Cache-Control: public, max-age=86400, s-maxage=604800
+
+/ads.txt
+  ! Cache-Control
+  Cache-Control: public, max-age=86400, s-maxage=604800
+
+/rss.xml
+  ! Cache-Control
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/sitemap.xml
+  ! Cache-Control
+  Cache-Control: public, max-age=3600, s-maxage=86400

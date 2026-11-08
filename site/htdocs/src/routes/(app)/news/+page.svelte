@@ -19,7 +19,7 @@
   <meta name="description" content="Stay updated with the latest news and related events about Zepp OS screen reader." />
 </svelte:head>
 
-<div class="container py-20 reveal-up">
+<div class="container py-20">
   <header class="max-w-4xl mb-24">
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
       Latest Updates

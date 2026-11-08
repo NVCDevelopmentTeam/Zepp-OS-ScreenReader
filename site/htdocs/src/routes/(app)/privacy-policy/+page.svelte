@@ -7,7 +7,7 @@
   <meta name="description" content="Privacy Policy for Zepp OS Screen Reader (ZSR) website." />
 </svelte:head>
 
-<div class="container py-20 md:py-32 reveal-up">
+<div class="container py-20 md:py-32">
   <div class="max-w-4xl mx-auto">
     <header class="text-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
@@ -22,9 +22,7 @@
     </header>
 
     <div class="card glass p-10 md:p-20 space-y-16">
-      <article class="prose prose-lg dark:prose-invert max-w-none 
-        prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter
-        prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:font-medium prose-p:leading-relaxed">
+      <article class="prose prose-lg">
         
         <p class="lead">
           The NVC Development Team values your privacy. This policy outlines our practices for data collection and usage when you access our website.
@@ -66,7 +64,7 @@
         </p>
 
         <div class="not-prose mt-16 p-8 bg-zeppDark rounded-[2rem] text-white border border-white/5 relative overflow-hidden dark">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 blur-3xl"></div>
+          <div class="absolute top-0 right-0 w-32 h-32 glow-blue"></div>
           <p class="text-sm font-medium text-gray-600 dark:text-gray-400 m-0 relative z-10 leading-relaxed">
             By accessing the ZSR website, you consent to our <strong>End User License Agreement</strong> and <strong>Terms of Service</strong>.
           </p>

@@ -7,7 +7,7 @@
   <meta name="description" content="Our commitment to making ZSR and this website accessible to everyone." />
 </svelte:head>
 
-<div class="container py-20 md:py-32 reveal-up">
+<div class="container py-20 md:py-32">
   <div class="max-w-4xl mx-auto">
     <header class="text-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
@@ -22,9 +22,7 @@
     </header>
 
     <div class="card glass p-10 md:p-20 space-y-16">
-      <article class="prose prose-lg dark:prose-invert max-w-none 
-        prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter
-        prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:font-medium prose-p:leading-relaxed">
+      <article class="prose prose-lg">
         
         <h2>Our Commitment</h2>
         <p>
@@ -37,7 +35,7 @@
         </p>
 
         <div class="not-prose p-10 bg-blue-600 rounded-[2rem] text-white shadow-2xl relative overflow-hidden group my-16">
-          <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-white/20 blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="absolute -bottom-10 -right-10 w-32 h-32 glow-white group-hover:scale-150 transition-transform duration-700"></div>
           <h3 class="text-2xl font-black uppercase tracking-tighter mb-6 flex items-center gap-3">
             <div class="i-lucide-help-circle w-6 h-6"></div> Feedback & Support
           </h3>

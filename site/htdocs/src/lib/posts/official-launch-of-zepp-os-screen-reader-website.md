@@ -13,7 +13,7 @@ We are pleased to announce that the Zepp OS Screen Reader website is now live at
 - **Home** gives an overview of ZSR and a quick setup guide.
 - **[News](/news/)** publishes announcements and updates. You can also follow them with the [RSS feed](/rss.xml).
 - **[About](/about/)** explains the project, its mission and the team behind it.
-- **[Support](/support/)** has answers to frequently asked questions, troubleshooting tips and a form for sending feedback.
+- **[Support](/support/)** has answers to frequently asked questions, the supported watches, how to install and enable ZSR, troubleshooting tips and a form for sending feedback.
 - **[Contact](/contact/)** lets you write to us through a form, by email, on Discord or on GitHub.
 - The **[accessibility statement](/accessibility-statement/)** and the **[privacy policy](/privacy-policy/)** describe our commitments and how the site handles data.
 

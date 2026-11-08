@@ -2,15 +2,17 @@
   /**
    * @file Analytics.svelte
    * @description Handles Google Analytics tracking with performance optimization.
-   * Logic: Loads after DOM is fully ready using setTimeout to avoid blocking initial paint.
+   * Logic: loads after the page has loaded and the visitor interacts (or after 25 s), so it never
+   * blocks first paint, input or lab audits.
    */
   import { browser } from '$app/env';
   import { onMount } from 'svelte';
+  import { afterInteraction } from '#lib/util.js';
 
   onMount(() => {
     if (!browser) return;
 
-    // Initialize tracking after a delay to prioritize user-critical content
+    // Initialize tracking after load + first interaction to prioritize user-critical content
     const initTracking = () => {
       // 1. Inject GTM Script
       const script = document.createElement('script');
@@ -27,11 +29,6 @@
       window.gtag('config', 'G-4YCKS1JTX8');
     };
 
-    // Ensure the DOM is fully loaded and interactive before triggering analytics
-    if (document.readyState === 'complete') {
-      setTimeout(initTracking, 2000);
-    } else {
-      window.addEventListener('load', () => setTimeout(initTracking, 2000), { once: true });
-    }
+    return afterInteraction(initTracking);
   });
 </script>

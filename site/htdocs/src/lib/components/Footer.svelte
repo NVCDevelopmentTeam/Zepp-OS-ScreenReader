@@ -1,6 +1,6 @@
 <script>
   import { siteAuthor, siteTitle } from '#lib/info.js';
-  import logo from '#lib/images/logo.jpg?w=48&format=webp';
+  import logo from '#lib/images/logo.webp?no-inline';
 
   let year = new Date().getFullYear();
 
@@ -16,7 +16,7 @@
 
 <footer class="mt-auto bg-white dark:bg-zeppDark border-t border-gray-100 dark:border-white/5 pt-24 pb-12 overflow-hidden relative">
   <!-- Subtle decoration -->
-  <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/5 to-transparent blur-3xl -z-10" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/5 to-transparent -z-10" aria-hidden="true"></div>
   
   <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
@@ -24,13 +24,13 @@
       <!-- Brand & Description -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-8">
-          <img src={logo} alt="" class="w-10 h-10 rounded-xl" aria-hidden="true" loading="lazy" />
+          <img src={logo} width="40" height="40" alt="" class="w-10 h-10 rounded-xl" loading="lazy" />
           <span class="font-display font-black text-2xl tracking-tighter uppercase">
             <span class="text-blue-600 dark:text-blue-400">ZEPP</span> <span class="text-gray-900 dark:text-white">OS</span>
           </span>
         </div>
         <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-8 leading-relaxed font-medium">
-          The first professional screen reader for Zepp OS devices. Empowering blind and low-vision users to experience the full potential of their smart wearables.
+          An open-source screen reader for Zepp OS devices, empowering blind and low-vision users to use their Amazfit smartwatches independently.
         </p>
         <div class="flex items-center gap-4">
           <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on GitHub">

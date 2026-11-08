@@ -49,7 +49,7 @@ Because this project exists to serve blind and low-vision users, **the website i
 
 - **[SvelteKit](https://kit.svelte.dev/)** — application framework
 - **Svelte** — component model
-- Static/SSR rendering via SvelteKit's adapter (see `svelte.config.js`)
+- Static rendering (prerendered pages) with a Cloudflare adapter; the SvelteKit options live in `vite.config.js`
 
 ## Getting Started
 
@@ -106,13 +106,18 @@ npm run format       # Prettier
 ```
 site/htdocs/
 ├── src/
-│   ├── routes/          # SvelteKit file-based routing (/, /news, /about, /contact, ...)
-│   ├── lib/              # Shared components, utilities, stores
-│   └── app.html            # HTML shell
-├── static/                  # Static assets (favicon, images, robots.txt)
-├── svelte.config.js           # SvelteKit configuration (adapter, preprocessors)
-├── vite.config.js               # Vite build configuration
-└── package.json                  # Dependencies & npm scripts
+│   ├── routes/          # SvelteKit file-based routing: (app) = public pages, admin = CMS
+│   ├── lib/
+│   │   ├── components/  # Shared components
+│   │   ├── images/      # logo.webp, icon.png, background.webp (replace a file to change it)
+│   │   ├── posts/       # Markdown news posts (edited through /admin)
+│   │   ├── icons.js     # The Lucide icons used by the site (no icon package)
+│   │   └── info.js      # Site identity, links and public IDs
+│   └── app.html         # HTML shell
+├── static/              # robots.txt, ads.txt, favicon.ico
+├── _headers             # Security and cache headers for the prerendered pages (Cloudflare)
+├── vite.config.js       # Vite + SvelteKit configuration
+└── package.json         # Dependencies & scripts
 ```
 
 > If your local layout differs, please open a PR updating this section — accurate docs matter as much as accurate code.

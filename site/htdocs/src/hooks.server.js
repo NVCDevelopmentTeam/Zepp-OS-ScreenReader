@@ -35,15 +35,13 @@ export async function handle({ event, resolve }) {
     headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
     headers.set('CDN-Cache-Control', 'public, max-age=604800')
   } else // ================================
-  // 3. HTML (SSR pages) — short browser cache, long CDN + SWR
+  // 3. HTML (SSR pages) — short browser cache, long CDN cache
   // ================================
   if (response.headers.get('content-type')?.includes('text/html')) {
-    headers.set('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400')
-    headers.set('CDN-Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
-    headers.set(
-      'Cloudflare-CDN-Cache-Control',
-      'public, s-maxage=3600, stale-while-revalidate=86400'
-    )
+    // same policy as the prerendered pages in /_headers
+    headers.set('Cache-Control', 'public, max-age=300, s-maxage=86400')
+    headers.set('CDN-Cache-Control', 'public, s-maxage=86400')
+    headers.set('Cloudflare-CDN-Cache-Control', 'public, s-maxage=86400')
   } else // ================================
   // 4. API — never cache
   // ================================
@@ -66,11 +64,11 @@ export async function handle({ event, resolve }) {
     (isAdmin
       ? [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline'",
+          "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: https: blob:",
           "font-src 'self' data:",
-          "connect-src 'self' data: blob: https://api.github.com https://github.com https://*.githubusercontent.com https://www.githubstatus.com",
+          "connect-src 'self' https://cloudflareinsights.com data: blob: https://api.github.com https://github.com https://*.githubusercontent.com https://www.githubstatus.com",
           "worker-src 'self' blob:",
           "object-src 'none'",
           "base-uri 'self'",
@@ -78,11 +76,11 @@ export async function handle({ event, resolve }) {
         ]
       : [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google",
+          "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google",
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: https: blob:",
           "font-src 'self' data:",
-          "connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://www.google.com",
+          "connect-src 'self' https://cloudflareinsights.com https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://www.google.com",
           'frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.adtrafficquality.google',
           "object-src 'none'",
           "base-uri 'self'",
