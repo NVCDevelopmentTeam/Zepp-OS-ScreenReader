@@ -1,0 +1,23 @@
+The first time the page loads, it's much slower, taking about 3 to 4 seconds.
+
+Error
+@sveltia_cms.js?v=601c1ba4:115033 Unsupported browser. Missing features: 
+Array(1)
+ [vite] server connection lost. Polling for restart... Stack table collapsed
+client:1078 [vite] server connection lost. Polling for restart...
+Error
+client:1151 Refused to create a worker from 'blob:http://localhost:5173/383fce7c-9f16-44b6-b6a2-cad160c357ce' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com https://*.adtrafficquality.google". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback.
+Error
+client:1151 Uncaught (in promise) SecurityError: Failed to construct 'SharedWorker': Access to the script at 'blob:http://localhost:5173/383fce7c-9f16-44b6-b6a2-cad160c357ce' is denied by the document's Content Security Policy.
+    at waitForSuccessfulPing (client:1151:23)
+    at handleMessage (client:1082:12)
+Bỏ những thứ liên quan tới google analytics và thay thế bằng cloudflare analytics còn adsense chỉ giữ file ads.txt
+fix lại cấu hình của sveltia cms để nó chạy được
+Error
+ Unsupported browser. Missing features: Array(1) Stack table collapsed
+@sveltia_cms.js?v=bc936496:115033 Unsupported browser. Missing features: 
+Array(1)
+Error
+admin/:1 Refused to load manifest from 'blob:http://localhost:5173/71056c78-a15b-4e70-858f-7dbc53a5f2f0' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'manifest-src' was not explicitly set, so 'default-src' is used as a fallback.
+bỏ core.js vì không thích dùng cái này và bỏ những packages làm ảnh hưởng tới hiệu năng 
+đọc hai file .json liên quan tới Lighthouse và antigravity.md để biết yêu cầu của dự án  

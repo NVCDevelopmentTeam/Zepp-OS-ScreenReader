@@ -44,7 +44,6 @@ const { children } = $props();
   
   <link rel="icon" href={icon} type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href={icon} />
-  <meta name="google-adsense-account" content="ca-pub-3602487920405886" />
   <link rel="sitemap" type="application/xml" href="{siteURL}/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" href="{siteURL}/rss.xml" />
 

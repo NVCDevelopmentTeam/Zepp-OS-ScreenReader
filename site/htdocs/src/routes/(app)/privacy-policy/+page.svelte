@@ -43,9 +43,9 @@
           </div>
         </div>
 
-        <h2>Cookies, Analytics and Advertising</h2>
+        <h2>Cookies and Analytics</h2>
         <p>
-          This website uses Google Analytics 4 to understand how the site is used and Google AdSense to show advertising. Both services may set cookies or similar identifiers in your browser and process data such as your IP address, device and pages visited. You can learn how Google uses data from partner sites at <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="break-all">policies.google.com/technologies/partner-sites</a>, manage ad personalisation at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">adssettings.google.com</a> and opt out of Google Analytics with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">browser add-on</a>. You can also block or delete cookies in your browser settings.
+          This website uses Cloudflare Web Analytics to understand website traffic and performance. Cloudflare Web Analytics is privacy-first, does not use cookies, does not collect personal data, and does not track visitors across sites.
         </p>
 
         <h2>Messages You Send Us</h2>

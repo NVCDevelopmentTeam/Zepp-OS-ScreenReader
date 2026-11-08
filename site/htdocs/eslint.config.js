@@ -33,8 +33,7 @@ export default defineConfig([
       globals: {
         ...globals.browser,
         ...globals.node,
-        client: 'readonly',
-        gtag: 'readonly'
+        client: 'readonly'
       },
       ecmaVersion: 'latest',
       sourceType: 'module'
