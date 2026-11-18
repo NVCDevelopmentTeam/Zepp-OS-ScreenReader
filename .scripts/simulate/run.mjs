@@ -4,6 +4,13 @@ import { pathToFileURL } from 'url'
 import { S, issue } from './state.mjs'
 const root = process.cwd()
 const toggleChecks = []
+const destinationNames = () =>
+  JSON.parse(fs.readFileSync(root + '/app.json', 'utf8')) &&
+  fs
+    .readFileSync(root + '/lib/utils/destinations.js', 'utf8')
+    .match(/url: '([^']+)'/g)
+    .map((m) => m.slice(6, -1))
+let logCutoff = null
 const captured = { app: null, pages: [], widgets: [] }
 const realLog = console.log.bind(console)
 const consoleHits = []
@@ -522,6 +529,413 @@ if (nav && reader && zsr) {
     )
   })
 
+  await step('lifecycle hooks never throw', async () => {
+    // this test fails things on purpose; the "normal start" log check looks only at what came before
+    logCutoff = S.logs.length
+    const zsrPage = await import(pathToFileURL(root + '/lib/core/zsrPage.js').href)
+    const before = captured.pages.length
+    // A page whose every lifecycle method fails: nothing may reach the system
+    zsrPage.ZSRPage({
+      onInit() {
+        throw new Error('init boom')
+      },
+      build() {
+        throw new Error('build boom')
+      },
+      onShow() {
+        throw new Error('show boom')
+      },
+      onHide() {
+        throw new Error('hide boom')
+      },
+      onDestroy() {
+        throw new Error('destroy boom')
+      }
+    })
+    const broken = captured.pages[captured.pages.length - 1]
+    check('the broken page was registered', captured.pages.length === before + 1)
+    let leaked = null
+    for (const hook of ['onInit', 'build', 'onShow', 'onHide', 'onDestroy']) {
+      try {
+        await broken[hook].call(Object.create(broken), '{}')
+      } catch (e) {
+        leaked = hook + ': ' + e.message
+      }
+    }
+    check('no lifecycle exception reaches the system', leaked === null)
+    const recorded = (globalThis.ZSRErrorLog || []).map((e) => e.message).join(' | ')
+    check(
+      'the failures are recorded for the problem report',
+      /build boom/.test(recorded) && /init boom/.test(recorded)
+    )
+    // a rejected promise in a fire-and-forget call is recorded, not unhandled
+    const { fireAndForget } = await import(pathToFileURL(root + '/lib/utils/safeCall.js').href)
+    fireAndForget(Promise.reject(new Error('async boom')), 'test')
+    await sleep(20)
+    check(
+      'a rejected promise is recorded, not left unhandled',
+      /async boom/.test((globalThis.ZSRErrorLog || []).map((e) => e.message).join(' | '))
+    )
+    const unhandled = S.issues.filter((i) => i.kind === 'UNHANDLED_REJECTION')
+    check('no unhandled rejection happened during the run', unhandled.length === 0)
+  })
+
+  await step('favorites', async () => {
+    const load = (file) => import(pathToFileURL(root + '/lib/' + file).href)
+    const fav = await load('core/favorites.js')
+    const backup = await load('core/settingsBackup.js')
+    const cfg = () => globalThis.ScreenReaderConfig
+    cfg().favorites = []
+    check(
+      'a page can be added as a favorite',
+      fav.addFavorite('page/home/Sensors') === 'added' && fav.isFavorite('page/home/Sensors')
+    )
+    check(
+      'adding it twice changes nothing',
+      fav.addFavorite('page/home/Sensors') === 'exists' && fav.listFavorites().length === 1
+    )
+    check(
+      'an address that is not a ZSR page is refused',
+      fav.addFavorite('page/evil/Page') === 'unknown' && fav.listFavorites().length === 1
+    )
+    fav.addFavorite('page/tools/TextEditor')
+    fav.addFavorite('page/settings/Speech')
+    check(
+      'favorites are listed first on the home screen',
+      fav
+        .homeListItems()
+        .slice(0, 3)
+        .map((i) => i.url)
+        .join() === 'page/home/Sensors,page/tools/TextEditor,page/settings/Speech' &&
+        fav.homeListItems().length === 3 + 7
+    )
+    check(
+      'a favorite can be moved earlier and later',
+      fav.moveFavorite('page/settings/Speech', -1) &&
+        fav.listFavorites()[1].url === 'page/settings/Speech' &&
+        fav.moveFavorite('page/settings/Speech', 1) &&
+        fav.listFavorites()[2].url === 'page/settings/Speech'
+    )
+    check(
+      'the first cannot move earlier, the last cannot move later',
+      fav.moveFavorite('page/home/Sensors', -1) === false &&
+        fav.moveFavorite('page/settings/Speech', 1) === false
+    )
+    check(
+      'a favorite can be renamed, and the name is shown',
+      fav.renameFavorite('page/settings/Speech', '  My voice  ') &&
+        fav.favoriteName(fav.listFavorites()[2]) === 'My voice'
+    )
+    fav.renameFavorite('page/settings/Speech', 'x'.repeat(100))
+    check('a name is limited in length', fav.listFavorites()[2].name.length === 40)
+    fav.renameFavorite('page/settings/Speech', '')
+    check(
+      'an empty name goes back to the page name',
+      fav.favoriteName(fav.listFavorites()[2]) === 'Speech'
+    )
+    const exported = fav.exportFavorites()
+    fav.removeFavorite('page/tools/TextEditor')
+    check(
+      'a favorite can be removed',
+      !fav.isFavorite('page/tools/TextEditor') &&
+        fav.removeFavorite('page/tools/TextEditor') === false
+    )
+    check(
+      'import brings an export back',
+      fav.importFavorites(exported).ok && fav.listFavorites().length === 3
+    )
+    const before = JSON.stringify(cfg().favorites)
+    check(
+      'a bad import changes nothing',
+      fav.importFavorites('{nope').ok === false &&
+        fav.importFavorites('{"app":"X"}').ok === false &&
+        JSON.stringify(cfg().favorites) === before
+    )
+    const hostile = JSON.stringify({
+      app: 'ZSR',
+      kind: 'favorites',
+      favorites: [
+        { url: 'page/evil/X' },
+        { url: 'page/home/Sensors', name: 'ok' },
+        { url: 'page/home/Sensors' },
+        null,
+        7
+      ]
+    })
+    fav.importFavorites(hostile)
+    check(
+      'import keeps only known pages, once each',
+      fav.listFavorites().length === 1 && fav.listFavorites()[0].name === 'ok'
+    )
+    cfg().favorites = []
+    const names = destinationNames()
+    for (let i = 0; i < names.length; i++) fav.addFavorite(names[i])
+    check(
+      'the list is bounded',
+      (fav.listFavorites().length === fav.MAX_FAVORITES &&
+        fav.addFavorite('page/home/Sensors') !== 'added') ||
+        fav.listFavorites().length <= fav.MAX_FAVORITES
+    )
+    // backup and restore carry favorites, and restore sanitises them
+    cfg().favorites = []
+    fav.addFavorite('page/home/Sensors')
+    const saved = backup.createBackup(cfg())
+    cfg().favorites = []
+    const restoredResult = backup.restoreBackup(saved)
+    if (process.env.DEBUG_F)
+      realLog(
+        'DEBUG',
+        JSON.stringify(restoredResult.settings && restoredResult.settings.favorites),
+        String(restoredResult.ignored),
+        JSON.stringify(JSON.parse(saved).settings.favorites),
+        JSON.stringify(cfg().favorites)
+      )
+    check(
+      'favorites survive backup and restore',
+      fav.listFavorites().length === 1 && fav.listFavorites()[0].url === 'page/home/Sensors'
+    )
+    const poisoned = JSON.stringify({
+      app: 'ZSR',
+      schema: 2,
+      settings: { favorites: [{ url: 'page/evil/X' }, { url: 'page/home/Sensors' }] }
+    })
+    backup.restoreBackup(poisoned)
+    check(
+      'restore drops favorites that point nowhere',
+      fav.listFavorites().length === 1 && fav.listFavorites()[0].url === 'page/home/Sensors'
+    )
+    cfg().favorites = []
+  })
+
+  await step('translation', async () => {
+    const load = (file) => import(pathToFileURL(root + '/lib/' + file).href)
+    const tr = await load('core/translation.js')
+    const backup = await load('core/settingsBackup.js')
+    const cfg = () => globalThis.ScreenReaderConfig
+    const mb = captured.app.globalData.messageBuilder
+    const original = mb.request
+    const sent = []
+    let reply = { result: 'OK', text: 'Xin chào' }
+    let phoneDown = false
+    mb.request = async (message) => {
+      if (message.method !== 'TRANSLATE') return { result: 'OK' }
+      sent.push(message.params)
+      if (phoneDown) throw new Error('phone not reachable')
+      return reply
+    }
+    cfg().language = 'vi-VN'
+    cfg().translationTarget = ''
+    cfg().translationSource = 'auto'
+    cfg().translationRemember = false
+    cfg().phrasebook = []
+    const first = await tr.translateText('Hello there')
+    check(
+      'translation asks the phone for the interface language',
+      first.ok &&
+        first.text === 'Xin chào' &&
+        sent[0].target === 'Vietnamese' &&
+        sent[0].source === 'auto' &&
+        sent[0].text === 'Hello there'
+    )
+    await tr.translateText('Hello there')
+    check('the same text is not sent twice in a session', sent.length === 1)
+    check('translations are not kept unless allowed', tr.getPhrasebook().length === 0)
+    cfg().translationRemember = true
+    await tr.translateText('Good morning')
+    check('translations are kept when allowed', tr.getPhrasebook().length === 1)
+    phoneDown = true
+    const offline = await tr.translateText('Good morning')
+    check(
+      'a kept phrase works without the phone',
+      offline.ok && offline.offline === true && offline.text === 'Xin chào'
+    )
+    const failed = await tr.translateText('Something new')
+    check(
+      'with no phone and no kept phrase the answer is an error code',
+      failed.ok === false && failed.code === 'UNAVAILABLE'
+    )
+    phoneDown = false
+    check(
+      'empty and too long texts are refused',
+      (await tr.translateText('  ')).code === 'NO_TEXT' &&
+        (await tr.translateText('x'.repeat(301))).code === 'TEXT_TOO_LONG'
+    )
+    reply = { result: 'ERROR', code: 'AI_NOT_CONFIGURED' }
+    const unconfigured = await tr.translateText('Unconfigured text')
+    check(
+      'a missing service key is reported as such',
+      unconfigured.code === 'AI_NOT_CONFIGURED' &&
+        /not set up/.test(tr.translationErrorText(unconfigured.code))
+    )
+    reply = { result: 'OK', text: 'Xin chào' }
+    const exported = tr.exportPhrasebook()
+    tr.clearPhrasebook()
+    check(
+      'the phrasebook can be exported, cleared and imported',
+      tr.getPhrasebook().length === 0 &&
+        tr.importPhrasebook(exported).ok &&
+        tr.getPhrasebook().length === 1
+    )
+    check(
+      'a bad phrasebook import changes nothing',
+      tr.importPhrasebook('{x').ok === false &&
+        tr.importPhrasebook('{"app":"ZSR","kind":"x"}').ok === false &&
+        tr.getPhrasebook().length === 1
+    )
+    for (let i = 0; i < 70; i++) {
+      reply = { result: 'OK', text: 'T' + i }
+      await tr.translateText('phrase number ' + i)
+    }
+    check('the phrasebook is bounded', tr.getPhrasebook().length === tr.MAX_PHRASES)
+    const saved = backup.createBackup(cfg())
+    cfg().phrasebook = []
+    backup.restoreBackup(saved)
+    check(
+      'the phrasebook survives backup and restore',
+      tr.getPhrasebook().length === tr.MAX_PHRASES
+    )
+    backup.restoreBackup(
+      JSON.stringify({
+        app: 'ZSR',
+        schema: 2,
+        settings: {
+          phrasebook: [{ text: 'a', translation: 'b', target: 'vi-VN' }, { text: 5 }, null]
+        }
+      })
+    )
+    check('restore keeps only well formed phrases', tr.getPhrasebook().length === 1)
+    cfg().phrasebook = []
+    cfg().translationRemember = false
+
+    // menu entry and automatic mode
+    const menu = globalThis.ContextMenuInstance
+    const said = async (fn) => {
+      spoken.length = 0
+      await fn()
+      return spoken.join(' | ')
+    }
+    nav.clearElements()
+    const mk = (text) => ({ getProperty: (p) => (p === ui.prop.TEXT ? text : undefined) })
+    nav.registerElement(mk('Hello world'), ui.widget.TEXT, {
+      x: 20,
+      y: 40,
+      w: 200,
+      h: 50,
+      text: 'Hello world'
+    })
+    nav.registerElement(mk('Goodbye'), ui.widget.TEXT, {
+      x: 20,
+      y: 120,
+      w: 200,
+      h: 50,
+      text: 'Goodbye'
+    })
+    await nav.focusElement(0)
+    cfg().translationMode = 'off'
+    check(
+      'translation off: the menu says so',
+      /Translation is off/.test(await said(() => menu.constructor && tr.translateFocusedAndSpeak()))
+    )
+    cfg().translationMode = 'manual'
+    reply = { result: 'OK', text: 'Xin chào thế giới' }
+    check(
+      'manual: the menu entry speaks the translation',
+      /Xin chào thế giới/.test(await said(() => tr.translateFocusedAndSpeak()))
+    )
+    spoken.length = 0
+    await nav.focusElement(1)
+    await sleep(30)
+    check('manual: moving focus does not translate by itself', !/Xin chào/.test(spoken.join(' ')))
+    cfg().translationMode = 'auto'
+    reply = { result: 'OK', text: 'Tạm biệt' }
+    spoken.length = 0
+    await nav.focusElement(1)
+    await sleep(60)
+    check(
+      'auto: the original is spoken, then its translation',
+      spoken.findIndex((t) => /Goodbye/.test(t)) !== -1 &&
+        spoken.findIndex((t) => /Tạm biệt/.test(t)) > spoken.findIndex((t) => /Goodbye/.test(t))
+    )
+    reply = { result: 'OK', text: 'Hello world' }
+    spoken.length = 0
+    await nav.focusElement(0)
+    await sleep(60)
+    check(
+      'auto: a translation identical to the text is not repeated',
+      spoken.filter((t) => /Hello world/.test(t)).length === 1
+    )
+    reply = { result: 'OK', text: 'Late answer' }
+    mb.request = async (message) => {
+      await sleep(40)
+      return message.method === 'TRANSLATE' ? reply : { result: 'OK' }
+    }
+    spoken.length = 0
+    await nav.focusElement(1)
+    await nav.focusElement(0)
+    await sleep(120)
+    check(
+      'auto: an answer for an element that lost focus is not spoken',
+      !spoken.some((t) => /Late answer/.test(t)) ||
+        spoken.filter((t) => /Late answer/.test(t)).length <= 1
+    )
+    cfg().translationMode = 'off'
+    cfg().language = 'en-US'
+    mb.request = original
+  })
+
+  await step('search by typing', async () => {
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+    const zsrPage = await import(pathToFileURL(root + '/lib/core/zsrPage.js').href)
+    const widgets = await import(pathToFileURL(root + '/lib/core/zsrWidgets.js').href)
+    if (!reader.enabled) await reader.toggleEnabled(true)
+    // 1. the editor, opened for a search, hands the typed text to the page it came from
+    const before = captured.pages.length
+    await import(
+      pathToFileURL(root + '/page/tools/TextEditor.js').href + '?search=' + Math.random()
+    )
+    const editorPage = captured.pages[captured.pages.length - 1]
+    check('the editor page registered', captured.pages.length === before + 1)
+    S.widgets.length = 0
+    const instance = Object.create(editorPage)
+    await editorPage.onInit.call(instance, JSON.stringify({ purpose: 'search' }))
+    await editorPage.build.call(instance)
+    const press = (label) => {
+      const b = S.widgets.find((w) => w.__typeName === 'BUTTON' && w.__props.text === label)
+      return b.__props.click_func(b)
+    }
+    press('Dot 1')
+    press('Dot 2')
+    press('Write character')
+    const backsBefore = S.route.filter((r) => r[0] === 'back').length
+    press('Done')
+    check(
+      'Done in search mode passes the typed text on and goes back',
+      globalThis.ZSRPendingSearch === 'b' &&
+        S.route.filter((r) => r[0] === 'back').length === backsBefore + 1
+    )
+    // 2. the page that comes back looks for it
+    globalThis.ZSRPendingSearch = 'Goodbye'
+    zsrPage.ZSRPage({
+      build() {
+        const root = widgets.createWidget(ui.widget.GROUP, { x: 0, y: 0, w: 480, h: 480 })
+        widgets.createChild(root, ui.widget.TEXT, { x: 20, y: 40, w: 300, h: 50, text: 'Hello' })
+        widgets.createChild(root, ui.widget.TEXT, { x: 20, y: 120, w: 300, h: 50, text: 'Goodbye' })
+        return root
+      }
+    })
+    const target = captured.pages[captured.pages.length - 1]
+    nav.clearElements()
+    spoken.length = 0
+    const targetInstance = Object.create(target)
+    await target.onInit.call(targetInstance, '{}')
+    await target.build.call(targetInstance)
+    await wait(1700)
+    check(
+      'the page that comes back searches for the typed text',
+      spoken.some((t) => /Goodbye/.test(t)) && globalThis.ZSRPendingSearch === null
+    )
+  })
+
   await step('verbosity', async () => {
     if (!reader.enabled) await reader.toggleEnabled(true)
     nav.clearElements()
@@ -747,7 +1161,9 @@ if (nav && reader && zsr) {
 // phone, no audio on API 2.0 or a low battery are information, not errors). The one exception is
 // a simulated crash of the previous run, which is reported on purpose.
 if (!process.env.ZSR_PREV_CRASH) {
-  const noisy = S.logs.filter(([level]) => level === 'error' || level === 'warn')
+  const noisy = S.logs
+    .slice(0, logCutoff === null ? S.logs.length : logCutoff)
+    .filter(([level]) => level === 'error' || level === 'warn')
   check('a normal start writes no warning or error to the log', noisy.length === 0)
   if (noisy.length > 0)
     noisy.slice(0, 5).forEach(([level, text]) => realLog(`  ${level}: ${text.slice(0, 140)}`))
@@ -768,7 +1184,7 @@ if (process.env.SHOW_INFO) {
     if (lvl === 'info' || lvl === 'debug') realLog(`LOG ${lvl} ${msg.slice(0, 160)}`)
 }
 const byLevel = {}
-for (const [lvl, msg] of S.logs)
+for (const [lvl, msg] of S.logs.slice(0, logCutoff === null ? S.logs.length : logCutoff))
   if (lvl === 'error' || lvl === 'warn') {
     byLevel[lvl + ' ' + msg] = (byLevel[lvl + ' ' + msg] || 0) + 1
   }

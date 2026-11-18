@@ -9,7 +9,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
@@ -88,7 +88,7 @@ export default ZSRPage({
       data_count: history.length,
       item_click_func: (list, index) => {
         const item = history[index]
-        ScreenReader.speak(item.text, { priority: 'high', force: true })
+        fireAndForget(ScreenReader.speak(item.text, { priority: 'high', force: true }), 'speak')
       }
     })
 

@@ -1570,3 +1570,78 @@ msgstr "new line"
 
 msgid "tab"
 msgstr "tab"
+
+msgid "Favorites"
+msgstr "Favorites"
+
+msgid "Favorite"
+msgstr "Favorite"
+
+msgid "Move up"
+msgstr "Move up"
+
+msgid "Move down"
+msgstr "Move down"
+
+msgid "Rename"
+msgstr "Rename"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Moved up: {0}"
+msgstr "Moved up: {0}"
+
+msgid "Moved down: {0}"
+msgstr "Moved down: {0}"
+
+msgid "Already first"
+msgstr "Already first"
+
+msgid "Already last"
+msgstr "Already last"
+
+msgid "Say the new name"
+msgstr "Say the new name"
+
+msgid "Favorite renamed: {0}"
+msgstr "Favorite renamed: {0}"
+
+msgid "Removed from favorites: {0}"
+msgstr "Removed from favorites: {0}"
+
+msgid "Added to favorites: {0}"
+msgstr "Added to favorites: {0}"
+
+msgid "Favorites are full"
+msgstr "Favorites are full"
+
+msgid "No favorites yet"
+msgstr "No favorites yet"
+
+msgid "Add or remove places ({0} of {1})"
+msgstr "Add or remove places ({0} of {1})"
+
+msgid "translate"
+msgstr "Translate"
+
+msgid "Nothing to translate"
+msgstr "Nothing to translate"
+
+msgid "The text is too long to translate"
+msgstr "The text is too long to translate"
+
+msgid "The online service is not set up. Open the ZSR settings on your phone, Advanced, Online services."
+msgstr "The online service is not set up. Open the ZSR settings on your phone, Advanced, Online services."
+
+msgid "The translation could not be done. Check your phone connection and internet."
+msgstr "The translation could not be done. Check your phone connection and internet."
+
+msgid "Translation is off. Turn it on in the phone settings, Advanced."
+msgstr "Translation is off. Turn it on in the phone settings, Advanced."
+
+msgid "searchByTyping"
+msgstr "Search by Typing"
+
+msgid "Searching for {0}"
+msgstr "Searching for {0}"

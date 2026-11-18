@@ -1570,3 +1570,78 @@ msgstr "换行"
 
 msgid "tab"
 msgstr "制表符"
+
+msgid "Favorites"
+msgstr "收藏"
+
+msgid "Favorite"
+msgstr "收藏"
+
+msgid "Move up"
+msgstr "上移"
+
+msgid "Move down"
+msgstr "下移"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "Moved up: {0}"
+msgstr "已上移：{0}"
+
+msgid "Moved down: {0}"
+msgstr "已下移：{0}"
+
+msgid "Already first"
+msgstr "已在最前"
+
+msgid "Already last"
+msgstr "已在最后"
+
+msgid "Say the new name"
+msgstr "请说出新名称"
+
+msgid "Favorite renamed: {0}"
+msgstr "收藏已重命名：{0}"
+
+msgid "Removed from favorites: {0}"
+msgstr "已从收藏中移除：{0}"
+
+msgid "Added to favorites: {0}"
+msgstr "已添加到收藏：{0}"
+
+msgid "Favorites are full"
+msgstr "收藏已满"
+
+msgid "No favorites yet"
+msgstr "还没有收藏"
+
+msgid "Add or remove places ({0} of {1})"
+msgstr "添加或移除项目（{0}/{1}）"
+
+msgid "translate"
+msgstr "翻译"
+
+msgid "Nothing to translate"
+msgstr "没有可翻译的内容"
+
+msgid "The text is too long to translate"
+msgstr "文本太长，无法翻译"
+
+msgid "The online service is not set up. Open the ZSR settings on your phone, Advanced, Online services."
+msgstr "尚未设置在线服务。请在手机上打开 ZSR 设置，高级，在线服务。"
+
+msgid "The translation could not be done. Check your phone connection and internet."
+msgstr "无法完成翻译。请检查手机连接和网络。"
+
+msgid "Translation is off. Turn it on in the phone settings, Advanced."
+msgstr "翻译已关闭。请在手机设置的“高级”中开启。"
+
+msgid "searchByTyping"
+msgstr "输入搜索"
+
+msgid "Searching for {0}"
+msgstr "正在搜索 {0}"

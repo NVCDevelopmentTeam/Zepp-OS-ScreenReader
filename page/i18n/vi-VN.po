@@ -1570,3 +1570,78 @@ msgstr "xuống dòng"
 
 msgid "tab"
 msgstr "tab"
+
+msgid "Favorites"
+msgstr "Yêu thích"
+
+msgid "Favorite"
+msgstr "Yêu thích"
+
+msgid "Move up"
+msgstr "Lên"
+
+msgid "Move down"
+msgstr "Xuống"
+
+msgid "Rename"
+msgstr "Đổi tên"
+
+msgid "Remove"
+msgstr "Xóa"
+
+msgid "Moved up: {0}"
+msgstr "Đã chuyển lên: {0}"
+
+msgid "Moved down: {0}"
+msgstr "Đã chuyển xuống: {0}"
+
+msgid "Already first"
+msgstr "Đã ở đầu danh sách"
+
+msgid "Already last"
+msgstr "Đã ở cuối danh sách"
+
+msgid "Say the new name"
+msgstr "Hãy nói tên mới"
+
+msgid "Favorite renamed: {0}"
+msgstr "Đã đổi tên yêu thích: {0}"
+
+msgid "Removed from favorites: {0}"
+msgstr "Đã xóa khỏi yêu thích: {0}"
+
+msgid "Added to favorites: {0}"
+msgstr "Đã thêm vào yêu thích: {0}"
+
+msgid "Favorites are full"
+msgstr "Danh sách yêu thích đã đầy"
+
+msgid "No favorites yet"
+msgstr "Chưa có mục yêu thích"
+
+msgid "Add or remove places ({0} of {1})"
+msgstr "Thêm hoặc bớt mục ({0} trên {1})"
+
+msgid "translate"
+msgstr "Dịch"
+
+msgid "Nothing to translate"
+msgstr "Không có gì để dịch"
+
+msgid "The text is too long to translate"
+msgstr "Văn bản quá dài để dịch"
+
+msgid "The online service is not set up. Open the ZSR settings on your phone, Advanced, Online services."
+msgstr "Dịch vụ trực tuyến chưa được thiết lập. Hãy mở cài đặt ZSR trên điện thoại, Nâng cao, Dịch vụ trực tuyến."
+
+msgid "The translation could not be done. Check your phone connection and internet."
+msgstr "Không dịch được. Hãy kiểm tra kết nối điện thoại và internet."
+
+msgid "Translation is off. Turn it on in the phone settings, Advanced."
+msgstr "Tính năng dịch đang tắt. Hãy bật trong cài đặt trên điện thoại, Nâng cao."
+
+msgid "searchByTyping"
+msgstr "Tìm bằng cách gõ"
+
+msgid "Searching for {0}"
+msgstr "Đang tìm {0}"

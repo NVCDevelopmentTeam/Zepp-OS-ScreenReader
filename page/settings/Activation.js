@@ -8,6 +8,7 @@ import { describeActivation, openingGuide } from '../../lib/interaction/activati
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
 import { px } from '../../lib/utils/px.js'
+import { fireAndForget } from '../../lib/utils/safeCall.js'
 const { width, height } = safeDeviceInfo()
 
 /** Vertical spacing between rows, scaled so the page fits the shortest screens (320x380). */
@@ -43,7 +44,7 @@ function createToggle(root, y, label, checked, onChange) {
 function speak(text) {
   const reader = globalThis.ScreenReaderInstance
   if (reader && typeof reader.speak === 'function') {
-    reader.speak(text, { priority: 'high', force: true })
+    fireAndForget(reader.speak(text, { priority: 'high', force: true }), 'speak')
   }
 }
 

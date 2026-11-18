@@ -4,7 +4,7 @@ import { back } from '@zos/router'
 import { gettext, format } from '../../lib/utils/i18n.js'
 import { safeDeviceInfo } from '../../lib/utils/deviceInfo.js'
 import { px } from '../../lib/utils/px.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { getStored, setStored } from '../../lib/utils/storage.js'
 import { loadSettings } from '../../lib/core/config.js'
 import { TextEditor, echoFor, nameOfCharacter, MAX_TEXT_LENGTH } from '../../lib/core/textEditor.js'
@@ -22,10 +22,19 @@ const ROW = 80
 const PREVIEW_CHARS = 120
 
 /** @param {string} text */
-function say(text) {
+function announce(text) {
   const reader = globalThis.ScreenReaderInstance
   if (text && reader && typeof reader.speak === 'function') {
-    reader.speak(text, { priority: 'high', force: true })
+    fireAndForget(reader.speak(text, { priority: 'high', force: true }), 'speak')
+  }
+}
+
+/** @param {any} params the page parameters (JSON text) @returns {string} 'search' or '' */
+function purposeOf(params) {
+  try {
+    return (typeof params === 'string' && JSON.parse(params).purpose) || ''
+  } catch (_e) {
+    return ''
   }
 }
 
@@ -35,9 +44,11 @@ function say(text) {
  * action says what happened. "Done" keeps the text for the next visit, "Cancel" discards changes.
  */
 export default ZSRPage({
-  onInit() {
+  onInit(params) {
     if (!globalThis.ScreenReaderConfig) globalThis.ScreenReaderConfig = loadSettings()
-    this.initialText = getStored(NOTE_KEY) || ''
+    /** 'search' when opened by "Search by typing": Done then searches the page it came from */
+    this.purpose = purposeOf(params)
+    this.initialText = this.purpose === 'search' ? '' : getStored(NOTE_KEY) || ''
     this.editor = new TextEditor(this.initialText)
     /** @type {Set<number>} the dots that are on */
     this.dots = new Set()
@@ -64,21 +75,21 @@ export default ZSRPage({
     else this.dots.delete(dot)
     const button = this.dotButtons[dot - 1]
     if (button) button.setProperty(prop.MORE, { normal_color: on ? 0x00aa00 : 0x333333 })
-    say(format(on ? gettext('Dot {0} on') : gettext('Dot {0} off'), dot))
+    fireAndForget(announce(format(on ? gettext('Dot {0} on') : gettext('Dot {0} off'), dot)), 'say')
   },
 
   /** Turn the dots that are on into a character and insert it. */
   writeCharacter() {
     const dots = Array.from(this.dots)
     if (dots.length === 0) {
-      say(gettext('No dots are on'))
+      fireAndForget(announce(gettext('No dots are on')), 'say')
       return
     }
     const character = BrailleService.translateDotsToChar(dots)
     this.dots.clear()
     this.dotButtons.forEach((button) => button.setProperty(prop.MORE, { normal_color: 0x333333 }))
     if (!character) {
-      say(gettext('No character for these dots'))
+      fireAndForget(announce(gettext('No character for these dots')), 'say')
       return
     }
     this.type(character)
@@ -88,33 +99,39 @@ export default ZSRPage({
   type(character) {
     const inserted = this.editor.insert(character)
     if (!inserted) {
-      say(gettext('Text is full'))
+      fireAndForget(announce(gettext('Text is full')), 'say')
       return
     }
     this.refreshPreview()
     const config = globalThis.ScreenReaderConfig || {}
-    say(echoFor(this.editor, inserted, config.echoBehavior || 'chars'))
+    fireAndForget(announce(echoFor(this.editor, inserted, config.echoBehavior || 'chars')), 'say')
   },
 
   /** Say what is at the cursor after it moved. @param {boolean} moved @param {'left' | 'right'} side */
   announceCursor(moved, side) {
     if (!moved) {
-      say(side === 'left' ? gettext('Start of text') : gettext('End of text'))
+      fireAndForget(
+        announce(side === 'left' ? gettext('Start of text') : gettext('End of text')),
+        'say'
+      )
       return
     }
     const char = this.editor.charAtCursor()
-    say(
-      this.editor.hasSelection()
-        ? format(gettext('Selected: {0}'), this.editor.selectedText())
-        : char
-          ? nameOfCharacter(char)
-          : gettext('End of text')
+    fireAndForget(
+      announce(
+        this.editor.hasSelection()
+          ? format(gettext('Selected: {0}'), this.editor.selectedText())
+          : char
+            ? nameOfCharacter(char)
+            : gettext('End of text')
+      ),
+      'say'
     )
   },
 
   readAll() {
     const text = this.editor.text
-    say(text ? format(gettext('Text: {0}'), text) : gettext('Empty'))
+    fireAndForget(announce(text ? format(gettext('Text: {0}'), text) : gettext('Empty')), 'say')
   },
 
   build() {
@@ -202,10 +219,13 @@ export default ZSRPage({
       () => {
         const removed = self.editor.deleteBackward()
         self.refreshPreview()
-        say(
-          removed
-            ? format(gettext('Deleted {0}'), nameOfCharacter(removed))
-            : gettext('Start of text')
+        fireAndForget(
+          announce(
+            removed
+              ? format(gettext('Deleted {0}'), nameOfCharacter(removed))
+              : gettext('Start of text')
+          ),
+          'say'
         )
       },
       0x884400,
@@ -241,14 +261,20 @@ export default ZSRPage({
     button(gettext('Select: on or off'), () => {
       self.selecting = !self.selecting
       if (!self.selecting) self.editor.clearSelection()
-      say(self.selecting ? gettext('Selection on') : gettext('Selection off'))
+      fireAndForget(
+        announce(self.selecting ? gettext('Selection on') : gettext('Selection off')),
+        'say'
+      )
     })
     row++
     button(
       gettext('Select all'),
       () => {
         self.editor.selectAll()
-        say(self.editor.text ? gettext('Selected all') : gettext('Empty'))
+        fireAndForget(
+          announce(self.editor.text ? gettext('Selected all') : gettext('Empty')),
+          'say'
+        )
       },
       0x333333,
       1
@@ -259,7 +285,10 @@ export default ZSRPage({
       gettext('Copy'),
       () => {
         const copied = self.editor.copy()
-        say(copied ? format(gettext('Copied: {0}'), copied) : gettext('Nothing selected'))
+        fireAndForget(
+          announce(copied ? format(gettext('Copied: {0}'), copied) : gettext('Nothing selected')),
+          'say'
+        )
       },
       0x333333,
       1
@@ -269,7 +298,10 @@ export default ZSRPage({
       () => {
         const cut = self.editor.cut()
         self.refreshPreview()
-        say(cut ? format(gettext('Cut: {0}'), cut) : gettext('Nothing selected'))
+        fireAndForget(
+          announce(cut ? format(gettext('Cut: {0}'), cut) : gettext('Nothing selected')),
+          'say'
+        )
       },
       0x333333,
       2
@@ -280,7 +312,10 @@ export default ZSRPage({
       () => {
         const pasted = self.editor.paste()
         self.refreshPreview()
-        say(pasted ? format(gettext('Pasted {0}'), pasted) : gettext('Nothing to paste'))
+        fireAndForget(
+          announce(pasted ? format(gettext('Pasted {0}'), pasted) : gettext('Nothing to paste')),
+          'say'
+        )
       },
       0x333333,
       1
@@ -290,7 +325,7 @@ export default ZSRPage({
       () => {
         const undone = self.editor.undo()
         self.refreshPreview()
-        say(undone ? gettext('Undone') : gettext('Nothing to undo'))
+        fireAndForget(announce(undone ? gettext('Undone') : gettext('Nothing to undo')), 'say')
       },
       0x333333,
       2
@@ -303,7 +338,10 @@ export default ZSRPage({
         if (!heard) return
         const inserted = self.editor.insert(heard)
         self.refreshPreview()
-        say(inserted ? format(gettext('Inserted: {0}'), inserted) : gettext('Text is full'))
+        fireAndForget(
+          announce(inserted ? format(gettext('Inserted: {0}'), inserted) : gettext('Text is full')),
+          'say'
+        )
       },
       0x225588
     )
@@ -311,8 +349,14 @@ export default ZSRPage({
     button(
       gettext('Done'),
       () => {
-        setStored(NOTE_KEY, self.editor.text)
-        say(format(gettext('Text saved, {0} characters'), self.editor.text.length))
+        if (self.purpose === 'search') {
+          // The page that opened the editor looks for this text (see ZSRPage)
+          globalThis.ZSRPendingSearch = self.editor.text
+          announce(format(gettext('Searching for {0}'), self.editor.text))
+        } else {
+          setStored(NOTE_KEY, self.editor.text)
+          announce(format(gettext('Text saved, {0} characters'), self.editor.text.length))
+        }
         back()
       },
       0x00aa00,
@@ -321,7 +365,7 @@ export default ZSRPage({
     button(
       gettext('Cancel'),
       () => {
-        say(gettext('Changes discarded'))
+        fireAndForget(announce(gettext('Changes discarded')), 'say')
         back()
       },
       0xaa0000,

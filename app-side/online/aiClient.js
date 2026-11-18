@@ -32,7 +32,8 @@ export function normalizeConfig(raw = {}) {
     baseUrl: base,
     apiKey: String(raw.aiApiKey || '').trim(),
     sttModel: String(raw.aiSttModel || 'whisper-1').trim(),
-    visionModel: String(raw.aiVisionModel || 'gpt-4o-mini').trim()
+    visionModel: String(raw.aiVisionModel || 'gpt-4o-mini').trim(),
+    textModel: String(raw.aiTextModel || 'gpt-4o-mini').trim()
   }
 }
 
@@ -186,6 +187,47 @@ const CAPTCHA_PROMPT =
  * @param {{ language?: string, mime?: string }} options
  * @param {Record<string, any>} rawConfig
  */
+/**
+ * Translate a short text with the configured provider (same endpoint as the other online features).
+ * @param {string} text
+ * @param {{ source?: string, target?: string }} options language names or 'auto' for the source
+ * @param {object} rawConfig
+ * @returns {Promise<string>}
+ */
+export async function translateText(text, options = {}, rawConfig = {}) {
+  const config = normalizeConfig(rawConfig)
+  requireKey(config)
+  const source =
+    options.source && options.source !== 'auto'
+      ? `from ${options.source}`
+      : 'from whatever language it is written in'
+  const target = options.target || 'English'
+  const res = await fetch(`${config.baseUrl}/chat/completions`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${config.apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: config.textModel,
+      max_tokens: 600,
+      temperature: 0,
+      messages: [
+        {
+          role: 'system',
+          content:
+            `You are a translator. Translate the user's text ${source} into ${target}. ` +
+            'Reply with the translation only: no notes, no quotation marks. ' +
+            `If the text is already in ${target}, repeat it unchanged.`
+        },
+        { role: 'user', content: text }
+      ]
+    })
+  })
+  const data = await readJson(res, 'Translation')
+  const message = data && data.choices && data.choices[0] && data.choices[0].message
+  const content = message && typeof message.content === 'string' ? message.content.trim() : ''
+  if (!content) throw fail('AI_EMPTY_RESPONSE', 'Provider returned no translation')
+  return content
+}
+
 export function readImageText(image, options = {}, rawConfig = {}) {
   return describeImage(image, { ...options, prompt: OCR_PROMPT }, rawConfig)
 }

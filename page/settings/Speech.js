@@ -8,7 +8,7 @@ import { saveSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 import { cycleVerbosity, verbosityName } from '../../lib/core/verbosity.js'
 const { width, height } = safeDeviceInfo()
@@ -175,7 +175,10 @@ export default ZSRPage({
         const next = engine === 'native' ? 'espeak' : 'native'
         config.primaryTTSEngine = next
         saveSettings(config)
-        ScreenReader.speak(format(gettext('TTS engine set to {0}'), next), { priority: 'high' })
+        fireAndForget(
+          ScreenReader.speak(format(gettext('TTS engine set to {0}'), next), { priority: 'high' }),
+          'speak'
+        )
         replace({ url: 'page/settings/Speech' })
       }, 'click_func')
     })

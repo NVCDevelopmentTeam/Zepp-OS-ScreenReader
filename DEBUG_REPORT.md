@@ -84,3 +84,18 @@ consume the Home key is not confirmed.
   recorded changes and re-verified.
 
 Not verified: all of this on real watches.
+
+## Fourth pass: stability
+
+- The user cannot read errors drawn on the watch screen or in the simulator, so the work was aimed at making sure none can
+  happen: every lifecycle method of the app, pages and widgets is guarded (`guardLifecycle`), and every call that starts an
+  asynchronous task and drops the result is wrapped (`fireAndForget`, 169 places). `npm run check:promises` fails the build
+  if a new one appears. A rejected promise or an exception in a lifecycle method is recorded for the problem report, and the
+  user feels an error vibration, instead of reaching the system.
+- Bug fixed: list settings (favorites, phrasebook) were reduced to their first item when received from the phone or restored.
+- Bug fixed: the online-service settings had no screen, and every setting change, including the key, was sent to the watch and
+  written to the phone log.
+- Added: favorites, translation, search by typing, online-services settings.
+- The simulated run checks that a normal start writes no warning or error to the log.
+
+Not verified: all of this on real watches, and the online features against a real provider.

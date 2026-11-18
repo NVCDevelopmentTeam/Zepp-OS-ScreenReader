@@ -9,7 +9,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
@@ -110,7 +110,10 @@ export default ZSRPage({
       radius: px(30),
       click_func: guard(() => {
         SpeechHistory.clear()
-        ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' })
+        fireAndForget(
+          ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' }),
+          'speak'
+        )
       }, 'click_func')
     })
 

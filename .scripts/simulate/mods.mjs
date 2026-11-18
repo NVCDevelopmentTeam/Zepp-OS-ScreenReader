@@ -47,6 +47,7 @@ const WIDGET_METHODS = new Set([
   'getVal',
   'setVal',
   'then',
+  'catch', // guard() asks a returned value whether it is a promise
   'toJSON',
   'onClick', // ZSR's own virtual list items have it; probing a native widget gives undefined
   'constructor'

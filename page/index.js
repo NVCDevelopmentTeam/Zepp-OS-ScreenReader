@@ -12,7 +12,7 @@ import { ZSRPage } from '../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../lib/core/zsrWidgets.js'
 import { px } from '../lib/utils/px.js'
 import { gettext } from '../lib/utils/i18n.js'
-import { safeTimeout } from '../lib/utils/safeCall.js'
+import { safeTimeout, fireAndForget } from '../lib/utils/safeCall.js'
 export default ZSRPage({
   onInit() {
     log.info('Page index onInit')
@@ -43,7 +43,8 @@ export default ZSRPage({
     this.navigated = true
     // A problem while starting is reported by vibration and speech (never drawn on
     // screen: the user cannot read it). Navigation continues so ZSR stays usable.
-    if (getBootErrors().length > 0) announceAndReportBootProblems()
+    if (getBootErrors().length > 0)
+      fireAndForget(announceAndReportBootProblems(), 'announceAndReportBootProblems')
     // First launch shows the welcome page once; afterwards go straight Home.
     const seen = !!(globalThis.ScreenReaderConfig && globalThis.ScreenReaderConfig.welcomeSeen)
     replace({

@@ -8,7 +8,7 @@ import { saveSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
@@ -107,7 +107,12 @@ export default ZSRPage({
       press_color: 0x555555,
       radius: px(30),
       click_func: guard(() => {
-        ScreenReader.speak(gettext('Checking for updates at zeppreader.com'), { priority: 'high' })
+        fireAndForget(
+          ScreenReader.speak(gettext('Checking for updates at zeppreader.com'), {
+            priority: 'high'
+          }),
+          'speak'
+        )
       }, 'click_func')
     })
 

@@ -32,6 +32,65 @@ export default function renderAdvanced(props) {
         )
       ])
     ]),
+    Section({ title: 'Online services (optional)' }, [
+      Row([
+        Text(
+          {},
+          'Voice commands, reading text in pictures, describing pictures and translation send audio, pictures or text to the service you choose here, only when you use them. The key stays on the phone: it is never sent to the watch.'
+        )
+      ]),
+      Row([
+        TextInput({
+          label: 'Service address (for example https://api.openai.com/v1)',
+          settingsKey: 'aiBaseUrl'
+        })
+      ]),
+      Row([TextInput({ label: 'Service key', settingsKey: 'aiApiKey' })]),
+      Row([TextInput({ label: 'Speech recognition model', settingsKey: 'aiSttModel' })]),
+      Row([TextInput({ label: 'Picture model', settingsKey: 'aiVisionModel' })]),
+      Row([TextInput({ label: 'Text and translation model', settingsKey: 'aiTextModel' })])
+    ]),
+    Section({ title: 'Translation' }, [
+      Row([
+        Text({}, 'Translation'),
+        SelectField({
+          settingsKey: 'translationMode',
+          options: [
+            { label: 'Off', value: 'off' },
+            { label: 'Manual (menu: Translate)', value: 'manual' },
+            { label: 'Automatic (also speak the translation)', value: 'auto' }
+          ]
+        })
+      ]),
+      Row([
+        Text({}, 'Translate into'),
+        SelectField({
+          settingsKey: 'translationTarget',
+          options: [
+            { label: 'The interface language', value: '' },
+            { label: 'English', value: 'en-US' },
+            { label: 'Vietnamese', value: 'vi-VN' },
+            { label: 'Chinese (Simplified)', value: 'zh-CN' }
+          ]
+        })
+      ]),
+      Row([
+        Text({}, 'Translate from'),
+        SelectField({
+          settingsKey: 'translationSource',
+          options: [
+            { label: 'Detect automatically', value: 'auto' },
+            { label: 'English', value: 'en-US' },
+            { label: 'Vietnamese', value: 'vi-VN' },
+            { label: 'Chinese (Simplified)', value: 'zh-CN' }
+          ]
+        })
+      ]),
+      Row([
+        Text({}, 'Keep translations on the watch for offline use (up to 50 phrases)'),
+        Toggle({ settingsKey: 'translationRemember' })
+      ])
+    ]),
     Section({ title: 'Backup and restore' }, [
       Row([
         Button({

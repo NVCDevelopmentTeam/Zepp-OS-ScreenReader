@@ -51,6 +51,14 @@ for (const target of targets) {
     problems.push(`${target}: page list differs from ${targets[0]}`)
 }
 
+// Every place a favorite can point at must be a page that exists in app.json
+const destinations = fs.readFileSync(path.join(root, 'lib/utils/destinations.js'), 'utf8')
+const pageList = new Set(app.targets[targets[0]].module.page.pages)
+for (const match of destinations.matchAll(/url: '([^']+)'/g)) {
+  if (!pageList.has(match[1]))
+    problems.push(`lib/utils/destinations.js: ${match[1]} is not a page in app.json`)
+}
+
 if (problems.length > 0) {
   console.error('Target check failed:\n  ' + problems.join('\n  '))
   process.exit(1)

@@ -1,7 +1,13 @@
 /* global settings -- provided by the Zepp Side Service runtime */
 import { MessageBuilder } from '../GrantPermission/message-side.js'
 import { textToSpeechMp3, textToSpeechClip, isEngineReady } from './tts/index.js'
-import { transcribe, describeImage, readImageText, readCaptcha } from './online/aiClient.js'
+import {
+  transcribe,
+  describeImage,
+  readImageText,
+  readCaptcha,
+  translateText
+} from './online/aiClient.js'
 import { decodeBase64 } from '../lib/utils/base64.js'
 import { ZSR_VERSION } from '../lib/utils/version.js'
 
@@ -92,6 +98,51 @@ async function handleImageRequest(method, params) {
     return { result: 'ERROR', code }
   }
 }
+
+/** Longest text accepted for translation (the watch sends short texts). */
+const TRANSLATE_MAX_CHARS = 1500
+
+/**
+ * Online translation of a short text. Needs internet and the provider the user configured; the
+ * answer carries a code so the watch can say what went wrong.
+ */
+async function handleTranslateRequest(params) {
+  try {
+    const text = params && typeof params.text === 'string' ? params.text.trim() : ''
+    if (!text) return { result: 'ERROR', code: 'NO_TEXT' }
+    if (text.length > TRANSLATE_MAX_CHARS) return { result: 'ERROR', code: 'TEXT_TOO_LONG' }
+    const store = typeof settings !== 'undefined' ? settings.settingsStorage : null
+    const read = (k) => (store ? store.getItem(k) : undefined)
+    const config = {
+      aiBaseUrl: read('aiBaseUrl'),
+      aiApiKey: read('aiApiKey'),
+      aiTextModel: read('aiTextModel')
+    }
+    const options = { source: params.source, target: params.target }
+    return { result: 'OK', text: await translateText(text, options, config) }
+  } catch (error) {
+    const code = (error && error.code) || 'TRANSLATE_FAILED'
+    console.error('TRANSLATE failed:', code, String(error))
+    return { result: 'ERROR', code }
+  }
+}
+
+/**
+ * Settings that stay on the phone: provider keys, the backup text, the problem report. They are
+ * never sent to the watch and never written to the log.
+ */
+const PHONE_ONLY_KEYS = [
+  'aiBaseUrl',
+  'aiApiKey',
+  'aiSttModel',
+  'aiVisionModel',
+  'aiTextModel',
+  'settingsBackupText',
+  'settingsBackupTime',
+  'settingsRestoreInput',
+  'diagnosticReport',
+  'diagnosticReportTime'
+]
 
 AppSideService({
   onInit() {
@@ -247,6 +298,8 @@ AppSideService({
           console.error('DIAGNOSTIC_REPORT failed:', String(error))
           ctx.response({ data: { result: 'ERROR', code: 'REPORT_FAILED' } })
         }
+      } else if (method === 'TRANSLATE') {
+        ctx.response({ data: await handleTranslateRequest(params) })
       } else if (method === 'SETTINGS_BACKUP') {
         // A copy of the watch's settings, kept in the phone settings so it survives a reset
         // of the watch. Only stored here (settings text, no personal data).
@@ -275,7 +328,8 @@ AppSideService({
   },
 
   onSettingsChange({ key, newValue, _oldValue }) {
-    console.log('Setting changed:', key, newValue)
+    if (PHONE_ONLY_KEYS.indexOf(key) !== -1) return
+    console.log('Setting changed:', key)
     messageBuilder.call({
       method: 'SETTING_UPDATE',
       params: { key, value: newValue }

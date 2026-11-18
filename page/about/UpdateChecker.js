@@ -8,7 +8,7 @@ import { loadSettings } from '../../lib/core/config.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild, showToast } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
@@ -73,7 +73,7 @@ export default ZSRPage({
     this.isChecking = true
 
     this.statusWidget.setProperty(prop.TEXT, gettext('Scanning...'))
-    ScreenReader.speak(gettext('Scanning...'), { priority: 'high' })
+    fireAndForget(ScreenReader.speak(gettext('Scanning...'), { priority: 'high' }), 'speak')
 
     try {
       const result = await AddonUpdater.checkForUpdates()
@@ -82,16 +82,16 @@ export default ZSRPage({
       if (result.updated) {
         const msg = `${gettext('New version available')}: ${result.version}`
         this.statusWidget.setProperty(prop.TEXT, msg)
-        ScreenReader.speak(msg, { priority: 'high' })
+        fireAndForget(ScreenReader.speak(msg, { priority: 'high' }), 'speak')
         showToast({ content: msg })
       } else if (result.error) {
         const msg = `Error: ${result.error}`
         this.statusWidget.setProperty(prop.TEXT, msg)
-        ScreenReader.speak(msg, { priority: 'high' })
+        fireAndForget(ScreenReader.speak(msg, { priority: 'high' }), 'speak')
       } else {
         const msg = 'ZSR is up to date'
         this.statusWidget.setProperty(prop.TEXT, msg)
-        ScreenReader.speak(msg, { priority: 'high' })
+        fireAndForget(ScreenReader.speak(msg, { priority: 'high' }), 'speak')
       }
     } catch (_error) {
       this.isChecking = false

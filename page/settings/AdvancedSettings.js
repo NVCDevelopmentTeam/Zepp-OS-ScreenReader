@@ -9,7 +9,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard } from '../../lib/utils/safeCall.js'
+import { guard, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 import { sendReportAndSpeakResult } from '../../lib/utils/diagnosticReport.js'
 import {
@@ -99,7 +99,7 @@ export default ZSRPage({
       radius: px(35),
       click_func: guard(() => {
         // The problem report goes to the phone, where the Zepp app offers it as an e-mail
-        sendReportAndSpeakResult()
+        fireAndForget(sendReportAndSpeakResult(), 'sendReportAndSpeakResult')
       }, 'click_func')
     })
 
@@ -116,7 +116,10 @@ export default ZSRPage({
       radius: px(35),
       click_func: guard(() => {
         SpeechHistory.clear()
-        ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' })
+        fireAndForget(
+          ScreenReader.speak(gettext('Speech history cleared'), { priority: 'high' }),
+          'speak'
+        )
       }, 'click_func')
     })
 
@@ -150,7 +153,7 @@ export default ZSRPage({
       press_color: 0x666666,
       radius: px(35),
       click_func: guard(() => {
-        backupSettingsAndSpeak()
+        fireAndForget(backupSettingsAndSpeak(), 'backupSettingsAndSpeak')
       }, 'click_func')
     })
 
@@ -170,12 +173,15 @@ export default ZSRPage({
         const now = Date.now()
         if (restoreAskedAt && now - restoreAskedAt < RESTORE_CONFIRM_MS) {
           restoreAskedAt = 0
-          restoreSettingsAndSpeak()
+          fireAndForget(restoreSettingsAndSpeak(), 'restoreSettingsAndSpeak')
         } else {
           restoreAskedAt = now
-          ScreenReader.speak(
-            gettext('Press Restore settings again within five seconds to replace your settings.'),
-            { priority: 'high' }
+          fireAndForget(
+            ScreenReader.speak(
+              gettext('Press Restore settings again within five seconds to replace your settings.'),
+              { priority: 'high' }
+            ),
+            'speak'
           )
         }
       }, 'click_func')

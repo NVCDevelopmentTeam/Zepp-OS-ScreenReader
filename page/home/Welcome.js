@@ -5,7 +5,7 @@ import { loadSettings, saveSettings } from '../../lib/core/config.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { buildWelcomeLayout } from './Welcome.layout.js'
-import { safeTimeout } from '../../lib/utils/safeCall.js'
+import { safeTimeout, fireAndForget } from '../../lib/utils/safeCall.js'
 
 /**
  * First launch must never need a sighted helper. The welcome page therefore
@@ -39,16 +39,22 @@ export default ZSRPage({
       globalThis.ScreenReaderConfig = loadSettings()
     }
     try {
-      ScreenReader.vibration.vibrate('success')
+      fireAndForget(ScreenReader.vibration.vibrate('success'), 'vibrate')
     } catch (_e) {
       /* haptics are optional */
     }
-    ScreenReader.speak(gettext('Welcome to Zepp OS Screen Reader'), { priority: 'high' })
-    ScreenReader.speak(
-      gettext(
-        'ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items.'
+    fireAndForget(
+      ScreenReader.speak(gettext('Welcome to Zepp OS Screen Reader'), { priority: 'high' }),
+      'speak'
+    )
+    fireAndForget(
+      ScreenReader.speak(
+        gettext(
+          'ZSR speaks and vibrates as you touch the screen. Touch to explore, double tap to activate, swipe to move between items.'
+        ),
+        { priority: 'normal' }
       ),
-      { priority: 'normal' }
+      'speak'
     )
     autoTimer = safeTimeout(goHome, AUTO_CONTINUE_MS)
   },

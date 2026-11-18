@@ -9,7 +9,7 @@ import ScreenReader from '../../lib/core/readerProxy.js'
 
 import { ZSRPage } from '../../lib/core/zsrPage.js'
 import { createWidget, createChild } from '../../lib/core/zsrWidgets.js'
-import { guard, safeTimeout } from '../../lib/utils/safeCall.js'
+import { guard, safeTimeout, fireAndForget } from '../../lib/utils/safeCall.js'
 import { px } from '../../lib/utils/px.js'
 const { width, height } = safeDeviceInfo()
 
@@ -95,7 +95,7 @@ export default ZSRPage({
         data_count: this.devices.length,
         item_click_func: (list, index) => {
           const device = this.devices[index]
-          this.connect(device)
+          fireAndForget(this.connect(device), 'connect')
         }
       })
     }
@@ -112,7 +112,7 @@ export default ZSRPage({
       radius: px(30),
       click_func: guard(() => {
         if (this.isScanning) this.stopScan()
-        else this.startScan()
+        else fireAndForget(this.startScan(), 'startScan')
       }, 'click_func')
     })
 
@@ -122,7 +122,10 @@ export default ZSRPage({
   async startScan() {
     this.isScanning = true
     this.devices = []
-    ScreenReader.speak(gettext('Scanning for Braille displays'), { priority: 'high' })
+    fireAndForget(
+      ScreenReader.speak(gettext('Scanning for Braille displays'), { priority: 'high' }),
+      'speak'
+    )
 
     // Refresh UI
     replace({ url: 'page/settings/BraillePairing' })
@@ -140,9 +143,15 @@ export default ZSRPage({
   },
 
   async connect(device) {
-    ScreenReader.speak(format(gettext('Connecting to {0}'), device.name), { priority: 'high' })
+    fireAndForget(
+      ScreenReader.speak(format(gettext('Connecting to {0}'), device.name), { priority: 'high' }),
+      'speak'
+    )
     await BrailleService.connectToDisplay(device.id)
-    ScreenReader.speak(format(gettext('Connected to {0}'), device.name), { priority: 'high' })
+    fireAndForget(
+      ScreenReader.speak(format(gettext('Connected to {0}'), device.name), { priority: 'high' }),
+      'speak'
+    )
     back()
   }
 })

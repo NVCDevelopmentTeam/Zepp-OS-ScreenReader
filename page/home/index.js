@@ -10,6 +10,7 @@ import { replace, push } from '@zos/router'
 import { log } from '@zos/utils'
 import { gettext, format } from '../../lib/utils/i18n.js'
 import { px } from '../../lib/utils/px.js'
+import { homeListItems } from '../../lib/core/favorites.js'
 import ScreenReader from '../../lib/core/readerProxy.js'
 import { loadSettings } from '../../lib/core/config.js'
 import { ZSRPage } from '../../lib/core/zsrPage.js'
@@ -100,14 +101,8 @@ export default ZSRPage({
       }, 'click_func')
     })
 
-    const navItems = [
-      { name: gettext('Settings'), url: 'page/home/Settings' },
-      { name: gettext('User Guide'), url: 'page/userGuide/userGuide' },
-      { name: gettext('Sensors'), url: 'page/home/Sensors' },
-      { name: gettext('Text Editor'), url: 'page/tools/TextEditor' },
-      { name: gettext('Speech History'), url: 'page/home/History' },
-      { name: gettext('About'), url: 'page/about/AppInfo' }
-    ]
+    // Favorites first, then the fixed entries
+    const navItems = homeListItems()
 
     // Each row is registered as its own focusable, activatable element by
     // zsrWidgets (see registerListItems), so it can be browsed and opened.
