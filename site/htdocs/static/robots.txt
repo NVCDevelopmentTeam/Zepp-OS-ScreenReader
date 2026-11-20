@@ -1,4 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
+# allow crawling everything by default
 User-agent: *
 Disallow: /admin/
 Sitemap: https://www.zeppreader.com/sitemap.xml
