@@ -48,7 +48,8 @@ Even as ZSR seeks a new home with a third party, our core wish remains unchanged
 
 If you are interested in purchasing the ZSR project codebase or discussing transfer details, please contact me directly via the official email attached on this website:
 
-* **Email:** [contact@zeppreader.com](mailto:contact@zeppreader.com)
+- **Email:** [contact@zeppreader.com](mailto:contact@zeppreader.com)
+- **Alternatively, you can leave your information on the [Contact](https://www.zeppreader.com/contact/) page and we will contact you as soon as possible.**
 
 Thank you sincerely for every bug report, kind word, and moment of support you have given to the NVC Development Team.
 
