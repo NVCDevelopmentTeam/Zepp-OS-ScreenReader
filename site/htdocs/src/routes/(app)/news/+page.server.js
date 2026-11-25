@@ -17,6 +17,7 @@ export async function load({ url }) {
   return {
     posts: postsForPage,
     page,
-    limit
+    limit,
+    total: posts.length
   }
 }

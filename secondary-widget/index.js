@@ -68,14 +68,12 @@ SecondaryWidget(
           click_func: guard(() => {
             isMuted = !isMuted
             const currentConfig = getStored('screenReaderConfig')
-            if (currentConfig) {
-              try {
-                const config = JSON.parse(currentConfig)
-                config.speechMuted = isMuted
-                storage.setItem('screenReaderConfig', JSON.stringify(config))
-              } catch (_e) {
-                // Ignore parse errors
-              }
+            try {
+              const config = currentConfig ? JSON.parse(currentConfig) : {}
+              config.speechMuted = isMuted
+              storage.setItem('screenReaderConfig', JSON.stringify(config))
+            } catch (_e) {
+              // Ignore parse errors
             }
 
             muteBtn.setProperty(prop.MORE, {

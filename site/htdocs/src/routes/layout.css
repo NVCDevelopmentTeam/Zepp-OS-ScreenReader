@@ -186,7 +186,7 @@ pre,
 kbd,
 samp {
   font-family: var(--font-mono);
-  font-size: 0.875em; /* em thay rem để scale theo parent */
+  font-size: 0.875em; /* Use em instead of rem to scale relative to parent */
   background: rgba(0, 0, 0, 0.04);
   padding: 0.2em 0.4em;
   border-radius: 4px;
@@ -200,7 +200,7 @@ samp {
 }
 
 /* ── 9. PERFORMANCE UTILITIES ─────────────────────────────── */
-/* content-visibility: dùng cho các section dài bên dưới fold */
+/* content-visibility: used for long sections below the fold */
 .virtual {
   content-visibility: auto;
   /* `auto` remembers the real height once rendered, so scrolling never shifts the layout */

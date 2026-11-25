@@ -4,7 +4,7 @@
  * @param {any} err
  * @param {import('express').Request} req
  * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
+ * @param {import('express').NextFunction} _next
  */
 export function errorHandler(err, req, res, _next) {
   const status = err.status || err.statusCode || 500

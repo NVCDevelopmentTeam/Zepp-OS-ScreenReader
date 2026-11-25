@@ -38,7 +38,7 @@
           
           <div class="flex flex-wrap items-center gap-10 py-10 border-y border-gray-100 dark:border-white/5">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex-center shadow-lg shadow-blue-500/30">
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex-center shadow-lg shadow-blue-500/30" aria-hidden="true">
                 <div class="i-lucide-user w-6 h-6"></div>
               </div>
               <div>
@@ -63,10 +63,10 @@
           <div class="relative overflow-hidden rounded-[2.5rem] bg-blue-600 p-10 md:p-16 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-transparent pointer-events-none"></div>
             <div class="relative z-10">
-              <h3 class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tighter">Stay Connected</h3>
+              <h2 class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tighter">Stay Connected</h2>
               <p class="text-white text-lg font-medium">Join our growing community and never miss an update.</p>
             </div>
-            <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="btn bg-white text-blue-600 px-10 py-5 text-sm uppercase tracking-widest font-black shadow-xl hover:scale-105 active:scale-95 transition-all">
+            <a href="https://discord.gg/DAZU3E4mSP" target="_blank" rel="noopener noreferrer" class="btn bg-white text-blue-600 px-10 py-5 text-sm uppercase tracking-widest font-black shadow-xl hover:scale-105 active:scale-95 transition-all">
               Join Discord
             </a>
           </div>
@@ -75,14 +75,16 @@
     </div>
 
     <!-- Sidebar / TOC -->
-    <aside class="hidden lg:block w-72 shrink-0">
-      <div class="sticky top-32">
-        <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-xs font-black uppercase tracking-[0.2em]">
-          <div class="i-lucide-list w-4 h-4 text-blue-500"></div>
-          Contents
+    {#if data.post.headings && data.post.headings.length > 0}
+      <aside class="hidden lg:block w-72 shrink-0">
+        <div class="sticky top-32">
+          <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-xs font-black uppercase tracking-[0.2em]">
+            <div class="i-lucide-list w-4 h-4 text-blue-500" aria-hidden="true"></div>
+            Contents
+          </div>
+          <ToC post={data.post} />
         </div>
-        <ToC post={data.post} />
-      </div>
-    </aside>
+      </aside>
+    {/if}
   </div>
 </div>

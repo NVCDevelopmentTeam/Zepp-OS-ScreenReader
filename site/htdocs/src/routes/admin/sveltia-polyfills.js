@@ -3,64 +3,64 @@
 // Zero external dependencies, only loaded on the /admin route.
 
 if (typeof window !== 'undefined') {
-  const U8 = Uint8Array;
+  const U8 = Uint8Array
 
   if (typeof U8.fromBase64 !== 'function') {
     U8.fromBase64 = function (str, options) {
-      let s = String(str).trim();
+      let s = String(str).trim()
       if (options?.alphabet === 'base64url') {
-        s = s.replace(/-/g, '+').replace(/_/g, '/');
+        s = s.replace(/-/g, '+').replace(/_/g, '/')
       }
-      while (s.length % 4 !== 0) s += '=';
-      const bin = window.atob(s);
-      const bytes = new U8(bin.length);
+      while (s.length % 4 !== 0) s += '='
+      const bin = window.atob(s)
+      const bytes = new U8(bin.length)
       for (let i = 0; i < bin.length; i++) {
-        bytes[i] = bin.charCodeAt(i);
+        bytes[i] = bin.charCodeAt(i)
       }
-      return bytes;
-    };
+      return bytes
+    }
   }
 
   if (typeof U8.prototype.toHex !== 'function') {
     U8.prototype.toHex = function () {
-      let hex = '';
+      let hex = ''
       for (let i = 0; i < this.length; i++) {
-        hex += this[i].toString(16).padStart(2, '0');
+        hex += this[i].toString(16).padStart(2, '0')
       }
-      return hex;
-    };
+      return hex
+    }
   }
 
   if (typeof U8.prototype.toBase64 !== 'function') {
     U8.prototype.toBase64 = function (options) {
-      let bin = '';
+      let bin = ''
       for (let i = 0; i < this.length; i++) {
-        bin += String.fromCharCode(this[i]);
+        bin += String.fromCharCode(this[i])
       }
-      let b64 = window.btoa(bin);
+      let b64 = window.btoa(bin)
       if (options?.alphabet === 'base64url') {
-        b64 = b64.replace(/\+/g, '-').replace(/\//g, '_');
+        b64 = b64.replace(/\+/g, '-').replace(/\//g, '_')
       }
       if (options?.omitPadding) {
-        b64 = b64.replace(/=+$/, '');
+        b64 = b64.replace(/=+$/, '')
       }
-      return b64;
-    };
+      return b64
+    }
   }
 
   if (typeof globalThis.Iterator !== 'function') {
     globalThis.Iterator = class Iterator {
       static from(iterable) {
-        return iterable;
+        return iterable
       }
-    };
+    }
   }
 
   if (typeof globalThis.Iterator.prototype.map !== 'function') {
     globalThis.Iterator.prototype.map = function* (fn) {
       for (const item of this) {
-        yield fn(item);
+        yield fn(item)
       }
-    };
+    }
   }
 }

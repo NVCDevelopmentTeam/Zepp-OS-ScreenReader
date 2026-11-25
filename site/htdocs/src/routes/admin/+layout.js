@@ -1,7 +1,5 @@
-// we don't need any JS on this page, though we'll load
-// it in dev so that we get hot module replacement
+// Enable client-side rendering for the CMS admin interface
 export const csr = true
 
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
+// Disable prerendering for admin layout wrapper
 export const prerender = false

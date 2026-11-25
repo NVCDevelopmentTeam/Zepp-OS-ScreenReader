@@ -11,7 +11,9 @@
   let { data } = $props();
 
   let isFirstPage = $derived(data.page === 1);
-  let hasNextPage = $derived(data.posts[data.posts.length - 1]?.previous);
+  let hasNextPage = $derived(
+    data.total ? data.page * data.limit < data.total : !!data.posts[data.posts.length - 1]?.previous
+  );
 </script>
 
 <svelte:head>
@@ -43,7 +45,7 @@
         <a 
           href={`/news/?page=${data.page - 1}`} 
           class="btn-secondary group flex items-center gap-3"
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data="hover"
           aria-label={`Go to previous page (page ${data.page - 1})`}
         >
           <div class="i-lucide-arrow-left w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" aria-hidden="true"></div>
@@ -61,7 +63,7 @@
         <a 
           href={`/news/?page=${data.page + 1}`} 
           class="btn-secondary group flex items-center gap-3"
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data="hover"
           aria-label={`Go to next page (page ${data.page + 1})`}
         >
           <span class="text-xs uppercase tracking-widest font-black">Next</span>

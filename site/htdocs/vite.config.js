@@ -21,10 +21,12 @@ const uno = UnoCSS().map((plugin) => {
 export default defineConfig({
   plugins: [
     uno,
-    // Cấu hình SvelteKit 3 mới nhất: Truyền trực tiếp các tùy chọn cấu hình vào sveltekit()
+    // mdsvex 1.0 is a Vite plugin that automatically registers extensions (.svx, .md) with SvelteKit
+    mdsvex(mdsvexConfig),
+    // SvelteKit 3 configuration: pass configuration options directly into sveltekit()
     sveltekit({
-      extensions: ['.svelte', ...mdsvexConfig.extensions],
-      preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
+      // Keep vitePreprocess() for CSS preprocessing if needed (Svelte 5 natively supports TS)
+      preprocess: [vitePreprocess()],
       adapter: adapter({
         // Cloudflare Pages: automatic routes.json
         routes: {
@@ -43,19 +45,25 @@ export default defineConfig({
     })
   ],
 
-  // Cấu hình `drop` của esbuild ra cấp cao nhất
-  esbuild: {
-    drop: ['console', 'debugger']
-  },
-
   build: {
     target: 'es2022',
     // Images under 8 kB (the hero background) are inlined; the Fira Mono font files stay separate
     assetsInlineLimit: 8192,
     // The Sveltia CMS chunk (~2 MB) is only loaded by /admin; every public chunk is far below 500 kB
     chunkSizeWarningLimit: 2500,
-    // Informational build-time profiling notice, not a problem of the project
-    rolldownOptions: { checks: { pluginTimings: false } }
+    rolldownOptions: {
+      // Informational build-time profiling notice, not a problem of the project
+      checks: { pluginTimings: false },
+      output: {
+        // Vite 8 Rolldown minify configuration (replaces esbuild.drop)
+        minify: {
+          compress: {
+            dropConsole: true,
+            dropDebugger: true
+          }
+        }
+      }
+    }
   },
 
   optimizeDeps: {

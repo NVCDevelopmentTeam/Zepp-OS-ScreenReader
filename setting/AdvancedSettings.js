@@ -113,6 +113,7 @@ export default function renderAdvanced(props) {
           label: 'Restore settings to the watch',
           onClick: () => {
             const text = props.settingsStorage.getItem('settingsRestoreInput') || backup
+            if (!text) return
             // The time stamp makes restoring the same text twice a new change.
             props.settingsStorage.setItem('restoreSettingsText', `${Date.now()}\n${text}`)
           }

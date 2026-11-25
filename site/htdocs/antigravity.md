@@ -1,0 +1,3 @@
+We need to fix the logic errors related to displaying the time in the article, as it doesn't match the markdown. For example, the md file shows the publication date as November 19, 2026, but it's displayed as November 18, 2026. We also need to improve the logic for the article's read time.
+- Comment code must be in English and the WAVE code from webaim.org must fully comply with and not cause inconvenience to users.
+- Ensure all syntax is up-to-date.
