@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sveltia/cms':
-        specifier: ^0.271.3
-        version: 0.271.3
+        specifier: ^0.272.0
+        version: 0.272.0
     devDependencies:
       '@eslint/compat':
         specifier: ^2.1.1
@@ -1071,8 +1071,8 @@ packages:
       svelte: ^5.46.4
       vite: ^8.0.0-beta.7 || ^8.0.0
 
-  '@sveltia/cms@0.271.3':
-    resolution: {integrity: sha512-9b5JImq7z8N/0pFr7gIM1jvSjWfxvHfYyDa50abqw294io7rOQGx+g82AJZLNWfyj3CZkzGB0BuBB59WBrn/jg==}
+  '@sveltia/cms@0.272.0':
+    resolution: {integrity: sha512-HHzXBvsMTalksZt7tZNY/M9g4PmEhGzgnyZF9gVCoY74N2tV+3+nuBicZTlVM3iZuQJr78Pr0E5NlmS7SQNWzw==}
     peerDependencies:
       '@types/react': ^19.3.0
     peerDependenciesMeta:
@@ -3125,7 +3125,7 @@ snapshots:
       vite: 8.3.8(esbuild@0.28.2)(jiti@2.7.0)
       vitefu: 1.1.4(vite@8.3.8(esbuild@0.28.2)(jiti@2.7.0))
 
-  '@sveltia/cms@0.271.3':
+  '@sveltia/cms@0.272.0':
     dependencies:
       '@shikijs/langs': 4.6.0
       '@shikijs/themes': 4.6.0

@@ -27,13 +27,7 @@ export default defineConfig({
     sveltekit({
       // Keep vitePreprocess() for CSS preprocessing if needed (Svelte 5 natively supports TS)
       preprocess: [vitePreprocess()],
-      adapter: adapter({
-        // Cloudflare Pages: automatic routes.json
-        routes: {
-          include: ['/*'],
-          exclude: ['<all>'] /* Cloudflare serves static assets automatically */
-        }
-      }),
+      adapter: adapter(),
 
       // Inline the stylesheet into the HTML: first paint never waits for a separate CSS request
       inlineStyleThreshold: 100000,
