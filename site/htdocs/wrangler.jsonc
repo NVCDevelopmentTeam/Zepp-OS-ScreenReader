@@ -1,7 +1,11 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "zsr",
-  "compatibility_date": "2026-11-17",
+  "compatibility_date": "2026-11-26",
   "compatibility_flags": ["nodejs_als"],
+  "assets": {
+    "binding": "ASSETS"
+  },
   "observability": {
     "enabled": true
   }
