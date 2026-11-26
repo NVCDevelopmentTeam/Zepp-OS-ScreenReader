@@ -28,7 +28,7 @@
 
     <div class="relative z-10 container text-center">
       <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-10">
-        <div class="i-lucide-zap w-4 h-4" aria-hidden="true"></div>
+        <span class="i-lucide-zap w-4 h-4" aria-hidden="true"></span>
         <span>Powering Accessibility</span>
       </div>
       
@@ -43,9 +43,9 @@
       </p>
       
       <div class="flex flex-wrap justify-center gap-6">
-        <a href="/news/" class="btn-primary group">
+        <a href="/support/" class="btn-primary group">
           Get Started 
-          <div class="i-lucide-arrow-right w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" aria-hidden="true"></div>
+          <span class="i-lucide-arrow-right w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" aria-hidden="true"></span>
         </a>
         <a href="/about/" class="btn-secondary">
           Explore Features
@@ -70,7 +70,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-volume-2 w-8 h-8" aria-hidden="true"></div>
+          <span class="i-lucide-volume-2 w-8 h-8" aria-hidden="true"></span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Text-to-Speech</h3>
         <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Converts on-screen text into spoken words, so you can use your watch without looking at it. Zepp OS 3.5 or higher uses OpenAI GPT-4o voices through Zepp Flow; older versions use eSpeak.</p>
@@ -78,7 +78,7 @@
 
       <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-hand w-8 h-8" aria-hidden="true"></div>
+          <span class="i-lucide-hand w-8 h-8" aria-hidden="true"></span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Braille Support</h3>
         <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Works with braille displays, giving you another way to read and control your watch.</p>
@@ -86,7 +86,7 @@
 
       <div class="card group">
         <div class="w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-layout-grid w-8 h-8" aria-hidden="true"></div>
+          <span class="i-lucide-layout-grid w-8 h-8" aria-hidden="true"></span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Navigation & Apps</h3>
         <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Simple navigation commands, plus interaction with your apps and device settings.</p>
@@ -111,13 +111,13 @@
             Zepp OS 3.5 or higher is recommended for the best voice quality.
           </p>
           <div class="flex flex-wrap gap-6">
-            <a href="https://developer.zepp.com/os/home" target="_blank" class="btn-primary">Get it on Zepp App Store</a>
+            <a href="https://developer.zepp.com/os/home" target="_blank" rel="noopener noreferrer" class="btn-primary">Get it on Zepp App Store<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
 
         <div class="card glass border-white/5 p-10">
           <h3 class="text-2xl font-bold mb-8">Quick Setup</h3>
-          <ul class="space-y-6">
+          <ol class="space-y-6" role="list">
             <li class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-bold flex-center shrink-0" aria-hidden="true">1</div>
               <div>
@@ -139,7 +139,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400">Tap Install, then on the watch go to Settings &gt; Accessibility &gt; Zepp OS Screen Reader and switch it on.</p>
               </div>
             </li>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@
     <div class="flex items-center justify-between mb-16">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Latest News</h2>
       <a href="/news/" class="nav-link flex items-center gap-2 group">
-        All Updates <div class="i-lucide-arrow-right w-4 h-4 group-hover:translate-x-2 transition-transform" aria-hidden="true"></div>
+        All Updates <span class="i-lucide-arrow-right w-4 h-4 group-hover:translate-x-2 transition-transform" aria-hidden="true"></span>
       </a>
     </div>
     <div>

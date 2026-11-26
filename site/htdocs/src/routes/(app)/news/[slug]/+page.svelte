@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle, siteAuthor } from '#lib/info.js';
+  import { siteTitle, siteAuthor, discordChat } from '#lib/info.js';
   import ToC from '#lib/components/ToC.svelte';
   import PostDate from '#lib/components/PostDate.svelte';
 
@@ -25,9 +25,9 @@
     <div class="flex-1 max-w-4xl mx-auto lg:mx-0">
       <article>
         <header class="mb-20">
-          <a href="/news/" class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-12 hover:translate-x-[-4px] transition-transform" aria-label="Go back to news list">
+          <a href="/news/" class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-12 hover:translate-x-[-4px] transition-transform">
             <div class="w-8 h-8 rounded-full bg-blue-500/10 flex-center" aria-hidden="true">
-              <div class="i-lucide-arrow-left w-4 h-4"></div>
+              <span class="i-lucide-arrow-left w-4 h-4" aria-hidden="true"></span>
             </div>
             Back to News
           </a>
@@ -39,7 +39,7 @@
           <div class="flex flex-wrap items-center gap-10 py-10 border-y border-gray-100 dark:border-white/5">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex-center shadow-lg shadow-blue-500/30" aria-hidden="true">
-                <div class="i-lucide-user w-6 h-6"></div>
+                <span class="i-lucide-user w-6 h-6" aria-hidden="true"></span>
               </div>
               <div>
                 <p class="text-xs uppercase tracking-[0.2em] font-black text-gray-600 dark:text-gray-400 mb-1">Author</p>
@@ -66,8 +66,8 @@
               <h2 class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tighter">Stay Connected</h2>
               <p class="text-white text-lg font-medium">Join our growing community and never miss an update.</p>
             </div>
-            <a href="https://discord.gg/DAZU3E4mSP" target="_blank" rel="noopener noreferrer" class="btn bg-white text-blue-600 px-10 py-5 text-sm uppercase tracking-widest font-black shadow-xl hover:scale-105 active:scale-95 transition-all">
-              Join Discord
+            <a href={discordChat} target="_blank" rel="noopener noreferrer" class="btn bg-white text-blue-600 px-10 py-5 text-sm uppercase tracking-widest font-black shadow-xl hover:scale-105 active:scale-95 transition-all">
+              Join Discord<span class="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </footer>
@@ -79,7 +79,7 @@
       <aside class="hidden lg:block w-72 shrink-0">
         <div class="sticky top-32">
           <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-xs font-black uppercase tracking-[0.2em]">
-            <div class="i-lucide-list w-4 h-4 text-blue-500" aria-hidden="true"></div>
+            <span class="i-lucide-list w-4 h-4 text-blue-500" aria-hidden="true"></span>
             Contents
           </div>
           <ToC post={data.post} />

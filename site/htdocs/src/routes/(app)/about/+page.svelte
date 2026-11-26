@@ -35,7 +35,7 @@
         <div class="relative group">
           <div class="absolute -inset-4 glow-violet opacity-40 group-hover:opacity-70 transition-opacity duration-500 rounded-full"></div>
           <div class="card glass relative z-10 p-12 aspect-square flex-center text-center">
-            <div class="i-lucide-accessibility text-blue-600 dark:text-blue-400 w-32 h-32 mb-8" aria-hidden="true"></div>
+            <span class="i-lucide-accessibility text-blue-600 dark:text-blue-400 w-32 h-32 mb-8" aria-hidden="true"></span>
             <p class="font-black text-xs uppercase tracking-[0.3em]">Accessibility First</p>
           </div>
         </div>
@@ -50,9 +50,9 @@
               Developed by the <strong>NVC Development Team</strong>, we are on a mission to make wearable technology inclusive. We believe in a world where everyone has equal access to the tools that keep us connected and healthy.
             </p>
             <div class="flex flex-wrap gap-6">
-              <a href={githubLink} target="_blank" class="btn-primary group">
-                Contribute on GitHub
-                <div class="i-lucide-github w-5 h-5 ml-2 group-hover:rotate-12 transition-transform" aria-hidden="true"></div>
+              <a href={githubLink} target="_blank" rel="noopener noreferrer" class="btn-primary group">
+                Contribute on GitHub<span class="sr-only"> (opens in a new tab)</span>
+                <span class="i-lucide-github w-5 h-5 ml-2 group-hover:rotate-12 transition-transform" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -65,25 +65,25 @@
       <section>
         <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 text-center">Resources</h2>
         <div class="grid md:grid-cols-2 gap-8">
-          <a href={zeppOSDocs} target="_blank" class="card group">
+          <a href={zeppOSDocs} target="_blank" rel="noopener noreferrer" class="card group">
             <div class="flex items-center justify-between mb-6">
               <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center">
-                <div class="i-lucide-book-open w-6 h-6" aria-hidden="true"></div>
+                <span class="i-lucide-book-open w-6 h-6" aria-hidden="true"></span>
               </div>
-              <div class="i-lucide-arrow-up-right text-gray-300 group-hover:text-blue-500 transition-colors" aria-hidden="true"></div>
+              <span class="i-lucide-arrow-up-right text-gray-300 group-hover:text-blue-500 transition-colors" aria-hidden="true"></span>
             </div>
             <h3 class="text-xl font-black uppercase mb-3">Developer Docs</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium">Deep dive into the Zepp OS ecosystem and APIs.</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium">Deep dive into the Zepp OS ecosystem and APIs.<span class="sr-only"> (opens in a new tab)</span></p>
           </a>
-          <a href={zeppOSScreen} target="_blank" class="card group">
+          <a href={zeppOSScreen} target="_blank" rel="noopener noreferrer" class="card group">
             <div class="flex items-center justify-between mb-6">
               <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center">
-                <div class="i-lucide-layout w-6 h-6" aria-hidden="true"></div>
+                <span class="i-lucide-layout w-6 h-6" aria-hidden="true"></span>
               </div>
-              <div class="i-lucide-arrow-up-right text-gray-300 group-hover:text-blue-500 transition-colors" aria-hidden="true"></div>
+              <span class="i-lucide-arrow-up-right text-gray-300 group-hover:text-blue-500 transition-colors" aria-hidden="true"></span>
             </div>
             <h3 class="text-xl font-black uppercase mb-3">Screen Adaptation</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium">Learn how to design for different smartwatch shapes.</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium">Learn how to design for different smartwatch shapes.<span class="sr-only"> (opens in a new tab)</span></p>
           </a>
         </div>
       </section>

@@ -1,5 +1,6 @@
-# Cloudflare Pages headers for the PRERENDERED pages and static files. Those are served directly by
-# Cloudflare and never reach src/hooks.server.js, so the security headers must be repeated here.
+# Cloudflare Workers static-assets headers for the PRERENDERED pages and static files. Those are
+# served directly by Cloudflare and never reach the Worker (src/hooks.server.js), so the security
+# headers must be repeated here.
 # Keep the policy in sync with src/hooks.server.js.
 # Whole site is cacheable: browsers re-check pages every 5 minutes, Cloudflare keeps them for a day
 # (a new deployment purges the edge cache). Hashed files under /_app/immutable/ are cached for a

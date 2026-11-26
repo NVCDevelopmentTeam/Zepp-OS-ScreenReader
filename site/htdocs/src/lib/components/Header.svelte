@@ -9,6 +9,11 @@
   let expandedDropdown = $state(false);
   let darkMode = $state(false);
 
+  /** @type {HTMLButtonElement | undefined} */
+  let dropdownButton = $state()
+  /** @type {HTMLButtonElement | undefined} */
+  let mobileMenuButton = $state()
+
   function toggleMobileMenu() {
     expanded = !expanded;
   }
@@ -23,8 +28,20 @@
     darkMode = !darkMode;
     if (browser) {
       document.documentElement.classList.toggle('dark', darkMode);
-      localStorage.setItem('theme-preference', darkMode ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+      try {
+        localStorage.setItem('theme-preference', darkMode ? 'dark' : 'light');
+      } catch {
+        // Storage can be blocked (private mode, strict privacy settings): the theme still changes for this visit
+      }
     }
+  }
+
+  /** @param {FocusEvent & { currentTarget: HTMLElement }} event */
+  function closeDropdownOnFocusLeave(event) {
+    // Tabbing out of the menu closes it; moving between its own links does not
+    const next = /** @type {Node | null} */ (event.relatedTarget);
+    if (!next || !event.currentTarget.contains(next)) expandedDropdown = false;
   }
 
   $effect(() => {
@@ -47,12 +64,28 @@
       };
       /** @param {KeyboardEvent} e */
       const closeOnEscape = (e) => {
-        if (e.key === 'Escape') expandedDropdown = expanded = false;
+        if (e.key !== 'Escape') return;
+        // Give the focus back to the button that opened the menu, so keyboard users do not lose their place
+        if (expandedDropdown) {
+          expandedDropdown = false;
+          dropdownButton?.focus();
+        }
+        if (expanded) {
+          expanded = false;
+          mobileMenuButton?.focus();
+        }
       };
+
+      // The theme can change outside this component (system setting, another tab): keep the toggle in sync
+      const themeObserver = new MutationObserver(() => {
+        darkMode = document.documentElement.classList.contains('dark');
+      });
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
       document.addEventListener('click', closeMenus);
       document.addEventListener('keydown', closeOnEscape);
       return () => {
+        themeObserver.disconnect();
         document.removeEventListener('click', closeMenus);
         document.removeEventListener('keydown', closeOnEscape);
       };
@@ -81,7 +114,7 @@
 <header class="fixed top-0 z-50 w-full">
   <!-- Secondary Utility Bar (Small) -->
   <div class="h-8 bg-gray-50/95 dark:bg-zeppDark/95 border-b border-gray-100 dark:border-white/5 hidden md:block">
-    <div class="container h-full flex justify-end items-center gap-6">
+    <nav class="container h-full flex justify-end items-center gap-6" aria-label="Secondary">
       {#each secondaryNav as item (item.href)}
         <a 
           href={item.href} 
@@ -91,7 +124,7 @@
           {item.label}
         </a>
       {/each}
-    </div>
+    </nav>
   </div>
 
   <!-- Primary Navigation Bar (Large) -->
@@ -106,7 +139,7 @@
           src={logo}
           width="44"
           height="44"
-          alt="Zepp OS Screen Reader logo: illustration of a person wearing a visor with a hand on their chest"
+          alt=""
           class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-xl ring-2 ring-blue-500/10"
         />
         <span class="font-display font-black text-lg md:text-xl tracking-tighter uppercase">
@@ -115,7 +148,7 @@
       </div>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-10">
+      <nav class="hidden lg:flex items-center gap-10" aria-label="Main">
         {#each primaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
           <a 
@@ -129,32 +162,34 @@
         {/each}
 
         <!-- Dropdown -->
-        <div class="relative dropdown-container">
+        <div class="relative dropdown-container" onfocusout={closeDropdownOnFocusLeave}>
           <button 
+            bind:this={dropdownButton}
             onclick={toggleDropdown}
             class="nav-link flex items-center gap-1.5"
             aria-expanded={expandedDropdown}
-           
+            aria-controls="resources-menu"
           >
-            Resources <div class="i-lucide-chevron-down text-xs transition-transform duration-300 {expandedDropdown ? 'rotate-180' : ''}" aria-hidden="true"></div>
+            Resources <span class="i-lucide-chevron-down text-xs transition-transform duration-300 {expandedDropdown ? 'rotate-180' : ''}" aria-hidden="true"></span>
           </button>
 
           {#if expandedDropdown}
             <div 
+              id="resources-menu"
               class="absolute top-full right-0 mt-4 w-60 glass rounded-2xl shadow-2xl border border-white/20 dark:border-white/5 py-3 animate-in fade-in slide-in-from-top-4 duration-300 overflow-hidden"
             >
-              <a href={discordChat} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
-                <div class="i-lucide-message-circle text-blue-500" aria-hidden="true"></div> 
-                <span class="text-sm font-bold">Discord</span>
+              <a href={discordChat} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
+                <span class="i-lucide-message-circle text-blue-500" aria-hidden="true"></span> 
+                <span class="text-sm font-bold">Discord<span class="sr-only"> (opens in a new tab)</span></span>
               </a>
-              <a href={githubLink} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
-                <div class="i-lucide-github" aria-hidden="true"></div> 
-                <span class="text-sm font-bold">GitHub</span>
+              <a href={githubLink} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
+                <span class="i-lucide-github" aria-hidden="true"></span> 
+                <span class="text-sm font-bold">GitHub<span class="sr-only"> (opens in a new tab)</span></span>
               </a>
               <div class="h-px bg-gray-100 dark:bg-white/5 my-2 mx-5"></div>
-              <a href={zeppOSDev} target="_blank" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
-                <div class="i-lucide-external-link text-gray-600 dark:text-gray-400" aria-hidden="true"></div> 
-                <span class="text-xs font-black uppercase tracking-widest text-gray-600 dark:text-gray-400">Developer Portal</span>
+              <a href={zeppOSDev} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-500/10 transition-colors">
+                <span class="i-lucide-external-link text-gray-600 dark:text-gray-400" aria-hidden="true"></span> 
+                <span class="text-xs font-black uppercase tracking-widest text-gray-600 dark:text-gray-400">Developer Portal<span class="sr-only"> (opens in a new tab)</span></span>
               </a>
             </div>
           {/if}
@@ -170,22 +205,25 @@
           aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
         >
           {#if darkMode}
-            <div class="i-lucide-sun w-5 h-5" aria-hidden="true"></div>
+            <span class="i-lucide-sun w-5 h-5" aria-hidden="true"></span>
           {:else}
-            <div class="i-lucide-moon w-5 h-5" aria-hidden="true"></div>
+            <span class="i-lucide-moon w-5 h-5" aria-hidden="true"></span>
           {/if}
         </button>
 
         <!-- Mobile Menu Toggle -->
         <button
+          bind:this={mobileMenuButton}
           onclick={toggleMobileMenu}
           class="lg:hidden w-10 h-10 md:w-11 md:h-11 rounded-full flex-center bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-400 transition-all active:scale-90"
           aria-label={expanded ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={expanded}
-        >          {#if expanded}
-            <div class="i-lucide-x w-6 h-6" aria-hidden="true"></div>
+          aria-controls="mobile-menu"
+        >
+          {#if expanded}
+            <span class="i-lucide-x w-6 h-6" aria-hidden="true"></span>
           {:else}
-            <div class="i-lucide-menu w-6 h-6" aria-hidden="true"></div>
+            <span class="i-lucide-menu w-6 h-6" aria-hidden="true"></span>
           {/if}
         </button>
       </div>
@@ -194,8 +232,8 @@
 
   <!-- Mobile Nav -->
   {#if expanded}
-    <div class="lg:hidden fixed inset-x-0 top-16 md:top-28 glass border-b border-gray-100 dark:border-white/5 p-6 space-y-4 animate-in slide-in-from-top-8 duration-500 shadow-2xl max-h-[80vh] overflow-y-auto">
-      <nav class="grid grid-cols-1 gap-2">
+    <div id="mobile-menu" class="lg:hidden fixed inset-x-0 top-16 md:top-28 glass border-b border-gray-100 dark:border-white/5 p-6 space-y-4 animate-in slide-in-from-top-8 duration-500 shadow-2xl max-h-[80vh] overflow-y-auto">
+      <nav class="grid grid-cols-1 gap-2" aria-label="Mobile">
         <div class="text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest px-4 mb-2">Main Menu</div>
         {#each primaryNav as item (item.href)}
           {@const isActive = page.url.pathname === item.href}
@@ -205,7 +243,7 @@
             aria-current={isActive ? 'page' : undefined}
           >
             <span class="font-bold tracking-widest uppercase text-xs">{item.label}</span>
-            <div class="i-lucide-chevron-right text-sm opacity-50" aria-hidden="true"></div>
+            <span class="i-lucide-chevron-right text-sm opacity-50" aria-hidden="true"></span>
           </a>
         {/each}
         
@@ -218,18 +256,18 @@
             aria-current={isActive ? 'page' : undefined}
           >
             <span class="font-bold tracking-widest uppercase text-xs">{item.label}</span>
-            <div class="i-lucide-chevron-right text-sm opacity-50" aria-hidden="true"></div>
+            <span class="i-lucide-chevron-right text-sm opacity-50" aria-hidden="true"></span>
           </a>
         {/each}
       </nav>
       
       <div class="pt-6 border-t border-gray-100 dark:border-white/5 grid grid-cols-2 gap-3">
         <a href={discordChat} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
-          <div class="i-lucide-message-circle text-blue-500" aria-hidden="true"></div>
+          <span class="i-lucide-message-circle text-blue-500" aria-hidden="true"></span>
           <span class="text-xs font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">Discord</span>
         </a>
         <a href={githubLink} class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 hover:bg-blue-500/10 transition-colors">
-          <div class="i-lucide-github" aria-hidden="true"></div>
+          <span class="i-lucide-github" aria-hidden="true"></span>
           <span class="text-xs font-black uppercase tracking-tighter text-gray-600 dark:text-gray-400">GitHub</span>
         </a>
       </div>

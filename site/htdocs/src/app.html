@@ -5,67 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0052FF" />
 
+    <meta name="color-scheme" content="light dark" />
+
     <script>
+      // Theme: applied before the first paint to avoid a flash of the wrong theme.
+      // 'light' / 'dark' come from the toggle in the header and are remembered on this device;
+      // without a saved choice the site follows the system setting, live.
       ;(function () {
-        try {
-          const STORAGE_KEY = 'theme-preference'
+        var KEY = 'theme-preference'
+        var root = document.documentElement
+        var media = window.matchMedia('(prefers-color-scheme: dark)')
 
-          // 1. Get cached theme (localStorage)
-          let theme = localStorage.getItem(STORAGE_KEY)
-
-          // 2. Fallback to system preference if not set
-          if (!theme || theme === 'auto') {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-            theme = prefersDark ? 'dark' : 'light'
+        function saved() {
+          try {
+            var value = localStorage.getItem(KEY)
+            return value === 'light' || value === 'dark' ? value : null
+          } catch (e) {
+            // Storage can be blocked (private mode, strict privacy settings)
+            return null
           }
-
-          // 3. Apply immediately to avoid FOUC (Flash of Unstyled Content)
-          const root = document.documentElement
-
-          // UnoCSS: use "dark" class
-          if (theme === 'dark') {
-            root.classList.add('dark')
-          } else {
-            root.classList.remove('dark')
-          }
-
-          // optional: data attribute (if using additional CSS vars)
-          root.setAttribute('data-theme', theme)
-
-          // 4. Cache back (ensure sync)
-          localStorage.setItem(STORAGE_KEY, theme)
-
-          // 5. Sync between tabs (cache layer)
-          window.addEventListener('storage', (e) => {
-            if (e.key === STORAGE_KEY) {
-              const newTheme = e.newValue
-              if (newTheme === 'dark') {
-                root.classList.add('dark')
-              } else {
-                root.classList.remove('dark')
-              }
-              root.setAttribute('data-theme', newTheme)
-            }
-          })
-
-          // 6. Defer non-critical logic
-          setTimeout(() => {
-            // example: fetch theme config from API or analytics
-            // fetch('/api/theme-sync')
-
-            // optional: re-check system change if set to auto
-            const media = window.matchMedia('(prefers-color-scheme: dark)')
-            media.addEventListener('change', (e) => {
-              if (localStorage.getItem(STORAGE_KEY) === 'auto') {
-                const newTheme = e.matches ? 'dark' : 'light'
-                root.classList.toggle('dark', newTheme === 'dark')
-                root.setAttribute('data-theme', newTheme)
-              }
-            })
-          }, 0) // defer after initial paint
-        } catch (e) {
-          console.warn('theme init error', e)
         }
+
+        function apply() {
+          var theme = saved() || (media.matches ? 'dark' : 'light')
+          root.classList.toggle('dark', theme === 'dark')
+          root.setAttribute('data-theme', theme)
+        }
+
+        apply()
+
+        // The system setting changed (only matters while no choice is saved)
+        media.addEventListener('change', apply)
+        // The choice was changed or cleared in another tab
+        window.addEventListener('storage', function (e) {
+          if (e.key === KEY || e.key === null) apply()
+        })
       })()
     </script>
     <!-- Favicon — place favicon.ico in static/ -->

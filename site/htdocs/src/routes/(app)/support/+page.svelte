@@ -1,42 +1,57 @@
 <script>
-  import { siteTitle, githubLink, accessKey, discordChat } from '#lib/info.js';
+  import { siteTitle, githubIssues, accessKey, discordChat } from '#lib/info.js';
   import Dialog from '#lib/components/Dialog.svelte';
   import CollapsibleSection from '#lib/components/CollapsibleSection.svelte';
 
+  /** @type {HTMLDialogElement | undefined} */
   let dialog = $state();
-  let status = $state("");
-  let agree = $state(false);
+  /** @type {'idle' | 'sending' | 'success' | 'error'} */
+  let status = $state('idle');
+  let message = $state('');
+
+  function openFeedback() {
+    // Do not show the result of a previous submission when the dialog is opened again
+    status = 'idle';
+    message = '';
+    dialog?.showModal();
+  }
 
   /** @param {SubmitEvent & { currentTarget: HTMLFormElement }} event */
   const handleSubmit = async (event) => {
     event.preventDefault();
-    status = 'Submitting...';
+    // A button that is disabled while sending loses the keyboard focus, so the guard lives here
+    if (status === 'sending') return;
+
+    const form = event.currentTarget; // currentTarget is cleared after the first await
+    status = 'sending';
+    message = 'Sending your feedback…';
 
     try {
-      const formData = new FormData(event.currentTarget);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
         },
-        body: json,
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
       });
 
       const result = await response.json();
 
       if (result.success) {
-        status = "Feedback sent! Thank you.";
-        setTimeout(() => dialog.close(), 2000);
+        // The dialog stays open: closing it by itself after a delay could cut the confirmation short
+        // for screen reader users. The "Close" button takes over from "Cancel".
+        status = 'success';
+        message = 'Feedback sent! Thank you.';
+        form.reset();
       } else {
-        status = result.message || "Submission failed.";
+        status = 'error';
+        message = result.message || 'Submission failed.';
       }
-    } catch (_) {
-      console.error('Submission error:', _);
-      status = "Error submitting form.";
+    } catch (err) {
+      console.error('Submission error:', err);
+      status = 'error';
+      message = 'Error submitting form. Please check your connection and try again.';
     }
   };
 
@@ -109,14 +124,14 @@
         <div class="grid md:grid-cols-2 gap-10">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex-center shadow-lg shadow-blue-500/20">
-              <div class="i-lucide-rotate-ccw w-6 h-6"></div>
+              <span class="i-lucide-rotate-ccw w-6 h-6" aria-hidden="true"></span>
             </div>
             <h3 class="text-xl font-black uppercase tracking-tight">Restart Device</h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">A quick restart often resolves temporary issues on Zepp OS devices.</p>
           </div>
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex-center shadow-lg shadow-blue-500/20">
-              <div class="i-lucide-refresh-cw w-6 h-6"></div>
+              <span class="i-lucide-refresh-cw w-6 h-6" aria-hidden="true"></span>
             </div>
             <h3 class="text-xl font-black uppercase tracking-tight">Update ZSR</h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">Make sure you have the latest version of ZSR from the App Store in the Zepp app for the best accessibility support.</p>
@@ -136,23 +151,23 @@
         <div class="space-y-4 relative z-10">
           <a href={discordChat} class="btn bg-white text-zeppDark w-full justify-between gap-3 py-4 text-xs font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-all">
             Discord Community
-            <div class="i-lucide-message-circle w-4 h-4"></div>
+            <span class="i-lucide-message-circle w-4 h-4" aria-hidden="true"></span>
           </a>
-          <a href={githubLink} class="btn bg-white/10 text-white w-full justify-between gap-3 py-4 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/20 transition-all">
+          <a href={githubIssues} class="btn bg-white/10 text-white w-full justify-between gap-3 py-4 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/20 transition-all">
             GitHub Issues
-            <div class="i-lucide-github w-4 h-4"></div>
+            <span class="i-lucide-github w-4 h-4" aria-hidden="true"></span>
           </a>
         </div>
       </div>
 
       <div class="card p-10 flex flex-col items-center text-center">
         <div class="w-16 h-16 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-6">
-          <div class="i-lucide-heart w-8 h-8"></div>
+          <span class="i-lucide-heart w-8 h-8" aria-hidden="true"></span>
         </div>
         <h3 class="text-xl font-black uppercase mb-4 tracking-tight">Feedback</h3>
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-8 font-medium">Help us shape the future of ZSR with your insights.</p>
         <button 
-          onclick={() => dialog.showModal()}
+          onclick={openFeedback}
           class="btn-primary w-full py-4 text-xs uppercase tracking-widest"
         >
           Send Feedback
@@ -162,9 +177,9 @@
   </div>
 </div>
 
-<Dialog bind:dialog>
+<Dialog bind:dialog labelledby="feedback-title">
   <div class="p-4">
-    <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 leading-none">Feedback</h2>
+    <h2 id="feedback-title" class="text-4xl font-black uppercase tracking-tighter mb-4 leading-none">Feedback</h2>
     <p class="text-gray-600 dark:text-gray-400 font-medium mb-12">How can we improve your experience?</p>
 
     <form onsubmit={handleSubmit} class="space-y-8">
@@ -172,7 +187,7 @@
       
       <div class="space-y-3">
         <label for="support-email" class="block text-xs font-black uppercase tracking-widest text-gray-600 dark:text-gray-400 ml-1">Your Email</label>
-        <input class="input-field" type="email" id="support-email" name="email" required placeholder="name@example.com" />
+        <input class="input-field" type="email" id="support-email" name="email" autocomplete="email" required placeholder="name@example.com" />
       </div>
 
       <div class="space-y-3">
@@ -181,27 +196,33 @@
       </div>
 
       <div class="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-white/5">
-        <input type="checkbox" id="support-agree" bind:checked={agree} class="mt-1 accent-blue-600 w-5 h-5" />
+        <input type="checkbox" id="support-agree" required class="mt-0.5 accent-blue-600 w-6 h-6 shrink-0" />
         <label for="support-agree" class="text-xs text-gray-600 dark:text-gray-400 font-medium leading-relaxed">
           I agree to the <a href="/privacy-policy/" class="text-blue-600 dark:text-blue-400 font-bold hover:underline">Privacy Policy</a> and terms.
         </label>
       </div>
 
       <div class="flex flex-col gap-4 pt-6">
-        <button type="submit" disabled={!agree || status === 'Submitting...'} class="btn-primary w-full py-5 text-xs font-black uppercase tracking-widest">
-          {status === 'Submitting...' ? 'Processing...' : 'Submit Feedback'}
+        <button type="submit" aria-disabled={status === 'sending'} class="btn-primary w-full py-5 text-xs font-black uppercase tracking-widest {status === 'sending' ? 'opacity-70 cursor-wait' : ''}">
+          {status === 'sending' ? 'Processing...' : 'Submit Feedback'}
         </button>
-        <button type="button" onclick={() => dialog.close()} class="btn-secondary w-full py-4 text-xs font-black uppercase tracking-widest border-none">Cancel</button>
+        <button type="button" onclick={() => dialog?.close()} class="btn-secondary w-full py-4 text-xs font-black uppercase tracking-widest border-none">{status === 'success' ? 'Close' : 'Cancel'}</button>
       </div>
       
-      {#if status && status !== 'Submitting...'}
-        <div 
-          aria-live="polite"
-          class="text-center p-4 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-widest"
-        >
-          {status}
-        </div>
-      {/if}
+      <!-- The live region exists from the start so that screen readers announce the result -->
+      <div role="status" aria-live="polite" aria-atomic="true">
+        {#if status === 'success' || status === 'error'}
+          <div
+            class="text-center p-4 rounded-2xl font-bold text-xs uppercase tracking-widest {status === 'success'
+              ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
+              : 'bg-red-500/10 text-red-700 dark:text-red-400'}"
+          >
+            {message}
+          </div>
+        {:else if status === 'sending'}
+          <span class="sr-only">{message}</span>
+        {/if}
+      </div>
     </form>
   </div>
 </Dialog>

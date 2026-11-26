@@ -33,11 +33,11 @@
           An open-source screen reader for Zepp OS devices, empowering blind and low-vision users to use their Amazfit smartwatches independently.
         </p>
         <div class="flex items-center gap-4">
-          <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on GitHub">
-            <div class="i-lucide-github w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></div>
+          <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on GitHub (opens in a new tab)">
+            <span class="i-lucide-github w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></span>
           </a>
-          <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on Discord">
-            <div class="i-lucide-message-circle w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></div>
+          <a href="https://discord.gg/DAZU3E4mSP" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex-center hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-all shadow-sm group" aria-label="ZSR on Discord (opens in a new tab)">
+            <span class="i-lucide-message-circle w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></span>
           </a>
         </div>
       </div>
@@ -45,7 +45,7 @@
       <!-- Quick Links -->
       <nav aria-label="Footer Navigation">
         <h2 class="font-black text-gray-900 dark:text-white mb-8 uppercase text-xs tracking-[0.2em]">Site</h2>
-        <ul class="space-y-4">
+        <ul class="space-y-4" role="list">
           {#each links as link (link.href)}
             <li>
               <a href={link.href} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 font-bold transition-colors text-sm uppercase tracking-wide">
@@ -57,18 +57,18 @@
       </nav>
 
       <!-- Project Info -->
-      <section>
-        <h2 class="font-black text-gray-900 dark:text-white mb-8 uppercase text-xs tracking-[0.2em]">Contact</h2>
+      <section aria-labelledby="footer-contact-heading">
+        <h2 id="footer-contact-heading" class="font-black text-gray-900 dark:text-white mb-8 uppercase text-xs tracking-[0.2em]">Contact</h2>
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex-center shrink-0" aria-hidden="true">
-              <div class="i-lucide-map-pin text-blue-500 w-4 h-4"></div>
+              <span class="i-lucide-map-pin text-blue-500 w-4 h-4" aria-hidden="true"></span>
             </div>
             <span class="text-sm text-gray-600 dark:text-gray-400 font-medium">{siteAuthor}</span>
           </div>
           <div class="flex items-start gap-4">
             <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex-center shrink-0" aria-hidden="true">
-              <div class="i-lucide-mail text-blue-500 w-4 h-4"></div>
+              <span class="i-lucide-mail text-blue-500 w-4 h-4" aria-hidden="true"></span>
             </div>
             <span class="text-sm text-gray-600 dark:text-gray-400 font-medium">
               <a href="mailto:contact@zeppreader.com" class="text-blue-700 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">contact@zeppreader.com</a>
@@ -86,7 +86,7 @@
       <a href="#top" class="group flex items-center gap-3 text-xs font-black text-blue-700 dark:text-blue-500 uppercase tracking-widest hover:translate-y-[-2px] transition-transform" aria-label="Back to top">
         Top 
         <div class="w-8 h-8 rounded-full bg-blue-500/10 flex-center group-hover:bg-blue-600 group-hover:text-white transition-all" aria-hidden="true">
-          <div class="i-lucide-arrow-up w-4 h-4"></div>
+          <span class="i-lucide-arrow-up w-4 h-4" aria-hidden="true"></span>
         </div>
       </a>
     </div>

@@ -1,6 +1,7 @@
 ---
 title: An Important Announcement Regarding the Future of Zepp OS Screen Reader (ZSR)
 date: 2026-11-19T10:30:00
+preview: The NVC Development Team explains why it is looking to transfer the ZSR project codebase to a capable third party, and shares the terms for anyone interested.
 ---
 
 Dear ZSR Users, Fellow Developers, and Friends of the Community,
@@ -15,7 +16,7 @@ With the support of our users and open-source community, ZSR grew from an ambiti
 
 Today, however, I must share a painful and difficult decision with everyone who has trusted, tested, and stood behind us. After long and careful consideration, **we are looking to sell and transfer the Zepp OS Screen Reader (ZSR) project codebase to a capable third party** who can sustain, improve, and carry our mission forward.
 
-## **Sharing Our Realities and Challenges With the Community**
+## Sharing Our Realities and Challenges With the Community
 
 We owe complete honesty to our users and fellow developers about why we have reached this crossroads, and we sincerely ask for your understanding and compassion:
 
@@ -26,7 +27,7 @@ We owe complete honesty to our users and fellow developers about why we have rea
 3. **Insurmountable Accessibility Barriers in Hardware Testing and Debugging:**  
    As we noted in our own documentation, testing ZSR on physical smartwatches is essential because touch latency, TTS timing, and accessibility APIs do not always match the simulator. However, as a blind lead developer, I face real technical walls that I cannot overcome alone: screen readers such as **NVDA** cannot read the local Zepp OS simulator (`zeus dev`), and I cannot read console logs directly on the watch screen (or visually inspect every subtle UI/log state across physical hardware). As a result, it has become extremely difficult to control every detail or guarantee bug-free installations across all watch models. ZSR needs a developer or organization with full visual and technical access to debug, test, and elevate the software reliably.
 
-## **Information for Interested Third Parties (Terms of Sale & Ownership)**
+## Information for Interested Third Parties (Terms of Sale & Ownership)
 
 For organizations, teams, or individuals interested in acquiring and advancing the ZSR project, please carefully review the following terms:
 
@@ -39,13 +40,13 @@ For organizations, teams, or individuals interested in acquiring and advancing t
 - **Initial Investment & Private Pricing Discussion:**  
   To launch and sustain the project's presence, I personally invested an initial **$200 USD** out-of-pocket covering domain registration, web hosting, and the time and effort required to build and maintain **zeppreader.com**. The price for the project is not listed publicly and will be discussed and negotiated privately via email between both parties.
 
-## **A Heartfelt Hope for What Comes Next**
+## A Heartfelt Hope for What Comes Next
 
 To the blind and low-vision users who rely on ZSR, and to the developers who have cheered us on: we know transitions like this are never easy to hear. Please know that this choice comes not from a lack of love for ZSR, but from our desire to see it survive and grow beyond what one person can carry alone.
 
 Even as ZSR seeks a new home with a third party, our core wish remains unchanged—to make wearable technology truly inclusive so everyone can stay connected and monitor their health independently. We sincerely hope that you will understand our difficult decision, and that you will continue to **trust, support, and walk alongside ZSR** in its next chapter under a capable third-party maintainer.
 
-## **Contact for Inquiries**
+## Contact for Inquiries
 
 If you are interested in purchasing the ZSR project codebase or discussing transfer details, please contact me directly via the official email attached on this website:
 

@@ -1,6 +1,6 @@
 /* ============================================================
    app.css — UnoCSS Global Layer (2026 Standard)
-   Stack: SvelteKit 2 + Svelte 5 + UnoCSS + Cloudflare Pages
+   Stack: SvelteKit 3 + Svelte 5 + UnoCSS + Cloudflare Workers
    Font: Fira Mono (code), system-ui stack (UI)
    Purpose: Global CSS only, responsive, Lighthouse optimized
 ============================================================ */
@@ -20,6 +20,9 @@
 
 /* ── 3. CSS VARIABLES ─────────────────────────────────────── */
 :root {
+  /* Native controls, scrollbars and the default text of dialogs follow the theme */
+  color-scheme: light;
+
   /* Colors */
   --c-bg: #ffffff;
   --c-text: #111111;
@@ -38,6 +41,7 @@
 
 /* Dark mode bridge — matches class="dark" from app.html + UnoCSS */
 .dark {
+  color-scheme: dark;
   --c-bg: #0b0e11;
   --c-text: #f5f5f7;
   --c-secondary: #c7c7cf; /* Increased contrast from #a0a0ab */
@@ -66,6 +70,29 @@ html {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* The header is fixed (4rem on phones, 7rem from 768px): without this, anchor links, the skip link
+   target and keyboard focus can end up hidden underneath it (WCAG 2.2: Focus Not Obscured) */
+html {
+  scroll-padding-top: 5rem;
+}
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 8rem;
+  }
+}
+
+/* Visitors who ask for less motion get none: animations stop and transitions become instant */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -102,6 +129,12 @@ input,
 select,
 textarea {
   min-height: 44px; /* WCAG touch target */
+}
+
+/* A checkbox or radio keeps its own size (set with utilities): the 44px minimum would stretch it */
+input[type='checkbox'],
+input[type='radio'] {
+  min-height: 0;
 }
 
 /* Links inherit colour and underline from their context (the design styles them with utilities);

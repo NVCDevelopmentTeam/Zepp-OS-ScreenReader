@@ -9,7 +9,7 @@ import UnoCSS from 'unocss/vite'
 // `wrangler` (a dependency of the Cloudflare adapter) loads `punycode` through whatwg-url@5, which makes
 // Node 22+ print a DEP0040 warning on every dev/build run. The warning comes from that dependency,
 // not from this project, so it is silenced for this process.
-process.noDeprecation = true
+;/** @type {any} */ (process).noDeprecation = true
 
 // SvelteKit has no index.html, so the `transformIndexHtml` hooks of the UnoCSS plugins are never used;
 // leaving them makes SvelteKit print a `transform_index_html_unsupported` warning.

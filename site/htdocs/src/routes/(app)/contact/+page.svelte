@@ -1,5 +1,5 @@
 <script>
-  import { siteTitle } from '#lib/info.js';
+  import { siteTitle, discordChat, githubIssues } from '#lib/info.js';
   import Contact from '#lib/components/Contact.svelte';
 </script>
 
@@ -25,7 +25,7 @@
     <div class="grid md:grid-cols-3 gap-6 mb-24">
       <div class="card p-8 flex flex-col items-center text-center group">
         <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-6 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-mail w-6 h-6" aria-hidden="true"></div>
+          <span class="i-lucide-mail w-6 h-6" aria-hidden="true"></span>
         </div>
         <h2 class="text-xs font-black uppercase tracking-widest mb-2">Email</h2>
         <a href="mailto:contact@zeppreader.com" class="text-sm font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">contact@zeppreader.com</a>
@@ -33,18 +33,18 @@
 
       <div class="card p-8 flex flex-col items-center text-center group">
         <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-6 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-message-circle w-6 h-6" aria-hidden="true"></div>
+          <span class="i-lucide-message-circle w-6 h-6" aria-hidden="true"></span>
         </div>
         <h2 class="text-xs font-black uppercase tracking-widest mb-2">Discord</h2>
-        <a href="https://discord.gg/DAZU3E4mSP" target="_blank" class="text-sm font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Join Community</a>
+        <a href={discordChat} target="_blank" rel="noopener noreferrer" class="text-sm font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Join Community<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
 
       <div class="card p-8 flex flex-col items-center text-center group">
         <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-center mb-8 group-hover:scale-110 transition-transform duration-500">
-          <div class="i-lucide-github w-6 h-6" aria-hidden="true"></div>
+          <span class="i-lucide-github w-6 h-6" aria-hidden="true"></span>
         </div>
         <h2 class="text-xs font-black uppercase tracking-widest mb-2">GitHub</h2>
-        <a href="https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader/issues" target="_blank" class="text-sm font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Report Issues</a>
+        <a href={githubIssues} target="_blank" rel="noopener noreferrer" class="text-sm font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Report Issues<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
     </div>
 

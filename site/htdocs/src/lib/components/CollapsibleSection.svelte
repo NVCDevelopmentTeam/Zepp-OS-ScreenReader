@@ -23,10 +23,10 @@
             onclick={() => expanded = !expanded}
         >
             <span class="text-gray-900 dark:text-white font-black uppercase tracking-widest text-sm">{headerText}</span>
-            <div 
+            <span 
                 class="i-lucide-chevron-down w-5 h-5 text-blue-500 transition-transform duration-500 {expanded ? 'rotate-180' : ''}"
                 aria-hidden="true"
-            ></div>
+            ></span>
         </button>
     </h3>
 

@@ -32,12 +32,12 @@
         <p>We may gather specific information during your visit, including:</p>
         <div class="not-prose grid md:grid-cols-2 gap-6 my-10">
           <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-            <div class="i-lucide-smartphone text-blue-600 dark:text-blue-400 w-6 h-6 mb-4"></div>
+            <span class="i-lucide-smartphone text-blue-600 dark:text-blue-400 w-6 h-6 mb-4" aria-hidden="true"></span>
             <h3 class="font-black uppercase text-xs tracking-widest mb-2">Device Info</h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 font-medium m-0">Model, OS version, and unique identifiers.</p>
           </div>
           <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-            <div class="i-lucide-activity text-blue-600 dark:text-blue-400 w-6 h-6 mb-4"></div>
+            <span class="i-lucide-activity text-blue-600 dark:text-blue-400 w-6 h-6 mb-4" aria-hidden="true"></span>
             <h3 class="font-black uppercase text-xs tracking-widest mb-2">Usage Data</h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 font-medium m-0">Features accessed and actions performed.</p>
           </div>

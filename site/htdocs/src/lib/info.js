@@ -3,7 +3,8 @@ export const siteDescription =
   'Open-source screen reader for blind and low-vision users of Amazfit watches running Zepp OS: text-to-speech, braille support and navigation commands.'
 export const siteURL = 'https://www.zeppreader.com'
 export const siteAuthor = 'NVC Development Team'
-export const githubLink = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader.git'
+export const githubLink = 'https://github.com/NVCDevelopmentTeam/Zepp-OS-ScreenReader'
+export const githubIssues = `${githubLink}/issues`
 export const discordChat = 'https://discord.gg/DAZU3E4mSP'
 export const zeppOSDev = 'https://developer.zepp.com/os/home'
 export const zeppOSDocs = 'https://docs.zepp.com/docs/intro/'

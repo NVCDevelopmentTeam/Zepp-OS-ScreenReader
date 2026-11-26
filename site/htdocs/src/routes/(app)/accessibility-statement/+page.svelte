@@ -37,7 +37,7 @@
         <div class="not-prose p-10 bg-blue-600 rounded-[2rem] text-white shadow-2xl relative overflow-hidden group my-16">
           <div class="absolute -bottom-10 -right-10 w-32 h-32 glow-white group-hover:scale-150 transition-transform duration-700"></div>
           <h3 class="text-2xl font-black uppercase tracking-tighter mb-6 flex items-center gap-3">
-            <div class="i-lucide-help-circle w-6 h-6"></div> Feedback & Support
+            <span class="i-lucide-help-circle w-6 h-6" aria-hidden="true"></span> Feedback & Support
           </h3>
           <p class="text-blue-50 font-medium mb-10 leading-relaxed">
             If you experience any difficulties using this website or have suggestions for how we can improve its accessibility, please don't hesitate to reach out.

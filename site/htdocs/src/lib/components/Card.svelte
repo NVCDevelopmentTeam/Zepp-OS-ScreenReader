@@ -28,7 +28,7 @@
 
 <svelte:element 
   this={as} 
-  class="group relative flex flex-col items-start p-8 rounded-[2rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-2xl hover:translate-y-[-8px] transition-all duration-500 {_class}"
+  class="group relative flex flex-col items-start p-8 rounded-[2rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-2xl hover:translate-y-[-8px] transition-all duration-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 {href ? 'focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-[#0052ff]' : ''} {_class}"
 >
   {#if eyebrow}
     <div class="relative z-10 mb-5">
@@ -37,7 +37,9 @@
   {/if}
 
   {#if title}
-    <svelte:element this={heading} class="relative z-10 text-2xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tight">
+    <!-- The heading must NOT be positioned: the link's overlay below is positioned against the card,
+         which is what makes the whole card clickable -->
+    <svelte:element this={heading} class="text-2xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tight">
       {#if href}
         <a {href} aria-label={ariaLabel}>
           <!-- This span makes the whole card clickable -->

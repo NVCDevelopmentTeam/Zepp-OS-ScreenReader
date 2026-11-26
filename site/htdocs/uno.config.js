@@ -11,10 +11,7 @@ import {
 import { lucide } from './src/lib/icons.js'
 
 export default defineConfig({
-  // ─────────────────────────────────────────────────────────
-  // DARK MODE — class-based to match app.html toggle
-  // ─────────────────────────────────────────────────────────
-  darkMode: 'class',
+  // Dark mode is class-based (the `dark` class set by the script in app.html): see `presetUno({ dark: 'class' })` below
 
   // ─────────────────────────────────────────────────────────
   // SHORTCUTS
@@ -49,7 +46,15 @@ export default defineConfig({
   theme: {
     colors: {
       zeppBlue: '#0052FF',
-      zeppDark: '#0B0E11'
+      zeppDark: '#0B0E11',
+      // Dark surfaces used by the admin area (`dark:bg-dark-900`, `dark:border-dark-800`, ...);
+      // without a palette named `dark` those classes produced no CSS at all
+      dark: {
+        700: '#2a3038',
+        800: '#1c2128',
+        900: '#13171c',
+        950: '#0b0e11'
+      }
     },
     breakpoints: {
       xs: '375px',

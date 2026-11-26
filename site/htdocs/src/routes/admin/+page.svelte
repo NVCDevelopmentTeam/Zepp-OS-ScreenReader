@@ -45,25 +45,25 @@
 
 <div class="w-full relative min-h-[calc(100vh-10rem)]">
   {#if !config}
-    <div class="card bg-red-500/10 border-red-500/20 p-16 text-center max-w-5xl mx-auto">
+    <div role="alert" class="card bg-red-500/10 border-red-500/20 p-16 text-center max-w-5xl mx-auto">
       <div class="w-20 h-20 rounded-3xl bg-red-500 text-white flex-center mx-auto mb-8 shadow-xl shadow-red-500/20">
-        <div class="i-lucide-alert-triangle w-10 h-10"></div>
+        <span class="i-lucide-alert-triangle w-10 h-10" aria-hidden="true"></span>
       </div>
-      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-600 mb-4">Configuration Error</h2>
-      <p class="text-red-500/80 font-medium max-w-md mx-auto leading-relaxed">Failed to load CMS configuration.</p>
+      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-700 dark:text-red-400 mb-4">Configuration Error</h2>
+      <p class="text-red-700 dark:text-red-300 font-medium max-w-md mx-auto leading-relaxed">Failed to load CMS configuration.</p>
     </div>
   {:else if cmsError}
-    <div class="card bg-red-500/10 border-red-500/20 p-16 text-center max-w-5xl mx-auto">
+    <div role="alert" class="card bg-red-500/10 border-red-500/20 p-16 text-center max-w-5xl mx-auto">
       <div class="w-20 h-20 rounded-3xl bg-red-500 text-white flex-center mx-auto mb-8 shadow-xl shadow-red-500/20">
-        <div class="i-lucide-x-circle w-10 h-10"></div>
+        <span class="i-lucide-x-circle w-10 h-10" aria-hidden="true"></span>
       </div>
-      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-600 mb-4">Initialization Failed</h2>
-      <p class="text-red-500/80 font-medium max-w-md mx-auto leading-relaxed">{cmsError.message}</p>
+      <h2 class="text-3xl font-black uppercase tracking-tighter text-red-700 dark:text-red-400 mb-4">Initialization Failed</h2>
+      <p class="text-red-700 dark:text-red-300 font-medium max-w-md mx-auto leading-relaxed">{cmsError.message}</p>
     </div>
   {:else}
     {#if !cmsInitialized}
-      <div class="flex flex-col items-center justify-center py-32 space-y-10">
-        <div class="relative">
+      <div role="status" class="flex flex-col items-center justify-center py-32 space-y-10">
+        <div class="relative" aria-hidden="true">
           <div class="w-24 h-24 border-4 border-blue-600/20 rounded-full"></div>
           <div class="w-24 h-24 border-4 border-blue-600 border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
         </div>

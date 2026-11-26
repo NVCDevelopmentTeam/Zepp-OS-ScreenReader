@@ -32,7 +32,7 @@
   {#snippet actions()}
     <div class="flex items-center gap-2 text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest group-hover:gap-4 transition-all duration-500">
       Read More
-      <div class="i-lucide-arrow-right w-4 h-4"></div>
+      <span class="i-lucide-arrow-right w-4 h-4" aria-hidden="true"></span>
     </div>
   {/snippet}
 </Card>

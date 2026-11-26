@@ -40,7 +40,7 @@
 
   <!-- Pagination -->
   {#if !isFirstPage || hasNextPage}
-    <div class="flex items-center justify-between mt-32 pt-12 border-t border-gray-100 dark:border-white/5" aria-label="Pagination">
+    <nav class="flex items-center justify-between mt-32 pt-12 border-t border-gray-100 dark:border-white/5" aria-label="Pagination">
       {#if !isFirstPage}
         <a 
           href={`/news/?page=${data.page - 1}`} 
@@ -48,7 +48,7 @@
           data-sveltekit-preload-data="hover"
           aria-label={`Go to previous page (page ${data.page - 1})`}
         >
-          <div class="i-lucide-arrow-left w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" aria-hidden="true"></div>
+          <span class="i-lucide-arrow-left w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" aria-hidden="true"></span>
           <span class="text-xs uppercase tracking-widest font-black">Previous</span>
         </a>
       {:else}
@@ -67,11 +67,11 @@
           aria-label={`Go to next page (page ${data.page + 1})`}
         >
           <span class="text-xs uppercase tracking-widest font-black">Next</span>
-          <div class="i-lucide-arrow-right w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" aria-hidden="true"></div>
+          <span class="i-lucide-arrow-right w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" aria-hidden="true"></span>
         </a>
       {:else}
         <div></div>
       {/if}
-    </div>
+    </nav>
   {/if}
 </div>

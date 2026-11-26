@@ -31,19 +31,14 @@
     <!-- Admin Sidebar: Only for Admin area -->
     <aside class="w-64 hidden lg:block bg-white dark:bg-dark-900 border-r border-gray-200 dark:border-dark-800 p-6">
       <nav class="space-y-1" aria-label="Admin Navigation">
-        <a href="/admin/" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-bold text-sm">
-          <div class="i-lucide-layout-dashboard w-4 h-4"></div>
+        <a href="/admin/" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 font-bold text-sm" aria-current="page">
+          <span class="i-lucide-layout-dashboard w-4 h-4" aria-hidden="true"></span>
           Dashboard
-        </a>
-        <div class="pt-4 pb-2 px-4 text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-widest">Content</div>
-        <a href="/admin/" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-800 text-gray-600 dark:text-gray-400 font-bold text-sm transition-colors">
-          <div class="i-lucide-file-text w-4 h-4"></div>
-          Blog Posts
         </a>
       </nav>
     </aside>
 
-    <main class="flex-1 p-6 lg:p-10">
+    <main id="main" tabindex="-1" class="flex-1 p-6 lg:p-10 focus:outline-none">
       {@render children?.()}
     </main>
   </div>
