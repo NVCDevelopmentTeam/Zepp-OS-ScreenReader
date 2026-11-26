@@ -29,7 +29,7 @@ export default defineConfig({
       inlineStyleThreshold: 100000,
 
       // Prerender all static pages
-      // `/news/page/[page]` has no page to prerender until there are more posts than fit on one page,
+      // `/news/[page=pagenum]` has no page to prerender until there are more posts than fit on one page,
       // which is expected, not an error
       prerender: { entries: ['*'], handleHttpError: 'warn', handleUnseenRoutes: 'ignore' },
       // CSP set in hooks.server.js (dynamic nonce if needed later)

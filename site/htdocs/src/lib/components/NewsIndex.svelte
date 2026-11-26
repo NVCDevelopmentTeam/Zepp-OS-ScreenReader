@@ -13,9 +13,9 @@
   let isFirstPage = $derived(data.page === 1);
   let hasNextPage = $derived(data.page * data.limit < data.total);
 
-  // Page 1 is /news/, the others are /news/page/N/ (the site is static: no query string)
+  // Page 1 is /news/, the others are /news/2/, /news/3/ ... (the site is static: no query string)
   /** @param {number} page */
-  const pageHref = (page) => (page <= 1 ? '/news/' : `/news/page/${page}/`);
+  const pageHref = (page) => (page <= 1 ? '/news/' : `/news/${page}/`);
 </script>
 
 <svelte:head>
