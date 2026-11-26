@@ -49,7 +49,7 @@ Because this project exists to serve blind and low-vision users, **the website i
 
 - **[SvelteKit](https://kit.svelte.dev/)** — application framework
 - **Svelte** — component model
-- Static rendering (prerendered pages) with a Cloudflare adapter; the SvelteKit options live in `vite.config.js`
+- Fully static site (`@sveltejs/adapter-static`) hosted on Cloudflare Pages; the SvelteKit options live in `vite.config.js`
 
 ## Getting Started
 
@@ -114,8 +114,8 @@ site/htdocs/
 │   │   ├── icons.js     # The Lucide icons used by the site (no icon package)
 │   │   └── info.js      # Site identity, links and public IDs
 │   └── app.html         # HTML shell
-├── static/              # robots.txt, ads.txt, favicon.ico
-├── _headers             # Security and cache headers for the prerendered pages (Cloudflare)
+├── static/              # robots.txt, favicon.ico, _headers (security and cache headers)
+├── functions/           # Cloudflare Pages Functions: the two GitHub sign-in endpoints of the CMS
 ├── vite.config.js       # Vite + SvelteKit configuration
 └── package.json         # Dependencies & scripts
 ```
@@ -149,7 +149,17 @@ For the full contribution workflow and coding conventions, see [`CONTRIBUTING.md
 
 ## Deployment
 
-This site deploys from the `main` branch. If you're setting up your own deployment (e.g. for a fork or preview environment), configure the appropriate [SvelteKit adapter](https://kit.svelte.dev/docs/adapters) in `svelte.config.js` for your target platform (Vercel, Netlify, Node, static, etc.).
+The site is fully static and deploys to **Cloudflare Pages** from the `main` branch:
+
+| Setting                | Value         |
+| ---------------------- | ------------- |
+| Root directory         | `site/htdocs` |
+| Build command          | `pnpm build`  |
+| Build output directory | `build`       |
+
+The CMS sign-in (`/admin`) uses the two Pages Functions in `functions/`. In the Pages project, under
+**Settings > Variables and Secrets**, set `OAUTH_GITHUB_CLIENT_ID` and `OAUTH_GITHUB_CLIENT_SECRET`
+(a GitHub OAuth app whose callback URL is `https://www.zeppreader.com/admin/oauth/callback`).
 
 ## Community
 

@@ -1,15 +1,10 @@
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
-import adapter from '@sveltejs/adapter-cloudflare'
+import adapter from '@sveltejs/adapter-static'
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import UnoCSS from 'unocss/vite'
-
-// `wrangler` (a dependency of the Cloudflare adapter) loads `punycode` through whatwg-url@5, which makes
-// Node 22+ print a DEP0040 warning on every dev/build run. The warning comes from that dependency,
-// not from this project, so it is silenced for this process.
-;/** @type {any} */ (process).noDeprecation = true
 
 // SvelteKit has no index.html, so the `transformIndexHtml` hooks of the UnoCSS plugins are never used;
 // leaving them makes SvelteKit print a `transform_index_html_unsupported` warning.
@@ -27,13 +22,16 @@ export default defineConfig({
     sveltekit({
       // Keep vitePreprocess() for CSS preprocessing if needed (Svelte 5 natively supports TS)
       preprocess: [vitePreprocess()],
-      adapter: adapter(),
+      // Fully static site: every page is prerendered into `build/` (the Cloudflare Pages output directory)
+      adapter: adapter({ pages: 'build', assets: 'build', fallback: undefined, strict: true }),
 
       // Inline the stylesheet into the HTML: first paint never waits for a separate CSS request
       inlineStyleThreshold: 100000,
 
       // Prerender all static pages
-      prerender: { entries: ['*'], handleHttpError: 'warn' },
+      // `/news/page/[page]` has no page to prerender until there are more posts than fit on one page,
+      // which is expected, not an error
+      prerender: { entries: ['*'], handleHttpError: 'warn', handleUnseenRoutes: 'ignore' },
       // CSP set in hooks.server.js (dynamic nonce if needed later)
       csp: { mode: 'auto' }
     })

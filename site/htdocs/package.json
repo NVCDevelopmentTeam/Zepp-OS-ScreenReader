@@ -21,7 +21,7 @@
 		"@mdsvex/plugin-anchors": "^0.1.1",
 		"@mdsvex/plugin-page-data": "^0.1.1",
 		"@mdsvex/plugin-toc": "^0.1.1",
-		"@sveltejs/adapter-cloudflare": "^9.0.0",
+		"@sveltejs/adapter-static": "^4.0.1",
 		"@sveltejs/kit": "^3.4.0",
 		"@sveltejs/load-config": "^0.2.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.2",

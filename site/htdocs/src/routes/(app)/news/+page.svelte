@@ -1,77 +1,18 @@
 <script>
-  import { siteTitle } from '#lib/info.js';
-  import PostsList from '#lib/components/PostsList.svelte';
+  import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
+  import NewsIndex from '#lib/components/NewsIndex.svelte'
 
-  /**
-   * @typedef {Object} Props
-   * @property {import('./$types').PageData} data
-   */
+  let { data } = $props()
 
-  /** @type {Props} */
-  let { data } = $props();
-
-  let isFirstPage = $derived(data.page === 1);
-  let hasNextPage = $derived(
-    data.total ? data.page * data.limit < data.total : !!data.posts[data.posts.length - 1]?.previous
-  );
+  // Links from the old dynamic site (/news/?page=2) keep working: the site is static now, so the
+  // page number moved into the path (/news/page/2/)
+  onMount(() => {
+    const page = Number(new URLSearchParams(location.search).get('page'))
+    if (Number.isInteger(page) && page > 1) {
+      goto(`/news/page/${page}/`, { replaceState: true })
+    }
+  })
 </script>
 
-<svelte:head>
-  <title>News & Updates | {siteTitle}</title>
-  <meta name="description" content="Stay updated with the latest news and related events about Zepp OS screen reader." />
-</svelte:head>
-
-<div class="container py-20">
-  <header class="max-w-4xl mb-24">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-8">
-      Latest Updates
-    </div>
-    <h1 class="text-4xl min-[420px]:text-5xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
-      News & <br /> <span class="text-blue-600 dark:text-blue-400">Releases</span>
-    </h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl leading-relaxed">
-      Stay informed with the latest developments, feature announcements, and community insights from the ZSR team.
-    </p>
-  </header>
-
-  <div class="space-y-20">
-    <PostsList posts={data.posts} heading="h2" />
-  </div>
-
-  <!-- Pagination -->
-  {#if !isFirstPage || hasNextPage}
-    <nav class="flex items-center justify-between mt-32 pt-12 border-t border-gray-100 dark:border-white/5" aria-label="Pagination">
-      {#if !isFirstPage}
-        <a 
-          href={`/news/?page=${data.page - 1}`} 
-          class="btn-secondary group flex items-center gap-3"
-          data-sveltekit-preload-data="hover"
-          aria-label={`Go to previous page (page ${data.page - 1})`}
-        >
-          <span class="i-lucide-arrow-left w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" aria-hidden="true"></span>
-          <span class="text-xs uppercase tracking-widest font-black">Previous</span>
-        </a>
-      {:else}
-        <div></div>
-      {/if}
-
-      <div class="text-xs font-black text-gray-600 dark:text-gray-400 uppercase tracking-[0.3em] bg-gray-50 dark:bg-white/5 px-6 py-2 rounded-full" aria-current="page">
-        Page {data.page}
-      </div>
-
-      {#if hasNextPage}
-        <a 
-          href={`/news/?page=${data.page + 1}`} 
-          class="btn-secondary group flex items-center gap-3"
-          data-sveltekit-preload-data="hover"
-          aria-label={`Go to next page (page ${data.page + 1})`}
-        >
-          <span class="text-xs uppercase tracking-widest font-black">Next</span>
-          <span class="i-lucide-arrow-right w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" aria-hidden="true"></span>
-        </a>
-      {:else}
-        <div></div>
-      {/if}
-    </nav>
-  {/if}
-</div>
+<NewsIndex {data} />
