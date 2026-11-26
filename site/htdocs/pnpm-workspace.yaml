@@ -1,7 +1,7 @@
 allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
-  - '@sveltia/cms@0.205.2 || 0.213.2 || 0.221.8 || 0.227.4 || 0.229.0 || 0.233.0 || 0.262.0 || 0.268.0 || 0.271.2 || 0.271.3 || 0.272.0'
+  - '@sveltia/cms@0.205.2 || 0.213.2 || 0.221.8 || 0.227.4 || 0.229.0 || 0.233.0 || 0.262.0 || 0.268.0 || 0.271.2 || 0.271.3 || 0.272.0 || 0.273.1'
   - '@unocss/cli@66.9.2 || 66.10.5'
   - '@unocss/config@66.9.2 || 66.10.5'
   - '@unocss/core@66.9.2 || 66.10.5'
@@ -29,7 +29,43 @@ minimumReleaseAgeExclude:
   - '@unocss/rollup@66.10.5'
   - devframe@1.0.0
   - prettier@3.9.7
-  - vite@8.3.4
+  - vite@8.3.4 || 8.4.0
   - eslint-plugin-svelte@3.24.1
   - '@sveltejs/vite-plugin-svelte@7.3.2'
   - svelte-eslint-parser@1.12.0
+  - '@mdsvex/parse@1.1.0'
+  - '@mdsvex/plugin-page-data@0.1.2'
+  - '@mdsvex/plugin-toc@0.1.2'
+  - '@mdsvex/render@1.1.0'
+  - '@sveltejs/kit@3.4.1'
+  - '@twinkleplop/annotation@0.1.10'
+  - '@twinkleplop/bash@0.1.10'
+  - '@twinkleplop/c@0.2.4'
+  - '@twinkleplop/core@0.4.1'
+  - '@twinkleplop/cpp@0.2.4'
+  - '@twinkleplop/css@0.1.10'
+  - '@twinkleplop/diff@0.1.10'
+  - '@twinkleplop/dockerfile@0.2.4'
+  - '@twinkleplop/dotenv@0.1.10'
+  - '@twinkleplop/go@0.1.10'
+  - '@twinkleplop/graphql@0.2.4'
+  - '@twinkleplop/html@0.1.10'
+  - '@twinkleplop/http@0.1.10'
+  - '@twinkleplop/ini@0.1.10'
+  - '@twinkleplop/javascript@0.1.10'
+  - '@twinkleplop/json@0.1.10'
+  - '@twinkleplop/jsonc@0.1.7'
+  - '@twinkleplop/markdown-core@0.3.1'
+  - '@twinkleplop/markdown@0.2.4'
+  - '@twinkleplop/powershell@0.2.4'
+  - '@twinkleplop/python@0.1.10'
+  - '@twinkleplop/rust@0.1.10'
+  - '@twinkleplop/shellsession@0.1.10'
+  - '@twinkleplop/sql@0.1.10'
+  - '@twinkleplop/svelte@0.1.10'
+  - '@twinkleplop/toml@0.1.10'
+  - '@twinkleplop/tsx@0.1.10'
+  - '@twinkleplop/typescript@0.1.10'
+  - '@twinkleplop/yaml@0.1.10'
+  - mdsvex@1.1.0
+  - svelte@5.59.2
